@@ -1,9 +1,6 @@
-using Entities.DBModels.RoomModels;
-using Entities.EnumData;
+namespace Entities.DBModels.HotelRoomModels;
 
-namespace Entities.DBModels.HotelModels;
-
-public class HotelPrice : BaseEntity
+public class HotelRoomPrice : BaseEntity
 {
     [DisplayName(nameof(HotelRoom))]
     [ForeignKey(nameof(HotelRoom))]
@@ -14,13 +11,13 @@ public class HotelPrice : BaseEntity
 
     [DisplayName(nameof(AdultPrice))]
     public double AdultPrice { get; set; }
-    
+
     [DisplayName(nameof(ChildPrice))]
     public double ChildPrice { get; set; }
-    
+
     [DisplayName(nameof(FromDate))]
     public DateTime FromDate { get; set; }
-    
+
     [DisplayName(nameof(ToDate))]
     public DateTime ToDate { get; set; }
 }

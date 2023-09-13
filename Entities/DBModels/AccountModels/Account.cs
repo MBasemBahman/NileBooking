@@ -1,18 +1,16 @@
-﻿using Entities.DBModels.UserModels;
+﻿using Entities.DBModels.BookingModels;
+using Entities.DBModels.UserModels;
 
 namespace Entities.DBModels.AccountModels;
 
 public class Account : AuditImageEntity
 {
-    [DisplayName(nameof(FirstName))]
-    public string FirstName { get; set; }
-
-    [DisplayName(nameof(LastName))]
-    public string LastName { get; set; }
-
     [DisplayName(nameof(User))]
     [ForeignKey(nameof(User))]
-    public int? Fk_User { get; set; }
+    public int Fk_User { get; set; }
+
+    [DisplayName(nameof(User))]
+    public User User { get; set; }
 
     [DisplayName(nameof(AccountType))]
     [ForeignKey(nameof(AccountType))]
@@ -28,6 +26,6 @@ public class Account : AuditImageEntity
     [DisplayName(nameof(AccountState))]
     public AccountState AccountState { get; set; }
 
-    [DisplayName(nameof(User))]
-    public User User { get; set; }
+    [DisplayName(nameof(Bookings))]
+    public List<Booking> Bookings { get; set; }
 }

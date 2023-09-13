@@ -1,9 +1,6 @@
-using Entities.DBModels.BookingModels;
-using Entities.EnumData;
+namespace Entities.DBModels.BookingModels;
 
-namespace Entities.DBModels.HotelModels;
-
-public class HotelReview : BaseEntity
+public class BookingReview : BaseEntity
 {
     [DisplayName(nameof(Booking))]
     [ForeignKey(nameof(Booking))]
@@ -15,7 +12,7 @@ public class HotelReview : BaseEntity
     [DisplayName(nameof(Description))]
     [DataType(DataType.MultilineText)]
     public string Description { get; set; }
-    
+
     [DisplayName(nameof(Rate))]
-    public double Rate { get; set; }
+    public double Rate { get; set; } = 5.0;
 }

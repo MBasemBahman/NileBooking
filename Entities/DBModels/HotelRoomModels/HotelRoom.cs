@@ -1,7 +1,7 @@
-using Entities.DBModels.RoomModels;
-using Entities.EnumData;
+using Entities.DBModels.BookingModels;
+using Entities.DBModels.HotelModels;
 
-namespace Entities.DBModels.HotelModels;
+namespace Entities.DBModels.HotelRoomModels;
 
 public class HotelRoom : BaseEntity
 {
@@ -11,14 +11,14 @@ public class HotelRoom : BaseEntity
 
     [DisplayName(nameof(Hotel))]
     public Hotel Hotel { get; set; }
-    
+
     [DisplayName(nameof(RoomType))]
     [ForeignKey(nameof(RoomType))]
     public int Fk_RoomType { get; set; }
 
     [DisplayName(nameof(RoomType))]
     public RoomType RoomType { get; set; }
-    
+
     [DisplayName(nameof(RoomFoodType))]
     [ForeignKey(nameof(RoomFoodType))]
     public int Fk_RoomFoodType { get; set; }
@@ -28,4 +28,10 @@ public class HotelRoom : BaseEntity
 
     [DisplayName(nameof(MaxCount))]
     public double MaxCount { get; set; }
+
+    [DisplayName(nameof(HotelRoomPrices))]
+    public List<HotelRoomPrice> HotelRoomPrices { get; set; }
+
+    [DisplayName(nameof(BookingRooms))]
+    public List<BookingRoom> BookingRooms { get; set; }
 }

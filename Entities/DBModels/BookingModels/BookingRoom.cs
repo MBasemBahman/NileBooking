@@ -1,6 +1,4 @@
-using Entities.DBModels.HotelModels;
-using Entities.DBModels.RoomModels;
-using Entities.EnumData;
+using Entities.DBModels.HotelRoomModels;
 
 namespace Entities.DBModels.BookingModels;
 
@@ -12,7 +10,7 @@ public class BookingRoom : BaseEntity
 
     [DisplayName(nameof(Booking))]
     public Booking Booking { get; set; }
-    
+
     [DisplayName(nameof(HotelRoom))]
     [ForeignKey(nameof(HotelRoom))]
     public int Fk_HotelRoom { get; set; }
@@ -22,13 +20,16 @@ public class BookingRoom : BaseEntity
 
     [DisplayName(nameof(AdultCount))]
     public int AdultCount { get; set; }
-    
+
     [DisplayName(nameof(ChildCount))]
     public int ChildCount { get; set; }
-    
+
     [DisplayName(nameof(TotalAdultPrice))]
     public double TotalAdultPrice { get; set; }
-    
+
     [DisplayName(nameof(TotalChildPrice))]
     public double TotalChildPrice { get; set; }
+
+    [DisplayName(nameof(BookingRoomExtras))]
+    public List<BookingRoomExtra> BookingRoomExtras { get; set; }
 }

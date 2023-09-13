@@ -1,8 +1,8 @@
-using Entities.EnumData;
+using Entities.DBModels.BookingModels;
 
 namespace Entities.DBModels.HotelModels;
 
-public class HotelExtra : AuditLookUpEntity
+public class HotelExtraPrice : AuditLookUpEntity
 {
     [DisplayName(nameof(Hotel))]
     [ForeignKey(nameof(Hotel))]
@@ -12,17 +12,22 @@ public class HotelExtra : AuditLookUpEntity
     public Hotel Hotel { get; set; }
 
     [Required(ErrorMessage = PropertyAttributeConstants.RequiredMsg)]
-    [DisplayName($"{nameof(Name)}{PropertyAttributeConstants.ArLang}")]
+    [DisplayName($"{nameof(Name)}{PropertyAttributeConstants.EnLang}")]
     public new string Name { get; set; }
 
     [DisplayName(nameof(Price))]
     public double Price { get; set; }
 
-    public List<HotelExtraLang> HotelExtraLangs { get; set; }
+    [DisplayName(nameof(BookingRoomExtras))]
+    public List<BookingRoomExtra> BookingRoomExtras { get; set; }
+
+    [DisplayName(nameof(HotelExtraPriceLangs))]
+    public List<HotelExtraPriceLang> HotelExtraPriceLangs { get; set; }
 }
 
-public class HotelExtraLang : AuditLangEntity<HotelExtra>
+public class HotelExtraPriceLang : AuditLangEntity<HotelExtraPrice>
 {
+    [DisplayName(nameof(Name))]
     [Required(ErrorMessage = PropertyAttributeConstants.RequiredMsg)]
     public string Name { get; set; }
 }
