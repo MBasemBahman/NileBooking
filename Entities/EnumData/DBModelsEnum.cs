@@ -32,5 +32,36 @@
         {
             ar
         }
+
+        public enum AccountStateEnum
+        {
+            Active = 1,
+            Pending = 2,
+        }
+
+        public enum AccountTypeEnum
+        {
+            
+        }
+
+        public enum RoomTypeEnum
+        {
+
+        }
+
+        public enum RoomFoodTypeEnum
+        {
+
+        }
+
+        public enum HotelTypeEnum
+        {
+
+        }
+
+        public enum BookingStateEnum
+        {
+
+        }
     }
 }

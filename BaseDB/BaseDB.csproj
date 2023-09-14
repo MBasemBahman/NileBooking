@@ -7,6 +7,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Entities\Entities.csproj" />
+    <ProjectReference Include="..\ModelBuilderConfig\ModelBuilderConfig.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,1 +1,10 @@
-﻿
+﻿global using Entities.Extensions;
+global using CoreService.Extensions;
+global using Entities.DBModels.UserModels;
+global using Entities.RequestFeatures;
+global using Microsoft.EntityFrameworkCore;
+global using Repository;
+global using Services;
+global using System.Linq.Dynamic.Core;
+global using System.Linq.Expressions;
+global using BC = BCrypt.Net.BCrypt;
