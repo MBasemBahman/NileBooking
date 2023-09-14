@@ -38,7 +38,7 @@ builder.Services.AddControllersWithViews(opt =>
     _ = opt.Filters.Add(typeof(GlobalModelStateValidatorAttribute));
 });
 
-builder.Services.ConfigureFirebase(config.AppSettings);
+//builder.Services.ConfigureFirebase(config.AppSettings);
 
 WebApplication app = builder.Build();
 app.UseIpRateLimiting();
