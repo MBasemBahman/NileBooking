@@ -1,9 +1,4 @@
 ﻿using Entities.CoreServicesModels.HotelRoomModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CoreService.Extensions
 {
@@ -117,7 +112,7 @@ namespace CoreService.Extensions
             return data.OrderBy(orderQuery);
         }
 
-    
+
 
     }
 }

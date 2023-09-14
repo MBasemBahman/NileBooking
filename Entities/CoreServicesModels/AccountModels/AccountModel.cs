@@ -1,6 +1,4 @@
 ﻿using Entities.CoreServicesModels.UserModels;
-using Entities.DBModels.AccountModels;
-using Entities.DBModels.UserModels;
 
 namespace Entities.CoreServicesModels.AccountModels
 {

@@ -1,6 +1,4 @@
-﻿using Entities.EnumData;
-
-namespace Entities.CoreServicesModels.AccountModels
+﻿namespace Entities.CoreServicesModels.AccountModels
 {
     public class AccountStateParameters : RequestParameters
     {

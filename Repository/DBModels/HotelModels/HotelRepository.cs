@@ -59,7 +59,7 @@ namespace Repository.DBModels.HotelModels
             return data.Where(a => (id == 0 || a.Id == id) &&
                                        (fk_HotelType == 0 || a.Fk_HotelType == fk_HotelType) &&
                                        (fk_Country == 0 || a.Area.Fk_Country == fk_Country) &&
-                                       (fk_Area == 0|| a.Fk_Area == fk_Area) &&
+                                       (fk_Area == 0 || a.Fk_Area == fk_Area) &&
                                        (isActive == null || a.IsActive == isActive));
         }
     }

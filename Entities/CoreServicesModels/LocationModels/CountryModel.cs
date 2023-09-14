@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Entities.CoreServicesModels.LocationModels
+﻿namespace Entities.CoreServicesModels.LocationModels
 {
     public class CountryParameters : RequestParameters
     {
@@ -12,7 +6,7 @@ namespace Entities.CoreServicesModels.LocationModels
     }
     public class CountryModel : AuditLookUpEntity
     {
-        [DisplayName(nameof(HotelsCount))] 
+        [DisplayName(nameof(HotelsCount))]
         public int HotelsCount { get; set; }
     }
 }

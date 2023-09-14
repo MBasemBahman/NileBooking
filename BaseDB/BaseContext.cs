@@ -10,12 +10,11 @@ using Entities.DBModels.UserModels;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using ModelBuilderConfig.Configurations.AccountModels;
-using ModelBuilderConfig.Configurations.DashboardAdministrationModels;
-using ModelBuilderConfig.Configurations.UserModels;
 using ModelBuilderConfig.Configurations.BookingModels;
-using ModelBuilderConfig.Configurations.HotelRoomModels;
+using ModelBuilderConfig.Configurations.DashboardAdministrationModels;
 using ModelBuilderConfig.Configurations.HotelModels;
-using System.Reflection;
+using ModelBuilderConfig.Configurations.HotelRoomModels;
+using ModelBuilderConfig.Configurations.UserModels;
 
 namespace BaseDB
 {
@@ -127,7 +126,7 @@ namespace BaseDB
             _ = modelBuilder.ApplyConfiguration(new DashboardAdministratorConfiguration());
 
             #endregion
-           
+
             #region Account Models
 
             _ = modelBuilder.ApplyConfiguration(new AccountTypeConfiguration());

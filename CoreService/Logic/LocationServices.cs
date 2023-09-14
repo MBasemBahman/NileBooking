@@ -1,9 +1,6 @@
-﻿using CoreService.Extensions;
-using Entities.CoreServicesModels.LocationModels;
+﻿using Entities.CoreServicesModels.LocationModels;
 using Entities.DBModels.LocationModels;
 using Entities.EnumData;
-using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Configuration;
 
 namespace CoreService.Logic
 {
@@ -34,9 +31,9 @@ namespace CoreService.Logic
                                   Country = new CountryModel
                                   {
                                       Id = a.Fk_Country,
-                                      Name = language!=null ? a.Country.CountryLangs
-                                           .Where(b=>b.Language == language)
-                                           .Select(b=>b.Name).FirstOrDefault() : a.Country.Name
+                                      Name = language != null ? a.Country.CountryLangs
+                                           .Where(b => b.Language == language)
+                                           .Select(b => b.Name).FirstOrDefault() : a.Country.Name
                                   },
                                   HotelsCount = a.Hotels.Count
                               })

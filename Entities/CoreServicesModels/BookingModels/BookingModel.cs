@@ -1,13 +1,5 @@
 ﻿using Entities.CoreServicesModels.AccountModels;
 using Entities.CoreServicesModels.HotelModels;
-using Entities.DBModels.AccountModels;
-using Entities.DBModels.BookingModels;
-using Entities.DBModels.HotelModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Entities.CoreServicesModels.BookingModels
 {

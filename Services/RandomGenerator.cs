@@ -23,7 +23,7 @@ namespace Services
             return Convert.ToInt32((random % (maxVal - minVal + 1)) + minVal);
         }
 
-        public static string GenerateString(int length, string allowableChars = null)
+        public static string GenerateString(int length, string? allowableChars = null)
         {
             if (string.IsNullOrWhiteSpace(allowableChars))
             {

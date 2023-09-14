@@ -1,11 +1,11 @@
 ﻿using Repository.DBModels.AccountModels;
+using Repository.DBModels.BookingModels;
 using Repository.DBModels.DashboardAdministrationModels;
-using Repository.DBModels.LogModels;
-using Repository.DBModels.UserModels;
 using Repository.DBModels.HotelModels;
 using Repository.DBModels.HotelRoomModels;
-using Repository.DBModels.BookingModels;
 using Repository.DBModels.LocationModels;
+using Repository.DBModels.LogModels;
+using Repository.DBModels.UserModels;
 
 
 namespace Repository
@@ -78,7 +78,7 @@ namespace Repository
 
         private AreaRepository _areaRepository;
         private CountryRepository _countryRepository;
-       
+
         #endregion
 
 

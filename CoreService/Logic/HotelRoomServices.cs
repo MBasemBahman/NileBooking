@@ -1,12 +1,6 @@
-﻿using Entities.CoreServicesModels.HotelModels;
-using Entities.CoreServicesModels.HotelRoomModels;
+﻿using Entities.CoreServicesModels.HotelRoomModels;
 using Entities.DBModels.HotelRoomModels;
 using Entities.EnumData;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CoreService.Logic
 {
@@ -240,12 +234,12 @@ namespace CoreService.Logic
                               .Select(a => new HotelRoomPriceModel
                               {
                                   Id = a.Id,
-                                 CreatedAt = a.CreatedAt,
-                                 Fk_HotelRoom = a.Fk_HotelRoom,
-                                 AdultPrice = a.AdultPrice,
-                                 ChildPrice= a.ChildPrice,
-                                 FromDate= a.FromDate,
-                                 ToDate = a.ToDate,
+                                  CreatedAt = a.CreatedAt,
+                                  Fk_HotelRoom = a.Fk_HotelRoom,
+                                  AdultPrice = a.AdultPrice,
+                                  ChildPrice = a.ChildPrice,
+                                  FromDate = a.FromDate,
+                                  ToDate = a.ToDate,
                               })
                               .Search(parameters.SearchColumns, parameters.SearchTerm)
                               .Sort(parameters.OrderBy);

@@ -43,7 +43,7 @@ namespace Repository.DBModels.HotelRoomModels
             return data.Where(a => (id == 0 || a.Id == id) &&
                                        (fk_HotelRoom == 0 || a.Fk_HotelRoom == fk_HotelRoom) &&
                                        (fromDate == null || a.FromDate >= fromDate) &&
-                                       (toDate == null|| a.ToDate <= toDate));
+                                       (toDate == null || a.ToDate <= toDate));
         }
     }
 }

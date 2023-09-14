@@ -1,6 +1,5 @@
 ﻿using Entities.CoreServicesModels.BookingModels;
 using Entities.DBModels.BookingModels;
-using Entities.DBModels.HotelModels;
 
 namespace Repository.DBModels.BookingModels
 {

@@ -1,7 +1,6 @@
 ﻿using CoreService.Logic;
-using Microsoft.Extensions.Configuration;
 
-namespace CoreServices
+namespace CoreService
 {
     public class UnitOfWork
     {
@@ -51,7 +50,7 @@ namespace CoreServices
             }
         }
 
-    
+
         public AccountServices Account
         {
             get

@@ -6,11 +6,6 @@ using Entities.CoreServicesModels.LocationModels;
 using Entities.CoreServicesModels.UserModels;
 using Entities.DBModels.BookingModels;
 using Entities.EnumData;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CoreService.Logic
 {
@@ -414,10 +409,10 @@ namespace CoreService.Logic
                                   CreatedAt = a.CreatedAt,
                                   HotelExtra = new HotelExtraPriceModel
                                   {
-                                   Price = a.HotelExtra.Price,
-                                   Name = language != null ? a.HotelExtra.HotelExtraPriceLangs
-                                           .Where(b=>b.Language == language)
-                                           .Select(b=>b.Name).FirstOrDefault() : a.HotelExtra.Name
+                                      Price = a.HotelExtra.Price,
+                                      Name = language != null ? a.HotelExtra.HotelExtraPriceLangs
+                                           .Where(b => b.Language == language)
+                                           .Select(b => b.Name).FirstOrDefault() : a.HotelExtra.Name
                                   }
 
                               })

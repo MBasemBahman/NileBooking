@@ -1,5 +1,4 @@
-﻿using Entities.Constants;
-using Entities.ResponseFeatures;
+﻿using Entities.ResponseFeatures;
 
 namespace Entities.AuthenticationModels
 {

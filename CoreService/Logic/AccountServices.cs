@@ -3,7 +3,6 @@ using Entities.CoreServicesModels.UserModels;
 using Entities.DBModels.AccountModels;
 using Entities.EnumData;
 using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Configuration;
 
 namespace CoreService.Logic
 {

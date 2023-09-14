@@ -1,5 +1,4 @@
-﻿using Entities.DBModels.AccountModels;
-using Entities.DBModels.DashboardAdministrationModels;
+﻿using Entities.DBModels.DashboardAdministrationModels;
 
 namespace ModelBuilderConfig.Configurations.DashboardAdministrationModels
 {

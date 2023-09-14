@@ -1,6 +1,4 @@
-﻿using Entities.DBModels.DashboardAdministrationModels;
-
-namespace Entities.CoreServicesModels.UserModels
+﻿namespace Entities.CoreServicesModels.UserModels
 {
     public class UserParameters : RequestParameters
     {
@@ -36,7 +34,7 @@ namespace Entities.CoreServicesModels.UserModels
         [DisplayName(nameof(UserName))]
         public string UserName { get; set; }
 
-     
+
         [DisplayName(nameof(FacebookToken))]
         public string FacebookToken { get; set; }
 

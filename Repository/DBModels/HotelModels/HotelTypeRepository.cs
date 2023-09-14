@@ -1,6 +1,4 @@
-﻿using Entities.CoreServicesModels.AccountModels;
-using Entities.CoreServicesModels.HotelModels;
-using Entities.DBModels.AccountModels;
+﻿using Entities.CoreServicesModels.HotelModels;
 using Entities.DBModels.HotelModels;
 
 namespace Repository.DBModels.HotelModels

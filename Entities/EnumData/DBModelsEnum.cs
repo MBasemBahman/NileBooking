@@ -41,7 +41,7 @@
 
         public enum AccountTypeEnum
         {
-            
+
         }
 
         public enum RoomTypeEnum
