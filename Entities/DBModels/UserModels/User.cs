@@ -68,7 +68,6 @@ namespace Entities.DBModels.UserModels
         [DisplayName(nameof(DashboardAdministrator))]
         public DashboardAdministrator DashboardAdministrator { get; set; }
 
-
         [DisplayName(nameof(Account))]
         public Account Account { get; set; }
 

@@ -6,7 +6,6 @@ namespace CoreService
     {
         private readonly RepositoryManager _repository;
         private UserService _userService;
-        private LogServices _logServices;
         private DashboardAdministrationServices _dashboardAdministrationServices;
         private AccountServices _accountServices;
         private HotelServices _hotelServices;
@@ -24,14 +23,6 @@ namespace CoreService
             await _repository.Save();
         }
 
-        public LogServices Log
-        {
-            get
-            {
-                _logServices ??= new LogServices(_repository);
-                return _logServices;
-            }
-        }
         public UserService User
         {
             get

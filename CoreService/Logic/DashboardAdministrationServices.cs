@@ -143,7 +143,7 @@ namespace CoreService.Logic
 
         #region Dashboard Administration Role Services
         public IQueryable<DashboardAdministrationRoleModel> GetRoles(DashboardAdministrationRoleRequestParameters parameters,
-               DBModelsEnum.LanguageEnum? language)
+               LanguageEnum? language)
         {
             return _repository.DashboardAdministrationRole
                        .FindAll(parameters, trackChanges: false)
@@ -164,7 +164,7 @@ namespace CoreService.Logic
 
         public async Task<PagedList<DashboardAdministrationRoleModel>> GetRolesPaged(
                   DashboardAdministrationRoleRequestParameters parameters,
-                  DBModelsEnum.LanguageEnum? language)
+                  LanguageEnum? language)
         {
             return await PagedList<DashboardAdministrationRoleModel>.ToPagedList(GetRoles(parameters, language), parameters.PageNumber, parameters.PageSize);
         }
@@ -174,7 +174,7 @@ namespace CoreService.Logic
             return await _repository.DashboardAdministrationRole.FindById(id, trackChanges);
         }
 
-        public DashboardAdministrationRoleModel GetRolebyId(int id, DBModelsEnum.LanguageEnum? language)
+        public DashboardAdministrationRoleModel GetRolebyId(int id, LanguageEnum? language)
         {
             return GetRoles(new DashboardAdministrationRoleRequestParameters { Id = id }, language).SingleOrDefault();
         }
@@ -270,7 +270,7 @@ namespace CoreService.Logic
             _repository.DashboardAdministrationRole.Delete(dashboardAdministrationRole);
         }
 
-        public Dictionary<string, string> GetRolesLookUp(DashboardAdministrationRoleRequestParameters parameters, DBModelsEnum.LanguageEnum? language)
+        public Dictionary<string, string> GetRolesLookUp(DashboardAdministrationRoleRequestParameters parameters, LanguageEnum? language)
         {
             return GetRoles(parameters, language).ToDictionary(a => a.Id.ToString(), a => a.Name);
         }
@@ -283,7 +283,7 @@ namespace CoreService.Logic
         public DashboardAdministrationRoleCreateOrEditViewModel GetRoleCreateOrEditViewModel(
             DashboardAdministrationRoleCreateOrEditModel role,
             List<RolePermissionCreateOrEditViewModel> permissions,
-            DBModelsEnum.LanguageEnum? language,
+            LanguageEnum? language,
             int id = 0)
         {
             DashboardAdministrationRoleCreateOrEditViewModel model = new()
@@ -322,7 +322,7 @@ namespace CoreService.Logic
 
         #region Dashboard Administrator Services
         public IQueryable<DashboardAdministratorModel> GetAdministrators(DashboardAdministratorParameters parameters,
-               DBModelsEnum.LanguageEnum? language)
+               LanguageEnum? language)
         {
             return _repository.DashboardAdministrator
                        .FindAll(parameters, trackChanges: false)
@@ -358,7 +358,7 @@ namespace CoreService.Logic
 
         public async Task<PagedList<DashboardAdministratorModel>> GetAdministratorsPaged(
                   DashboardAdministratorParameters parameters,
-                  DBModelsEnum.LanguageEnum? language)
+                  LanguageEnum? language)
         {
             return await PagedList<DashboardAdministratorModel>.ToPagedList(GetAdministrators(parameters, language), parameters.PageNumber, parameters.PageSize);
         }
@@ -373,7 +373,7 @@ namespace CoreService.Logic
             return await _repository.DashboardAdministrator.FindByUserId(id, trackChanges);
         }
 
-        public DashboardAdministratorModel GetAdministratorbyId(int id, DBModelsEnum.LanguageEnum? language)
+        public DashboardAdministratorModel GetAdministratorbyId(int id, LanguageEnum? language)
         {
             return GetAdministrators(new DashboardAdministratorParameters { Id = id, GetDevelopers = true }, language).SingleOrDefault();
         }
@@ -401,7 +401,7 @@ namespace CoreService.Logic
 
         #region Administration Role Premission Services
         public IQueryable<AdministrationRolePremissionModel> GetPremissions(AdministrationRolePremissionParameters parameters,
-               DBModelsEnum.LanguageEnum? language)
+               LanguageEnum? language)
         {
             return _repository.AdministrationRolePremission
                        .FindAll(parameters, trackChanges: false)

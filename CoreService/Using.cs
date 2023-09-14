@@ -8,3 +8,4 @@ global using Services;
 global using System.Linq.Dynamic.Core;
 global using System.Linq.Expressions;
 global using BC = BCrypt.Net.BCrypt;
+global using static Entities.EnumData.DBModelsEnum;

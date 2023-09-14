@@ -4,7 +4,6 @@ using Entities.DBModels.DashboardAdministrationModels;
 using Entities.DBModels.HotelModels;
 using Entities.DBModels.HotelRoomModels;
 using Entities.DBModels.LocationModels;
-using Entities.DBModels.LogModels;
 using Entities.DBModels.SharedModels;
 using Entities.DBModels.UserModels;
 using Microsoft.EntityFrameworkCore;
@@ -37,11 +36,6 @@ namespace BaseDB
         public DbSet<DashboardAdministrationRole> DashboardAdministrationRoles { get; set; }
         public DbSet<DashboardAdministrator> DashboardAdministrators { get; set; }
         public DbSet<DashboardView> DashboardViews { get; set; }
-
-        #endregion
-
-        #region Log Models
-        public DbSet<Log> Logs { get; set; }
 
         #endregion
 

@@ -1,5 +1,8 @@
 ﻿using BaseDB;
 using Microsoft.EntityFrameworkCore;
+using ModelBuilderConfig.Configurations.DashboardAdministrationModels;
+using TenantConfiguration;
+using static TenantConfiguration.TenantData;
 
 namespace DAL
 {
@@ -13,7 +16,13 @@ namespace DAL
         {
             base.OnModelCreating(modelBuilder);
 
-            //_ = modelBuilder.ApplyConfiguration(new ExamConfiguration());
+            TenantConfig config = new(TenantEnvironments.Development);
+
+            #region DashboardAdministrationModels
+
+            _ = modelBuilder.ApplyConfiguration(new DashboardViewConfiguration(config.DashboardViews));
+
+            #endregion
         }
     }
 }

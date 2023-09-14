@@ -4,7 +4,6 @@ using Repository.DBModels.DashboardAdministrationModels;
 using Repository.DBModels.HotelModels;
 using Repository.DBModels.HotelRoomModels;
 using Repository.DBModels.LocationModels;
-using Repository.DBModels.LogModels;
 using Repository.DBModels.UserModels;
 
 
@@ -15,10 +14,6 @@ namespace Repository
         private readonly BaseContext _dBContext;
 
         #region private
-
-        #region Log
-        private LogRepository _logRepository;
-        #endregion
 
         #region User
         private UserRepository _userRepository;
@@ -81,8 +76,6 @@ namespace Repository
 
         #endregion
 
-
-
         #endregion
 
         public RepositoryManager(BaseContext dBContext)
@@ -96,17 +89,6 @@ namespace Repository
         }
 
         #region Public
-
-        #region Log
-        public LogRepository Log
-        {
-            get
-            {
-                _logRepository ??= new LogRepository(_dBContext);
-                return _logRepository;
-            }
-        }
-        #endregion
 
         #region User
 

@@ -16,7 +16,7 @@ namespace CoreService.Logic
         #region Area Services
 
         public IQueryable<AreaModel> GetAreas(
-            AreaParameters parameters, DBModelsEnum.LanguageEnum? language)
+            AreaParameters parameters, LanguageEnum? language)
         {
             return _repository.Area
                               .FindAll(parameters, trackChanges: false)
@@ -42,7 +42,7 @@ namespace CoreService.Logic
         }
 
         public async Task<PagedList<AreaModel>> GetAreasPaged(
-            AreaParameters parameters, DBModelsEnum.LanguageEnum? language)
+            AreaParameters parameters, LanguageEnum? language)
         {
             return await PagedList<AreaModel>.ToPagedList(GetAreas(parameters, language), parameters.PageNumber, parameters.PageSize);
         }
@@ -52,12 +52,12 @@ namespace CoreService.Logic
             return await _repository.Area.FindById(id, trackChanges);
         }
 
-        public Dictionary<string, string> GetAreasLookUp(AreaParameters parameters, DBModelsEnum.LanguageEnum? otherLang)
+        public Dictionary<string, string> GetAreasLookUp(AreaParameters parameters, LanguageEnum? otherLang)
         {
             return GetAreas(parameters, otherLang).ToDictionary(a => a.Id.ToString(), a => a.Name);
         }
 
-        public AreaModel GetAreaById(int id, DBModelsEnum.LanguageEnum? language)
+        public AreaModel GetAreaById(int id, LanguageEnum? language)
         {
             return GetAreas(new AreaParameters { Id = id }, language).SingleOrDefault();
         }
@@ -85,7 +85,7 @@ namespace CoreService.Logic
         #region Country Services
 
         public IQueryable<CountryModel> GetCountries(
-            CountryParameters parameters, DBModelsEnum.LanguageEnum? language)
+            CountryParameters parameters, LanguageEnum? language)
         {
             return _repository.Country
                               .FindAll(parameters, trackChanges: false)
@@ -102,7 +102,7 @@ namespace CoreService.Logic
         }
 
         public async Task<PagedList<CountryModel>> GetCountriesPaged(
-            CountryParameters parameters, DBModelsEnum.LanguageEnum? language)
+            CountryParameters parameters, LanguageEnum? language)
         {
             return await PagedList<CountryModel>.ToPagedList(GetCountries(parameters, language), parameters.PageNumber, parameters.PageSize);
         }
@@ -112,12 +112,12 @@ namespace CoreService.Logic
             return await _repository.Country.FindById(id, trackChanges);
         }
 
-        public CountryModel GetCountryById(int id, DBModelsEnum.LanguageEnum? language)
+        public CountryModel GetCountryById(int id, LanguageEnum? language)
         {
             return GetCountries(new CountryParameters { Id = id }, language).SingleOrDefault();
         }
 
-        public Dictionary<string, string> GetCountriesLookUp(CountryParameters parameters, DBModelsEnum.LanguageEnum? language)
+        public Dictionary<string, string> GetCountriesLookUp(CountryParameters parameters, LanguageEnum? language)
         {
             return GetCountries(parameters, language).ToDictionary(a => a.Id.ToString(), a => a.Name);
         }

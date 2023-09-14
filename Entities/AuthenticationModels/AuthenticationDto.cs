@@ -124,4 +124,22 @@ namespace Entities.AuthenticationModels
         [JsonIgnore]
         public int Fk_DashboardAdministrationRole { get; set; }
     }
+
+    public class UserForAuthenticationWithExternalDto : UserForAuthenticationDto
+    {
+        [DataType(DataType.Password)]
+        [DisplayName(nameof(Password))]
+        public new string Password { get; set; }
+
+        [DisplayName(nameof(IsExternalLogin))]
+        [DefaultValue(false)]
+        public bool IsExternalLogin { get; set; }
+
+        [DisplayName(nameof(SocialToken))]
+        public string SocialToken { get; set; }
+
+        public int? SocialType { get; set; }
+
+        public string TenantEnvironment { get; set; }
+    }
 }

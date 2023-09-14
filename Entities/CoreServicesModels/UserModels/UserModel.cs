@@ -28,7 +28,7 @@
         public string LastName { get; set; }
 
         [DisplayName(nameof(FullName))]
-        public string FullName => $"{FirstName} {LastName}";
+        public string FullName { get; set; }
 
         [Required(ErrorMessage = PropertyAttributeConstants.RequiredMsg)]
         [DisplayName(nameof(UserName))]

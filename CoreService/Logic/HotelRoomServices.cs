@@ -16,7 +16,7 @@ namespace CoreService.Logic
         #region Room Type Services
 
         public IQueryable<RoomTypeModel> GetRoomTypes(
-            RoomTypeParameters parameters, DBModelsEnum.LanguageEnum? language)
+            RoomTypeParameters parameters, LanguageEnum? language)
         {
             return _repository.RoomType
                               .FindAll(parameters, trackChanges: false)
@@ -34,7 +34,7 @@ namespace CoreService.Logic
         }
 
         public async Task<PagedList<RoomTypeModel>> GetRoomTypesPaged(
-            RoomTypeParameters parameters, DBModelsEnum.LanguageEnum? language)
+            RoomTypeParameters parameters, LanguageEnum? language)
         {
             return await PagedList<RoomTypeModel>.ToPagedList(GetRoomTypes(parameters, language), parameters.PageNumber, parameters.PageSize);
         }
@@ -44,12 +44,12 @@ namespace CoreService.Logic
             return await _repository.RoomType.FindById(id, trackChanges);
         }
 
-        public Dictionary<string, string> GetRoomTypesLookUp(RoomTypeParameters parameters, DBModelsEnum.LanguageEnum? otherLang)
+        public Dictionary<string, string> GetRoomTypesLookUp(RoomTypeParameters parameters, LanguageEnum? otherLang)
         {
             return GetRoomTypes(parameters, otherLang).ToDictionary(a => a.Id.ToString(), a => a.Name);
         }
 
-        public RoomTypeModel GetRoomTypeById(int id, DBModelsEnum.LanguageEnum? language)
+        public RoomTypeModel GetRoomTypeById(int id, LanguageEnum? language)
         {
             return GetRoomTypes(new RoomTypeParameters { Id = id }, language).SingleOrDefault();
         }
@@ -77,7 +77,7 @@ namespace CoreService.Logic
         #region Room Food Type Services
 
         public IQueryable<RoomFoodTypeModel> GetRoomFoodTypes(
-            RoomFoodTypeParameters parameters, DBModelsEnum.LanguageEnum? language)
+            RoomFoodTypeParameters parameters, LanguageEnum? language)
         {
             return _repository.RoomFoodType
                               .FindAll(parameters, trackChanges: false)
@@ -96,7 +96,7 @@ namespace CoreService.Logic
         }
 
         public async Task<PagedList<RoomFoodTypeModel>> GetRoomFoodTypesPaged(
-            RoomFoodTypeParameters parameters, DBModelsEnum.LanguageEnum? language)
+            RoomFoodTypeParameters parameters, LanguageEnum? language)
         {
             return await PagedList<RoomFoodTypeModel>.ToPagedList(GetRoomFoodTypes(parameters, language), parameters.PageNumber, parameters.PageSize);
         }
@@ -106,12 +106,12 @@ namespace CoreService.Logic
             return await _repository.RoomFoodType.FindById(id, trackChanges);
         }
 
-        public Dictionary<string, string> GetRoomFoodTypesLookUp(RoomFoodTypeParameters parameters, DBModelsEnum.LanguageEnum? otherLang)
+        public Dictionary<string, string> GetRoomFoodTypesLookUp(RoomFoodTypeParameters parameters, LanguageEnum? otherLang)
         {
             return GetRoomFoodTypes(parameters, otherLang).ToDictionary(a => a.Id.ToString(), a => a.Name);
         }
 
-        public RoomFoodTypeModel GetRoomFoodTypeById(int id, DBModelsEnum.LanguageEnum? language)
+        public RoomFoodTypeModel GetRoomFoodTypeById(int id, LanguageEnum? language)
         {
             return GetRoomFoodTypes(new RoomFoodTypeParameters { Id = id }, language).SingleOrDefault();
         }
@@ -139,7 +139,7 @@ namespace CoreService.Logic
         #region Hotel Room Services
 
         public IQueryable<HotelRoomModel> GetHotelRooms(
-            HotelRoomParameters parameters, DBModelsEnum.LanguageEnum? language)
+            HotelRoomParameters parameters, LanguageEnum? language)
         {
             return _repository.HotelRoom
                               .FindAll(parameters, trackChanges: false)
@@ -189,7 +189,7 @@ namespace CoreService.Logic
         }
 
         public async Task<PagedList<HotelRoomModel>> GetHotelRoomsPaged(
-            HotelRoomParameters parameters, DBModelsEnum.LanguageEnum? language)
+            HotelRoomParameters parameters, LanguageEnum? language)
         {
             return await PagedList<HotelRoomModel>.ToPagedList(GetHotelRooms(parameters, language), parameters.PageNumber, parameters.PageSize);
         }
@@ -199,7 +199,7 @@ namespace CoreService.Logic
             return await _repository.HotelRoom.FindById(id, trackChanges);
         }
 
-        public HotelRoomModel GetHotelRoomById(int id, DBModelsEnum.LanguageEnum? language)
+        public HotelRoomModel GetHotelRoomById(int id, LanguageEnum? language)
         {
             return GetHotelRooms(new HotelRoomParameters { Id = id }, language).SingleOrDefault();
         }
@@ -227,7 +227,7 @@ namespace CoreService.Logic
         #region Hotel Room Price Services
 
         public IQueryable<HotelRoomPriceModel> GetHotelRoomPrices(
-            HotelRoomPriceParameters parameters, DBModelsEnum.LanguageEnum? language)
+            HotelRoomPriceParameters parameters, LanguageEnum? language)
         {
             return _repository.HotelRoomPrice
                               .FindAll(parameters, trackChanges: false)
@@ -246,7 +246,7 @@ namespace CoreService.Logic
         }
 
         public async Task<PagedList<HotelRoomPriceModel>> GetHotelRoomPricesPaged(
-            HotelRoomPriceParameters parameters, DBModelsEnum.LanguageEnum? language)
+            HotelRoomPriceParameters parameters, LanguageEnum? language)
         {
             return await PagedList<HotelRoomPriceModel>.ToPagedList(GetHotelRoomPrices(parameters, language), parameters.PageNumber, parameters.PageSize);
         }
@@ -256,7 +256,7 @@ namespace CoreService.Logic
             return await _repository.HotelRoomPrice.FindById(id, trackChanges);
         }
 
-        public HotelRoomPriceModel GetHotelRoomPriceById(int id, DBModelsEnum.LanguageEnum? language)
+        public HotelRoomPriceModel GetHotelRoomPriceById(int id, LanguageEnum? language)
         {
             return GetHotelRoomPrices(new HotelRoomPriceParameters { Id = id }, language).SingleOrDefault();
         }

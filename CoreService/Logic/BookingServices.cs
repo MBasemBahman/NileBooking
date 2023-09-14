@@ -21,7 +21,7 @@ namespace CoreService.Logic
         #region Booking State Services
 
         public IQueryable<BookingStateModel> GetBookingStates(
-            BookingStateParameters parameters, DBModelsEnum.LanguageEnum? language)
+            BookingStateParameters parameters, LanguageEnum? language)
         {
             return _repository.BookingState
                               .FindAll(parameters, trackChanges: false)
@@ -39,7 +39,7 @@ namespace CoreService.Logic
         }
 
         public async Task<PagedList<BookingStateModel>> GetBookingStatesPaged(
-            BookingStateParameters parameters, DBModelsEnum.LanguageEnum? language)
+            BookingStateParameters parameters, LanguageEnum? language)
         {
             return await PagedList<BookingStateModel>.ToPagedList(GetBookingStates(parameters, language), parameters.PageNumber, parameters.PageSize);
         }
@@ -49,12 +49,12 @@ namespace CoreService.Logic
             return await _repository.BookingState.FindById(id, trackChanges);
         }
 
-        public Dictionary<string, string> GetBookingStatesLookUp(BookingStateParameters parameters, DBModelsEnum.LanguageEnum? otherLang)
+        public Dictionary<string, string> GetBookingStatesLookUp(BookingStateParameters parameters, LanguageEnum? otherLang)
         {
             return GetBookingStates(parameters, otherLang).ToDictionary(a => a.Id.ToString(), a => a.Name);
         }
 
-        public BookingStateModel GetBookingStateById(int id, DBModelsEnum.LanguageEnum? language)
+        public BookingStateModel GetBookingStateById(int id, LanguageEnum? language)
         {
             return GetBookingStates(new BookingStateParameters { Id = id }, language).SingleOrDefault();
         }
@@ -80,7 +80,7 @@ namespace CoreService.Logic
         #region Booking Services
 
         public IQueryable<BookingModel> GetBookings(
-            BookingParameters parameters, DBModelsEnum.LanguageEnum? language)
+            BookingParameters parameters, LanguageEnum? language)
         {
             return _repository.Booking
                               .FindAll(parameters, trackChanges: false)
@@ -205,7 +205,7 @@ namespace CoreService.Logic
         }
 
         public async Task<PagedList<BookingModel>> GetBookingsPaged(
-            BookingParameters parameters, DBModelsEnum.LanguageEnum? language)
+            BookingParameters parameters, LanguageEnum? language)
         {
             return await PagedList<BookingModel>.ToPagedList(GetBookings(parameters, language), parameters.PageNumber, parameters.PageSize);
         }
@@ -215,7 +215,7 @@ namespace CoreService.Logic
             return await _repository.Booking.FindById(id, trackChanges);
         }
 
-        public BookingModel GetBookingById(int id, DBModelsEnum.LanguageEnum? language)
+        public BookingModel GetBookingById(int id, LanguageEnum? language)
         {
             return GetBookings(new BookingParameters { Id = id }, language).SingleOrDefault();
         }
@@ -300,7 +300,7 @@ namespace CoreService.Logic
         #region Booking Room Services
 
         public IQueryable<BookingRoomModel> GetBookingRooms(
-            BookingRoomParameters parameters, DBModelsEnum.LanguageEnum? language)
+            BookingRoomParameters parameters, LanguageEnum? language)
         {
             return _repository.BookingRoom
                               .FindAll(parameters, trackChanges: false)
@@ -358,7 +358,7 @@ namespace CoreService.Logic
         }
 
         public async Task<PagedList<BookingRoomModel>> GetBookingRoomsPaged(
-            BookingRoomParameters parameters, DBModelsEnum.LanguageEnum? language)
+            BookingRoomParameters parameters, LanguageEnum? language)
         {
             return await PagedList<BookingRoomModel>.ToPagedList(GetBookingRooms(parameters, language), parameters.PageNumber, parameters.PageSize);
         }
@@ -368,7 +368,7 @@ namespace CoreService.Logic
             return await _repository.BookingRoom.FindById(id, trackChanges);
         }
 
-        public BookingRoomModel GetBookingRoomById(int id, DBModelsEnum.LanguageEnum? language)
+        public BookingRoomModel GetBookingRoomById(int id, LanguageEnum? language)
         {
             return GetBookingRooms(new BookingRoomParameters { Id = id }, language).SingleOrDefault();
         }
@@ -396,7 +396,7 @@ namespace CoreService.Logic
         #region Booking Room Services
 
         public IQueryable<BookingRoomExtraModel> GetBookingRoomExtras(
-            BookingRoomExtraParameters parameters, DBModelsEnum.LanguageEnum? language)
+            BookingRoomExtraParameters parameters, LanguageEnum? language)
         {
             return _repository.BookingRoomExtra
                               .FindAll(parameters, trackChanges: false)
@@ -421,7 +421,7 @@ namespace CoreService.Logic
         }
 
         public async Task<PagedList<BookingRoomExtraModel>> GetBookingRoomExtrasPaged(
-            BookingRoomExtraParameters parameters, DBModelsEnum.LanguageEnum? language)
+            BookingRoomExtraParameters parameters, LanguageEnum? language)
         {
             return await PagedList<BookingRoomExtraModel>.ToPagedList(GetBookingRoomExtras(parameters, language), parameters.PageNumber, parameters.PageSize);
         }
@@ -431,7 +431,7 @@ namespace CoreService.Logic
             return await _repository.BookingRoomExtra.FindById(id, trackChanges);
         }
 
-        public BookingRoomExtraModel GetBookingRoomExtraById(int id, DBModelsEnum.LanguageEnum? language)
+        public BookingRoomExtraModel GetBookingRoomExtraById(int id, LanguageEnum? language)
         {
             return GetBookingRoomExtras(new BookingRoomExtraParameters { Id = id }, language).SingleOrDefault();
         }
