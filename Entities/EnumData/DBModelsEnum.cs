@@ -30,11 +30,7 @@
 
         public enum LanguageEnum
         {
-            en,
-            fr,
-            de,
-            ru,
-            tl
+            ar
         }
     }
 }
