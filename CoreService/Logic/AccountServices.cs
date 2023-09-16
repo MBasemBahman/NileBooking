@@ -2,7 +2,6 @@
 using Entities.CoreServicesModels.AccountModels;
 using Entities.CoreServicesModels.UserModels;
 using Entities.DBModels.AccountModels;
-using Entities.EnumData;
 using Microsoft.AspNetCore.Http;
 
 namespace CoreService.Logic
@@ -66,16 +65,16 @@ namespace CoreService.Logic
             return await GetAccounts(new AccountParameters { Fk_User = fK_User }, language)
                         .Select(a => new UserAuthenticatedDto
                         {
-                           CreatedAt = a.CreatedAt,
-                           EmailAddress = a.User.EmailAddress,
-                           Fk_Account = a.Id,
-                           Fk_AccountState = a.Fk_AccountState,
-                           Fk_AccountType = a.Fk_AccountType,
-                           Id = a.User.Id,
-                           ImageUrl = a.ImageUrl,
-                           Name = a.User.FullName,
-                           PhoneNumber = a.User.PhoneNumber,
-                           UserName = a.User.UserName,
+                            CreatedAt = a.CreatedAt,
+                            EmailAddress = a.User.EmailAddress,
+                            Fk_Account = a.Id,
+                            Fk_AccountState = a.Fk_AccountState,
+                            Fk_AccountType = a.Fk_AccountType,
+                            Id = a.User.Id,
+                            ImageUrl = a.ImageUrl,
+                            Name = a.User.FullName,
+                            PhoneNumber = a.User.PhoneNumber,
+                            UserName = a.User.UserName,
                         })
                         .FirstOrDefaultAsync();
         }

@@ -1,6 +1,5 @@
 ﻿using API.Areas.HotelArea.Models;
 using Entities.CoreServicesModels.HotelModels;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace API.Areas.HotelArea.Controllers
 {
@@ -37,7 +36,7 @@ namespace API.Areas.HotelArea.Controllers
         }
 
 
-       
+
 
     }
 }

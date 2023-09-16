@@ -5,7 +5,6 @@ using Entities.CoreServicesModels.HotelRoomModels;
 using Entities.CoreServicesModels.LocationModels;
 using Entities.CoreServicesModels.UserModels;
 using Entities.DBModels.BookingModels;
-using Entities.EnumData;
 
 namespace CoreService.Logic
 {

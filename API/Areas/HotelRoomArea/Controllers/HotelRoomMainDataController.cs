@@ -1,6 +1,5 @@
 ﻿using API.Areas.HotelRoomArea.Models;
 using Entities.CoreServicesModels.HotelRoomModels;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace API.Areas.HotelRoomArea.Controllers
 {

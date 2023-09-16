@@ -1,7 +1,6 @@
 ﻿using Entities.CoreServicesModels.DashboardAdministrationModels;
 using Entities.CoreServicesModels.UserModels;
 using Entities.DBModels.DashboardAdministrationModels;
-using Entities.EnumData;
 
 namespace CoreService.Logic
 {

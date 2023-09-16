@@ -1,7 +1,5 @@
 ﻿using Entities.CoreServicesModels.HotelRoomModels;
 using Entities.CoreServicesModels.LocationModels;
-using Entities.DBModels.HotelModels;
-using Entities.DBModels.HotelRoomModels;
 
 namespace Entities.CoreServicesModels.HotelModels
 {

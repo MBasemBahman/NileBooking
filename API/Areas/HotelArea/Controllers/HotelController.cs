@@ -55,10 +55,10 @@ namespace API.Areas.HotelArea.Controllers
             HotelModel hotel = _unitOfWork.Hotel.GetHotels(new HotelParameters
             {
                 Id = id,
-                IncludeExtraPrices= true,
-                IncludeRooms= true,
-                IncludeSelectedFeature= true,
-                
+                IncludeExtraPrices = true,
+                IncludeRooms = true,
+                IncludeSelectedFeature = true,
+
             }, language).FirstOrDefault();
 
             HotelDto hotelDto = _mapper.Map<HotelDto>(hotel);

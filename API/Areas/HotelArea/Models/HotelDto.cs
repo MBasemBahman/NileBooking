@@ -1,11 +1,7 @@
-﻿using Entities.CoreServicesModels.HotelModels;
-using Entities.CoreServicesModels.LocationModels;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel;
+﻿using API.Areas.HotelRoomArea.Models;
 using API.Areas.LocationArea.Models;
-using Entities.CoreServicesModels.HotelRoomModels;
-using API.Areas.HotelRoomArea.Models;
+using Entities.CoreServicesModels.HotelModels;
+using System.ComponentModel;
 
 namespace API.Areas.HotelArea.Models
 {

@@ -2,7 +2,6 @@
 using Entities.CoreServicesModels.HotelRoomModels;
 using Entities.CoreServicesModels.LocationModels;
 using Entities.DBModels.HotelModels;
-using Entities.EnumData;
 using Microsoft.AspNetCore.Http;
 
 namespace CoreService.Logic
@@ -96,36 +95,36 @@ namespace CoreService.Logic
                                                   .Where(c => c.Language == language)
                                                   .Select(d => d.Name).FirstOrDefault() : a.HotelType.Name,
                                   },
-                                  HotelExtras = parameters.IncludeExtraPrices  == true
-                                  ? a.HotelExtras.Select(b=> new HotelExtraPriceModel
+                                  HotelExtras = parameters.IncludeExtraPrices == true
+                                  ? a.HotelExtras.Select(b => new HotelExtraPriceModel
                                   {
-                                      LastModifiedAt= b.LastModifiedAt,
-                                      CreatedAt= b.CreatedAt,
-                                      CreatedBy= b.CreatedBy,   
-                                      Fk_Hotel  = b.Fk_Hotel,
-                                      Id = b.Id,    
+                                      LastModifiedAt = b.LastModifiedAt,
+                                      CreatedAt = b.CreatedAt,
+                                      CreatedBy = b.CreatedBy,
+                                      Fk_Hotel = b.Fk_Hotel,
+                                      Id = b.Id,
                                       Price = b.Price,
                                       Name = language != null ? b.HotelExtraPriceLangs
-                                                 .Where(c=>c.Language == language)
-                                                 .Select(c=>c.Name).FirstOrDefault() : b.Name,
-                                      
+                                                 .Where(c => c.Language == language)
+                                                 .Select(c => c.Name).FirstOrDefault() : b.Name,
+
                                   }).ToList()
                                   : null,
                                   HotelRooms = parameters.IncludeRooms == true
-                                  ? a.HotelRooms.Select(b=>new HotelRoomModel
+                                  ? a.HotelRooms.Select(b => new HotelRoomModel
                                   {
                                       Fk_RoomFoodType = b.Fk_RoomFoodType,
                                       Fk_RoomType = b.Fk_RoomType,
                                       Fk_Hotel = b.Fk_Hotel,
                                       Id = b.Id,
                                       MaxCount = b.MaxCount,
-                                      CreatedAt= b.CreatedAt,
+                                      CreatedAt = b.CreatedAt,
                                       RoomType = new RoomTypeModel
                                       {
                                           ColorCode = b.RoomType.ColorCode,
                                           Name = language != null ? b.RoomType.RoomTypeLangs
-                                                .Where(c=>c.Language == language)
-                                                .Select(c=>c.Name).FirstOrDefault() : b.RoomType.Name
+                                                .Where(c => c.Language == language)
+                                                .Select(c => c.Name).FirstOrDefault() : b.RoomType.Name
                                       },
                                       RoomFoodType = new RoomFoodTypeModel
                                       {
@@ -141,10 +140,10 @@ namespace CoreService.Logic
                                   ? a.HotelAttachments.Select(b => new HotelAttachmentModel
                                   {
                                       FileLength = b.FileLength,
-                                      FileName= b.FileName,
-                                      FileType= b.FileType,
+                                      FileName = b.FileName,
+                                      FileType = b.FileType,
                                       FileUrl = b.StorageUrl + b.FileUrl,
-                                      CreatedAt= b.CreatedAt,
+                                      CreatedAt = b.CreatedAt,
                                       CreatedBy = b.CreatedBy,
                                       Fk_Hotel = b.Fk_Hotel,
                                       Id = b.Id

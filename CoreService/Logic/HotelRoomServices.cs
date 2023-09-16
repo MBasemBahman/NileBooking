@@ -1,6 +1,5 @@
 ﻿using Entities.CoreServicesModels.HotelRoomModels;
 using Entities.DBModels.HotelRoomModels;
-using Entities.EnumData;
 
 namespace CoreService.Logic
 {

@@ -1,8 +1,6 @@
-﻿using Entities.CoreServicesModels.HotelModels;
+﻿using API.Areas.HotelArea.Models;
 using Entities.CoreServicesModels.HotelRoomModels;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel;
-using API.Areas.HotelArea.Models;
 
 namespace API.Areas.HotelRoomArea.Models
 {
@@ -13,11 +11,11 @@ namespace API.Areas.HotelRoomArea.Models
         [DisplayName(nameof(Hotel))]
         public new HotelDto Hotel { get; set; }
 
-     
+
         [DisplayName(nameof(RoomType))]
         public new RoomTypeDto RoomType { get; set; }
 
-      
+
         [DisplayName(nameof(RoomFoodType))]
         public new RoomFoodTypeDto RoomFoodType { get; set; }
 

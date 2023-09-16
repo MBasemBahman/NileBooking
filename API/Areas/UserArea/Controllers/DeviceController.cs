@@ -1,5 +1,4 @@
-﻿using API.Controllers;
-using Entities.CoreServicesModels.UserModels;
+﻿using Entities.CoreServicesModels.UserModels;
 using Entities.DBModels.UserModels;
 
 namespace API.Areas.UserArea.Controllers

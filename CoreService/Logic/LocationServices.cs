@@ -1,6 +1,5 @@
 ﻿using Entities.CoreServicesModels.LocationModels;
 using Entities.DBModels.LocationModels;
-using Entities.EnumData;
 
 namespace CoreService.Logic
 {

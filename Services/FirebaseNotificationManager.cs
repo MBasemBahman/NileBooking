@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 
 namespace Services
 {
-    public class FirebaseNotificationManager 
+    public class FirebaseNotificationManager
     {
         private static async Task<string> SendToTopic(Message message)
         {

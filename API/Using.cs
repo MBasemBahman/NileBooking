@@ -1,4 +1,5 @@
 ﻿global using API.ActionFilters;
+global using API.Controllers;
 global using API.Models;
 global using API.Utility;
 global using AutoMapper;
@@ -12,10 +13,9 @@ global using Entities.ResponseFeatures;
 global using Microsoft.AspNetCore.Mvc;
 global using Microsoft.AspNetCore.Mvc.Filters;
 global using Microsoft.Extensions.Options;
+global using static Entities.EnumData.DBModelsEnum;
 global using static Entities.EnumData.LogicModelsEnum;
 global using static Entities.Extensions.StringExtensions;
 global using static TenantConfiguration.TenantData;
-global using static Entities.EnumData.DBModelsEnum;
-global using API.Controllers;
 
 

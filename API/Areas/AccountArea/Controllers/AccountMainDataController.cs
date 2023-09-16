@@ -1,6 +1,5 @@
 ﻿using API.Areas.AccountArea.Models;
 using Entities.CoreServicesModels.AccountModels;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace API.Areas.AccountArea.Controllers
 {

@@ -1,6 +1,5 @@
 ﻿using API.Areas.LocationArea.Models;
 using Entities.CoreServicesModels.LocationModels;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace API.Areas.LocationArea.Controllers
 {

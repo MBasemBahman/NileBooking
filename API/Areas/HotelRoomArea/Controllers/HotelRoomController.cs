@@ -2,7 +2,7 @@
 using Entities.CoreServicesModels.HotelRoomModels;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 
-namespace API.Areas.HotelArea.Controllers
+namespace API.Areas.HotelRoomArea.Controllers
 {
     [ApiVersion("1.0")]
     [Area("HotelRoom")]

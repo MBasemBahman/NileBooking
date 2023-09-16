@@ -72,46 +72,46 @@ namespace API.MappingProfileCls
 
             #region Account Models
 
-            CreateMap<AccountModel, AccountDto>();
+            _ = CreateMap<AccountModel, AccountDto>();
 
-            CreateMap<AccountStateModel, AccountStateDto>();
+            _ = CreateMap<AccountStateModel, AccountStateDto>();
 
-            CreateMap<AccountTypeModel, AccountTypeDto>();
+            _ = CreateMap<AccountTypeModel, AccountTypeDto>();
 
-            CreateMap<AccountCreateOrEditDto, Account>();
+            _ = CreateMap<AccountCreateOrEditDto, Account>();
             #endregion
 
             #region Location Models
-            CreateMap<AreaModel, AreaDto>();
+            _ = CreateMap<AreaModel, AreaDto>();
 
-            CreateMap<CountryModel,CountryDto>();
+            _ = CreateMap<CountryModel, CountryDto>();
             #endregion
 
             #region Hotel Models
-            CreateMap<HotelAttachmentModel, HotelAttachmentDto>();
+            _ = CreateMap<HotelAttachmentModel, HotelAttachmentDto>();
 
-            CreateMap<HotelModel, HotelDto>();
+            _ = CreateMap<HotelModel, HotelDto>();
 
-            CreateMap<HotelExtraPriceModel, HotelExtraPriceDto>();
+            _ = CreateMap<HotelExtraPriceModel, HotelExtraPriceDto>();
 
-            CreateMap<HotelFeatureModel, HotelFeatureDto>();
+            _ = CreateMap<HotelFeatureModel, HotelFeatureDto>();
 
-            CreateMap<HotelFeatureCategoryModel, HotelFeatureCategoryDto>();   
+            _ = CreateMap<HotelFeatureCategoryModel, HotelFeatureCategoryDto>();
 
-            CreateMap<HotelTypeModel, HotelTypeDto>();
+            _ = CreateMap<HotelTypeModel, HotelTypeDto>();
 
-            CreateMap<HotelSelectedFeaturesWithCategoryModel, HotelSelectedFeaturesWithCategoryDto>();
+            _ = CreateMap<HotelSelectedFeaturesWithCategoryModel, HotelSelectedFeaturesWithCategoryDto>();
             #endregion
 
             #region Hotel Room Models
 
-            CreateMap<HotelRoomModel, HotelRoomDto>();
+            _ = CreateMap<HotelRoomModel, HotelRoomDto>();
 
-            CreateMap<HotelRoomPriceModel, HotelRoomPriceDto>();
+            _ = CreateMap<HotelRoomPriceModel, HotelRoomPriceDto>();
 
-            CreateMap<RoomFoodTypeModel, RoomFoodTypeDto>();
+            _ = CreateMap<RoomFoodTypeModel, RoomFoodTypeDto>();
 
-            CreateMap<RoomTypeModel, RoomTypeDto>();
+            _ = CreateMap<RoomTypeModel, RoomTypeDto>();
             #endregion
         }
 

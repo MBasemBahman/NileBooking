@@ -1,8 +1,6 @@
-using Entities.CoreServicesModels.AccountModels;
-using Entities.CoreServicesModels.UserModels;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel;
 using API.Areas.UserArea.Models;
+using Entities.CoreServicesModels.AccountModels;
+using System.ComponentModel;
 
 namespace API.Areas.AccountArea.Models
 {

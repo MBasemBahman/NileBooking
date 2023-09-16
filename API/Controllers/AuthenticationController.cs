@@ -57,10 +57,10 @@ namespace API.Controllers
                 EmailAddress = model.EmailAddress,
                 PhoneNumber = model.PhoneNumber,
                 Password = model.Password,
-              
+
                 Account = new Account
                 {
-                  
+
                     Fk_AccountState = (int)AccountStateEnum.Active,
                     Fk_AccountType = (int)AccountTypeEnum.Client,
                 },
