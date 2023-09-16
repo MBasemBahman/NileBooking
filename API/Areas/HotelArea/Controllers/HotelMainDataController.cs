@@ -36,6 +36,37 @@ namespace API.Areas.HotelArea.Controllers
         }
 
 
+        [HttpGet]
+        [Route(nameof(GetHotelFeatureCategories))]
+        public async Task<IEnumerable<HotelFeatureCategoryDto>> GetHotelFeatureCategories([FromQuery] HotelFeatureCategoryParameters parameters)
+        {
+            LanguageEnum? language = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
+
+            PagedList<HotelFeatureCategoryModel> data = await _unitOfWork.Hotel.GetHotelFeatureCategoriesPaged(parameters, language);
+
+            SetPagination(data.MetaData, parameters);
+
+            List<HotelFeatureCategoryDto> dataDto = _mapper.Map<List<HotelFeatureCategoryDto>>(data);
+
+            return dataDto;
+        }
+
+        [HttpGet]
+        [Route(nameof(GetHotelFeatures))]
+        public async Task<IEnumerable<HotelFeatureDto>> GetHotelFeatures([FromQuery] HotelFeatureParameters parameters)
+        {
+            LanguageEnum? language = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
+
+            PagedList<HotelFeatureModel> data = await _unitOfWork.Hotel.GetHotelFeaturesPaged(parameters, language);
+
+            SetPagination(data.MetaData, parameters);
+
+            List<HotelFeatureDto> dataDto = _mapper.Map<List<HotelFeatureDto>>(data);
+
+            return dataDto;
+        }
+
+
 
 
     }

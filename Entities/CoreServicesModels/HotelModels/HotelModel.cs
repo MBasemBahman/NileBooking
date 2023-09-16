@@ -13,6 +13,9 @@ namespace Entities.CoreServicesModels.HotelModels
 
         public bool? IsActive { get; set; }
 
+        public List<int> Fk_HotelFeatureCategories { get; set; }
+        public List<int> Fk_HotelFeatures { get; set; }
+
         public bool? IncludeSelectedFeature { get; set; }
 
         public bool? IncludeRooms { get; set; }
