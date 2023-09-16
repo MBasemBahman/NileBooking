@@ -42,7 +42,7 @@
 
         public enum AccountTypeEnum
         {
-
+            Client = 1
         }
 
         public enum RoomTypeEnum

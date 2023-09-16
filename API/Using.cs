@@ -15,4 +15,7 @@ global using Microsoft.Extensions.Options;
 global using static Entities.EnumData.LogicModelsEnum;
 global using static Entities.Extensions.StringExtensions;
 global using static TenantConfiguration.TenantData;
+global using static Entities.EnumData.DBModelsEnum;
+global using API.Controllers;
+
 

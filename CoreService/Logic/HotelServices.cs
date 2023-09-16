@@ -1,4 +1,5 @@
 ﻿using Entities.CoreServicesModels.HotelModels;
+using Entities.CoreServicesModels.HotelRoomModels;
 using Entities.CoreServicesModels.LocationModels;
 using Entities.DBModels.HotelModels;
 using Entities.EnumData;
@@ -87,13 +88,69 @@ namespace CoreService.Logic
                                   CreatedBy = a.CreatedBy,
                                   LastModifiedAt = a.LastModifiedAt,
                                   LastModifiedBy = a.LastModifiedBy,
+                                  AttachmentCount = a.HotelAttachments.Count,
                                   HotelType = new HotelTypeModel
                                   {
                                       Id = a.Fk_HotelType,
                                       Name = language != null ? a.HotelType.HotelTypeLangs
                                                   .Where(c => c.Language == language)
                                                   .Select(d => d.Name).FirstOrDefault() : a.HotelType.Name,
-                                  }
+                                  },
+                                  HotelExtras = parameters.IncludeExtraPrices  == true
+                                  ? a.HotelExtras.Select(b=> new HotelExtraPriceModel
+                                  {
+                                      LastModifiedAt= b.LastModifiedAt,
+                                      CreatedAt= b.CreatedAt,
+                                      CreatedBy= b.CreatedBy,   
+                                      Fk_Hotel  = b.Fk_Hotel,
+                                      Id = b.Id,    
+                                      Price = b.Price,
+                                      Name = language != null ? b.HotelExtraPriceLangs
+                                                 .Where(c=>c.Language == language)
+                                                 .Select(c=>c.Name).FirstOrDefault() : b.Name,
+                                      
+                                  }).ToList()
+                                  : null,
+                                  HotelRooms = parameters.IncludeRooms == true
+                                  ? a.HotelRooms.Select(b=>new HotelRoomModel
+                                  {
+                                      Fk_RoomFoodType = b.Fk_RoomFoodType,
+                                      Fk_RoomType = b.Fk_RoomType,
+                                      Fk_Hotel = b.Fk_Hotel,
+                                      Id = b.Id,
+                                      MaxCount = b.MaxCount,
+                                      CreatedAt= b.CreatedAt,
+                                      RoomType = new RoomTypeModel
+                                      {
+                                          ColorCode = b.RoomType.ColorCode,
+                                          Name = language != null ? b.RoomType.RoomTypeLangs
+                                                .Where(c=>c.Language == language)
+                                                .Select(c=>c.Name).FirstOrDefault() : b.RoomType.Name
+                                      },
+                                      RoomFoodType = new RoomFoodTypeModel
+                                      {
+                                          ColorCode = b.RoomFoodType.ColorCode,
+                                          Name = language != null ? b.RoomFoodType.RoomFoodTypeLangs
+                                                .Where(c => c.Language == language)
+                                                .Select(c => c.Name).FirstOrDefault() : b.RoomFoodType.Name
+
+                                      }
+                                  }).ToList()
+                                  : null,
+                                  HotelAttachments = parameters.IncludeAttachments == true
+                                  ? a.HotelAttachments.Select(b => new HotelAttachmentModel
+                                  {
+                                      FileLength = b.FileLength,
+                                      FileName= b.FileName,
+                                      FileType= b.FileType,
+                                      FileUrl = b.StorageUrl + b.FileUrl,
+                                      CreatedAt= b.CreatedAt,
+                                      CreatedBy = b.CreatedBy,
+                                      Fk_Hotel = b.Fk_Hotel,
+                                      Id = b.Id
+
+                                  }).ToList()
+                                  : null
                               })
                               .Search(parameters.SearchColumns, parameters.SearchTerm)
                               .Sort(parameters.OrderBy);

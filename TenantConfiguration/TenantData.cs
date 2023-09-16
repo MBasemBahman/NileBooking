@@ -10,6 +10,10 @@
         public enum TenantApis
         {
             Authentication,
+            Account,
+            Location,
+            Hotel,
+            HotelRoom
         }
 
         public enum TenantViews

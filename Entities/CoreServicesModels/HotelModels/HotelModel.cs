@@ -1,4 +1,7 @@
-﻿using Entities.CoreServicesModels.LocationModels;
+﻿using Entities.CoreServicesModels.HotelRoomModels;
+using Entities.CoreServicesModels.LocationModels;
+using Entities.DBModels.HotelModels;
+using Entities.DBModels.HotelRoomModels;
 
 namespace Entities.CoreServicesModels.HotelModels
 {
@@ -13,6 +16,12 @@ namespace Entities.CoreServicesModels.HotelModels
         public bool? IsActive { get; set; }
 
         public bool? IncludeSelectedFeature { get; set; }
+
+        public bool? IncludeRooms { get; set; }
+
+        public bool? IncludeExtraPrices { get; set; }
+
+        public bool? IncludeAttachments { get; set; }
 
 
     }
@@ -55,7 +64,20 @@ namespace Entities.CoreServicesModels.HotelModels
         [DisplayName(nameof(BookingsCount))]
         public int BookingsCount { get; set; }
 
+        [DisplayName(nameof(AttachmentCount))]
+        public int AttachmentCount { get; set; }
+
         [DisplayName("HotelFeatures")]
         public List<HotelSelectedFeaturesWithCategoryModel> HotelSelectedFeatures { get; set; }
+
+
+        [DisplayName(nameof(HotelExtras))]
+        public List<HotelExtraPriceModel> HotelExtras { get; set; }
+
+        [DisplayName(nameof(HotelRooms))]
+        public List<HotelRoomModel> HotelRooms { get; set; }
+
+        [DisplayName(nameof(HotelAttachments))]
+        public List<HotelAttachmentModel> HotelAttachments { get; set; }
     }
 }

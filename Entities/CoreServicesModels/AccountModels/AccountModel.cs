@@ -1,4 +1,5 @@
 ﻿using Entities.CoreServicesModels.UserModels;
+using Entities.DBModels.AccountModels;
 
 namespace Entities.CoreServicesModels.AccountModels
 {
@@ -7,6 +8,8 @@ namespace Entities.CoreServicesModels.AccountModels
         public int Fk_AccountType { get; set; }
         public int Fk_AccountState { get; set; }
         public int Fk_User { get; set; }
+
+        public string UserName { get; set; }
     }
 
     public class AccountModel : AuditImageEntity
@@ -36,4 +39,13 @@ namespace Entities.CoreServicesModels.AccountModels
         public int BookingsCount { get; set; }
     }
 
+    public class AccountCreateOrEditModel
+    {
+
+        [DisplayName(nameof(AccountType))]
+        public int Fk_AccountType { get; set; }
+
+        [DisplayName(nameof(AccountState))]
+        public int Fk_AccountState { get; set; }
+    }
 }
