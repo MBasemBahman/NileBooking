@@ -25,8 +25,7 @@ namespace Entities.AuthenticationModels
         [Phone]
         public string PhoneNumber { get; set; }
 
-        [DisplayName(nameof(Culture))]
-        public string Culture { get; set; }
+       
     }
 
     public class UserForEditCultureDto
