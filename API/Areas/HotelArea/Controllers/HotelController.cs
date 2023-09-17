@@ -44,7 +44,6 @@ namespace API.Areas.HotelArea.Controllers
         public async Task<HotelDto> GetHotel(
           [FromQuery, BindRequired] int id)
         {
-            _ = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
 
             if (id == 0)
             {

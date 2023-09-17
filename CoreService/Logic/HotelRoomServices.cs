@@ -149,6 +149,7 @@ namespace CoreService.Logic
                                   Fk_RoomFoodType = a.Fk_RoomFoodType,
                                   Fk_RoomType = a.Fk_RoomType,
                                   MaxCount = a.MaxCount,
+                                  BookingRoomsCount = a.BookingRooms.Count,
                                   RoomFoodType = new RoomFoodTypeModel
                                   {
                                       ColorCode = a.RoomFoodType.ColorCode,

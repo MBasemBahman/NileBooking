@@ -4,6 +4,7 @@ using API.Areas.AccountArea.Models;
 using API.Areas.LocationArea.Models;
 using API.Areas.HotelArea.Models;
 using API.Areas.HotelRoomArea.Models;
+using API.Areas.BookingArea.Models;
 #endregion
 
 #region CoreService Models
@@ -12,6 +13,7 @@ using Entities.CoreServicesModels.AccountModels;
 using Entities.CoreServicesModels.LocationModels;
 using Entities.CoreServicesModels.HotelModels;
 using Entities.CoreServicesModels.HotelRoomModels;
+using Entities.CoreServicesModels.BookingModels;
 
 
 #endregion
@@ -19,6 +21,7 @@ using Entities.CoreServicesModels.HotelRoomModels;
 #region DB Models
 using Entities.DBModels.UserModels;
 using Entities.DBModels.AccountModels;
+using Entities.DBModels.BookingModels;
 #endregion
 
 
@@ -112,6 +115,18 @@ namespace API.MappingProfileCls
             _ = CreateMap<RoomFoodTypeModel, RoomFoodTypeDto>();
 
             _ = CreateMap<RoomTypeModel, RoomTypeDto>();
+            #endregion
+
+            #region Booking Models
+            CreateMap<BookingModel, BookingDto>();
+
+            CreateMap<BookingReviewModel,BookingReviewDto>();
+
+            CreateMap<BookingRoomModel,BookingRoomDto>();
+
+            CreateMap<BookingRoomExtraModel,BookingRoomExtraDto>();
+
+            CreateMap<BookingStateModel, BookingStateDto>();
             #endregion
         }
 

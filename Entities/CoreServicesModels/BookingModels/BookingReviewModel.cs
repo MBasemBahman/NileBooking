@@ -1,8 +1,15 @@
-﻿namespace Entities.CoreServicesModels.BookingModels
+﻿using Entities.CoreServicesModels.AccountModels;
+using Entities.DBModels.BookingModels;
+
+namespace Entities.CoreServicesModels.BookingModels
 {
     public class BookingReviewParameters : RequestParameters
     {
         public int Fk_Booking { get; set; }
+
+        public int Fk_Hotel { get; set; }
+
+        public int Fk_HotelRoom { get; set; }
 
     }
     public class BookingReviewModel : BaseEntity
@@ -11,8 +18,8 @@
         [ForeignKey(nameof(Booking))]
         public int Fk_Booking { get; set; }
 
-        [DisplayName(nameof(Booking))]
-        public BookingModel Booking { get; set; }
+        [DisplayName(nameof(Account))]
+        public AccountModel Account { get; set; }
 
         [DisplayName(nameof(Description))]
         [DataType(DataType.MultilineText)]
