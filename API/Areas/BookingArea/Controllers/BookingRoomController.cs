@@ -61,5 +61,83 @@ namespace API.Areas.BookingArea.Controllers
 
             return bookingRoomDto;
         }
+
+        [HttpPost]
+        [Route(nameof(CreateBookingRoom))]
+        public async Task<BookingRoomDto> CreateBookingRoom([FromBody] BookingRoomCreateDto model)
+        {
+            LanguageEnum? language = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
+
+            UserAuthenticatedDto auth = (UserAuthenticatedDto)Request.HttpContext.Items[ApiConstants.User];
+
+            BookingRoom dataDb = _mapper.Map<BookingRoom>(model);
+
+            _unitOfWork.Booking.CreateBookingRoom(dataDb);
+
+            await _unitOfWork.Save();
+
+            BookingRoomModel bookingRoom = _unitOfWork.Booking.GetBookingRooms(new BookingRoomParameters
+            {
+                Id = dataDb.Id,
+                IncludeBookingRoomExtra = true,
+            }, language).FirstOrDefault();
+
+            BookingRoomDto bookingRoomDto = _mapper.Map<BookingRoomDto>(bookingRoom);
+
+            return bookingRoomDto;
+        }
+
+        [HttpPut]
+        [Route(nameof(EditBookingRoom))]
+
+        public async Task<BookingRoomDto> EditBookingRoom([FromQuery, BindRequired] int id,
+       [FromBody] BookingRoomEditDto model)
+        {
+            if (id == 0)
+            {
+                throw new Exception("Bad Request!");
+            }
+            LanguageEnum? language = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
+
+            UserAuthenticatedDto auth = (UserAuthenticatedDto)Request.HttpContext.Items[ApiConstants.User];
+
+            BookingRoom dataDb = await _unitOfWork.Booking.FindBookingRoomById(id, trackChanges: true);
+
+           
+            _mapper.Map(model, dataDb);
+
+            await _unitOfWork.Save();
+
+            BookingRoomModel bookingRoom = _unitOfWork.Booking.GetBookingRooms(new BookingRoomParameters
+            {
+                Id = dataDb.Id,
+                IncludeBookingRoomExtra = true,
+            }, language).FirstOrDefault();
+
+            BookingRoomDto bookingRoomDto = _mapper.Map<BookingRoomDto>(bookingRoom);
+
+            return bookingRoomDto;
+        }
+
+        [HttpDelete]
+        [Route(nameof(RemoveBookingRoom))]
+
+        public async Task<bool> RemoveBookingRoom([FromQuery, BindRequired] int id)
+        {
+            if (id == 0)
+            {
+                throw new Exception("Bad Request!");
+            }
+            LanguageEnum? language = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
+
+            UserAuthenticatedDto auth = (UserAuthenticatedDto)Request.HttpContext.Items[ApiConstants.User];
+
+            await _unitOfWork.Booking.DeleteBookingRoom(id);
+
+            await _unitOfWork.Save();
+
+         
+            return true;
+        }
     }
 }

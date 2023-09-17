@@ -120,13 +120,28 @@ namespace API.MappingProfileCls
             #region Booking Models
             CreateMap<BookingModel, BookingDto>();
 
+            CreateMap<BookingCreateDto,Booking>()
+                .ForMember(dest =>dest.BookingRooms,opt => opt.Ignore());
+
+            CreateMap<BookingEditDto, Booking>();
+
             CreateMap<BookingReviewModel,BookingReviewDto>();
 
             CreateMap<BookingRoomModel,BookingRoomDto>();
 
+            CreateMap<BookingRoomCreateDto,BookingRoom>();
+
+            CreateMap<BookingRoomEditDto,BookingRoom>();
+
             CreateMap<BookingRoomExtraModel,BookingRoomExtraDto>();
 
+            CreateMap<BookingRoomExtraCreateDto,BookingRoomExtra>();
+
             CreateMap<BookingStateModel, BookingStateDto>();
+
+            CreateMap<BookingReviewModel,BookingReviewDto>();
+
+            CreateMap<BookingReviewEditDto,BookingReview>();
             #endregion
         }
 

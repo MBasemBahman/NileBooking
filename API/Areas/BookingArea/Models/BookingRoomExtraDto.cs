@@ -15,4 +15,15 @@ namespace API.Areas.BookingArea.Models
         [DisplayName(nameof(HotelExtra))]
         public new HotelExtraPriceDto HotelExtra { get; set; }
     }
+
+   public class BookingRoomExtraCreateDto
+    {
+        public int Fk_BookingRoom { get; set; }
+
+        public int Fk_HotelExtra { get; set; }
+
+
+        public double Price { get; set; }
+
+    }
 }

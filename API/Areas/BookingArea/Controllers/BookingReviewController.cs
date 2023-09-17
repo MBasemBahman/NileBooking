@@ -54,5 +54,37 @@ namespace API.Areas.BookingArea.Controllers
 
             return bookingReviewDto;
         }
+
+
+        [HttpPut]
+        [Route(nameof(EditBookingReview))]
+
+        public async Task<BookingReviewDto> EditBookingReview([FromQuery, BindRequired] int Fk_Booking,
+         [FromBody] BookingReviewEditDto model)
+        {
+            if (Fk_Booking == 0)
+            {
+                throw new Exception("Bad Request!");
+            }
+            LanguageEnum? language = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
+
+            UserAuthenticatedDto auth = (UserAuthenticatedDto)Request.HttpContext.Items[ApiConstants.User];
+
+            BookingReview dataDb = await _unitOfWork.Booking.FindBookingReviewByBookingId(Fk_Booking, trackChanges: true);
+
+            _mapper.Map(model, dataDb);
+
+            await _unitOfWork.Save();
+
+            BookingReviewModel bookingReview = _unitOfWork.Booking.GetBookingReviews(new BookingReviewParameters
+            {
+                Fk_Booking = Fk_Booking,
+            }).FirstOrDefault();
+
+            BookingReviewDto bookingReviewDto = _mapper.Map<BookingReviewDto>(bookingReview);
+
+            return bookingReviewDto;
+        }
+
     }
 }

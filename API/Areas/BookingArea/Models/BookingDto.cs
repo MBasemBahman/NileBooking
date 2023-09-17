@@ -33,4 +33,26 @@ namespace API.Areas.BookingArea.Models
         [DisplayName(nameof(BookingRooms))]
         public new List<BookingRoomDto> BookingRooms { get; set; }
     }
+
+    public class BookingCreateDto
+    {
+        public int Fk_Hotel { get; set; }
+     
+        [DisplayName(nameof(Fees))]
+        public double Fees { get; set; }
+
+        [DisplayName(nameof(Discount))]
+        public double Discount { get; set; }
+
+        public List<BookingRoomCreateDto> BookingRooms { get; set; }
+    }
+
+    public class BookingEditDto
+    {
+        [DisplayName(nameof(FromDate))]
+        public DateTime FromDate { get; set; }
+
+        [DisplayName(nameof(ToDate))]
+        public DateTime ToDate { get; set; }
+    }
 }

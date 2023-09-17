@@ -283,6 +283,13 @@ namespace CoreService.Logic
             return await _repository.BookingReview.FindById(id, trackChanges);
         }
 
+        public async Task<BookingReview> FindBookingReviewByBookingId(int fk_Booking, bool trackChanges)
+        {
+            return await  _repository.BookingReview
+                                .FindByCondition(a=>a.Fk_Booking == fk_Booking, trackChanges)
+                                .FirstOrDefaultAsync();
+        }
+
         public BookingReviewModel GetBookingReviewById(int id)
         {
             return GetBookingReviews(new BookingReviewParameters { Id = id }).SingleOrDefault();
