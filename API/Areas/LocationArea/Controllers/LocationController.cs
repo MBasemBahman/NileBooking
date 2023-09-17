@@ -50,6 +50,5 @@ namespace API.Areas.LocationArea.Controllers
 
             return dataDto;
         }
-
     }
 }

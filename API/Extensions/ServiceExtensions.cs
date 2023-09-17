@@ -39,7 +39,7 @@ namespace API.Extensions
 
         public static void ConfigureLoggerService(this IServiceCollection services)
         {
-            _ = services.AddSingleton<LoggerManager>();
+            _ = services.AddSingleton<ResponseManager>();
         }
 
         public static void ConfigureScopedService(this IServiceCollection services)

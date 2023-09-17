@@ -38,6 +38,7 @@
         {
             Active = 1,
             Pending = 2,
+            Ban = 3
         }
 
         public enum AccountTypeEnum
@@ -47,22 +48,37 @@
 
         public enum RoomTypeEnum
         {
-
+            Single = 1,
+            Double = 2,
+            Triple = 3
         }
 
         public enum RoomFoodTypeEnum
         {
-
+            BedAndBreakfast = 1,
+            HalfBoard = 2,
+            FullBoard = 3,
+            AllInclusive = 4,
+            RoomOnly = 5,
         }
 
         public enum HotelTypeEnum
         {
-
+            Hotel = 1,
+            Resort = 2,
+            Apartment = 3,
+            Hostel = 4,
+            Villa = 6,
+            Motel = 7,
         }
 
         public enum BookingStateEnum
         {
-
+            Pending = 1,
+            Confirmed = 2,
+            Cancelled = 3,
+            Completed = 4,
+            Refunded = 5,
         }
     }
 }

@@ -7,7 +7,7 @@ namespace API.Extensions
     {
         public static void ConfigureExceptionHandler(
             this IApplicationBuilder app,
-            LoggerManager logger)
+            ResponseManager logger)
         {
             _ = app.UseExceptionHandler(appError =>
             {

@@ -7,7 +7,6 @@ namespace API.Areas.AccountArea.Controllers
     [Area("Account")]
     [ApiExplorerSettings(GroupName = "Account")]
     [Route("[area]/v{version:apiVersion}/[controller]")]
-    [AllowAnonymous]
     public class AccountController : ExtendControllerBase
     {
         public AccountController(

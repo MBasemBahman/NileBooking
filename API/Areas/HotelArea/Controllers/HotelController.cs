@@ -51,7 +51,6 @@ namespace API.Areas.HotelArea.Controllers
                 throw new Exception("Bad Request!");
             }
 
-            //For My Reaction
             LanguageEnum? language = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
 
             HotelModel hotel = _unitOfWork.Hotel.GetHotels(new HotelParameters
@@ -61,7 +60,6 @@ namespace API.Areas.HotelArea.Controllers
                 IncludeExtraPrices = true,
                 IncludeRooms = true,
                 IncludeSelectedFeature = true,
-
             }, language).FirstOrDefault();
 
             HotelDto hotelDto = _mapper.Map<HotelDto>(hotel);

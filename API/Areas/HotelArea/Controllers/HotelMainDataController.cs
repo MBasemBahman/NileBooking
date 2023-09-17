@@ -65,9 +65,5 @@ namespace API.Areas.HotelArea.Controllers
 
             return dataDto;
         }
-
-
-
-
     }
 }

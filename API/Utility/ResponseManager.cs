@@ -4,11 +4,11 @@ using Services;
 
 namespace API.Utility
 {
-    public class LoggerManager
+    public class ResponseManager
     {
         private readonly LocalizationManager _localization;
 
-        public LoggerManager(LocalizationManager localization)
+        public ResponseManager(LocalizationManager localization)
         {
             _localization = localization;
         }

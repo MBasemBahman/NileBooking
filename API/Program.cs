@@ -43,7 +43,7 @@ builder.Services.AddControllersWithViews(opt =>
 WebApplication app = builder.Build();
 app.UseIpRateLimiting();
 
-LoggerManager logger = app.Services.GetRequiredService<LoggerManager>();
+ResponseManager logger = app.Services.GetRequiredService<ResponseManager>();
 LocalizationManager localizer = app.Services.GetRequiredService<LocalizationManager>();
 
 // Configure the HTTP request pipeline.
