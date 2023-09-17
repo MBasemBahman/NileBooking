@@ -30,7 +30,17 @@ namespace CoreService.Logic
                                   {
                                       FirstName = a.User.FirstName,
                                       LastName = a.User.LastName,
-                                      FullName = a.User.FullName
+                                      FullName = a.User.FullName,
+                                      EmailAddress = a.User.EmailAddress,
+                                      PhoneNumber = a.User.PhoneNumber,
+                                      AppleToken = a.User.AppleToken,
+                                      Id = a.Fk_User,
+                                      CreatedBy = a.User.CreatedBy,
+                                      CreatedAt = a.User.CreatedAt,
+                                      LastModifiedAt= a.User.LastModifiedAt,
+                                      Culture= a.User.Culture,
+                                      UserName  = a.User.UserName,
+                                      IsExternalLogin = a.User.IsExternalLogin,
                                   },
                                   ImageUrl = !string.IsNullOrEmpty(a.ImageUrl) ? a.StorageUrl + a.ImageUrl : "/userImg.png",
                                   CreatedAt = a.CreatedAt,
