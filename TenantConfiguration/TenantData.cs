@@ -13,7 +13,8 @@
             Account,
             Location,
             Hotel,
-            HotelRoom
+            HotelRoom,
+            Booking
         }
 
         public enum TenantViews

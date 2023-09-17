@@ -15,7 +15,8 @@ namespace Repository.DBModels.AccountModels
                    .Filter(parameters.Id,
                        parameters.Fk_AccountState,
                        parameters.Fk_AccountType,
-                       parameters.Fk_User);
+                       parameters.Fk_User,
+                       parameters.UserName);
 
         }
 
@@ -40,12 +41,14 @@ namespace Repository.DBModels.AccountModels
             int id,
             int fk_AccountState,
             int fk_AccountType,
-            int fk_User)
+            int fk_User,
+            string userName)
         {
             return data.Where(a => (id == 0 || a.Id == id) &&
                                        (fk_AccountState == 0 || a.Fk_AccountState == fk_AccountState) &&
                                        (fk_AccountType == 0 || a.Fk_AccountType == fk_AccountType) &&
-                                       (fk_User == 0 || a.Fk_User == fk_User));
+                                       (fk_User == 0 || a.Fk_User == fk_User) &&
+                                       (string.IsNullOrEmpty(userName) || a.User.UserName.ToLower()==userName.ToLower()));
         }
     }
 }

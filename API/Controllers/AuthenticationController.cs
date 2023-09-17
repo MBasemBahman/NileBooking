@@ -64,7 +64,7 @@ namespace API.Controllers
                     Fk_AccountState = (int)AccountStateEnum.Active,
                     Fk_AccountType = (int)AccountTypeEnum.Client,
                 },
-                Culture = model.Culture
+                Culture = "en"
             };
 
             await _unitOfWork.User.CreateUser(user);

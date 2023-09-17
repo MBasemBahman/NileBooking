@@ -158,6 +158,7 @@ namespace CoreService.Logic
                                       Description = a.BookingReview.Description,
                                       Rate = a.BookingReview.Rate,
                                       CreatedAt = a.BookingReview.CreatedAt,
+                                      Id = a.BookingReview.Id,
 
                                   }
                                   : null,
@@ -239,7 +240,6 @@ namespace CoreService.Logic
 
         #endregion
 
-
         #region Booking Review Services
 
         public IQueryable<BookingReviewModel> GetBookingReviews(
@@ -254,7 +254,19 @@ namespace CoreService.Logic
                                   CreatedAt = a.CreatedAt,
                                   Description = a.Description,
                                   Rate = a.Rate,
-
+                                  Account = new AccountModel
+                                  {
+                                      ImageUrl = a.Booking.Account.StorageUrl + a.Booking.Account.ImageUrl,
+                                      Fk_User = a.Booking.Account.Fk_User,
+                                      Fk_AccountState = a.Booking.Account.Fk_AccountState,
+                                      Fk_AccountType = a.Booking.Account.Fk_AccountType,
+                                      User = new UserModel
+                                      {
+                                          FirstName = a.Booking.Account.User.FirstName,
+                                          LastName = a.Booking.Account.User.LastName,
+                                          UserName = a.Booking.Account.User.UserName,
+                                      }
+                                  },
                               })
                               .Search(parameters.SearchColumns, parameters.SearchTerm)
                               .Sort(parameters.OrderBy);
@@ -269,6 +281,13 @@ namespace CoreService.Logic
         public async Task<BookingReview> FindBookingReviewById(int id, bool trackChanges)
         {
             return await _repository.BookingReview.FindById(id, trackChanges);
+        }
+
+        public async Task<BookingReview> FindBookingReviewByBookingId(int fk_Booking, bool trackChanges)
+        {
+            return await  _repository.BookingReview
+                                .FindByCondition(a=>a.Fk_Booking == fk_Booking, trackChanges)
+                                .FirstOrDefaultAsync();
         }
 
         public BookingReviewModel GetBookingReviewById(int id)
@@ -341,6 +360,7 @@ namespace CoreService.Logic
                                      Fk_BookingRoom = b.Fk_BookingRoom,
                                      Fk_HotelExtra = b.Fk_HotelExtra,
                                      Price = b.Price,
+                                     Id = b.Id,
                                      HotelExtra = new HotelExtraPriceModel
                                      {
                                          Name = language != null ? b.HotelExtra.HotelExtraPriceLangs
@@ -392,7 +412,7 @@ namespace CoreService.Logic
 
         #endregion
 
-        #region Booking Room Services
+        #region Booking Room Extra Services
 
         public IQueryable<BookingRoomExtraModel> GetBookingRoomExtras(
             BookingRoomExtraParameters parameters, LanguageEnum? language)

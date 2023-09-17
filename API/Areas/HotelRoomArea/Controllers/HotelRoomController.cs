@@ -46,7 +46,6 @@ namespace API.Areas.HotelRoomArea.Controllers
         public HotelRoomDto GetHotelRoom(
           [FromQuery, BindRequired] int id)
         {
-            _ = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
 
             if (id == 0)
             {

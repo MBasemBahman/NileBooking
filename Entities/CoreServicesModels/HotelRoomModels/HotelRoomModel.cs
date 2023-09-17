@@ -37,6 +37,10 @@ namespace Entities.CoreServicesModels.HotelRoomModels
         [DisplayName(nameof(MaxCount))]
         public double MaxCount { get; set; }
 
+        [DisplayName(nameof(MaxCount))]
+        public int BookingRoomsCount { get; set; }
+
+      
         [DisplayName(nameof(HotelRoomPrices))]
         public List<HotelRoomPriceModel> HotelRoomPrices { get; set; }
     }
