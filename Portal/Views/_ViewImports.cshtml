@@ -1,3 +1,16 @@
 ﻿@using Portal
+@using Portal.Utility
 @using Portal.Models
+@using Entities.AuthenticationModels
+@using Microsoft.AspNetCore.Http;
+@using Entities.EnumData
+@using static Entities.EnumData.DBModelsEnum
+@using Entities.Constants;
+@using System.Globalization;
+
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+
+@inject IHttpContextAccessor httpContextAccessor
+@inject LocalizationManager Localizer
+
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers

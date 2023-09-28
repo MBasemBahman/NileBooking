@@ -1,0 +1,33 @@
+﻿@model bool
+@{
+    Layout = null;
+}
+
+
+@if (!Model)
+{
+    <div class="text-center mb-4">
+        <h3 class="mb-2 modal-title">@Localizer.Get("Not Delete Message")</h3>
+    </div>
+    <div class="row">
+        <div class="col-md-12 mb-1 text-center">
+            <button type="button" class="btn btn-dark" data-bs-dismiss="modal">@Localizer.Get("Ok")</button>
+        </div>
+    </div>
+}
+else
+{
+    <form asp-action="Delete" method="post">
+        <div class="row">
+            <div class="col-md-12 mb-1 text-center">
+                <h5>@Localizer.Get("Delete Message")</h5>
+            </div>
+            <div class="col-12 text-center">
+                <button type="submit" class="btn btn-danger" data-bs-dismiss="modal">@Localizer.Get("Remove")</button>
+                <button type="button" class="btn btn-dark" data-bs-dismiss="modal">@Localizer.Get("Cancel")</button>
+            </div>
+        </div>
+
+    </form>
+}
+

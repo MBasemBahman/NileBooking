@@ -9,7 +9,7 @@
   ViewData["isNavbar"] = (ViewData["isNavbar"] ??= true);
   ViewData["isMenu"] = (ViewData["isMenu"] ??= true);
   ViewData["isFlex"] = (ViewData["isFlex"] ??= false);
-  ViewData["isFooter"] = (ViewData["isFooter"] ??= true);
+  ViewData["isFooter"] = (ViewData["isFooter"] ??= false);
   @* ViewData["customizerHidden"] = (ViewData["customizerHidden"] ??= "customizer-hide"); *@
 
 
@@ -50,7 +50,7 @@
       <!-- Navbar -->
       @if (@ViewData["isNavbar"] != null && Convert.ToBoolean(@ViewData["isNavbar"]))
       {
-        @await Html.PartialAsync("Layouts/Sections/Navbar/_Navbar")
+        @await Html.PartialAsync("Custom/Layouts/Sections/Navbar/_Navbar")
       }
       <!-- / Navbar -->
 

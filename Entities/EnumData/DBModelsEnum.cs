@@ -26,12 +26,13 @@
             RefreshToken = 7,
             UserDevice = 8,
             Verification = 9,
+            AccountState = 10,
+            AccountType = 11
         }
 
         public enum LanguageEnum
         {
             en,
-            ar
         }
 
         public enum AccountStateEnum

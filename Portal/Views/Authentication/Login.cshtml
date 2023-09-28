@@ -1,0 +1,48 @@
+﻿@model UserForAuthenticationDto
+@{
+    Layout = "Layouts/_BlankLayout";
+    ViewData["title"] = Localizer.Get("Login");
+}
+
+@section PageStyles {
+    <link rel="stylesheet" href="~/vendor/css/pages/page-auth.dist.css" />
+}
+<div class="container-xxl">
+    <div class="authentication-wrapper authentication-basic container-p-y">
+        <div class="authentication-inner py-4">
+            <!-- Login -->
+            <div class="card">
+                <div class="card-body">
+               
+                    <h4 class="mb-1 pt-2">@Localizer.Get("Welcome to Dashboard")! 👋</h4>
+                    <p class="mb-4">@Localizer.Get("Please sign-in to your account and start the adventure")</p>
+
+                    <form id="formAuthentication" asp-action="Login" class="mb-3">
+                        <div asp-validation-summary="All" class="text-danger">@ViewData["error"]</div>
+
+                        <div class="mb-3">
+                            <label for="UserName" class="form-label">@Localizer.Get("Username")</label>
+                            <input class="form-control" asp-for="UserName" placeholder="@Localizer.Get("Enter your username")" autofocus>
+                        </div>
+                        <div class="mb-3 form-password-toggle">
+
+                            <div class="input-group input-group-merge">
+                                <input type="password" class="form-control" asp-for="Password" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="password" />
+                                <span class="input-group-text cursor-pointer"><i class="ti ti-eye-off"></i></span>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <button class="btn btn-primary d-grid w-100" type="submit">@Localizer.Get("Login")</button>
+                        </div>
+                    </form>
+
+
+                </div>
+            </div>
+            <!-- /Register -->
+        </div>
+    </div>
+</div>
+
+<!-- / Content -->

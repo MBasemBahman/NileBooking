@@ -27,7 +27,6 @@
             RefreshToken,
             UserDevice,
             Verification,
-
             #endregion
         }
     }

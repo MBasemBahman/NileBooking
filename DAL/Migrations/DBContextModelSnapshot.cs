@@ -787,6 +787,22 @@ namespace DAL.Migrations
                             Fk_DashboardAccessLevel = 1,
                             Fk_DashboardAdministrationRole = 1,
                             Fk_DashboardView = 9
+                        },
+                        new
+                        {
+                            Id = 10,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Fk_DashboardAccessLevel = 1,
+                            Fk_DashboardAdministrationRole = 1,
+                            Fk_DashboardView = 10
+                        },
+                        new
+                        {
+                            Id = 11,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Fk_DashboardAccessLevel = 1,
+                            Fk_DashboardAdministrationRole = 1,
+                            Fk_DashboardView = 11
                         });
                 });
 
@@ -1120,6 +1136,20 @@ namespace DAL.Migrations
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Verification",
                             ViewPath = "Verification"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "AccountState",
+                            ViewPath = "AccountState"
+                        },
+                        new
+                        {
+                            Id = 11,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "AccountType",
+                            ViewPath = "AccountType"
                         });
                 });
 
@@ -2589,7 +2619,7 @@ namespace DAL.Migrations
                             IsExternalLogin = false,
                             LastModifiedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             LastName = "Account",
-                            Password = "$2a$11$jWCzmQ3YtZj59iCIjDtUSu8MHJ9ldwWrC37.cyOeQZCoVszefAtjC",
+                            Password = "$2a$11$r9LSvjFsDDf6Oh36T/cUzudbpScFkct6x8qP.pNmtLgcqC7CwX8Cu",
                             UserName = "Developer"
                         });
                 });

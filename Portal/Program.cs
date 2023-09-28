@@ -1,34 +1,58 @@
-using Microsoft.Extensions.DependencyInjection.Extensions;
+using Portal.Models;
+using System.Runtime.InteropServices;
+
+TenantConfig config = new(TenantEnvironments.Development);
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
+builder.Configuration.AddJsonFile(config.AppSettings);
 
 // Add services to the container.
-builder.Services.AddControllersWithViews();
-builder.Services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+builder.Services.ConfigureCors();
+builder.Services.AddAutoMapper(typeof(Program));
+builder.Services.ConfigureRepositoryManager();
+builder.Services.ConfigureLocalization();
+builder.Services.ConfigureResponseCaching();
+builder.Services.ConfigureScopedService();
+builder.Services.ConfigureSqlContext(builder.Configuration, config);
+builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("AppSettings"));
+builder.Services.ConfigureViews();
+builder.Services.ConfigureSessionAndCookie();
 
 WebApplication app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (!app.Environment.IsDevelopment())
+if (app.Environment.IsDevelopment())
 {
-    _ = app.UseExceptionHandler("/Home/Error");
+    _ = app.UseDeveloperExceptionPage();
+}
+else
+{
+    _ = app.UseExceptionHandler("/Error");
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     _ = app.UseHsts();
 }
 
 app.UseHttpsRedirection();
-app.UseStaticFiles();
-
+app.ConfigureStaticFiles();
+app.UseFileServer();
 app.UseRouting();
+app.UseCors();
+app.UseSession();
+app.UseCookiePolicy();
+app.UseResponseCaching();
+app.UseRequestLocalization(app.Services.GetService<IOptions<RequestLocalizationOptions>>().Value);
 
-app.UseAuthorization();
+app.UseMiddleware<BodyBufferingMiddleware>();
+app.UseMiddleware<JwtMiddleware>();
+app.UseMiddleware<HeaderMiddleware>();
+app.UseMiddleware<CultureMiddleware>();
 
 app.MapControllerRoute(
     name: "areaRoute",
-    pattern: "{area:exists}/{controller}/{action}");
+    pattern: "{area:exists}/{controller}/{action}/{id?}");
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Dashboards}/{action=Analytics}/{id?}");
+    pattern: "{controller=Authentication}/{action=Login}/{id?}");
 
 app.Run();

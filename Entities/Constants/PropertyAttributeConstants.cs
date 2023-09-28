@@ -7,5 +7,8 @@
         public const string TypeValidationMsg = "{0} not valid";
 
         public const string EnLang = " English";
+
+        public const string ArLang = " Arabic";
+
     }
 }
