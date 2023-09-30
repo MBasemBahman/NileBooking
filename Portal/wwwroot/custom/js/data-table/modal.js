@@ -18,6 +18,7 @@ $(document).on('click', '.modal-btn-details', function () {
     $('.general-modal-form-content').load(href);
     $("#general-modal").modal("show");
 });
+
 $(document).on('submit', "#general-modal", function () {
     event.preventDefault();
     $.ajax({
@@ -38,4 +39,34 @@ $(document).on('submit', "#general-modal", function () {
 
         }
     });
-})
+});
+
+$(document).on('click', '.check-before-send', function (e) {
+    e.preventDefault();
+
+    $('.validation-summary-valid').html('');
+    
+    let form = $(this).closest('form')[0];
+    let submitBtn = $(this).closest('form').find('.send-form-btn');
+    
+    $.ajax({
+        url: form.action,
+        method: form.method,
+        data: $(this).closest('form').serialize(),
+        headers: { 'For-Validation': true },
+        success: function (data) {
+            submitBtn.click();
+        },
+        error: function (err) {
+            let list = '<ul>';
+
+            err.responseJSON.forEach(error => {
+                list += `<li>${error.errorMessage}</li>`;
+            });
+
+            list += '</ul>';
+
+            $('.validation-summary-valid').html(list);
+        }
+    });
+});

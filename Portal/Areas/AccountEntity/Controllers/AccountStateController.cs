@@ -95,8 +95,15 @@ namespace Portal.Areas.AccountEntity.Controllers
         [ValidateAntiForgeryToken]
         [Authorize(DashboardViewEnum.AccountState, DashboardAccessLevelEnum.DataControl)]
         public async Task<IActionResult> CreateOrEdit(int id, AccountStateCreateOrEditModel model)
-        {
-
+         {
+            if (Request.Headers["for-validation"] == "true")
+            {
+                return !ModelState.IsValid ? 
+                    BadRequest(ModelState.Select(a => a.Value)
+                        .SelectMany(a => a.Errors)
+                        .ToList()) : NoContent();
+            }
+            
             if (!ModelState.IsValid)
             {
                 return View(model);

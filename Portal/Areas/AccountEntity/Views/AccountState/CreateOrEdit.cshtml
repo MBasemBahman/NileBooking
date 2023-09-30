@@ -24,7 +24,7 @@
             @foreach (DBModelsEnum.LanguageEnum language in Enum.GetValues(typeof(DBModelsEnum.LanguageEnum)))
             {
                 <div class="col-md-6">
-                    <label class="form-label">@Localizer.Get($"Name {language}")</label>
+                    <label class="form-label">@Localizer.Get($"Name") @Localizer.Get($"In{language.ToString()}")</label>
                     <input required asp-for="AccountStateLangs[i].Name" class="form-control" placeholder="@Localizer.Get("Enter") @(Localizer.Get("Name"))">
                     <span asp-validation-for="AccountStateLangs[i].Name" class="text-danger"></span>
                     <input type="hidden" asp-for="AccountStateLangs[i].Language" value="@language" />
@@ -36,13 +36,13 @@
                 <label class="form-label" asp-for="ColorCode"></label>
                 <input type="color" asp-for="ColorCode" class="form-control">
                 <span asp-validation-for="ColorCode" class="text-danger"></span>
-
             </div>
 
         </div>
         <hr class="my-4 mx-n4">
         <div class="pt-4 text-center">
-            <button type="submit" class="btn btn-primary me-sm-3 me-1 waves-effect waves-light" fdprocessedid="cb7r5">@Localizer.Get("Submit")</button>
+            <button type="submit" class="btn btn-primary me-sm-3 me-1 waves-effect waves-light check-before-send" fdprocessedid="cb7r5">@Localizer.Get("Submit")</button>
+            <button type="submit" class="d-none send-form-btn"></button>
             <button type="reset" class="btn btn-label-secondary waves-effect" fdprocessedid="v445du">@Localizer.Get("Reset")</button>
         </div>
     </form>

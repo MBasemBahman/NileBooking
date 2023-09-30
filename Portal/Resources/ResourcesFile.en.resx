@@ -258,4 +258,7 @@
   <data name="Well Done!" xml:space="preserve">
     <value>Well Done!</value>
   </data>
+  <data name="Inen" xml:space="preserve">
+    <value>In English</value>
+  </data>
 </root>
