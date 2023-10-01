@@ -5,11 +5,13 @@ $(document).on('click', '.modal-btn-edit', function () {
     $("#general-modal").modal("show");
 });
 
-$(document).on('click', '.modal-btn-delete', function () {
-    event.preventDefault();
-    var href = $(this).attr('href');
-    $('.general-modal-form-content').load(href);
-    $("#general-modal").modal("show");
+$(document).on('click', '.modal-btn-delete', function (e) {
+    e.preventDefault();
+
+    let href = $(this).attr('href');
+
+    $('.form-delete').attr('action', href);
+    $('#delete-modal').modal('show');
 });
 
 $(document).on('click', '.modal-btn-details', function () {
@@ -33,17 +35,41 @@ $(document).on('submit', "#general-modal", function () {
             $("#success-modal").modal("show");
         },
         error: function (error) {
-            let list = '<ul>';
-
-            error.responseJSON.forEach(err => {
-                if (err.errorMessage != '') {
-                    list += `<li>${err.errorMessage}</li>`;
-                }
-            });
-
-            list += '</ul>';
+            let list = assignUlErrors(error.responseJSON);
 
             $('.validation-summary-valid').html(list);
         }
     });
 });
+
+$(document).on('submit', '.form-delete', function (e) {
+    e.preventDefault();
+
+    $.ajax({
+        url: $(this).attr('action'),
+        method: $(this).attr('method'),
+        success: function (data) {
+            $("#delete-modal").modal("hide");
+            $("#success-modal").modal("show");
+        },
+        error: function (error) {
+            let list = assignUlErrors(error.responseJSON);
+            console.log(list);
+            $('.delete-validation-summary-valid').html(list);
+        }
+    });
+});
+
+function assignUlErrors(errors) {
+    let list = '<ul>';
+
+    errors.forEach(err => {
+        if (err.errorMessage !== '') {
+            list += `<li>${err.errorMessage}</li>`;
+        }
+    });
+
+    list += '</ul>';
+    
+    return list;
+}

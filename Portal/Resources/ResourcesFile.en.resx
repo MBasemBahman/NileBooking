@@ -261,4 +261,7 @@
   <data name="Inen" xml:space="preserve">
     <value>In English</value>
   </data>
+  <data name="Name English" xml:space="preserve">
+    <value>Name English</value>
+  </data>
 </root>

@@ -34,29 +34,29 @@ $(function () {
                     searchable: false,
                     orderable: false,
                     render: function (data, type, full, meta) {
-                        var action = '<div class="d-flex align-items-center">';
+                        let action = '<div class="d-flex align-items-center">';
                         if ($('#edit').attr('href') != undefined) {
-                            var modalClass = '';
+                            let modalClass = '';
                             if ($("#edit").hasClass('open-modal')) {
                                 modalClass = 'modal-btn-edit';
                             }
-                            action += '<a href="' + $('#edit').attr('href') + "/" + full.id + '" class="text-body ' + modalClass + '"><i class="ti ti-edit ti-sm me-2"></i></a>';
+                            action += `<a href="${$('#edit').attr('href')}/${full.id}" class="text-body ${modalClass}"><i class="ti ti-edit ti-sm me-2"></i></a>`;
                         }
                         if ($('#delete').attr('href') != undefined) {
-                            var modalClass = '';
+                            let modalClass = '';
 
                             if ($("#delete").hasClass('open-modal')) {
                                 modalClass = 'modal-btn-delete';
                             }
-                            action += '<a href="' + $('#delete').attr('href') + "/" + full.id + '" class="text-body ' + modalClass + '"><i class="ti ti-trash ti-sm me-2"></i></a>';
+                            action += `<a href="${$('#delete').attr('href')}/${full.id}" class="text-body ${modalClass}"><i class="ti ti-trash ti-sm me-2"></i></a>`;
                         }
                         if ($('#details').attr('href') != undefined) {
-                            var modalClass = '';
+                            let modalClass = '';
 
                             if ($("#details").hasClass('open-modal')) {
                                 modalClass = 'modal-btn-details';
                             }
-                            action += '<a href="' + $('#details').attr('href') + "/" + full.id + '" class="text-body ' + modalClass + '"><i class="ti ti-eye ti-sm me-2"></i></a>';
+                            action += `<a href="${$('#details').attr('href')}/${full.id}" class="text-body ${modalClass}"><i class="ti ti-eye ti-sm me-2"></i></a>`;
                         }
 
                         action += '</div>';
