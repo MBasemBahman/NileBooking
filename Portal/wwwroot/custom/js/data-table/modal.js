@@ -33,35 +33,12 @@ $(document).on('submit', "#general-modal", function () {
             $("#success-modal").modal("show");
         },
         error: function (error) {
-            alert(error)
-            $("#general-modal").modal("hide");
-            $("#error-modal").modal("show");
-
-        }
-    });
-});
-
-$(document).on('click', '.check-before-send', function (e) {
-    e.preventDefault();
-
-    $('.validation-summary-valid').html('');
-    
-    let form = $(this).closest('form')[0];
-    let submitBtn = $(this).closest('form').find('.send-form-btn');
-    
-    $.ajax({
-        url: form.action,
-        method: form.method,
-        data: $(this).closest('form').serialize(),
-        headers: { 'For-Validation': true },
-        success: function (data) {
-            submitBtn.click();
-        },
-        error: function (err) {
             let list = '<ul>';
 
-            err.responseJSON.forEach(error => {
-                list += `<li>${error.errorMessage}</li>`;
+            error.responseJSON.forEach(err => {
+                if (err.errorMessage != '') {
+                    list += `<li>${err.errorMessage}</li>`;
+                }
             });
 
             list += '</ul>';
