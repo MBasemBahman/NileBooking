@@ -20,18 +20,19 @@
 
             @{
                 int i = 0;
-            }
-            @foreach (DBModelsEnum.LanguageEnum language in Enum.GetValues(typeof(DBModelsEnum.LanguageEnum)))
-            {
-                <div class="col-md-6">
-                    <label class="form-label">@Localizer.Get($"Name") @Localizer.Get($"In{language.ToString()}")</label>
-                    <input required asp-for="AccountStateLangs[i].Name" class="form-control" placeholder="@Localizer.Get("Enter") @(Localizer.Get("Name"))">
-                    <span asp-validation-for="AccountStateLangs[i].Name" class="text-danger"></span>
-                    <input type="hidden" asp-for="AccountStateLangs[i].Language" value="@language" />
+                foreach (DBModelsEnum.LanguageEnum language in Enum.GetValues(typeof(DBModelsEnum.LanguageEnum)))
+                {
+                    <div class="col-md-6">
+                        <label class="form-label">@Localizer.Get($"Name") @Localizer.Get($"In{language.ToString()}")</label>
+                        <input required asp-for="AccountStateLangs[i].Name" class="form-control" placeholder="@Localizer.Get("Enter") @(Localizer.Get("Name"))">
+                        <span asp-validation-for="AccountStateLangs[i].Name" class="text-danger"></span>
+                        <input type="hidden" asp-for="AccountStateLangs[i].Language" value="@language" />
 
-                </div>
-                i++;
+                    </div>
+                    i++;
+                }
             }
+           
             <div class="col-md-6">
                 <label class="form-label" asp-for="ColorCode"></label>
                 <input type="color" asp-for="ColorCode" class="form-control">
