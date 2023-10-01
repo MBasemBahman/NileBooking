@@ -22,7 +22,7 @@ namespace Portal.Extensions
             });
         }
 
-    
+
         public static void ConfigureScopedService(this IServiceCollection services)
         {
             _ = services.AddScoped<JwtUtils>();
@@ -36,7 +36,7 @@ namespace Portal.Extensions
             if (config.Tenant == TenantEnvironments.Development)
             {
                 _ = services.AddDbContext<BaseContext, DBContext>(options => options.UseSqlServer(configuration.GetConnectionString("sqlConnection")));
-                
+
                 _ = services.AddScoped(_ =>
                 {
                     var httpContext = new HttpContextAccessor().HttpContext;
@@ -69,14 +69,18 @@ namespace Portal.Extensions
 
             _ = services.Configure<RequestLocalizationOptions>(options =>
             {
-                List<CultureInfo> supportedCultures = new List<CultureInfo> {new CultureInfo("ar")};
-            
+                List<CultureInfo> supportedCultures = new()
+                {
+                    new CultureInfo("en"), 
+                    new CultureInfo("ar") 
+                };
+
                 foreach (string language in Enum.GetNames(typeof(LanguageEnum)))
                 {
                     supportedCultures.Add(new CultureInfo(language));
                 }
-                
-                options.DefaultRequestCulture = new RequestCulture(culture: "en", uiCulture: "ar");
+
+                options.DefaultRequestCulture = new RequestCulture(culture: "en", uiCulture: "en");
                 options.SupportedCultures = supportedCultures;
                 options.SupportedUICultures = supportedCultures;
             });
