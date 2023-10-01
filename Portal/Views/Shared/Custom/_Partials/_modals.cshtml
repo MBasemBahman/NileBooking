@@ -60,3 +60,27 @@
         </div>
     </div>
 </div>
+
+@* ************** Delete Modal ************** *@
+
+<div class="modal fade text-start modal-delete" id="delete-modal" tabindex="-1" aria-labelledby="delete" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="myModalLabel110">@Localizer.Get("Delete Message") </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form class="form-delete" method="post">
+                    <div class="text-danger delete-validation-summary-valid"></div>
+                    <div class="row">
+                        <div class="col-12 text-center">
+                            <button type="submit" class="btn btn-danger">@Localizer.Get("Remove")</button>
+                            <button type="button" class="btn btn-dark" data-bs-dismiss="modal">@Localizer.Get("Cancel")</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

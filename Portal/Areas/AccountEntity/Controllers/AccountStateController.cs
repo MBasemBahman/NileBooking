@@ -107,7 +107,7 @@ namespace Portal.Areas.AccountEntity.Controllers
 							.SelectMany(a => a.Errors)
 							.ToList();
 
-					throw new Exception();
+					throw new Exception("");
 				}
 
 				UserAuthenticatedDto auth = (UserAuthenticatedDto)Request.HttpContext.Items[ApiConstants.User];
@@ -136,29 +136,26 @@ namespace Portal.Areas.AccountEntity.Controllers
 
 			return BadRequest(errors);
 		}
-
+        
+		[HttpPost]
 		[Authorize(DashboardViewEnum.AccountState, DashboardAccessLevelEnum.FullAccess)]
 		public async Task<IActionResult> Delete(int id)
 		{
-			AccountState data = await _unitOfWork.Account.FindAccountStateById(id, trackChanges: false);
+			List<ModelError> errors = new();
+            
+			try
+			{
+				await _unitOfWork.Account.DeleteAccountState(id);
+				await _unitOfWork.Save();
+				
+				return Ok();
+			}
+			catch (Exception ex)
+			{
+				errors.Add(new ModelError(ex, GetExceptionMsg(ex.Message)));
+			}
 
-			return View(data != null &&
-				!_unitOfWork.Account.GetAccounts(new AccountParameters
-				{
-					Fk_AccountState = id
-				}, language: null).Any());
+			return BadRequest(errors);
 		}
-
-		[HttpPost, ActionName("Delete")]
-		[Authorize(DashboardViewEnum.AccountState, DashboardAccessLevelEnum.FullAccess)]
-		public async Task<IActionResult> DeleteConfirmed(int id)
-		{
-			await _unitOfWork.Account.DeleteAccountState(id);
-			await _unitOfWork.Save();
-
-			return RedirectToAction(nameof(Index));
-		}
-
-
 	}
 }

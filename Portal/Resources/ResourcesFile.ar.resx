@@ -261,4 +261,7 @@
   <data name="Inen" xml:space="preserve">
     <value>بالانجليزية</value>
   </data>
+  <data name="Name English" xml:space="preserve">
+    <value>الاسم بالانجليزية</value>
+  </data>
 </root>
