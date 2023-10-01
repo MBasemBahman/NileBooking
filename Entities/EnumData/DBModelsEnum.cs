@@ -32,7 +32,7 @@
 
         public enum LanguageEnum
         {
-            en,
+            en =1,
         }
 
         public enum AccountStateEnum

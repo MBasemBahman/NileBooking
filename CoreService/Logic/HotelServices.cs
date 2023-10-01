@@ -36,6 +36,10 @@ namespace CoreService.Logic
                               .Select(a => new HotelModel
                               {
                                   Id = a.Id,
+                                  Price = a.HotelRooms.Any()
+                                  ? a.HotelRooms.SelectMany(c=>c.HotelRoomPrices).OrderBy(c=>c.AdultPrice).FirstOrDefault().AdultPrice
+                                  :0 ,
+
                                   Name = language != null ? a.HotelLangs
                                       .Where(b => b.Language == language)
                                       .Select(b => b.Name).FirstOrDefault() : a.Name,
@@ -149,7 +153,8 @@ namespace CoreService.Logic
                                       Id = b.Id
 
                                   }).ToList()
-                                  : null
+                                  : null,
+                                  
                               })
                               .Search(parameters.SearchColumns, parameters.SearchTerm)
                               .Sort(parameters.OrderBy);
