@@ -1,6 +1,6 @@
 ﻿namespace Portal.Utility
 {
-    public class LocalizationManager 
+    public class LocalizationManager
     {
         private readonly IStringLocalizer localizer;
         public LocalizationManager(IStringLocalizerFactory factory)

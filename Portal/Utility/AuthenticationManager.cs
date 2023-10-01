@@ -2,7 +2,7 @@
 
 namespace Portal.Utility
 {
-    public class AuthenticationManager 
+    public class AuthenticationManager
     {
         private readonly UnitOfWork _unitOfWork;
         private readonly IConfiguration _configuration;
@@ -41,7 +41,7 @@ namespace Portal.Utility
 
             // save changes to db
             await _unitOfWork.Save();
-            
+
             _user.DashboardAdministrator = await _unitOfWork.DashboardAdministration.FindByUserId(_user.Id, trackChanges: false);
 
             return GetAuthenticatedUser(_user, jwtToken, new TokenResponse(refreshToken.Token, refreshToken.Expires));
@@ -88,7 +88,7 @@ namespace Portal.Utility
 
             // generate new jwt
             TokenResponse jwtToken = _jwtUtils.GenerateJwtToken(_user.Id);
-            
+
             return GetAuthenticatedUser(_user, jwtToken, new TokenResponse(refreshToken.Token, refreshToken.Expires));
         }
 

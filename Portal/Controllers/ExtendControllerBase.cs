@@ -1,7 +1,4 @@
-﻿using Entities.RequestFeatures;
-using Microsoft.AspNetCore.Mvc;
-
-namespace Portal.Controllers
+﻿namespace Portal.Controllers
 {
     public class ExtendControllerBase : Controller
     {
@@ -30,6 +27,6 @@ namespace Portal.Controllers
         }
     }
 
-  
+
 
 }

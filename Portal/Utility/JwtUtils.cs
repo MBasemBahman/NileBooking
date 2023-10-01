@@ -2,7 +2,7 @@
 
 namespace Portal.Utility
 {
-    public class JwtUtils 
+    public class JwtUtils
     {
         private readonly AppSettings _appSettings;
         private readonly byte[] _secret;

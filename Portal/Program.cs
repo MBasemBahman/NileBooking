@@ -1,5 +1,4 @@
 using Portal.Models;
-using System.Runtime.InteropServices;
 
 TenantConfig config = new(TenantEnvironments.Development);
 

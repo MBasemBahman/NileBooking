@@ -11,7 +11,7 @@ namespace Portal.Controllers
         {
 
         }
-        
+
 
         [HttpGet]
         [AllowAnonymous]

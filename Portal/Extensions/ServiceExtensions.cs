@@ -39,7 +39,7 @@ namespace Portal.Extensions
 
                 _ = services.AddScoped(_ =>
                 {
-                    var httpContext = new HttpContextAccessor().HttpContext;
+                    HttpContext httpContext = new HttpContextAccessor().HttpContext;
 
                     return new UserAuthenticatedDto
                     {
@@ -71,8 +71,8 @@ namespace Portal.Extensions
             {
                 List<CultureInfo> supportedCultures = new()
                 {
-                    new CultureInfo("en"), 
-                    new CultureInfo("ar") 
+                    new CultureInfo("en"),
+                    new CultureInfo("ar")
                 };
 
                 foreach (string language in Enum.GetNames(typeof(LanguageEnum)))

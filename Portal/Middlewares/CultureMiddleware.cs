@@ -14,14 +14,7 @@
             IRequestCultureFeature rqf = context.Features.Get<IRequestCultureFeature>();
             string culture = rqf.RequestCulture.UICulture.ToString();
 
-            if (Enum.IsDefined(typeof(LanguageEnum), culture))
-            {
-                context.Items[ApiConstants.Language] = Enum.Parse<LanguageEnum>(culture.ToLower());
-            }
-            else
-            {
-                context.Items[ApiConstants.Language] = null;
-            }
+            context.Items[ApiConstants.Language] = Enum.IsDefined(typeof(LanguageEnum), culture) ? Enum.Parse<LanguageEnum>(culture.ToLower()) : null;
 
             await _next(context);
         }
