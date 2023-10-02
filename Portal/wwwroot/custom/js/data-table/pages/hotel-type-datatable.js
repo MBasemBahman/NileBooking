@@ -20,7 +20,7 @@ $(document).ready(function ()
                 {
                     data: "hotelsCount",
                     render: function (data, type, row) {
-                        return '<a href="/HotelEntity/Hotel/Index?Fk_HotelType=' + row.id + '">' + data + '</a>'
+                        return '<a target="_blank" href="/HotelEntity/Hotel/Index?Fk_HotelType=' + row.id + '">' + data + '</a>'
                     }
                 },
                 { data: "createdAt" },

@@ -336,4 +336,16 @@
   <data name="HotelTypes" xml:space="preserve">
     <value>انواع الفنادق</value>
   </data>
+  <data name="HotelFeature" xml:space="preserve">
+    <value>ميزة الفندق</value>
+  </data>
+  <data name="HotelFeatureCategories" xml:space="preserve">
+    <value>فئات ميزات الفندق</value>
+  </data>
+  <data name="HotelFeatureCategory" xml:space="preserve">
+    <value>فئة ميزات الفندق</value>
+  </data>
+  <data name="HotelFeatures" xml:space="preserve">
+    <value>ميزات الفندق</value>
+  </data>
 </root>

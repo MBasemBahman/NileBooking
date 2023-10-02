@@ -20,13 +20,13 @@ $(document).ready(function ()
                 {
                     data: "areasCount",
                     render: function (data, type, row) {
-                        return '<a href="/LocationEntity/Area/Index?Fk_Country=' + row.id + '">' + data + '</a>'
+                        return '<a target="_blank" href="/LocationEntity/Area/Index?Fk_Country=' + row.id + '">' + data + '</a>'
                     }
                 },
                 {
                     data: "hotelsCount",
                     render: function (data, type, row) {
-                        return '<a href="/HotelEntity/Hotel/Index?Fk_Country=' + row.id + '">' + data + '</a>'
+                        return '<a target="_blank" href="/HotelEntity/Hotel/Index?Fk_Country=' + row.id + '">' + data + '</a>'
                     }
                 },
                 { data: "createdAt" },

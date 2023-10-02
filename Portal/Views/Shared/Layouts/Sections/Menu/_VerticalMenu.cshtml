@@ -1,6 +1,14 @@
 @{
     TempData.Keep();
     string currentPage = $"{Convert.ToString(ViewContext.RouteData.Values["controller"])!}";
+    string views = (string)httpContextAccessor.HttpContext.Request.Cookies[ViewDataConstants.Views];
+
+    List<int> viewList = new List<int>();
+
+    if (!string.IsNullOrWhiteSpace(views))
+    {
+        viewList = views.Split(",").Select(Int32.Parse).ToList();
+    }
 }
 
 <!-- Menu -->
@@ -33,114 +41,160 @@
             </a>
         </li>
 
-       
 
-        <!-- Main Data -->
-        <li class="menu-header small text-uppercase">
-            <span class="menu-header-text">@Localizer.Get("Advanced Settings")</span>
-        </li>
-     
-    
-      
+        @if (viewList.Contains((int)DashboardViewEnum.AccountType) ||
+        viewList.Contains((int)DashboardViewEnum.AccountState) ||
+        viewList.Contains((int)DashboardViewEnum.Area) ||
+        viewList.Contains((int)DashboardViewEnum.Country) ||
+        viewList.Contains((int)DashboardViewEnum.BookingState) ||
+        viewList.Contains((int)DashboardViewEnum.HotelType) ||
+        viewList.Contains((int)DashboardViewEnum.HotelFeature) ||
+        viewList.Contains((int)DashboardViewEnum.HotelFeatureCategory) ||
+        viewList.Contains((int)DashboardViewEnum.RoomType) ||
+        viewList.Contains((int)DashboardViewEnum.RoomFoodType)
+        )
+        {
+            <!-- Main Data -->
+            <li class="menu-header small text-uppercase">
+                <span class="menu-header-text">@Localizer.Get("Advanced Settings")</span>
+            </li>
 
-                <li class='menu-item@(currentPage ==DashboardViewEnum.AccountState.ToString() 
+            @if (viewList.Contains((int)DashboardViewEnum.AccountType) ||
+           viewList.Contains((int)DashboardViewEnum.AccountState))
+            {
+                <li class='menu-item@(currentPage ==DashboardViewEnum.AccountState.ToString()
                             ||currentPage == DashboardViewEnum.AccountType.ToString()? " active open" : "")'>
-            <a href='javascript:void(0);' class='menu-link menu-toggle'>
-                <i class='menu-icon tf-icons ti ti-users'></i>
-                <div data-i18n='@Localizer.Get("Account Data")'>@Localizer.Get("Account Data")</div>
+                    <a href='javascript:void(0);' class='menu-link menu-toggle'>
+                        <i class='menu-icon tf-icons ti ti-users'></i>
+                        <div data-i18n='@Localizer.Get("Account Data")'>@Localizer.Get("Account Data")</div>
 
-            </a>
-            <ul class='menu-sub'>
-                <li class='menu-item@(currentPage == DashboardViewEnum.AccountState.ToString() ? " active" : "")'>
-                    <a asp-area="AccountEntity" asp-controller="AccountState" asp-action="Index"  class='menu-link'>
-                        <div data-i18n='@Localizer.Get("AccountStates")'>@Localizer.Get("AccountStates")</div>
                     </a>
+                    <ul class='menu-sub'>
+                        <li class='menu-item@(currentPage == DashboardViewEnum.AccountState.ToString() ? " active" : "")'>
+                            <a asp-area="AccountEntity" asp-controller="AccountState" asp-action="Index" class='menu-link'>
+                                <div data-i18n='@Localizer.Get("AccountStates")'>@Localizer.Get("AccountStates")</div>
+                            </a>
+                        </li>
+
+                        <li class='menu-item@(currentPage == DashboardViewEnum.AccountType.ToString() ? " active" : "")'>
+                            <a asp-area="AccountEntity" asp-controller="AccountType" asp-action="Index" class='menu-link'>
+                                <div data-i18n='@Localizer.Get("AccountTypes")'>@Localizer.Get("AccountTypes")</div>
+                            </a>
+                        </li>
+
+                    </ul>
                 </li>
 
-                 <li class='menu-item@(currentPage == DashboardViewEnum.AccountType.ToString() ? " active" : "")'>
-                    <a asp-area="AccountEntity" asp-controller="AccountType" asp-action="Index"  class='menu-link'>
-                        <div data-i18n='@Localizer.Get("AccountTypes")'>@Localizer.Get("AccountTypes")</div>
-                    </a>
-                </li>
-           
-            </ul>
-        </li>
-        <li class='menu-item@(currentPage ==DashboardViewEnum.Area.ToString()
+            }
+
+            @if (viewList.Contains((int)DashboardViewEnum.Area) ||
+           viewList.Contains((int)DashboardViewEnum.Country))
+            {
+                <li class='menu-item@(currentPage ==DashboardViewEnum.Area.ToString()
                             ||currentPage == DashboardViewEnum.Country.ToString()? " active open" : "")'>
-            <a href='javascript:void(0);' class='menu-link menu-toggle'>
-                <i class='menu-icon tf-icons ti ti-pin'></i>
-                <div data-i18n='@Localizer.Get("Location Data")'>@Localizer.Get("Location Data")</div>
+                    <a href='javascript:void(0);' class='menu-link menu-toggle'>
+                        <i class='menu-icon tf-icons ti ti-pin'></i>
+                        <div data-i18n='@Localizer.Get("Location Data")'>@Localizer.Get("Location Data")</div>
 
-            </a>
-            <ul class='menu-sub'>
-                <li class='menu-item@(currentPage == DashboardViewEnum.Country.ToString() ? " active" : "")'>
-                    <a asp-area="LocationEntity" asp-controller="Country" asp-action="Index" class='menu-link'>
-                        <div data-i18n='@Localizer.Get("Countries")'>@Localizer.Get("Countries")</div>
                     </a>
+                    <ul class='menu-sub'>
+                        <li class='menu-item@(currentPage == DashboardViewEnum.Country.ToString() ? " active" : "")'>
+                            <a asp-area="LocationEntity" asp-controller="Country" asp-action="Index" class='menu-link'>
+                                <div data-i18n='@Localizer.Get("Countries")'>@Localizer.Get("Countries")</div>
+                            </a>
+                        </li>
+
+                        <li class='menu-item@(currentPage == DashboardViewEnum.Area.ToString() ? " active" : "")'>
+                            <a asp-area="LocationEntity" asp-controller="Area" asp-action="Index" class='menu-link'>
+                                <div data-i18n='@Localizer.Get("Areas")'>@Localizer.Get("Areas")</div>
+                            </a>
+                        </li>
+
+                    </ul>
                 </li>
 
-                <li class='menu-item@(currentPage == DashboardViewEnum.Area.ToString() ? " active" : "")'>
-                    <a asp-area="LocationEntity" asp-controller="Area" asp-action="Index" class='menu-link'>
-                        <div data-i18n='@Localizer.Get("Areas")'>@Localizer.Get("Areas")</div>
+            }
+
+            @if (viewList.Contains((int)DashboardViewEnum.BookingState))
+            {
+                <li class='menu-item@(currentPage ==DashboardViewEnum.BookingState.ToString()? " active open" : "")'>
+                    <a href='javascript:void(0);' class='menu-link menu-toggle'>
+                        <i class='menu-icon tf-icons ti ti-calendar'></i>
+                        <div data-i18n='@Localizer.Get("Booking Data")'>@Localizer.Get("Booking Data")</div>
+
                     </a>
+                    <ul class='menu-sub'>
+                        <li class='menu-item@(currentPage == DashboardViewEnum.BookingState.ToString() ? " active" : "")'>
+                            <a asp-area="BookingEntity" asp-controller="BookingState" asp-action="Index" class='menu-link'>
+                                <div data-i18n='@Localizer.Get("BookingStates")'>@Localizer.Get("BookingStates")</div>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
 
-            </ul>
-        </li>
+            }
 
-        <li class='menu-item@(currentPage ==DashboardViewEnum.BookingState.ToString()? " active open" : "")'>
-            <a href='javascript:void(0);' class='menu-link menu-toggle'>
-                <i class='menu-icon tf-icons ti ti-calendar'></i>
-                <div data-i18n='@Localizer.Get("Booking Data")'>@Localizer.Get("Booking Data")</div>
+            @if (viewList.Contains((int)DashboardViewEnum.HotelType) ||
+           viewList.Contains((int)DashboardViewEnum.HotelFeature) ||
+           viewList.Contains((int)DashboardViewEnum.HotelFeatureCategory))
+            {
+                <li class='menu-item@(currentPage ==DashboardViewEnum.HotelType.ToString()
+                                           || currentPage ==DashboardViewEnum.HotelFeature.ToString()
+                                            || currentPage ==DashboardViewEnum.HotelFeatureCategory.ToString()? " active open" : "")'>
+                    <a href='javascript:void(0);' class='menu-link menu-toggle'>
+                        <i class='menu-icon tf-icons ti ti-star'></i>
+                        <div data-i18n='@Localizer.Get("Hotel Data")'>@Localizer.Get("Hotel Data")</div>
 
-            </a>
-            <ul class='menu-sub'>
-                <li class='menu-item@(currentPage == DashboardViewEnum.BookingState.ToString() ? " active" : "")'>
-                    <a asp-area="BookingEntity" asp-controller="BookingState" asp-action="Index" class='menu-link'>
-                        <div data-i18n='@Localizer.Get("BookingStates")'>@Localizer.Get("BookingStates")</div>
                     </a>
+                    <ul class='menu-sub'>
+                        <li class='menu-item@(currentPage == DashboardViewEnum.HotelType.ToString() ? " active" : "")'>
+                            <a asp-area="HotelEntity" asp-controller="HotelType" asp-action="Index" class='menu-link'>
+                                <div data-i18n='@Localizer.Get("HotelTypes")'>@Localizer.Get("HotelTypes")</div>
+                            </a>
+                        </li>
+                        <li class='menu-item@(currentPage == DashboardViewEnum.HotelFeatureCategory.ToString() ? " active" : "")'>
+                            <a asp-area="HotelEntity" asp-controller="HotelFeatureCategory" asp-action="Index" class='menu-link'>
+                                <div data-i18n='@Localizer.Get("HotelFeatureCategories")'>@Localizer.Get("HotelFeatureCategories")</div>
+                            </a>
+                        </li>
+                        <li class='menu-item@(currentPage == DashboardViewEnum.HotelFeature.ToString() ? " active" : "")'>
+                            <a asp-area="HotelEntity" asp-controller="HotelFeature" asp-action="Index" class='menu-link'>
+                                <div data-i18n='@Localizer.Get("HotelFeatures")'>@Localizer.Get("HotelFeatures")</div>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
-            </ul>
-        </li>
 
+            }
 
-        <li class='menu-item@(currentPage ==DashboardViewEnum.HotelType.ToString()? " active open" : "")'>
-            <a href='javascript:void(0);' class='menu-link menu-toggle'>
-                <i class='menu-icon tf-icons ti ti-star'></i>
-                <div data-i18n='@Localizer.Get("Hotel Data")'>@Localizer.Get("Hotel Data")</div>
-
-            </a>
-            <ul class='menu-sub'>
-                <li class='menu-item@(currentPage == DashboardViewEnum.HotelType.ToString() ? " active" : "")'>
-                    <a asp-area="HotelEntity" asp-controller="HotelType" asp-action="Index" class='menu-link'>
-                        <div data-i18n='@Localizer.Get("HotelTypes")'>@Localizer.Get("HotelTypes")</div>
-                    </a>
-                </li>
-            </ul>
-        </li>
-
-                        <li class='menu-item@(currentPage ==DashboardViewEnum.RoomType.ToString() 
+            @if (viewList.Contains((int)DashboardViewEnum.RoomType) ||
+           viewList.Contains((int)DashboardViewEnum.RoomFoodType))
+            {
+                <li class='menu-item@(currentPage ==DashboardViewEnum.RoomType.ToString()
                             ||currentPage == DashboardViewEnum.RoomFoodType.ToString()? " active open" : "")'>
-            <a href='javascript:void(0);' class='menu-link menu-toggle'>
-                <i class='menu-icon tf-icons ti ti-coffee'></i>
-                <div data-i18n='@Localizer.Get("Hotel Room Data")'>@Localizer.Get("Hotel Room Data")</div>
+                    <a href='javascript:void(0);' class='menu-link menu-toggle'>
+                        <i class='menu-icon tf-icons ti ti-coffee'></i>
+                        <div data-i18n='@Localizer.Get("Hotel Room Data")'>@Localizer.Get("Hotel Room Data")</div>
 
-            </a>
-            <ul class='menu-sub'>
-                <li class='menu-item@(currentPage == DashboardViewEnum.RoomType.ToString() ? " active" : "")'>
-                    <a asp-area="HotelRoomEntity" asp-controller="RoomType" asp-action="Index" class='menu-link'>
-                        <div data-i18n='@Localizer.Get("RoomTypes")'>@Localizer.Get("RoomTypes")</div>
                     </a>
+                    <ul class='menu-sub'>
+                        <li class='menu-item@(currentPage == DashboardViewEnum.RoomType.ToString() ? " active" : "")'>
+                            <a asp-area="HotelRoomEntity" asp-controller="RoomType" asp-action="Index" class='menu-link'>
+                                <div data-i18n='@Localizer.Get("RoomTypes")'>@Localizer.Get("RoomTypes")</div>
+                            </a>
+                        </li>
+
+                        <li class='menu-item@(currentPage == DashboardViewEnum.RoomFoodType.ToString() ? " active" : "")'>
+                            <a asp-area="HotelRoomEntity" asp-controller="RoomFoodType" asp-action="Index" class='menu-link'>
+                                <div data-i18n='@Localizer.Get("RoomFoodTypes")'>@Localizer.Get("RoomFoodTypes")</div>
+                            </a>
+                        </li>
+
+                    </ul>
                 </li>
 
-                 <li class='menu-item@(currentPage == DashboardViewEnum.RoomFoodType.ToString() ? " active" : "")'>
-                    <a asp-area="HotelRoomEntity" asp-controller="RoomFoodType" asp-action="Index" class='menu-link'>
-                        <div data-i18n='@Localizer.Get("RoomFoodTypes")'>@Localizer.Get("RoomFoodTypes")</div>
-                    </a>
-                </li>
-
-            </ul>
-        </li>
+            }
+        }
 
     </ul>
 

@@ -178,7 +178,6 @@ namespace Portal.MappingProfileCls
             #endregion
 
             #region Hotel Models
-
             #region Hotel Type
             _ = CreateMap<HotelType, HotelTypeCreateOrEditModel>();
 
@@ -193,10 +192,38 @@ namespace Portal.MappingProfileCls
             _ = CreateMap<HotelTypeLangModel, HotelTypeLang>();
             #endregion
 
+            #region Hotel Feature
+
+            _ = CreateMap<HotelFeature, HotelFeatureCreateOrEditModel>();
+
+            _ = CreateMap<HotelFeatureCreateOrEditModel, HotelFeature>();
+
+            _ = CreateMap<HotelFeatureModel, HotelFeatureDto>();
+
+            _ = CreateMap<HotelFeatureFilter, HotelFeatureParameters>();
+
+            _ = CreateMap<HotelFeatureLang, HotelFeatureLangModel>();
+
+            _ = CreateMap<HotelFeatureLangModel, HotelFeatureLang>();
+
             #endregion
 
+            #region Hotel Feature Category
 
+            _ = CreateMap<HotelFeatureCategory, HotelFeatureCategoryCreateOrEditModel>();
 
+            _ = CreateMap<HotelFeatureCategoryCreateOrEditModel, HotelFeatureCategory>();
+
+            _ = CreateMap<HotelFeatureCategoryModel, HotelFeatureCategoryDto>();
+
+            _ = CreateMap<HotelFeatureCategoryFilter, HotelFeatureCategoryParameters>();
+
+            _ = CreateMap<HotelFeatureCategoryLang, HotelFeatureCategoryLangModel>();
+
+            _ = CreateMap<HotelFeatureCategoryLangModel, HotelFeatureCategoryLang>();
+
+            #endregion
+            #endregion
         }
     }
 

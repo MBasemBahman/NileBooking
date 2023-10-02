@@ -10,7 +10,7 @@ $(document).ready(function ()
                 contentType: "application/json",
                 dataType: "json",
                 data: function (data) {
-                    data.Fk_Country = $("#Fk_Country_Filter").length > 0 ? $("#Fk_Country_Filter").val()  : 0
+                    data.Fk_HotelFeatureCategory = $("#Fk_HotelFeatureCategory_Filter").length > 0 ? $("#Fk_HotelFeatureCategory_Filter").val() : 0
                     return JSON.stringify(data);
                 }
             },
@@ -18,15 +18,8 @@ $(document).ready(function ()
             columns: [
                 { data: "id" },
                 { data: "name" },
-                { data:"country.name"},
-                {
-                    data: "hotelsCount",
-                    render: function (data, type, row) {
-                        return '<a target="_blank" href="/HotelEntity/Hotel/Index?Fk_Area=' + row.id + '">' + data + '</a>'
-                    }
-                },
+                { data:"hotelFeatureCategory.name"},
                 { data: "createdAt" },
-              
                 { data: "id" },
             ]
         });

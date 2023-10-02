@@ -34,7 +34,7 @@ $(document).ready(function ()
                 {
                     data: "bookingsCount",
                     render: function (data, type, row) {
-                        return '<a href="/BookingEntity/Booking/Index?Fk_BookingState=' + row.id + '">' + data + '</a>'
+                        return '<a target="_blank" href="/BookingEntity/Booking/Index?Fk_BookingState=' + row.id + '">' + data + '</a>'
                     }
                 },
                 { data: "createdAt" },

@@ -336,4 +336,16 @@
   <data name="HotelTypes" xml:space="preserve">
     <value>Hotel Types</value>
   </data>
+  <data name="HotelFeature" xml:space="preserve">
+    <value>Hotel Feature</value>
+  </data>
+  <data name="HotelFeatureCategories" xml:space="preserve">
+    <value>Hotel Feature Categories</value>
+  </data>
+  <data name="HotelFeatureCategory" xml:space="preserve">
+    <value>Hotel Feature Category</value>
+  </data>
+  <data name="HotelFeatures" xml:space="preserve">
+    <value>Hotel Features</value>
+  </data>
 </root>

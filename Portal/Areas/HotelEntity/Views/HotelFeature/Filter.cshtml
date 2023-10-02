@@ -1,0 +1,19 @@
+﻿@model HotelFeatureFilter
+@{
+    Layout = null;
+}
+<form asp-action="LoadTable" class="filter">
+    <div class="row">
+        <div class="col-12">
+            <div class="row g-3">
+                <div class="col-12 col-sm-6 col-lg-4">
+                    <label class="form-label" asp-for="Fk_HotelFeatureCategory"></label>
+                    <select id="Fk_HotelFeatureCategory_Filter" asp-for="Fk_HotelFeatureCategory" class="select2 form-select filter-input" asp-items="@(new SelectList(ViewData["HotelFeatureCategory"] as Dictionary<string,string>,"Key","Value"))">
+                        <option value="0">@Localizer.Get("All") @Localizer.Get("HotelFeatureCategories")</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+

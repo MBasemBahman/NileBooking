@@ -1,4 +1,4 @@
-﻿@model AreaDto
+﻿@model HotelFeatureDto
 
 @{
     Layout = null;
@@ -9,18 +9,13 @@
             <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.Name):</dt>
             <dd class="col-sm-8 mb-1">@Model.Name</dd>
 
-            <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.HotelsCount):</dt>
-            <dd class="col-sm-8 mb-1">
-                <a href="/HotelEntity/Hotel/Index?Fk_Area=@Model.Id" target="_blank">@Model.HotelsCount</a>
-            </dd>
+        
         </dl>
     </div>
     <div class="col-xl-5 col-12">
         <dl class="row mb-0">
-            <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.Country):</dt>
-            <dd class="col-sm-8 mb-1">@Model.Country.Name</dd>
-
-        
+            <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.HotelFeatureCategory):</dt>
+            <dd class="col-sm-8 mb-1">@Model.HotelFeatureCategory.Name</dd>
         </dl>
     </div>
 </div>
