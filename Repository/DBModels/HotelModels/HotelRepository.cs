@@ -20,7 +20,8 @@ namespace Repository.DBModels.HotelModels
                        parameters.Fk_HotelFeatures,
                        parameters.Fk_RoomTypes,
                        parameters.Fk_RoomFoodTypes,
-                       parameters.IsActive);
+                       parameters.IsActive,
+                       parameters.IsRecommended);
 
         }
 
@@ -62,7 +63,8 @@ namespace Repository.DBModels.HotelModels
            List<int> fk_HotelFeatures,
            List<int> fk_RoomTypes,
            List<int> fk_RoomFoodTypes,
-            bool? isActive)
+            bool? isActive,
+            bool? isRecommended)
         {
             return data.Where(a => (id == 0 || a.Id == id) &&
                                        (fk_HotelType == 0 || a.Fk_HotelType == fk_HotelType) &&
@@ -72,7 +74,8 @@ namespace Repository.DBModels.HotelModels
                                        (fk_HotelFeatures == null || !fk_HotelFeatures.Any() || a.HotelSelectedFeatures.Any(b => fk_HotelFeatures.Contains(b.Fk_HotelFeature))) &&
                                        (fk_RoomTypes == null || !fk_RoomTypes.Any() || a.HotelRooms.Any(b => fk_RoomTypes.Contains(b.Fk_RoomType))) &&
                                        (fk_RoomFoodTypes == null || !fk_RoomFoodTypes.Any() || a.HotelRooms.Any(b => fk_RoomFoodTypes.Contains(b.Fk_RoomFoodType))) &&
-                                       (isActive == null || a.IsActive == isActive));
+                                       (isActive == null || a.IsActive == isActive) &&
+                                       (isRecommended == null || a.IsRecommended == isRecommended));
         }
     }
 }

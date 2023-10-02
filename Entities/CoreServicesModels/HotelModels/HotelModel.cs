@@ -27,6 +27,9 @@ namespace Entities.CoreServicesModels.HotelModels
 
         public bool? IncludeAttachments { get; set; }
 
+        [DisplayName(nameof(IsRecommended))]
+        public bool? IsRecommended { get; set; }
+
 
     }
     public class HotelModel : AuditImageEntity
@@ -67,6 +70,9 @@ namespace Entities.CoreServicesModels.HotelModels
 
         [DisplayName(nameof(IsActive))]
         public bool IsActive { get; set; }
+
+        [DisplayName(nameof(IsRecommended))]
+        public bool IsRecommended { get; set; }
 
         [DisplayName(nameof(BookingsCount))]
         public int BookingsCount { get; set; }

@@ -40,6 +40,9 @@ public class Hotel : AuditImageEntity
     [DisplayName(nameof(IsActive))]
     public bool IsActive { get; set; }
 
+    [DisplayName(nameof(IsRecommended))]
+    public bool IsRecommended { get; set; }
+
     [DisplayName(nameof(HotelSelectedFeatures))]
     public List<HotelSelectedFeatures> HotelSelectedFeatures { get; set; }
 
