@@ -27,8 +27,17 @@
             UserDevice = 8,
             Verification = 9,
             AccountState = 10,
-            AccountType = 11
-        }
+            AccountType = 11,
+            Country = 12,
+            Area = 13,
+			BookingState = 14,
+			HotelType = 15,
+			HotelFeatureCategory = 16,
+			HotelFeature = 17,
+			RoomType = 18,
+			RoomFoodType = 19,
+
+		}
 
         public enum LanguageEnum
         {

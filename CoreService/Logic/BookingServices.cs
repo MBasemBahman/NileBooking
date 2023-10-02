@@ -31,7 +31,8 @@ namespace CoreService.Logic
                                       .Where(b => b.Language == language)
                                       .Select(b => b.Name).FirstOrDefault() : a.Name,
                                   CreatedAt = a.CreatedAt,
-                                  BookingsCount = a.Bookings.Count
+                                  BookingsCount = a.Bookings.Count,
+                                  ColorCode = a.ColorCode
                               })
                               .Search(parameters.SearchColumns, parameters.SearchTerm)
                               .Sort(parameters.OrderBy);

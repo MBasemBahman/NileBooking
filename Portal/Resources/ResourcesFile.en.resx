@@ -264,4 +264,76 @@
   <data name="Name English" xml:space="preserve">
     <value>Name English</value>
   </data>
+  <data name="AccountsCount" xml:space="preserve">
+    <value>Accounts</value>
+  </data>
+  <data name="AccountType" xml:space="preserve">
+    <value>Account Type</value>
+  </data>
+  <data name="AccountTypes" xml:space="preserve">
+    <value>Account Types</value>
+  </data>
+  <data name="Advanced Search" xml:space="preserve">
+    <value>Advanced Search</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="Area" xml:space="preserve">
+    <value>Area</value>
+  </data>
+  <data name="Areas" xml:space="preserve">
+    <value>Areas</value>
+  </data>
+  <data name="AreasCount" xml:space="preserve">
+    <value>Areas</value>
+  </data>
+  <data name="Countries" xml:space="preserve">
+    <value>Countries</value>
+  </data>
+  <data name="Country" xml:space="preserve">
+    <value>Country</value>
+  </data>
+  <data name="HotelsCount" xml:space="preserve">
+    <value>Hotels</value>
+  </data>
+  <data name="Location Data" xml:space="preserve">
+    <value>Location Data</value>
+  </data>
+  <data name="Booking Data" xml:space="preserve">
+    <value>Booking Data</value>
+  </data>
+  <data name="BookingsCount" xml:space="preserve">
+    <value>Bookings</value>
+  </data>
+  <data name="BookingState" xml:space="preserve">
+    <value>Booking State</value>
+  </data>
+  <data name="BookingStates" xml:space="preserve">
+    <value>Booking States</value>
+  </data>
+  <data name="Hotel Room Data" xml:space="preserve">
+    <value>Hotel Room Data</value>
+  </data>
+  <data name="RoomFoodType" xml:space="preserve">
+    <value>Room Food Type</value>
+  </data>
+  <data name="RoomFoodTypes" xml:space="preserve">
+    <value>Room Food Types</value>
+  </data>
+  <data name="RoomType" xml:space="preserve">
+    <value>RoomType</value>
+  </data>
+  <data name="RoomTypes" xml:space="preserve">
+    <value>RoomTypes</value>
+  </data>
+  <data name="Hotel Data" xml:space="preserve">
+    <value>Hatel Data</value>
+  </data>
+  <data name="HotelType" xml:space="preserve">
+    <value>Hotel Type</value>
+  </data>
+  <data name="HotelTypes" xml:space="preserve">
+    <value>Hotel Types</value>
+  </data>
 </root>

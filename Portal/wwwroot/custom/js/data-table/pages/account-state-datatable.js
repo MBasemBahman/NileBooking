@@ -31,7 +31,14 @@ $(document).ready(function ()
                         }
                     }
                 },
+                {
+                    data: "accountsCount",
+                    render: function (data, type, row) {
+                        return '<a href="/AccountEntity/Account/Index?Fk_AccountState=' + row.id + '">' + data + '</a>'
+                    }
+                },
                 { data: "createdAt" },
+              
                 { data: "id" },
             ]
         });

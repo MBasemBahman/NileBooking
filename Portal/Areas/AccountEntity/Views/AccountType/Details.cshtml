@@ -1,0 +1,33 @@
+﻿@model AccountTypeDto
+
+@{
+    Layout = null;
+}
+<div class="row">
+    <div class="col-xl-7 col-12">
+        <dl class="row mb-0">
+            <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.Name):</dt>
+            <dd class="col-sm-8 mb-1">@Model.Name</dd>
+        </dl>
+    </div>
+    <div class="col-xl-5 col-12">
+        <dl class="row mb-0">
+            <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.AccountsCount):</dt>
+            <dd class="col-sm-8 mb-1">
+                <a href="/AccountEntity/Account/Index?Fk_AccountType=@Model.Id" target="_blank">@Model.AccountsCount</a>
+            </dd>
+        </dl>
+    </div>
+</div>
+<hr />
+<div class="row">
+    <div class="col-xl-7 col-12">
+        <dl class="row mb-0">
+            <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.CreatedAt):</dt>
+            <dd class="col-sm-8 mb-1">@Model.CreatedAt</dd>
+        </dl>
+    </div>
+</div>
+
+
+

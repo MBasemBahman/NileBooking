@@ -264,4 +264,76 @@
   <data name="Name English" xml:space="preserve">
     <value>الاسم بالانجليزية</value>
   </data>
+  <data name="AccountsCount" xml:space="preserve">
+    <value>الحسابات</value>
+  </data>
+  <data name="AccountType" xml:space="preserve">
+    <value>نوع الحساب</value>
+  </data>
+  <data name="AccountTypes" xml:space="preserve">
+    <value>انواع الحسابات</value>
+  </data>
+  <data name="Advanced Search" xml:space="preserve">
+    <value>بحث متقدم</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>جميع</value>
+  </data>
+  <data name="Area" xml:space="preserve">
+    <value>المنطقه</value>
+  </data>
+  <data name="Areas" xml:space="preserve">
+    <value>المناطق</value>
+  </data>
+  <data name="AreasCount" xml:space="preserve">
+    <value>المناطق</value>
+  </data>
+  <data name="Countries" xml:space="preserve">
+    <value>الدول</value>
+  </data>
+  <data name="Country" xml:space="preserve">
+    <value>الدوله</value>
+  </data>
+  <data name="HotelsCount" xml:space="preserve">
+    <value>الفنادق</value>
+  </data>
+  <data name="Location Data" xml:space="preserve">
+    <value>بيانات المناطق</value>
+  </data>
+  <data name="Booking Data" xml:space="preserve">
+    <value>بيانات الحجوزات</value>
+  </data>
+  <data name="BookingsCount" xml:space="preserve">
+    <value>الحجوزات</value>
+  </data>
+  <data name="BookingState" xml:space="preserve">
+    <value>حالة الحجز</value>
+  </data>
+  <data name="BookingStates" xml:space="preserve">
+    <value>حالات الحجوزات</value>
+  </data>
+  <data name="Hotel Room Data" xml:space="preserve">
+    <value>بيانات غرف الفندق</value>
+  </data>
+  <data name="RoomFoodType" xml:space="preserve">
+    <value>نوع الطعام</value>
+  </data>
+  <data name="RoomFoodTypes" xml:space="preserve">
+    <value>انواع الطعام</value>
+  </data>
+  <data name="RoomType" xml:space="preserve">
+    <value>نوع الغرفة</value>
+  </data>
+  <data name="RoomTypes" xml:space="preserve">
+    <value>انواع الغرف</value>
+  </data>
+  <data name="Hotel Data" xml:space="preserve">
+    <value>بيانات الفنادق</value>
+  </data>
+  <data name="HotelType" xml:space="preserve">
+    <value>نوع الفندق</value>
+  </data>
+  <data name="HotelTypes" xml:space="preserve">
+    <value>انواع الفنادق</value>
+  </data>
 </root>

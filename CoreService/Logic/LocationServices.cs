@@ -95,6 +95,8 @@ namespace CoreService.Logic
                                       .Where(b => b.Language == language)
                                       .Select(b => b.Name).FirstOrDefault() : a.Name,
                                   CreatedAt = a.CreatedAt,
+                                  AreasCount = a.Areas.Count,
+                                  HotelsCount = a.Areas.SelectMany(a=>a.Hotels).Count()
                               })
                               .Search(parameters.SearchColumns, parameters.SearchTerm)
                               .Sort(parameters.OrderBy);
