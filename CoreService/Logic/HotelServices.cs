@@ -36,7 +36,10 @@ namespace CoreService.Logic
                               .Select(a => new HotelModel
                               {
                                   Id = a.Id,
+                                  Latitude = a.Latitude,
+                                  Longitude = a.Longitude,
                                   IsRecommended = a.IsRecommended,
+                                 
                                   Price = a.HotelRooms.Any()
                                   ? a.HotelRooms.SelectMany(c=>c.HotelRoomPrices).OrderBy(c=>c.AdultPrice).FirstOrDefault().AdultPrice
                                   :0 ,

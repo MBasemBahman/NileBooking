@@ -43,6 +43,12 @@ public class Hotel : AuditImageEntity
     [DisplayName(nameof(IsRecommended))]
     public bool IsRecommended { get; set; }
 
+    [DisplayName(nameof(Latitude))]
+    public double Latitude { get; set; }
+
+    [DisplayName(nameof(Longitude))]
+    public double Longitude { get; set; }
+
     [DisplayName(nameof(HotelSelectedFeatures))]
     public List<HotelSelectedFeatures> HotelSelectedFeatures { get; set; }
 

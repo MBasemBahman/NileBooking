@@ -1,6 +1,9 @@
 ﻿using API.Areas.HotelArea.Models;
 using Entities.CoreServicesModels.HotelModels;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.EntityFrameworkCore;
+using Services;
+using System.Collections.Generic;
 
 namespace API.Areas.HotelArea.Controllers
 {
@@ -27,13 +30,35 @@ namespace API.Areas.HotelArea.Controllers
         {
             LanguageEnum? language = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
 
+            UserAuthenticatedDto auth = (UserAuthenticatedDto)Request.HttpContext.Items[ApiConstants.User];
+
             parameters.IsActive = true;
+            List<HotelDto> dataDto = new List<HotelDto>();
 
-            PagedList<HotelModel> data = await _unitOfWork.Hotel.GetHotelsPaged(parameters, language);
+            if (parameters.Latitude >0&&parameters.Longitude > 0)
+            {
+                List<HotelModel> data = await _unitOfWork.Hotel.GetHotels(parameters, language).ToListAsync();
 
-            SetPagination(data.MetaData, parameters);
+                data.ForEach(a => a.Distance = GeoCoordinateService.GetDistance(parameters.Latitude, parameters.Longitude, a.Latitude, a.Longitude));
 
-            List<HotelDto> dataDto = _mapper.Map<List<HotelDto>>(data);
+                data = data.OrderBy(a => a.Distance).ToList();
+
+                PagedList<HotelModel> pagedData = PagedList<HotelModel>.ToPagedList(data, parameters.PageNumber, parameters.PageSize);
+
+                SetPagination(pagedData.MetaData, parameters);
+
+                dataDto = _mapper.Map<List<HotelDto>>(pagedData);
+            }
+            else
+            {
+                PagedList<HotelModel> data = await _unitOfWork.Hotel.GetHotelsPaged(parameters, language);
+                SetPagination(data.MetaData, parameters);
+
+                dataDto = _mapper.Map<List<HotelDto>>(data);
+
+            }
+
+
 
             return dataDto;
         }

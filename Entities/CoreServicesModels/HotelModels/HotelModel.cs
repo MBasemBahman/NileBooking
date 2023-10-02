@@ -30,6 +30,11 @@ namespace Entities.CoreServicesModels.HotelModels
         [DisplayName(nameof(IsRecommended))]
         public bool? IsRecommended { get; set; }
 
+        [DisplayName(nameof(Latitude))]
+        public double Latitude { get; set; }
+
+        [DisplayName(nameof(Longitude))]
+        public double Longitude { get; set; }
 
     }
     public class HotelModel : AuditImageEntity
@@ -73,6 +78,15 @@ namespace Entities.CoreServicesModels.HotelModels
 
         [DisplayName(nameof(IsRecommended))]
         public bool IsRecommended { get; set; }
+
+        [DisplayName(nameof(Latitude))]
+        public double Latitude { get; set; }
+
+        [DisplayName(nameof(Longitude))]
+        public double Longitude { get; set; }
+
+        [DisplayName(nameof(Distance))]
+        public double Distance { get; set; }
 
         [DisplayName(nameof(BookingsCount))]
         public int BookingsCount { get; set; }
