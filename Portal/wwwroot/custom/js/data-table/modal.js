@@ -122,10 +122,14 @@ $(document).on('submit', '.form-delete', function (e) {
 
 $(document).on('submit', "#offcanvasAddItem", function () {
     event.preventDefault();
+    var form = $('#offcanvasAddItem form');
+    var formData = new FormData(form[0]);
     $.ajax({
         type: $('#offcanvasAddItem form').attr('method'),
         url: $('#offcanvasAddItem form').attr('action'),
-        data: $('#offcanvasAddItem form').serialize(),
+        data: formData,
+        contentType: false, 
+        processData: false, 
         beforeSend: function () {
             $('#cover-spin').show();
         },
