@@ -1,0 +1,43 @@
+﻿@model AccountFilter
+@{
+    Layout = null;
+}
+<form asp-action="LoadTable" class="filter">
+    <div class="row">
+        <div class="col-12">
+            <div class="row g-3">
+                <div class="col-12 col-sm-6 col-lg-4">
+                    <select id="Fk_AccountType_Filter" asp-for="Fk_AccountType" class="select2 form-select filter-input" asp-items="@(new SelectList(ViewData["AccountTypes"] as Dictionary<string,string>,"Key","Value"))">
+                        <option value="0">@Localizer.Get("All") @Localizer.Get("AccountTypes")</option>
+                    </select>
+                </div>
+                <div class="col-12 col-sm-6 col-lg-4">
+                    <select id="Fk_AccountState_Filter" asp-for="Fk_AccountState" class="select2 form-select filter-input" asp-items="@(new SelectList(ViewData["AccountStates"] as Dictionary<string,string>,"Key","Value"))">
+                        <option value="0">@Localizer.Get("All") @Localizer.Get("AccountStates")</option>
+                    </select>
+                </div>
+
+                 <div class="col-12 col-sm-6 col-lg-4">
+                    <select id="HaveBookings_Filter" asp-for="HaveBookings" class="form-select filter-input">
+                        <option value="" selected disabled>@Localizer.Get("HaveBookings")</option>
+                        <option value="">@Localizer.Get("All") @Localizer.Get("Accounts")</option>
+                        <option value="true">@Localizer.Get("Yes")</option>
+                        <option value="false">@Localizer.Get("No")</option>
+                    </select>
+                </div>
+
+
+                <div class="col-12 col-sm-6 col-lg-4">
+                    <input type="text" class="form-control filter-input dt-date flatpickr-range dt-input flatpickr-input active" data-column="1" placeholder="@Localizer.Get("CreatedAt")" data-column-index="0" name="dt_date" readonly="readonly">
+                    <input type="hidden" class="form-control filter-input dt-date start_date dt-input" data-column="1" data-column-index="0" asp-for="CreatedAtFrom">
+                    <input type="hidden" class="form-control filter-input dt-date end_date dt-input" asp-for="CreatedAtTo" data-column="1" data-column-index="0">
+                </div>
+                <hr />
+                    <div class="col-12">
+                        <button type="reset" class="btn btn-secondary">@Localizer.Get("Reset")</button>
+                    </div>
+            </div>
+        </div>
+    </div>
+</form>
+

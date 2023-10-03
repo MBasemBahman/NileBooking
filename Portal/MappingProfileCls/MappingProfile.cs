@@ -4,6 +4,7 @@ using Entities.CoreServicesModels.LocationModels;
 using Entities.CoreServicesModels.BookingModels;
 using Entities.CoreServicesModels.HotelRoomModels;
 using Entities.CoreServicesModels.HotelModels;
+using Entities.CoreServicesModels.UserModels;
 #endregion
 
 #region Dto Models
@@ -12,6 +13,7 @@ using Portal.Areas.LocationEntity.Models;
 using Portal.Areas.BookingEntity.Models;
 using Portal.Areas.HotelRoomEntity.Models;
 using Portal.Areas.HotelEntity.Models;
+using Portal.Areas.UserEntity.Models;
 #endregion
 
 #region DB Models
@@ -20,6 +22,7 @@ using Entities.DBModels.LocationModels;
 using Entities.DBModels.BookingModels;
 using Entities.DBModels.HotelRoomModels;
 using Entities.DBModels.HotelModels;
+using Entities.DBModels.UserModels;
 #endregion
 using Entities.RequestFeatures;
 
@@ -74,7 +77,6 @@ namespace Portal.MappingProfileCls
             _ = CreateMap<AccountStateLangModel, AccountStateLang>();
             #endregion
 
-
             #region Account Type
             _ = CreateMap<AccountType, AccountTypeCreateOrEditModel>();
 
@@ -87,6 +89,18 @@ namespace Portal.MappingProfileCls
             _ = CreateMap<AccountTypeLang, AccountTypeLangModel>();
 
             _ = CreateMap<AccountTypeLangModel, AccountTypeLang>();
+            #endregion
+
+            #region Account
+            CreateMap<AccountModel, AccountDto>();
+
+            CreateMap<AccountFilter,AccountParameters>();
+
+            CreateMap<Account,AccountCreateOrEditDto>();
+
+            CreateMap<AccountCreateOrEditDto, Account>()
+                .ForMember(dest => dest.ImageUrl, opt => opt.Ignore())
+                .ForMember(dest => dest.StorageUrl, opt => opt.Ignore());
             #endregion
 
             #endregion
@@ -223,6 +237,18 @@ namespace Portal.MappingProfileCls
             _ = CreateMap<HotelFeatureCategoryLangModel, HotelFeatureCategoryLang>();
 
             #endregion
+            #endregion
+
+            #region User Models
+
+            #region User
+            CreateMap<UserModel, UserDto>();
+
+            CreateMap<UserCreateOrEditDto, User>();
+
+            CreateMap<User, UserCreateOrEditDto>();
+            #endregion
+
             #endregion
         }
     }

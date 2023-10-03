@@ -16,7 +16,10 @@ namespace Repository.DBModels.AccountModels
                        parameters.Fk_AccountState,
                        parameters.Fk_AccountType,
                        parameters.Fk_User,
-                       parameters.UserName);
+                       parameters.UserName,
+                       parameters.HaveBookings,
+                       parameters.CreatedAtFrom,
+                       parameters.CreatedAtTo);
 
         }
 
@@ -42,11 +45,17 @@ namespace Repository.DBModels.AccountModels
             int fk_AccountState,
             int fk_AccountType,
             int fk_User,
-            string userName)
+            string userName,
+            bool? haveBookings,
+            DateTime? createdAtFrom,
+            DateTime? createdAtTo)
         {
             return data.Where(a => (id == 0 || a.Id == id) &&
                                        (fk_AccountState == 0 || a.Fk_AccountState == fk_AccountState) &&
                                        (fk_AccountType == 0 || a.Fk_AccountType == fk_AccountType) &&
+                                       (createdAtFrom == null || a.CreatedAt >= createdAtFrom) &&
+                                       (createdAtTo == null || (createdAtTo == createdAtFrom && a.CreatedAt.Date == createdAtFrom.Value.Date) || a.CreatedAt <= createdAtTo) &&
+                                       (haveBookings == null || (haveBookings == true && a.Bookings.Any()) || (haveBookings == false && !a.Bookings.Any())) &&
                                        (fk_User == 0 || a.Fk_User == fk_User) &&
                                        (string.IsNullOrEmpty(userName) || a.User.UserName.ToLower()==userName.ToLower()));
         }

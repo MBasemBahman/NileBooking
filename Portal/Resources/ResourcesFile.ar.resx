@@ -165,7 +165,7 @@
   <data name="Please sign-in to your account and start the adventure" xml:space="preserve">
     <value>يرجى تسجيل الدخول إلى حسابك وبدء المغامرة</value>
   </data>
-  <data name="Username" xml:space="preserve">
+  <data name="UserName" xml:space="preserve">
     <value>اسم المستخدم</value>
   </data>
   <data name="Welcome to Dashboard!" xml:space="preserve">
@@ -347,5 +347,23 @@
   </data>
   <data name="HotelFeatures" xml:space="preserve">
     <value>ميزات الفندق</value>
+  </data>
+  <data name="Account" xml:space="preserve">
+    <value>الحساب</value>
+  </data>
+  <data name="Accounts" xml:space="preserve">
+    <value>الحسابات</value>
+  </data>
+  <data name="FullName" xml:space="preserve">
+    <value>الاسم بالكامل</value>
+  </data>
+  <data name="HaveBookings" xml:space="preserve">
+    <value>حسابات لديها حجوزات؟</value>
+  </data>
+  <data name="PhoneNumber" xml:space="preserve">
+    <value>رقم الهاتف</value>
+  </data>
+  <data name="To" xml:space="preserve">
+    <value>إلى</value>
   </data>
 </root>

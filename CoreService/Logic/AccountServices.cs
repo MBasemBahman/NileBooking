@@ -42,7 +42,7 @@ namespace CoreService.Logic
                                       UserName  = a.User.UserName,
                                       IsExternalLogin = a.User.IsExternalLogin,
                                   },
-                                  ImageUrl = !string.IsNullOrEmpty(a.ImageUrl) ? a.StorageUrl + a.ImageUrl : "/userImg.png",
+                                  ImageUrl =  a.StorageUrl + a.ImageUrl ,
                                   CreatedAt = a.CreatedAt,
                                   CreatedBy = a.CreatedBy,
                                   LastModifiedAt = a.LastModifiedAt,

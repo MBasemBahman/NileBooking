@@ -17,12 +17,9 @@ namespace Portal.Areas.AccountEntity.Controllers
         {
 
         }
-        public IActionResult Index(int id, bool ProfileLayOut = false)
+        public IActionResult Index()
         {
-            AccountStateFilter filter = new()
-            {
-                Id = id
-            };
+            AccountStateFilter filter = new();
 
             ViewData[ViewDataConstants.AccessLevel] = (DashboardAccessLevelModel)Request.HttpContext.Items[ViewDataConstants.AccessLevel];
             return View(filter);
