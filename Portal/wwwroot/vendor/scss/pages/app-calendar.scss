@@ -62,6 +62,18 @@ $calender-sidebar-width: 18.25rem !default;
       border-right: 0;
     }
   }
+  .fc-timeGridDay-view,
+  .fc-timeGridWeek-view {
+    table.fc-scrollgrid {
+      tbody {
+        tr:not(.fc-scrollgrid-section:first-of-type) {
+          td {
+            border-bottom: 0;
+          }
+        }
+      }
+    }
+  }
   .fc-dayGridMonth-view {
     table.fc-scrollgrid {
       td {

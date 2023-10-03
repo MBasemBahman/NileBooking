@@ -375,6 +375,7 @@ $(function () {
     $('.dataTables_length').addClass('ms-n2 mt-0 mt-md-3 me-2');
     $('.dt-action-buttons').addClass('pt-0');
     $('.dataTables_filter').addClass('ms-n3');
+    $('.dt-buttons').addClass('d-flex flex-wrap');
   }
 
   // Delete Record

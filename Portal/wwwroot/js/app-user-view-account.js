@@ -16,7 +16,7 @@ $(function () {
       ajax: assetsPath + 'json/projects-list.json', // JSON file to add data
       columns: [
         // columns according to JSON
-        { data: '' },
+        { data: 'hours' },
         { data: 'project_name' },
         { data: 'total_task' },
         { data: 'progress' },
@@ -27,12 +27,14 @@ $(function () {
           // For Responsive
           className: 'control',
           searchable: false,
+          orderable: false,
           responsivePriority: 2,
           targets: 0,
           render: function (data, type, full, meta) {
             return '';
           }
         },
+
         {
           // User full name and email
           targets: 1,
@@ -85,7 +87,7 @@ $(function () {
         },
         {
           // Label
-          targets: -2,
+          targets: 3,
           responsivePriority: 3,
           render: function (data, type, full, meta) {
             var $progress = full['progress'] + '%',
@@ -122,7 +124,7 @@ $(function () {
           }
         },
         {
-          targets: -1,
+          targets: 4,
           orderable: false
         }
       ],

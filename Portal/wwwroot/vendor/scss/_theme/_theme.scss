@@ -71,7 +71,7 @@
 
   .menu-inner > {
     // Spacing and Box-shadow only for horizontal menu above lg screen
-    @include media-breakpoint-up(xl) {
+    @include media-breakpoint-up($menu-collapsed-layout-breakpoint) {
       .menu-item {
         .layout-horizontal & {
           margin: $menu-vertical-header-margin-y 0;

@@ -5,6 +5,7 @@
 
 $fullcalendar-event-padding-y: 0.216rem !default;
 $fullcalendar-event-padding-x: 0.5rem !default;
+$fullcalendar-event-margin-top: 0.3rem !default;
 $fullcalendar-event-font-size: light.$small-font-size !default;
 $fullcalendar-event-font-weight: light.$font-weight-medium !default;
 $fullcalendar-toolbar-btn-padding: light.$input-btn-padding-y - 0.115 light.$input-btn-padding-x !default;
@@ -157,14 +158,13 @@ $fullcalendar-event-border-radius: 3px !default;
       display: none;
     }
   }
+  .fc-daygrid-event-harness + .fc-daygrid-event-harness .fc-daygrid-event {
+    margin-top: $fullcalendar-event-margin-top !important;
+  }
   .fc-timegrid {
     .fc-timegrid-divider {
       display: none;
     }
-  }
-
-  .fc-daygrid-event-harness {
-    margin-bottom: 0.3rem !important;
   }
   .fc-popover {
     z-index: $fullcalendar-fc-popover-z-index !important;

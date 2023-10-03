@@ -73,7 +73,7 @@ body {
   }
 }
 
-@include media-breakpoint-up(xl) {
+@include media-breakpoint-up($menu-collapsed-layout-breakpoint) {
   .layout-menu {
     box-shadow: 0 0 0 1px $border-color;
   }
@@ -237,6 +237,21 @@ body {
     .timeline-indicator-advanced {
       i {
         background-color: $card-bg;
+      }
+    }
+  }
+}
+
+// App email rear card border effect
+.app-email {
+  .app-email-view {
+    .email-card-last {
+      &:before {
+        border: 1px solid $border-color;
+      }
+
+      &:after {
+        border: 1px solid $border-color;
       }
     }
   }

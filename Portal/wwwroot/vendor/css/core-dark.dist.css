@@ -6740,7 +6740,6 @@ a.invert-bg-dark:hover, a.invert-bg-dark:focus {
   justify-content: center;
   transition: all 0.135s ease-in-out;
   transform: scale(1.001);
-  letter-spacing: 0.43px;
 }
 .btn .ti {
   line-height: 0.9;

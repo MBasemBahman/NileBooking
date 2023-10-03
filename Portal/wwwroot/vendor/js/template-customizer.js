@@ -445,10 +445,13 @@ class TemplateCustomizer {
     if (this.settings.stylesOpt === 'system') {
       if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
         this.settings.style = 'dark'
+        document.cookie = `style=dark` // to fix laravel system mode issue
       } else {
         this.settings.style = 'light'
+        document.cookie = `style=light` // to fix laravel system mode issue
       }
     } else {
+      document.cookie = `style=; expires=Thu, 01 Jan 2000 00:00:00 UTC; path=/;` // to fix laravel system mode issue
       this.settings.style = this.settings.styles.indexOf(style) !== -1 ? style : this.settings.defaultStyle
     }
     if (this.settings.styles.indexOf(this.settings.style) === -1) {
@@ -483,6 +486,30 @@ class TemplateCustomizer {
 
   // Setup theme settings controls and events
   _setup(_container = document) {
+    // Function to create customizer elements
+    const createOptionElement = (nameVal, title, inputName, isDarkStyle, image) => {
+      image = image || nameVal
+
+      return this._getElementFromString(`<div class="col-4 px-2">
+      <div class="form-check custom-option custom-option-icon mb-0">
+        <label class="form-check-label custom-option-content p-0" for="${inputName}${nameVal}">
+          <span class="custom-option-body mb-0">
+            <img src="${assetsPath}img/customizer/${image}${
+        isDarkStyle ? '-dark' : ''
+      }.svg" alt="${title}" class="img-fluid scaleX-n1-rtl" />
+          </span>
+          <input
+            name="${inputName}"
+            class="form-check-input d-none"
+            type="radio"
+            value="${nameVal}"
+            id="${inputName}${nameVal}" />
+        </label>
+      </div>
+      <label class="form-check-label small" for="${inputName}${nameVal}">${title}</label>
+    </div>`)
+    }
+
     this._cleanup()
     this.container = this._getElementFromString(customizerMarkup)
 
@@ -534,36 +561,14 @@ class TemplateCustomizer {
     this._listeners.push([closeBtn, 'click', closeBtnCb])
 
     // Style
-
-    //
-
     const styleW = this.container.querySelector('.template-customizer-style')
+    const styleOpt = styleW.querySelector('.template-customizer-styles-options')
 
     if (!this._hasControls('style')) {
       styleW.parentNode.removeChild(styleW)
     } else {
-      const styleOpt = styleW.querySelector('.template-customizer-styles-options')
       this.settings.availableStyles.forEach(style => {
-        const styleEl = this._getElementFromString(
-          `<div class="col-4 px-2">
-            <div class="form-check custom-option custom-option-icon mb-0">
-              <label class="form-check-label custom-option-content p-0" for="styleRadio${style.name}">
-                <span class="custom-option-body mb-0">
-                  <img src="${assetsPath}img/customizer/${style.name}${
-            cl.contains('dark-style') ? '-dark' : ''
-          }.svg" alt="Style" class="img-fluid scaleX-n1-rtl" />
-                </span>
-                <input
-                  name="customRadioIcon"
-                  class="form-check-input d-none"
-                  type="radio"
-                  value="${style.name}"
-                  id="styleRadio${style.name}" />
-              </label>
-            </div>
-            <label class="form-check-label small" for="themeRadios${style.name}">${style.title}</label>
-          </div>`
-        )
+        const styleEl = createOptionElement(style.name, style.title, 'customRadioIcon', cl.contains('dark-style'))
         styleOpt.appendChild(styleEl)
       })
       styleOpt.querySelector(`input[value="${this.settings.stylesOpt}"]`).setAttribute('checked', 'checked')
@@ -581,13 +586,12 @@ class TemplateCustomizer {
     }
 
     // Theme
-
     const themesW = this.container.querySelector('.template-customizer-themes')
+    const themesWInner = themesW.querySelector('.template-customizer-themes-options')
 
     if (!this._hasControls('themes')) {
       themesW.parentNode.removeChild(themesW)
     } else {
-      const themesWInner = themesW.querySelector('.template-customizer-themes-options')
       this.settings.availableThemes.forEach(theme => {
         let image = ''
         if (theme.name === 'theme-semi-dark') {
@@ -597,26 +601,7 @@ class TemplateCustomizer {
         } else {
           image = `default`
         }
-        const themeEl = this._getElementFromString(
-          `<div class="col-4 px-2">
-          <div class="form-check custom-option custom-option-icon mb-0">
-            <label class="form-check-label custom-option-content p-0" for="themeRadios${theme.name}">
-              <span class="custom-option-body mb-0">
-                <img src="${assetsPath}img/customizer/${image}${
-            cl.contains('dark-style') ? '-dark' : ''
-          }.svg" alt="Themes" class="img-fluid scaleX-n1-rtl" />
-              </span>
-              <input
-                class="form-check-input d-none"
-                type="radio"
-                name="themeRadios"
-                id="themeRadios${theme.name}"
-                value="${theme.name}" />
-            </label>
-            </div>
-            <label class="form-check-label small" for="themeRadios${theme.name}">${theme.title}</label>
-        </div>`
-        )
+        const themeEl = createOptionElement(theme.name, theme.title, 'themeRadios', cl.contains('dark-style'), image)
         themesWInner.appendChild(themeEl)
       })
 
@@ -642,8 +627,6 @@ class TemplateCustomizer {
     }
 
     // Layout wrapper
-    //
-
     const layoutW = this.container.querySelector('.template-customizer-layout')
 
     if (!this._hasControls('rtl headerType contentLayout layoutCollapsed layoutNavbarOptions', true)) {
@@ -658,31 +641,10 @@ class TemplateCustomizer {
         directionW.parentNode.removeChild(directionW)
       } else {
         const directionOpt = directionW.querySelector('.template-customizer-directions-options')
-
         this.settings.availableDirections.forEach(dir => {
-          const dirEl = this._getElementFromString(
-            `<div class="col-4 px-2">
-              <div class="form-check custom-option custom-option-icon mb-0">
-                <label class="form-check-label custom-option-content p-0" for="directionRadio${dir.name}">
-                  <span class="custom-option-body mb-0">
-                    <img src="${assetsPath}img/customizer/${dir.name}${
-              cl.contains('dark-style') ? '-dark' : ''
-            }.svg" alt="Directions" class="img-fluid" />
-                  </span>
-                  <input
-                    name=directionRadioIcon"
-                    class="form-check-input d-none"
-                    type="radio"
-                    value="${dir.name}"
-                    id="directionRadio${dir.name}" />
-                </label>
-              </div>
-              <label class="form-check-label small" for="directionRadios${dir.name}">${dir.title}</label>
-            </div>`
-          )
+          const dirEl = createOptionElement(dir.name, dir.title, 'directionRadioIcon', cl.contains('dark-style'))
           directionOpt.appendChild(dirEl)
         })
-
         directionOpt
           .querySelector(`input[value="${this.settings.rtl ? 'rtl' : 'ltr'}"]`)
           .setAttribute('checked', 'checked')
@@ -699,10 +661,8 @@ class TemplateCustomizer {
       }
 
       // Header Layout Type
-      //
       const headerTypeW = this.container.querySelector('.template-customizer-headerOptions')
       const templateName = document.documentElement.getAttribute('data-template').split('-')
-
       if (!this._hasControls('headerType')) {
         headerTypeW.parentNode.removeChild(headerTypeW)
       } else {
@@ -713,25 +673,12 @@ class TemplateCustomizer {
           }
         }, 100)
         this.settings.availableHeaderTypes.forEach(header => {
-          const headerEl = this._getElementFromString(
-            `<div class="col-4 px-2">
-                <div class="form-check custom-option custom-option-icon mb-0">
-                  <label class="form-check-label custom-option-content p-0" for="headerRadio${header.name}">
-                    <span class="custom-option-body mb-0">
-                      <img src="${assetsPath}img/customizer/horizontal-${header.name}${
-              cl.contains('dark-style') ? '-dark' : ''
-            }.svg" alt="Header Types" class="img-fluid scaleX-n1-rtl" />
-                    </span>
-                    <input
-                      name=headerRadioIcon"
-                      class="form-check-input d-none"
-                      type="radio"
-                      value="${header.name}"
-                      id="headerRadio${header.name}" />
-                  </label>
-                </div>
-                <label class="form-check-label small" for="headerRadios${header.name}">${header.title}</label>
-              </div>`
+          const headerEl = createOptionElement(
+            header.name,
+            header.title,
+            'headerRadioIcon',
+            cl.contains('dark-style'),
+            `horizontal-${header.name}`
           )
           headerOpt.appendChild(headerEl)
         })
@@ -754,27 +701,12 @@ class TemplateCustomizer {
         contentWrapper.parentNode.removeChild(contentWrapper)
       } else {
         const contentOpt = contentWrapper.querySelector('.template-customizer-content-options')
-
         this.settings.availableContentLayouts.forEach(content => {
-          const contentEl = this._getElementFromString(
-            `<div class="col-4 px-2">
-              <div class="form-check custom-option custom-option-icon mb-0">
-                <label class="form-check-label custom-option-content p-0" for="contentRadio${content.name}">
-                  <span class="custom-option-body mb-0">
-                    <img src="${assetsPath}img/customizer/${content.name}${
-              cl.contains('dark-style') ? '-dark' : ''
-            }.svg" alt="content type" class="img-fluid scaleX-n1-rtl" />
-                  </span>
-                  <input
-                    name=contentRadioIcon"
-                    class="form-check-input d-none"
-                    type="radio"
-                    value="${content.name}"
-                    id="contentRadio${content.name}" />
-                </label>
-              </div>
-              <label class="form-check-label small" for="contentRadios${content.name}">${content.title}</label>
-            </div>`
+          const contentEl = createOptionElement(
+            content.name,
+            content.title,
+            'contentRadioIcon',
+            cl.contains('dark-style')
           )
           contentOpt.appendChild(contentEl)
         })
@@ -805,27 +737,12 @@ class TemplateCustomizer {
           }
         }, 100)
         const layoutCollapsedOpt = layoutCollapsedW.querySelector('.template-customizer-layouts-options')
-
         this.settings.availableLayouts.forEach(layoutOpt => {
-          const layoutsEl = this._getElementFromString(
-            `<div class="col-4 px-2">
-          <div class="form-check custom-option custom-option-icon mb-0">
-            <label class="form-check-label custom-option-content p-0" for="layoutsRadios${layoutOpt.name}">
-              <span class="custom-option-body mb-0">
-              <img src="${assetsPath}img/customizer/${layoutOpt.name}${
-              cl.contains('dark-style') ? '-dark' : ''
-            }.svg" alt="Layout Collapsed/Expanded" class="img-fluid scaleX-n1-rtl" />
-              </span>
-              <input
-              class="form-check-input d-none"
-                type="radio"
-                name="layoutsRadios"
-                id="layoutsRadios${layoutOpt.name}"
-                value="${layoutOpt.name}" />
-            </label>
-            </div>
-            <label class="form-check-label small" for="layoutsRadios${layoutOpt.name}">${layoutOpt.title}</label>
-            </div>`
+          const layoutsEl = createOptionElement(
+            layoutOpt.name,
+            layoutOpt.title,
+            'layoutsRadios',
+            cl.contains('dark-style')
           )
           layoutCollapsedOpt.appendChild(layoutsEl)
         })
@@ -844,7 +761,6 @@ class TemplateCustomizer {
       }
 
       // Layout Navbar Options
-
       const navbarOption = this.container.querySelector('.template-customizer-layoutNavbarOptions')
 
       if (!this._hasControls('layoutNavbarOptions')) {
@@ -857,25 +773,11 @@ class TemplateCustomizer {
         }, 100)
         const navbarTypeOpt = navbarOption.querySelector('.template-customizer-navbar-options')
         this.settings.availableNavbarOptions.forEach(navbarOpt => {
-          const navbarEl = this._getElementFromString(
-            `<div class="col-4 px-2">
-          <div class="form-check custom-option custom-option-icon mb-0">
-            <label class="form-check-label custom-option-content p-0" for="navbarOptionRadios${navbarOpt.name}">
-              <span class="custom-option-body mb-0">
-                <img src="${assetsPath}img/customizer/${navbarOpt.name}${
-              cl.contains('dark-style') ? '-dark' : ''
-            }.svg" alt="Navbar Type" class="img-fluid scaleX-n1-rtl" />
-              </span>
-              <input
-                class="form-check-input d-none"
-                type="radio"
-                name="navbarOptionRadios"
-                id="navbarOptionRadios${navbarOpt.name}"
-                value="${navbarOpt.name}" />
-            </label>
-            </div>
-            <label class="form-check-label small" for="navbarOptionRadios${navbarOpt.name}">${navbarOpt.title}</label>
-        </div>`
+          const navbarEl = createOptionElement(
+            navbarOpt.name,
+            navbarOpt.title,
+            'navbarOptionRadios',
+            cl.contains('dark-style')
           )
           navbarTypeOpt.appendChild(navbarEl)
         })
@@ -898,13 +800,18 @@ class TemplateCustomizer {
     }
 
     setTimeout(() => {
+      const layoutCustom = this.container.querySelector('.template-customizer-layout')
       if (document.querySelector('.menu-vertical')) {
         if (!this._hasControls('rtl contentLayout layoutCollapsed layoutNavbarOptions', true)) {
-          layoutW.parentNode.removeChild(layoutW)
+          if (layoutCustom) {
+            layoutCustom.parentNode.removeChild(layoutCustom)
+          }
         }
       } else if (document.querySelector('.menu-horizontal')) {
         if (!this._hasControls('rtl contentLayout headerType', true)) {
-          layoutW.parentNode.removeChild(layoutW)
+          if (layoutCustom) {
+            layoutCustom.parentNode.removeChild(layoutCustom)
+          }
         }
       }
     }, 100)
@@ -1317,6 +1224,19 @@ TemplateCustomizer.LANGUAGES = {
     content_label: 'Contenu',
     layout_navbar_label: 'Type de barre de navigation',
     direction_label: 'Direction'
+  },
+  ar: {
+    panel_header: 'أداة تخصيص القالب',
+    panel_sub_header: 'تخصيص ومعاينة في الوقت الحقيقي',
+    theming_header: 'السمات',
+    style_label: 'النمط (الوضع)',
+    theme_label: 'المواضيع',
+    layout_header: 'تَخطِيط',
+    layout_label: 'القائمة (الملاحة)',
+    layout_header_label: 'أنواع الرأس',
+    content_label: 'محتوى',
+    layout_navbar_label: 'نوع شريط التنقل',
+    direction_label: 'اتجاه'
   },
   de: {
     panel_header: 'Vorlagen-Anpasser',

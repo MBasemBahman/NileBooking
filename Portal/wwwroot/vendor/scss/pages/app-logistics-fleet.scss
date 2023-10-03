@@ -3,6 +3,7 @@
 
 @use '../_bootstrap-extended/include' as light;
 @use '../_bootstrap-extended/include-dark' as dark;
+@import '../_components/include';
 @import '../_custom-variables/pages';
 
 //Custom variables for Logistics-fleet page
@@ -18,7 +19,7 @@ $logistics-fleet-horizontal-height-diff: 2rem;
   overflow: hidden;
   height: $logistics-fleet-height;
 
-  @include light.media-breakpoint-down(xl) {
+  @include light.media-breakpoint-down($menu-collapsed-layout-breakpoint) {
     & {
       height: calc(100vh - 10.5rem);
     }
@@ -60,7 +61,6 @@ $logistics-fleet-horizontal-height-diff: 2rem;
   //Setting sidebar height
   .logistics-fleet-sidebar-body {
     height: $logistics-fleet-sidebar-height;
-    overflow-y: scroll;
   }
 
   @include light.media-breakpoint-down(md) {

@@ -1527,3 +1527,10 @@ html:not(.layout-menu-collapsed) .bg-menu-theme .menu-inner .menu-item:not(.acti
   box-shadow: none;
   border: 1px solid #dbdade;
 }
+
+.app-email .app-email-view .email-card-last:before {
+  border: 1px solid #dbdade;
+}
+.app-email .app-email-view .email-card-last:after {
+  border: 1px solid #dbdade;
+}

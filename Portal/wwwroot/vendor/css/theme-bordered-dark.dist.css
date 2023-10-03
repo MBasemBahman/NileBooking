@@ -1534,3 +1534,10 @@ html:not(.layout-menu-collapsed) .bg-menu-theme .menu-inner .menu-item:not(.acti
 .timeline .timeline-item .timeline-indicator-advanced i {
   background-color: #2f3349;
 }
+
+.app-email .app-email-view .email-card-last:before {
+  border: 1px solid #434968;
+}
+.app-email .app-email-view .email-card-last:after {
+  border: 1px solid #434968;
+}
