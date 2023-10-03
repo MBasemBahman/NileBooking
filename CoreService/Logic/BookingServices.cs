@@ -22,6 +22,8 @@ namespace CoreService.Logic
         public IQueryable<BookingStateModel> GetBookingStates(
             BookingStateParameters parameters, LanguageEnum? language)
         {
+            int totalBookingsCount = _repository.Booking.Count();
+
             return _repository.BookingState
                               .FindAll(parameters, trackChanges: false)
                               .Select(a => new BookingStateModel
@@ -32,7 +34,11 @@ namespace CoreService.Logic
                                       .Select(b => b.Name).FirstOrDefault() : a.Name,
                                   CreatedAt = a.CreatedAt,
                                   BookingsCount = a.Bookings.Count,
-                                  ColorCode = a.ColorCode
+                                  ColorCode = a.ColorCode,
+                                  BookingsPercent =totalBookingsCount > 0
+                                  ? (int)((double)((double)a.Bookings.Count / (double)totalBookingsCount) * 100)
+                                  : 0,
+
                               })
                               .Search(parameters.SearchColumns, parameters.SearchTerm)
                               .Sort(parameters.OrderBy);

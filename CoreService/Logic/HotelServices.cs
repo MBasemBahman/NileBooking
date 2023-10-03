@@ -403,6 +403,8 @@ namespace CoreService.Logic
         public IQueryable<HotelFeatureCategoryModel> GetHotelFeatureCategories(
             HotelFeatureCategoryParameters parameters, LanguageEnum? language)
         {
+            int hotalFeaturesTotalCount = _repository.HotelFeature.Count();
+
             return _repository.HotelFeatureCategory
                               .FindAll(parameters, trackChanges: false)
                               .Select(a => new HotelFeatureCategoryModel
@@ -423,7 +425,11 @@ namespace CoreService.Logic
                                   CreatedAt = a.CreatedAt,
                                   CreatedBy = a.CreatedBy,
                                   LastModifiedAt = a.LastModifiedAt,
-                                  LastModifiedBy = a.LastModifiedBy
+                                  LastModifiedBy = a.LastModifiedBy,
+                                  HotelFeaturesPercent = hotalFeaturesTotalCount > 0 
+                                  ? (int)((double)((double)a.HotelFeatures.Count / (double)hotalFeaturesTotalCount) * 100) 
+                                  : 0,
+
                               })
                               .Search(parameters.SearchColumns, parameters.SearchTerm)
                               .Sort(parameters.OrderBy);
@@ -526,10 +532,11 @@ namespace CoreService.Logic
         #endregion
 
         #region Hotel Type Services
-
         public IQueryable<HotelTypeModel> GetHotelTypes(
             HotelTypeParameters parameters, LanguageEnum? language)
         {
+            int totalHotelsCount = _repository.Hotel.Count();
+
             return _repository.HotelType
                               .FindAll(parameters, trackChanges: false)
                               .Select(a => new HotelTypeModel
@@ -539,7 +546,11 @@ namespace CoreService.Logic
                                       .Where(b => b.Language == language)
                                       .Select(b => b.Name).FirstOrDefault() : a.Name,
                                   CreatedAt = a.CreatedAt,
-                                  HotelsCount = a.Hotels.Count
+                                  HotelsCount = a.Hotels.Count,
+                                  HotelsPercent = totalHotelsCount > 0
+                                  ? (int)((double)((double)a.Hotels.Count / (double)totalHotelsCount) * 100) 
+                                  : 0,
+
                               })
                               .Search(parameters.SearchColumns, parameters.SearchTerm)
                               .Sort(parameters.OrderBy);

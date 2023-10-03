@@ -150,6 +150,8 @@ namespace CoreService.Logic
         public IQueryable<AccountTypeModel> GetAccountTypes(
             AccountTypeParameters parameters, LanguageEnum? language)
         {
+            var totalAccountCount = _repository.Account.Count();
+
             return _repository.AccountType
                               .FindAll(parameters, trackChanges: false)
                               .Select(a => new AccountTypeModel
@@ -160,6 +162,11 @@ namespace CoreService.Logic
                                       .Select(b => b.Name).FirstOrDefault() : a.Name,
                                   ColorCode = a.ColorCode,
                                   CreatedAt = a.CreatedAt,
+                                  AccountsCount = a.Accounts.Count,
+                                  AccountsPercent =totalAccountCount > 0
+                                  ? (int)((double)((double)a.Accounts.Count / (double)totalAccountCount) * 100)
+                                  : 0,
+
                               })
                               .Search(parameters.SearchColumns, parameters.SearchTerm)
                               .Sort(parameters.OrderBy);
@@ -211,6 +218,8 @@ namespace CoreService.Logic
         public IQueryable<AccountStateModel> GetAccountStates(
             AccountStateParameters parameters, LanguageEnum? language)
         {
+            var totalAccountCount = _repository.Account.Count();
+
             return _repository.AccountState
                               .FindAll(parameters, trackChanges: false)
                               .Select(a => new AccountStateModel
@@ -221,6 +230,10 @@ namespace CoreService.Logic
                                       .Select(b => b.Name).FirstOrDefault() : a.Name,
                                   ColorCode = a.ColorCode,
                                   CreatedAt = a.CreatedAt,
+                                  AccountsCount = a.Accounts.Count,
+                                  AccountsPercent =totalAccountCount > 0
+                                  ? (int)((double)((double)a.Accounts.Count / (double)totalAccountCount) * 100)
+                                  : 0,
                               })
                               .Search(parameters.SearchColumns, parameters.SearchTerm)
                               .Sort(parameters.OrderBy);

@@ -8,5 +8,9 @@
     {
         [DisplayName(nameof(HotelsCount))]
         public int HotelsCount { get; set; }
+
+
+        [DisplayName(nameof(HotelsPercent))]
+        public int HotelsPercent { get; set; }
     }
 }

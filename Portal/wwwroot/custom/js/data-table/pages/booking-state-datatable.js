@@ -34,7 +34,11 @@ $(document).ready(function ()
                 {
                     data: "bookingsCount",
                     render: function (data, type, row) {
-                        return '<a target="_blank" href="/BookingEntity/Booking/Index?Fk_BookingState=' + row.id + '">' + data + '</a>'
+                        return '<div class="d-flex align-items-center my-2">'
+                            + '<span class="badge badge-center rounded-pill bg-label-success w-px-30 h-px-30 me-2">'
+                            + '<i class="ti ti-calendar ti-sm" ></i></span></span>'
+                            + '<h4 class="mb-0 me-2"><a class="text-dark" target="_blank" href="/BookingEntity/Booking/Index?Fk_BookingState=' + row.id + '">' + data + '</a></h4>'
+                            + '<p class="text-success mb-0">(' + row.bookingsPercent + '%)</p></div>';
                     }
                 },
                 { data: "createdAt" },

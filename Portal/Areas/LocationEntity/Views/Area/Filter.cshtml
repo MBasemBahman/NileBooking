@@ -7,7 +7,6 @@
         <div class="col-12">
             <div class="row g-3">
                 <div class="col-12 col-sm-6 col-lg-4">
-                    <label class="form-label" asp-for="Fk_Country"></label>
                     <select id="Fk_Country_Filter" asp-for="Fk_Country" class="select2 form-select filter-input" asp-items="@(new SelectList(ViewData["Countries"] as Dictionary<string,string>,"Key","Value"))">
                    <option value="0">@Localizer.Get("All") @Localizer.Get("Countries")</option>
                     </select>

@@ -11,5 +11,11 @@
 
         [DisplayName(nameof(AreasCount))]
         public int AreasCount { get; set; }
+
+        [DisplayName(nameof(HotelsPercent))]
+        public int HotelsPercent { get; set; }
+
+        [DisplayName(nameof(AreasPercent))]
+        public int AreasPercent { get; set; }
     }
 }

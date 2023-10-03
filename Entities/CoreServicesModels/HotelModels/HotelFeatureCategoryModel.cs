@@ -13,6 +13,9 @@
         [DisplayName(nameof(HotelFeatures))]
         public int HotelFeaturesCount { get; set; }
 
+        [DisplayName(nameof(HotelFeaturesPercent))]
+        public int HotelFeaturesPercent { get; set; }
+
         public List<HotelFeatureModel> HotelFeatures { get; set; }
     }
 

@@ -12,5 +12,9 @@
         [DisplayName(nameof(BookingsCount))]
         public int BookingsCount { get; set; }
 
+
+        [DisplayName(nameof(BookingsPercent))]
+        public int BookingsPercent { get; set; }
+
     }
 }

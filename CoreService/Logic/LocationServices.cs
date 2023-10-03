@@ -13,10 +13,11 @@ namespace CoreService.Logic
         }
 
         #region Area Services
-
         public IQueryable<AreaModel> GetAreas(
             AreaParameters parameters, LanguageEnum? language)
         {
+            int totalHotelsCount = _repository.Hotel.Count();
+
             return _repository.Area
                               .FindAll(parameters, trackChanges: false)
                               .Select(a => new AreaModel
@@ -34,7 +35,8 @@ namespace CoreService.Logic
                                            .Where(b => b.Language == language)
                                            .Select(b => b.Name).FirstOrDefault() : a.Country.Name
                                   },
-                                  HotelsCount = a.Hotels.Count
+                                  HotelsCount = a.Hotels.Count,
+                                  HotelsPercent = (int)((double)((double)a.Hotels.Count / (double)totalHotelsCount) * 100),
                               })
                               .Search(parameters.SearchColumns, parameters.SearchTerm)
                               .Sort(parameters.OrderBy);
@@ -86,6 +88,9 @@ namespace CoreService.Logic
         public IQueryable<CountryModel> GetCountries(
             CountryParameters parameters, LanguageEnum? language)
         {
+            int totalHotelsCount = _repository.Hotel.Count();
+            int totalAreasCount = _repository.Area.Count();
+
             return _repository.Country
                               .FindAll(parameters, trackChanges: false)
                               .Select(a => new CountryModel
@@ -96,7 +101,16 @@ namespace CoreService.Logic
                                       .Select(b => b.Name).FirstOrDefault() : a.Name,
                                   CreatedAt = a.CreatedAt,
                                   AreasCount = a.Areas.Count,
-                                  HotelsCount = a.Areas.SelectMany(a=>a.Hotels).Count()
+                                  HotelsCount = a.Areas.SelectMany(a=>a.Hotels).Count(),
+                                  HotelsPercent =totalHotelsCount > 0
+                                  ? 
+                                  (int)((double)((double)a.Areas.SelectMany(a => a.Hotels).Count() / (double)totalHotelsCount) * 100)
+                                  : 0,
+                                  AreasPercent = totalAreasCount > 0 
+                                  ?
+                                  (int)((double)((double)a.Areas.Count() / (double)totalAreasCount) * 100) 
+                                  : 0,
+
                               })
                               .Search(parameters.SearchColumns, parameters.SearchTerm)
                               .Sort(parameters.OrderBy);
