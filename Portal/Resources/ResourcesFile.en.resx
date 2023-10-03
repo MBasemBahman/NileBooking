@@ -366,4 +366,19 @@
   <data name="To" xml:space="preserve">
     <value>To</value>
   </data>
+  <data name="EmailAddress" xml:space="preserve">
+    <value>EmailAddress</value>
+  </data>
+  <data name="FirstName" xml:space="preserve">
+    <value>First Name</value>
+  </data>
+  <data name="LastName" xml:space="preserve">
+    <value>Last Name</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="Upload Image" xml:space="preserve">
+    <value>Upload Image</value>
+  </data>
 </root>

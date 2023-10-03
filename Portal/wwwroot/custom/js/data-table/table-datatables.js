@@ -40,6 +40,9 @@ $(function () {
                             if ($("#edit").hasClass('open-modal')) {
                                 modalClass = 'modal-btn-edit';
                             }
+                            else if ($("#edit").hasClass('open-modal-side')) {
+                                modalClass = 'modal-btn-edit-side';
+                            }
                             action += `<a href="${$('#edit').attr('href')}/${full.id}" class="text-body ${modalClass}"><i class="ti ti-edit ti-sm me-2"></i></a>`;
                         }
                         if ($('#delete').attr('href') != undefined) {
@@ -150,6 +153,12 @@ $(function () {
                             var href = $("#create").attr('href');
                             $('.general-modal-form-content').load(href);
                             $("#general-modal").modal("show");
+                        }
+                        else if ($("#create").hasClass('open-modal-side')) {
+                            var href = $("#create").attr('href');
+                            $('#offcanvasAddItem').load(href);
+                            var bsOffcanvas = new bootstrap.Offcanvas($("#offcanvasAddItem"))
+                               bsOffcanvas.show()
                         }
                         else {
                             window.location = $('#create').attr('href');

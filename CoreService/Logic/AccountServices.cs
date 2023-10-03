@@ -121,8 +121,15 @@ namespace CoreService.Logic
             return GetAccounts(new AccountParameters { Fk_User = fk_User }, language).SingleOrDefault();
         }
 
+
+      
+
         public void CreateAccount(Account entity)
         {
+            if (entity.User != null)
+            {
+                entity.User.Password = GeneratePassword(entity.User.Password);
+            }
             _repository.Account.Create(entity);
         }
 

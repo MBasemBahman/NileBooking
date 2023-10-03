@@ -109,12 +109,21 @@ namespace Portal.Areas.AccountEntity.Controllers
                 {
                     dataDB = _mapper.Map<Account>(model);
                     _unitOfWork.Account.CreateAccount(dataDB);
+
+                    dataDB.CreatedBy = auth.UserName;
                 }
                 else
                 {
                     dataDB = await _unitOfWork.Account.FindAccountById(id, trackChanges: true);
 
                     _ = _mapper.Map(model, dataDB);
+
+                    if (!string.IsNullOrEmpty(model.User.Password) && model.User.Password!=dataDB.User.Password)
+                    {
+                        dataDB.User.Password = _unitOfWork.Account.GeneratePassword(model.User.Password);
+                    }
+
+                    dataDB.LastModifiedBy = auth.UserName;
                 }
 
                 IFormFile imageFile = HttpContext.Request.Form.Files["ImageFile"];

@@ -30,27 +30,6 @@ namespace Portal.Areas.UserEntity.Models
         [DisplayName(nameof(Password))]
         public string Password { get; set; }
 
-        [DisplayName(nameof(FacebookToken))]
-        public string FacebookToken { get; set; }
-
-        [DisplayName(nameof(GoogleToken))]
-        public string GoogleToken { get; set; }
-
-        [DisplayName(nameof(TwitterToken))]
-        public string TwitterToken { get; set; }
-
-        [DisplayName(nameof(AppleToken))]
-        public string AppleToken { get; set; }
-
-        [DisplayName(nameof(LinkedInToken))]
-        public string LinkedInToken { get; set; }
-
-        [DisplayName(nameof(InstagramToken))]
-        public string InstagramToken { get; set; }
-
-        [DisplayName(nameof(OtherToken))]
-        public string OtherToken { get; set; }
-
         [DataType(DataType.EmailAddress)]
         [EmailAddress]
         [DisplayName(nameof(EmailAddress))]
@@ -65,8 +44,5 @@ namespace Portal.Areas.UserEntity.Models
         [DisplayName(nameof(Culture))]
         public string Culture { get; set; }
 
-        [DisplayName(nameof(IsExternalLogin))]
-        [DefaultValue(false)]
-        public bool IsExternalLogin { get; set; }
     }
 }

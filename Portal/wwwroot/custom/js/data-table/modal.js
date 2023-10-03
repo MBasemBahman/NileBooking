@@ -45,6 +45,26 @@ $(document).on('click', '.modal-btn-details', function () {
     });
 });
 
+$(document).on('click', '.modal-btn-edit-side', function () {
+    event.preventDefault();
+    // Make an AJAX request to fetch content from the URL
+    $.ajax({
+        url: $(this).attr('href'),
+        method: 'GET',
+        beforeSend: function () {
+            $('#cover-spin').show();
+        },
+        complete: function () {
+            $('#cover-spin').hide();
+        },
+        success: function (data) {
+            $('#offcanvasAddItem').html(data);
+            var bsOffcanvas = new bootstrap.Offcanvas($("#offcanvasAddItem"))
+            bsOffcanvas.show()
+        },
+    });
+});
+
 $(document).on('submit', "#general-modal", function () {
     event.preventDefault();
     $.ajax({
@@ -99,6 +119,36 @@ $(document).on('submit', '.form-delete', function (e) {
         }
     });
 });
+
+$(document).on('submit', "#offcanvasAddItem", function () {
+    event.preventDefault();
+    $.ajax({
+        type: $('#offcanvasAddItem form').attr('method'),
+        url: $('#offcanvasAddItem form').attr('action'),
+        data: $('#offcanvasAddItem form').serialize(),
+        beforeSend: function () {
+            $('#cover-spin').show();
+        },
+        complete: function () {
+            $('#cover-spin').hide();
+        },
+        success: function (response, status, xhr) {
+            if ($('.dataTable').length > 0) {
+                $('.dataTable').DataTable().draw();
+            }
+            let openedCanvas = bootstrap.Offcanvas.getInstance($("#offcanvasAddItem"));
+            openedCanvas.hide();
+            $("#offcanvasAddItem").empty();
+            $("#success-modal").modal("show");
+        },
+        error: function (error) {
+            let list = assignUlErrors(error.responseJSON);
+
+            $('.validation-summary-valid').html(list);
+        }
+    });
+});
+
 
 function assignUlErrors(errors) {
     let list = '<ul>';
