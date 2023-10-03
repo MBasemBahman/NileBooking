@@ -15,7 +15,7 @@
 
         <div class="d-flex">
             <a href="#" class="me-25">
-                <img src="@($"{(Model.StorageUrl+ Model.ImageUrl ?? "~/custom/img/admin.png")}")" class="uploadedAvatar account-upload-img rounded me-50" height="100" width="100">
+                <img src="@($"{(!string.IsNullOrEmpty(Model.StorageUrl+ Model.ImageUrl) ? Model.StorageUrl+ Model.ImageUrl : "/custom/img/admin.png")}")" class="uploadedAvatar account-upload-img rounded me-50" height="100" width="100">
             </a>
             <!-- upload and reset button -->
             <div class="d-flex align-items-end mt-75 ms-1">
