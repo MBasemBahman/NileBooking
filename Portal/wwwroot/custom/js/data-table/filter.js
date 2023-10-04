@@ -5,7 +5,8 @@ $('body').on('change', '.filter-input', function () {
     }
 });
 
-$("button[type=reset]").on("click", function () {
+$(".filter-submit-btn").on("click", function () {
+    event.preventDefault();
     $(".dt-date").each(function () {
         $(this).val('');
     });

@@ -27,7 +27,9 @@ $(document).ready(function ()
                             return data;
                         }
                         else {
-                            return '<span class="badge  px-2 text-center" style="background-color:' + row.colorCode + ';color:white">' + data + '</span>';
+                            var newColor = hexToRgb(row.colorCode);
+                            return '<span class="badge bg-label" style="background-color:rgba(' + newColor.r + ', ' + newColor.g + ', ' + newColor.b + ', .1) " text-capitalized="">'
+                                + '<span style="color:' + row.colorCode + '">' + data + '</span</span> ';
                         }
                     }
                 },

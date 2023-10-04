@@ -30,6 +30,7 @@
     <script src="~/js/form-layouts.dist.js"></script>
     <script src="~/js/tables-datatables-advanced.dist.js"></script>
     <script src="~/custom/js/data-table/table-datatables.js"></script>
+    <script src="~/custom/js/general/color.js"></script>
     <script src="~/custom/js/data-table/modal.js"></script>
     <script src="~/custom/js/data-table/pages/account-datatable.js"></script>
     <script src="~/custom/js/data-table/filter.js"></script>
@@ -43,12 +44,11 @@
         @{
             await Html.RenderPartialAsync("../Account/Statistics");
         }
+        @{
+            await Html.RenderPartialAsync("../Account/Filter", Model.Filter, ViewData);
+        }
         <div class="card">
             <div class="card-header border-bottom">
-                <h5 class="card-title mb-3">@Localizer.Get("Advanced Search")</h5>
-                @{
-                    await Html.RenderPartialAsync("../Account/Filter", Model.Filter, ViewData);
-                }
             </div>
             <div class="card-datatable table-responsive">
                 <table class="datatables-users table dataTable no-footer dtr-column">

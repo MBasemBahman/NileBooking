@@ -11,18 +11,27 @@
     <link rel="stylesheet" href="~/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.dist.css">
     <link rel="stylesheet" href="~/vendor/libs/datatables-buttons-bs5/buttons.bootstrap5.dist.css">
     <link rel="stylesheet" href="~/vendor/libs/node-waves/node-waves.dist.css">
-    <link rel="stylesheet" href="~/vendor/libs/&#64;form-validation/umd/styles/index.min.css" />
+    <link rel="stylesheet" href="~/vendor/libs/flatpickr/flatpickr.dist.css" />
+    <link rel="stylesheet" href="~/vendor/libs/pickr/pickr-themes.dist.css" />
+
 }
 
 @section VendorScripts {
+    <script src="~/vendor/libs/moment/moment.dist.js"></script>
+    <script src="~/vendor/libs/flatpickr/flatpickr.dist.js"></script>
     <script src="~/vendor/libs/datatables-bs5/datatables-bootstrap5.dist.js"></script>
+        <script src="~/vendor/libs/pickr/pickr.dist.js"></script>
+
 }
 
 @section PageScripts {
-    <script src="~/js/form-layouts.dist.js"></script>
-    <script src="~/js/form-validation.dist.js"></script>
+        <script src="~/js/form-layouts.dist.js"></script>
+
+    <script src="~/js/forms-pickers.dist.js"></script>
     <script src="~/custom/js/data-table/table-datatables.js"></script>
     <script src="~/custom/js/data-table/modal.js"></script>
+    <script src="~/custom/js/general/color.js"></script>
+
     <script src="~/custom/js/data-table/pages/account-state-datatable.js"></script>
 }
 

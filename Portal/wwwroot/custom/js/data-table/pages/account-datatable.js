@@ -1,3 +1,4 @@
+
 $(document).ready(function () {
     var dt_ajax_table = $('.dataTable');
     if (dt_ajax_table.length) {
@@ -49,8 +50,11 @@ $(document).ready(function () {
                             return data.name;
                         }
                         else {
-                            return '<span class="badge  px-2 text-center" style="background-color:' + data.colorCode + ';color:white">' + data.name + '</span>';
+                            var newColor = hexToRgb(data.colorCode);
+                            return '<span class="badge bg-label" style="background-color:rgba(' + newColor.r + ', ' + newColor.g + ', ' + newColor.b + ', .1) " text-capitalized="">'
+                                + '<span style="color:' + data.colorCode+'">' + data.name + '</span</span> ';
                         }
+
                     }
                 },
                 {
@@ -64,7 +68,9 @@ $(document).ready(function () {
                             return data.name;
                         }
                         else {
-                            return '<span class="badge  px-2 text-center" style="background-color:' + data.colorCode + ';color:white">' + data.name + '</span>';
+                            var newColor = hexToRgb(data.colorCode);
+                            return '<span class="badge bg-label" style="background-color:rgba(' + newColor.r + ', ' + newColor.g + ', ' + newColor.b + ', .1) " text-capitalized="">'
+                                + '<span style="color:' + data.colorCode + '">' + data.name + '</span</span> ';
                         }
                     }
                 },
