@@ -22,8 +22,6 @@ namespace API.Areas.BookingArea.Models
 
         public int Fk_HotelExtra { get; set; }
 
-
         public double Price { get; set; }
-
     }
 }

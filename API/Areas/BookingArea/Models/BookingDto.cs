@@ -44,6 +44,12 @@ namespace API.Areas.BookingArea.Models
         [DisplayName(nameof(Discount))]
         public double Discount { get; set; }
 
+        [DisplayName(nameof(FromDate))]
+        public DateTime FromDate { get; set; }
+
+        [DisplayName(nameof(ToDate))]
+        public DateTime ToDate { get; set; }
+
         public List<BookingRoomCreateDto> BookingRooms { get; set; }
     }
 
