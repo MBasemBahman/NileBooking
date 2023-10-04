@@ -381,4 +381,10 @@
   <data name="Upload Image" xml:space="preserve">
     <value>رفع صورة</value>
   </data>
+  <data name="No" xml:space="preserve">
+    <value>لا</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>نعم</value>
+  </data>
 </root>
