@@ -29,11 +29,16 @@
 @section PageScripts {
     <script src="~/js/form-layouts.dist.js"></script>
     <script src="~/js/tables-datatables-advanced.dist.js"></script>
-    <script src="~/custom/js/data-table/table-datatables.js"></script>
+    <environment include="Development">
+        <script src="~/custom/js/data-table/table-datatables.js"></script>
+        <script src="~/custom/js/data-table/modal.js"></script>
+        <script src="~/custom/js/data-table/filter.js"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="~/custom/js/data-table/table-datatables.min.js"></script>
+    </environment>
     <script src="~/custom/js/general/color.js"></script>
-    <script src="~/custom/js/data-table/modal.js"></script>
     <script src="~/custom/js/data-table/pages/account-datatable.js"></script>
-    <script src="~/custom/js/data-table/filter.js"></script>
 
 }
 
