@@ -178,5 +178,16 @@ namespace API.Areas.BookingArea.Controllers
 
             return bookingDto;
         }
+
+
+        [HttpGet]
+        [Route(nameof(GetBookingPrice))]
+        public double GetBookingPrice([FromBody] BookingCreateDto model)
+        {
+            BookingCreateModel booking = _mapper.Map<BookingCreateModel>(model);
+
+            return _unitOfWork.Booking.CalculateBookingPrice(booking);
+        }
+
     }
 }

@@ -6,6 +6,7 @@ namespace Entities.CoreServicesModels.BookingModels
     {
         public int Fk_BookingRoom { get; set; }
         public int Fk_HotelExtra { get; set; }
+        public int Fk_Booking { get; set; }
 
     }
     public class BookingRoomExtraModel : BaseEntity
@@ -27,4 +28,14 @@ namespace Entities.CoreServicesModels.BookingModels
         [DisplayName(nameof(Price))]
         public double Price { get; set; }
     }
+
+    public class BookingRoomExtraCreateModel
+    {
+        public int Fk_BookingRoom { get; set; }
+
+        public int Fk_HotelExtra { get; set; }
+
+        public double Price { get; set; }
+    }
+
 }

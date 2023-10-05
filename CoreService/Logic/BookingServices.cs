@@ -245,6 +245,28 @@ namespace CoreService.Logic
             _repository.Booking.Delete(entity);
         }
 
+        public double CalculateBookingPrice(BookingCreateModel booking)
+        {
+            double price = 0;
+            if(booking.BookingRooms != null && booking.BookingRooms.Any())
+            {
+                price += booking.BookingRooms.Sum(a => a.TotalAdultPrice + a.TotalChildPrice);
+
+                foreach(var room in booking.BookingRooms)
+                {
+                    if (room.BookingRoomExtras != null && room.BookingRoomExtras.Any())
+                    {
+                        price += room.BookingRoomExtras.Sum(a => a.Price);
+                    }
+                }
+            }
+            if(price > booking.Discount)
+            {
+                price = price - booking.Discount;
+
+            }
+            return price;
+        }
         #endregion
 
         #region Booking Review Services

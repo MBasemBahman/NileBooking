@@ -15,12 +15,7 @@ namespace API.Areas.BookingArea.Models
         public new HotelExtraPriceDto HotelExtra { get; set; }
     }
 
-    public class BookingRoomExtraCreateDto
+    public class BookingRoomExtraCreateDto: BookingRoomExtraCreateModel
     {
-        public int Fk_BookingRoom { get; set; }
-
-        public int Fk_HotelExtra { get; set; }
-
-        public double Price { get; set; }
     }
 }

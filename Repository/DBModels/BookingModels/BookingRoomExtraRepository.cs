@@ -14,6 +14,7 @@ namespace Repository.DBModels.BookingModels
             return FindByCondition(a => true, trackChanges)
                    .Filter(parameters.Id,
                        parameters.Fk_BookingRoom,
+                       parameters.Fk_Booking,
                        parameters.Fk_HotelExtra);
 
         }
@@ -32,10 +33,12 @@ namespace Repository.DBModels.BookingModels
             this IQueryable<BookingRoomExtra> data,
             int id,
             int fk_BookingRoom,
+            int fk_Booking,
             int fk_HotelExtra)
         {
             return data.Where(a => (id == 0 || a.Id == id) &&
                                        (fk_BookingRoom == 0 || a.Fk_BookingRoom == fk_BookingRoom) &&
+                                       (fk_Booking == 0 || a.BookingRoom.Fk_Booking == fk_Booking) &&
                                        (fk_HotelExtra == 0 || a.Fk_HotelExtra == fk_HotelExtra));
         }
     }
