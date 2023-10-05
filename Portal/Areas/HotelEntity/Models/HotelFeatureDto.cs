@@ -1,13 +1,12 @@
 ﻿using Entities.CoreServicesModels.HotelModels;
 using Entities.DBModels.HotelModels;
 using Entities.EnumData;
-using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Portal.Areas.HotelEntity.Models
 {
     public class HotelFeatureFilter : DtParameters
-    {        
+    {
         [DisplayName("HotelFeatureCategory")]
         public int Fk_HotelFeatureCategory { get; set; }
     }

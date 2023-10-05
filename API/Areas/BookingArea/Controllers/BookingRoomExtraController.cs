@@ -52,7 +52,7 @@ namespace API.Areas.BookingArea.Controllers
 
             LanguageEnum? language = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
 
-            BookingRoomExtraModel bookingRoomExtra = _unitOfWork.Booking.GetBookingRoomExtraById(id,language);
+            BookingRoomExtraModel bookingRoomExtra = _unitOfWork.Booking.GetBookingRoomExtraById(id, language);
 
             BookingRoomExtraDto bookingRoomExtraDto = _mapper.Map<BookingRoomExtraDto>(bookingRoomExtra);
 
@@ -64,8 +64,7 @@ namespace API.Areas.BookingArea.Controllers
         public async Task<BookingRoomExtraDto> CreateBookingRoomExtra([FromBody] BookingRoomExtraCreateDto model)
         {
             LanguageEnum? language = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
-
-            UserAuthenticatedDto auth = (UserAuthenticatedDto)Request.HttpContext.Items[ApiConstants.User];
+            _ = (UserAuthenticatedDto)Request.HttpContext.Items[ApiConstants.User];
 
             BookingRoomExtra dataDb = _mapper.Map<BookingRoomExtra>(model);
 
@@ -89,9 +88,9 @@ namespace API.Areas.BookingArea.Controllers
             {
                 throw new Exception("Bad Request!");
             }
-            LanguageEnum? language = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
 
-            UserAuthenticatedDto auth = (UserAuthenticatedDto)Request.HttpContext.Items[ApiConstants.User];
+            _ = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
+            _ = (UserAuthenticatedDto)Request.HttpContext.Items[ApiConstants.User];
 
             await _unitOfWork.Booking.DeleteBookingRoomExtra(id);
 

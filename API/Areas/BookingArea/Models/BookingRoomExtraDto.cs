@@ -1,7 +1,6 @@
-﻿using Entities.CoreServicesModels.BookingModels;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using API.Areas.HotelArea.Models;
+using Entities.CoreServicesModels.BookingModels;
 using System.ComponentModel;
-using API.Areas.HotelArea.Models;
 
 namespace API.Areas.BookingArea.Models
 {
@@ -11,12 +10,12 @@ namespace API.Areas.BookingArea.Models
 
         [DisplayName(nameof(BookingRoom))]
         public new BookingRoomDto BookingRoom { get; set; }
-       
+
         [DisplayName(nameof(HotelExtra))]
         public new HotelExtraPriceDto HotelExtra { get; set; }
     }
 
-   public class BookingRoomExtraCreateDto
+    public class BookingRoomExtraCreateDto
     {
         public int Fk_BookingRoom { get; set; }
 

@@ -1,6 +1,5 @@
 ﻿using Entities.CoreServicesModels.HotelModels;
 using Entities.EnumData;
-using System.ComponentModel;
 
 namespace Portal.Areas.HotelEntity.Models
 {

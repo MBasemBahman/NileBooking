@@ -22,7 +22,6 @@ using Entities.DBModels.LocationModels;
 using Entities.DBModels.BookingModels;
 using Entities.DBModels.HotelRoomModels;
 using Entities.DBModels.HotelModels;
-using Entities.DBModels.UserModels;
 #endregion
 using Entities.RequestFeatures;
 
@@ -92,13 +91,13 @@ namespace Portal.MappingProfileCls
             #endregion
 
             #region Account
-            CreateMap<AccountModel, AccountDto>();
+            _ = CreateMap<AccountModel, AccountDto>();
 
-            CreateMap<AccountFilter,AccountParameters>();
+            _ = CreateMap<AccountFilter, AccountParameters>();
 
-            CreateMap<Account,AccountCreateOrEditDto>();
+            _ = CreateMap<Account, AccountCreateOrEditDto>();
 
-            CreateMap<AccountCreateOrEditDto, Account>()
+            _ = CreateMap<AccountCreateOrEditDto, Account>()
                 .ForMember(dest => dest.ImageUrl, opt => opt.Ignore())
                 .ForMember(dest => dest.StorageUrl, opt => opt.Ignore());
             #endregion
@@ -242,11 +241,11 @@ namespace Portal.MappingProfileCls
             #region User Models
 
             #region User
-            CreateMap<UserModel, UserDto>();
+            _ = CreateMap<UserModel, UserDto>();
 
-            CreateMap<UserCreateOrEditDto, User>();
+            _ = CreateMap<UserCreateOrEditDto, User>();
 
-            CreateMap<User, UserCreateOrEditDto>();
+            _ = CreateMap<User, UserCreateOrEditDto>();
             #endregion
 
             #endregion

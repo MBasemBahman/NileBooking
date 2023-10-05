@@ -24,7 +24,7 @@ namespace API.Areas.BookingArea.Controllers
         [HttpGet]
         [Route(nameof(GetBookingReviews))]
         public async Task<IEnumerable<BookingReviewDto>> GetBookingReviews([FromQuery] BookingReviewParameters parameters)
-        {           
+        {
             PagedList<BookingReviewModel> data = await _unitOfWork.Booking.GetBookingReviewsPaged(parameters);
 
             SetPagination(data.MetaData, parameters);
@@ -66,13 +66,13 @@ namespace API.Areas.BookingArea.Controllers
             {
                 throw new Exception("Bad Request!");
             }
-            LanguageEnum? language = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
 
-            UserAuthenticatedDto auth = (UserAuthenticatedDto)Request.HttpContext.Items[ApiConstants.User];
+            _ = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
+            _ = (UserAuthenticatedDto)Request.HttpContext.Items[ApiConstants.User];
 
             BookingReview dataDb = await _unitOfWork.Booking.FindBookingReviewByBookingId(Fk_Booking, trackChanges: true);
 
-            _mapper.Map(model, dataDb);
+            _ = _mapper.Map(model, dataDb);
 
             await _unitOfWork.Save();
 

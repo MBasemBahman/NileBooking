@@ -1,8 +1,6 @@
 ﻿using Entities.CoreServicesModels.AccountModels;
-using Entities.CoreServicesModels.UserModels;
 using Entities.DBModels.AccountModels;
 using Portal.Areas.UserEntity.Models;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Portal.Areas.AccountEntity.Models
 {

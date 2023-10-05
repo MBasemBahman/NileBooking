@@ -1,10 +1,8 @@
-﻿using Portal.Areas.HotelEntity.Models;
-using Entities.CoreServicesModels.HotelModels;
+﻿using Entities.CoreServicesModels.HotelModels;
 using Entities.DBModels.HotelModels;
-using Entities.EnumData;
 using Entities.RequestFeatures;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Portal.Areas.HotelEntity.Models;
 
 namespace Portal.Areas.HotelEntity.Controllers
 {

@@ -3,7 +3,6 @@ using Entities.DBModels.AccountModels;
 using Entities.Extensions;
 using Entities.RequestFeatures;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
-using Microsoft.AspNetCore.Routing;
 using Portal.Areas.AccountEntity.Models;
 namespace Portal.Areas.AccountEntity.Controllers
 {
@@ -19,17 +18,17 @@ namespace Portal.Areas.AccountEntity.Controllers
         LinkGenerator linkGenerator,
         LocalizationManager localizer) : base(mapper, authManager, unitOfWork, environment, localizer)
         {
-            _linkGenerator= linkGenerator;
+            _linkGenerator = linkGenerator;
         }
 
-        public IActionResult Index(int Fk_AccountType,int Fk_AccountState)
+        public IActionResult Index(int Fk_AccountType, int Fk_AccountState)
         {
             AccountIndexViewModel model = new()
             {
                 Filter = new AccountFilter()
                 {
                     Fk_AccountState = Fk_AccountState,
-                    Fk_AccountType =Fk_AccountType
+                    Fk_AccountType = Fk_AccountType
                 }
             };
 
@@ -118,7 +117,7 @@ namespace Portal.Areas.AccountEntity.Controllers
 
                     _ = _mapper.Map(model, dataDB);
 
-                    if (!string.IsNullOrEmpty(model.User.Password) && model.User.Password!=dataDB.User.Password)
+                    if (!string.IsNullOrEmpty(model.User.Password) && model.User.Password != dataDB.User.Password)
                     {
                         dataDB.User.Password = _unitOfWork.Account.GeneratePassword(model.User.Password);
                     }

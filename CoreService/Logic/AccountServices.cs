@@ -37,12 +37,12 @@ namespace CoreService.Logic
                                       Id = a.Fk_User,
                                       CreatedBy = a.User.CreatedBy,
                                       CreatedAt = a.User.CreatedAt,
-                                      LastModifiedAt= a.User.LastModifiedAt,
-                                      Culture= a.User.Culture,
-                                      UserName  = a.User.UserName,
+                                      LastModifiedAt = a.User.LastModifiedAt,
+                                      Culture = a.User.Culture,
+                                      UserName = a.User.UserName,
                                       IsExternalLogin = a.User.IsExternalLogin,
                                   },
-                                  ImageUrl =  a.StorageUrl + a.ImageUrl ,
+                                  ImageUrl = a.StorageUrl + a.ImageUrl,
                                   CreatedAt = a.CreatedAt,
                                   CreatedBy = a.CreatedBy,
                                   LastModifiedAt = a.LastModifiedAt,
@@ -122,7 +122,7 @@ namespace CoreService.Logic
         }
 
 
-      
+
 
         public void CreateAccount(Account entity)
         {
@@ -157,7 +157,7 @@ namespace CoreService.Logic
         public IQueryable<AccountTypeModel> GetAccountTypes(
             AccountTypeParameters parameters, LanguageEnum? language)
         {
-            var totalAccountCount = _repository.Account.Count();
+            int totalAccountCount = _repository.Account.Count();
 
             return _repository.AccountType
                               .FindAll(parameters, trackChanges: false)
@@ -170,8 +170,8 @@ namespace CoreService.Logic
                                   ColorCode = a.ColorCode,
                                   CreatedAt = a.CreatedAt,
                                   AccountsCount = a.Accounts.Count,
-                                  AccountsPercent =totalAccountCount > 0
-                                  ? (int)((double)((double)a.Accounts.Count / (double)totalAccountCount) * 100)
+                                  AccountsPercent = totalAccountCount > 0
+                                  ? (int)((double)(a.Accounts.Count / (double)totalAccountCount) * 100)
                                   : 0,
 
                               })
@@ -225,7 +225,7 @@ namespace CoreService.Logic
         public IQueryable<AccountStateModel> GetAccountStates(
             AccountStateParameters parameters, LanguageEnum? language)
         {
-            var totalAccountCount = _repository.Account.Count();
+            int totalAccountCount = _repository.Account.Count();
 
             return _repository.AccountState
                               .FindAll(parameters, trackChanges: false)
@@ -238,8 +238,8 @@ namespace CoreService.Logic
                                   ColorCode = a.ColorCode,
                                   CreatedAt = a.CreatedAt,
                                   AccountsCount = a.Accounts.Count,
-                                  AccountsPercent =totalAccountCount > 0
-                                  ? (int)((double)((double)a.Accounts.Count / (double)totalAccountCount) * 100)
+                                  AccountsPercent = totalAccountCount > 0
+                                  ? (int)((double)(a.Accounts.Count / (double)totalAccountCount) * 100)
                                   : 0,
                               })
                               .Search(parameters.SearchColumns, parameters.SearchTerm)

@@ -1,7 +1,6 @@
-﻿using Entities.CoreServicesModels.BookingModels;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using API.Areas.HotelRoomArea.Models;
+using Entities.CoreServicesModels.BookingModels;
 using System.ComponentModel;
-using API.Areas.HotelRoomArea.Models;
 
 namespace API.Areas.BookingArea.Models
 {
@@ -39,7 +38,7 @@ namespace API.Areas.BookingArea.Models
 
     public class BookingRoomEditDto
     {
-       
+
 
         [DisplayName(nameof(AdultCount))]
         public int AdultCount { get; set; }

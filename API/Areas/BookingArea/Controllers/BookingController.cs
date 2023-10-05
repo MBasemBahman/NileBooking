@@ -82,7 +82,7 @@ namespace API.Areas.BookingArea.Controllers
             if (model.BookingRooms != null && model.BookingRooms.Any())
             {
                 dataDb.BookingRooms = new List<BookingRoom>();
-                foreach(var room in model.BookingRooms)
+                foreach (BookingRoomCreateDto room in model.BookingRooms)
                 {
                     BookingRoom bookingRoom = _mapper.Map<BookingRoom>(room);
 
@@ -122,11 +122,11 @@ namespace API.Areas.BookingArea.Controllers
 
             Booking dataDb = await _unitOfWork.Booking.FindBookingById(id, trackChanges: true);
 
-            if(dataDb.Fk_Account != auth.Fk_Account)
+            if (dataDb.Fk_Account != auth.Fk_Account)
             {
                 throw new Exception("Not Allowed!");
             }
-            _mapper.Map(model, dataDb);
+            _ = _mapper.Map(model, dataDb);
 
             await _unitOfWork.Save();
 

@@ -1,10 +1,8 @@
-﻿using Portal.Areas.HotelEntity.Models;
-using Entities.CoreServicesModels.HotelModels;
+﻿using Entities.CoreServicesModels.HotelModels;
 using Entities.DBModels.HotelModels;
-using Entities.EnumData;
 using Entities.RequestFeatures;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
-using static System.Runtime.InteropServices.JavaScript.JSType;
+using Portal.Areas.HotelEntity.Models;
 
 namespace Portal.Areas.HotelEntity.Controllers
 {
@@ -31,7 +29,7 @@ namespace Portal.Areas.HotelEntity.Controllers
             ViewData[ViewDataConstants.AccessLevel] = (DashboardAccessLevelModel)Request.HttpContext.Items[ViewDataConstants.AccessLevel];
 
             SetViewData();
-            
+
             return View(filter);
         }
 
@@ -72,13 +70,13 @@ namespace Portal.Areas.HotelEntity.Controllers
             _unitOfWork.Hotel.UpdateHotelFeatures(id, hotelFeatures);
 
             await _unitOfWork.Save();
-            
+
             return Ok(new HotelModel
             {
                 Id = id
             });
         }
-        
+
         [Authorize(DashboardViewEnum.HotelFeature, DashboardAccessLevelEnum.DataControl)]
         public async Task<IActionResult> CreateOrEdit(int id = 0)
         {
@@ -186,7 +184,7 @@ namespace Portal.Areas.HotelEntity.Controllers
         {
             LanguageEnum? otherLang = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
 
-            ViewData["HotelFeatureCategory"] = _unitOfWork.Hotel.GetHotelFeatureCategorysLookUp (new HotelFeatureCategoryParameters(), otherLang);
+            ViewData["HotelFeatureCategory"] = _unitOfWork.Hotel.GetHotelFeatureCategorysLookUp(new HotelFeatureCategoryParameters(), otherLang);
         }
 
     }

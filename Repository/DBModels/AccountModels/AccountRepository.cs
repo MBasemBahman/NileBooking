@@ -57,7 +57,7 @@ namespace Repository.DBModels.AccountModels
                                        (createdAtTo == null || (createdAtTo == createdAtFrom && a.CreatedAt.Date == createdAtFrom.Value.Date) || a.CreatedAt <= createdAtTo) &&
                                        (haveBookings == null || (haveBookings == true && a.Bookings.Any()) || (haveBookings == false && !a.Bookings.Any())) &&
                                        (fk_User == 0 || a.Fk_User == fk_User) &&
-                                       (string.IsNullOrEmpty(userName) || a.User.UserName.ToLower()==userName.ToLower()));
+                                       (string.IsNullOrEmpty(userName) || a.User.UserName.ToLower() == userName.ToLower()));
         }
     }
 }

@@ -1,5 +1,4 @@
 ﻿using Entities.CoreServicesModels.LocationModels;
-using Entities.DBModels.LocationModels;
 using Entities.EnumData;
 
 namespace Portal.Areas.LocationEntity.Models
@@ -20,7 +19,7 @@ namespace Portal.Areas.LocationEntity.Models
         [DisplayName($"{nameof(Name)}{PropertyAttributeConstants.ArLang}")]
         public string Name { get; set; }
 
-     
+
         public List<CountryLangModel> CountryLangs { get; set; }
     }
 

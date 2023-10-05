@@ -67,8 +67,7 @@ namespace API.Areas.BookingArea.Controllers
         public async Task<BookingRoomDto> CreateBookingRoom([FromBody] BookingRoomCreateDto model)
         {
             LanguageEnum? language = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
-
-            UserAuthenticatedDto auth = (UserAuthenticatedDto)Request.HttpContext.Items[ApiConstants.User];
+            _ = (UserAuthenticatedDto)Request.HttpContext.Items[ApiConstants.User];
 
             BookingRoom dataDb = _mapper.Map<BookingRoom>(model);
 
@@ -98,13 +97,12 @@ namespace API.Areas.BookingArea.Controllers
                 throw new Exception("Bad Request!");
             }
             LanguageEnum? language = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
-
-            UserAuthenticatedDto auth = (UserAuthenticatedDto)Request.HttpContext.Items[ApiConstants.User];
+            _ = (UserAuthenticatedDto)Request.HttpContext.Items[ApiConstants.User];
 
             BookingRoom dataDb = await _unitOfWork.Booking.FindBookingRoomById(id, trackChanges: true);
 
-           
-            _mapper.Map(model, dataDb);
+
+            _ = _mapper.Map(model, dataDb);
 
             await _unitOfWork.Save();
 
@@ -128,15 +126,15 @@ namespace API.Areas.BookingArea.Controllers
             {
                 throw new Exception("Bad Request!");
             }
-            LanguageEnum? language = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
 
-            UserAuthenticatedDto auth = (UserAuthenticatedDto)Request.HttpContext.Items[ApiConstants.User];
+            _ = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
+            _ = (UserAuthenticatedDto)Request.HttpContext.Items[ApiConstants.User];
 
             await _unitOfWork.Booking.DeleteBookingRoom(id);
 
             await _unitOfWork.Save();
 
-         
+
             return true;
         }
     }

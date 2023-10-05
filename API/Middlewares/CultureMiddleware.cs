@@ -13,19 +13,12 @@
         {
             string culture = context.Request.Headers[HeadersConstants.Culture].FirstOrDefault()?.Split(" ").Last();
 
-            if(string.IsNullOrWhiteSpace(culture))
+            if (string.IsNullOrWhiteSpace(culture))
             {
                 culture = "en";
             }
 
-            if (Enum.IsDefined(typeof(LanguageEnum), culture))
-            {
-                context.Items[ApiConstants.Language] = Enum.Parse<LanguageEnum>(culture.ToLower());
-            }
-            else
-            {
-                context.Items[ApiConstants.Language] = null;
-            }
+            context.Items[ApiConstants.Language] = Enum.IsDefined(typeof(LanguageEnum), culture) ? Enum.Parse<LanguageEnum>(culture.ToLower()) : null;
 
             await _next(context);
         }

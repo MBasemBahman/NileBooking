@@ -20,7 +20,7 @@ namespace Portal.Areas.UserEntity.Models
         [Required(ErrorMessage = PropertyAttributeConstants.RequiredMsg)]
         [DisplayName(nameof(LastName))]
         public string LastName { get; set; }
-    
+
         [Required(ErrorMessage = PropertyAttributeConstants.RequiredMsg)]
         [DisplayName(nameof(UserName))]
         public string UserName { get; set; }

@@ -3,7 +3,6 @@ using Entities.CoreServicesModels.HotelModels;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.EntityFrameworkCore;
 using Services;
-using System.Collections.Generic;
 
 namespace API.Areas.HotelArea.Controllers
 {
@@ -33,9 +32,9 @@ namespace API.Areas.HotelArea.Controllers
             UserAuthenticatedDto auth = (UserAuthenticatedDto)Request.HttpContext.Items[ApiConstants.User];
 
             parameters.IsActive = true;
-            List<HotelDto> dataDto = new List<HotelDto>();
+            List<HotelDto> dataDto = new();
 
-            if (parameters.Latitude >0&&parameters.Longitude > 0)
+            if (parameters.Latitude > 0 && parameters.Longitude > 0)
             {
                 List<HotelModel> data = await _unitOfWork.Hotel.GetHotels(parameters, language).ToListAsync();
 

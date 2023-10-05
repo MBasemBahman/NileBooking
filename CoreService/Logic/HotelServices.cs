@@ -39,10 +39,10 @@ namespace CoreService.Logic
                                   Latitude = a.Latitude,
                                   Longitude = a.Longitude,
                                   IsRecommended = a.IsRecommended,
-                                 
+
                                   Price = a.HotelRooms.Any()
-                                  ? a.HotelRooms.SelectMany(c=>c.HotelRoomPrices).OrderBy(c=>c.AdultPrice).FirstOrDefault().AdultPrice
-                                  :0 ,
+                                  ? a.HotelRooms.SelectMany(c => c.HotelRoomPrices).OrderBy(c => c.AdultPrice).FirstOrDefault().AdultPrice
+                                  : 0,
 
                                   Name = language != null ? a.HotelLangs
                                       .Where(b => b.Language == language)
@@ -158,7 +158,7 @@ namespace CoreService.Logic
 
                                   }).ToList()
                                   : null,
-                                  
+
                               })
                               .Search(parameters.SearchColumns, parameters.SearchTerm)
                               .Sort(parameters.OrderBy);
@@ -426,8 +426,8 @@ namespace CoreService.Logic
                                   CreatedBy = a.CreatedBy,
                                   LastModifiedAt = a.LastModifiedAt,
                                   LastModifiedBy = a.LastModifiedBy,
-                                  HotelFeaturesPercent = hotalFeaturesTotalCount > 0 
-                                  ? (int)((double)((double)a.HotelFeatures.Count / (double)hotalFeaturesTotalCount) * 100) 
+                                  HotelFeaturesPercent = hotalFeaturesTotalCount > 0
+                                  ? (int)((double)(a.HotelFeatures.Count / (double)hotalFeaturesTotalCount) * 100)
                                   : 0,
 
                               })
@@ -548,7 +548,7 @@ namespace CoreService.Logic
                                   CreatedAt = a.CreatedAt,
                                   HotelsCount = a.Hotels.Count,
                                   HotelsPercent = totalHotelsCount > 0
-                                  ? (int)((double)((double)a.Hotels.Count / (double)totalHotelsCount) * 100) 
+                                  ? (int)((double)(a.Hotels.Count / (double)totalHotelsCount) * 100)
                                   : 0,
 
                               })

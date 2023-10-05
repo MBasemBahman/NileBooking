@@ -118,30 +118,30 @@ namespace API.MappingProfileCls
             #endregion
 
             #region Booking Models
-            CreateMap<BookingModel, BookingDto>();
+            _ = CreateMap<BookingModel, BookingDto>();
 
-            CreateMap<BookingCreateDto,Booking>()
-                .ForMember(dest =>dest.BookingRooms,opt => opt.Ignore());
+            _ = CreateMap<BookingCreateDto, Booking>()
+                .ForMember(dest => dest.BookingRooms, opt => opt.Ignore());
 
-            CreateMap<BookingEditDto, Booking>();
+            _ = CreateMap<BookingEditDto, Booking>();
 
-            CreateMap<BookingReviewModel,BookingReviewDto>();
+            _ = CreateMap<BookingReviewModel, BookingReviewDto>();
 
-            CreateMap<BookingRoomModel,BookingRoomDto>();
+            _ = CreateMap<BookingRoomModel, BookingRoomDto>();
 
-            CreateMap<BookingRoomCreateDto,BookingRoom>();
+            _ = CreateMap<BookingRoomCreateDto, BookingRoom>();
 
-            CreateMap<BookingRoomEditDto,BookingRoom>();
+            _ = CreateMap<BookingRoomEditDto, BookingRoom>();
 
-            CreateMap<BookingRoomExtraModel,BookingRoomExtraDto>();
+            _ = CreateMap<BookingRoomExtraModel, BookingRoomExtraDto>();
 
-            CreateMap<BookingRoomExtraCreateDto,BookingRoomExtra>();
+            _ = CreateMap<BookingRoomExtraCreateDto, BookingRoomExtra>();
 
-            CreateMap<BookingStateModel, BookingStateDto>();
+            _ = CreateMap<BookingStateModel, BookingStateDto>();
 
-            CreateMap<BookingReviewModel,BookingReviewDto>();
+            _ = CreateMap<BookingReviewModel, BookingReviewDto>();
 
-            CreateMap<BookingReviewEditDto,BookingReview>();
+            _ = CreateMap<BookingReviewEditDto, BookingReview>();
             #endregion
         }
 

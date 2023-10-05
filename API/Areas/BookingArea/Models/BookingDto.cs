@@ -1,11 +1,10 @@
-﻿using Entities.CoreServicesModels.BookingModels;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel;
-using API.Areas.AccountArea.Models;
+﻿using API.Areas.AccountArea.Models;
 using API.Areas.HotelArea.Models;
+using Entities.CoreServicesModels.BookingModels;
+using System.ComponentModel;
 
 namespace API.Areas.BookingArea.Models
-{ 
+{
     public class BookingDto : BookingModel
     {
         public new string LastModifiedAt { get; set; }
@@ -37,7 +36,7 @@ namespace API.Areas.BookingArea.Models
     public class BookingCreateDto
     {
         public int Fk_Hotel { get; set; }
-     
+
         [DisplayName(nameof(Fees))]
         public double Fees { get; set; }
 

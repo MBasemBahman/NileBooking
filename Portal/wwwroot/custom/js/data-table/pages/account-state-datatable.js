@@ -36,7 +36,7 @@ $(document).ready(function () {
                     data: "accountsCount",
                     render: function (data, type, row) {
                         return '<div class="d-flex align-items-center">'
-                            + '<p class="mb-0" ><a class="text-dark" target="_blank" href="/AccountEntity/Account/Index?Fk_AccountState=' + row.id + '">' + row.accountsCount + '</a></p>'
+                            + '<p class="mb-0" ><a class="text-primary" target="_blank" href="/AccountEntity/Account/Index?Fk_AccountState=' + row.id + '">' + row.accountsCount + '</a></p>'
                             + '<div class="ms-3 badge bg-label-warning">' + row.accountsPercent+'%</div>'
                             + '</div>'
                       

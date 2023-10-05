@@ -38,8 +38,8 @@ namespace Repository.DBModels.BookingModels
         {
             return data.Where(a => (id == 0 || a.Id == id) &&
                                        (fk_Booking == 0 || a.Fk_Booking == fk_Booking) &&
-                                       (fk_Hotel == 0 || a.Booking.Fk_Hotel == fk_Hotel)&&
-                                       (fk_HotelRoom == 0 || a.Booking.BookingRooms.Any(b =>b.Fk_HotelRoom == fk_HotelRoom)));
+                                       (fk_Hotel == 0 || a.Booking.Fk_Hotel == fk_Hotel) &&
+                                       (fk_HotelRoom == 0 || a.Booking.BookingRooms.Any(b => b.Fk_HotelRoom == fk_HotelRoom)));
         }
     }
 }

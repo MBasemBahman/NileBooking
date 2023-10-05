@@ -19,7 +19,7 @@ namespace Portal.Areas.LocationEntity.Controllers
         }
         public IActionResult Index(int fk_Country, bool ProfileLayOut = false)
         {
-            AreaFilter filter = new() { Fk_Country = fk_Country};
+            AreaFilter filter = new() { Fk_Country = fk_Country };
 
             ViewData[ViewDataConstants.AccessLevel] = (DashboardAccessLevelModel)Request.HttpContext.Items[ViewDataConstants.AccessLevel];
 

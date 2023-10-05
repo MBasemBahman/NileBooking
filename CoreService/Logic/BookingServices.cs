@@ -35,8 +35,8 @@ namespace CoreService.Logic
                                   CreatedAt = a.CreatedAt,
                                   BookingsCount = a.Bookings.Count,
                                   ColorCode = a.ColorCode,
-                                  BookingsPercent =totalBookingsCount > 0
-                                  ? (int)((double)((double)a.Bookings.Count / (double)totalBookingsCount) * 100)
+                                  BookingsPercent = totalBookingsCount > 0
+                                  ? (int)((double)(a.Bookings.Count / (double)totalBookingsCount) * 100)
                                   : 0,
 
                               })
@@ -292,8 +292,8 @@ namespace CoreService.Logic
 
         public async Task<BookingReview> FindBookingReviewByBookingId(int fk_Booking, bool trackChanges)
         {
-            return await  _repository.BookingReview
-                                .FindByCondition(a=>a.Fk_Booking == fk_Booking, trackChanges)
+            return await _repository.BookingReview
+                                .FindByCondition(a => a.Fk_Booking == fk_Booking, trackChanges)
                                 .FirstOrDefaultAsync();
         }
 
