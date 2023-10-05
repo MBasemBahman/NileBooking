@@ -1,0 +1,16 @@
+﻿[
+  {
+    "outputFileName": "wwwroot/custom/js/data-table/table-datatables.min.js",
+    "inputFiles": [
+      "wwwroot/custom/js/data-table/filter.js",
+      "wwwroot/custom/js/data-table/modal.js",
+      "wwwroot/custom/js/data-table/table-datatables.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/custom/js/form/form.min.js",
+    "inputFiles": [
+      "wwwroot/custom/js/form/img-upload.js"
+    ]
+  }
+]

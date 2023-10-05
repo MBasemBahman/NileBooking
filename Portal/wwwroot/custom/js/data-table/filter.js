@@ -1,12 +1,12 @@
-$('body').on('change', '.filter-input', function () {
-    event.preventDefault();
+$('body').on('change', '.filter-input', function (e) {
+    e.preventDefault();
     if ($('.dataTable').length > 0) {
         $('.dataTable').DataTable().draw();
     }
 });
 
-$(".filter-submit-btn").on("click", function () {
-    event.preventDefault();
+$(".filter-submit-btn").on("click", function (e) {
+    e.preventDefault();
     $(".dt-date").each(function () {
         $(this).val('');
     });

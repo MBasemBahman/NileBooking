@@ -23,8 +23,13 @@
 @section PageScripts {
 
     <script src="~/js/form-layouts.dist.js"></script>
-    <script src="~/custom/js/data-table/table-datatables.js"></script>
-    <script src="~/custom/js/data-table/modal.js"></script>
+    <environment include="Development">
+        <script src="~/custom/js/data-table/table-datatables.js"></script>
+        <script src="~/custom/js/data-table/modal.js"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="~/custom/js/data-table/table-datatables.min.js"></script>
+    </environment>
     <script src="~/custom/js/general/color.js"></script>
     <script src="~/custom/js/data-table/pages/account-state-datatable.js"></script>
 }
@@ -37,7 +42,7 @@
             <div class="card-header border-bottom">
                 <h5 class="card-title mb-3">@ViewData["Title"]</h5>
             </div>
-           
+
             <div class="card-datatable table-responsive">
                 <table class="datatables-users table dataTable no-footer dtr-column">
                     <thead class="border-top">
