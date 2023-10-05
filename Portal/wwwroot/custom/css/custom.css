@@ -10,7 +10,7 @@
     display: none;
 }
 
-@@-webkit-keyframes spin {
+@-webkit-keyframes spin {
     from {
         -webkit-transform: rotate(0deg);
     }
@@ -20,7 +20,7 @@
     }
 }
 
-@@keyframes spin {
+@keyframes spin {
     from {
         transform: rotate(0deg);
     }
@@ -31,7 +31,7 @@
 }
 
 .loading-image {
-    ontent: '';
+    content: '';
     display: block;
     position: absolute;
     left: 45%;
@@ -46,4 +46,40 @@
     -webkit-animation: spin .8s linear infinite;
     animation: spin .8s none infinite;
     padding: 10px;
+}
+
+.select2-container {
+   z-index: 9999;
+   position: relative;
+}
+
+#map {
+    height: 350px !important;
+    width: 100% !important;
+}
+
+#searchmap {
+    background-color: #fff;
+    font-size: 15px;
+    margin-left: 12px;
+    padding: 0 11px 0 13px;
+    text-overflow: ellipsis;
+    width: 200px;
+}
+
+.ratings-list-item svg, .ratings-list-item i {
+    font-size: 1.286rem;
+    height: 1.286rem;
+    width: 1.286rem;
+}
+
+.filled-star {
+    fill: #ff9f43;
+    stroke: #ff9f43;
+    color: #ff9f43;
+}
+
+.unfilled-star {
+    stroke: #babfc7;
+    color: #babfc7;
 }

@@ -387,4 +387,40 @@
   <data name="Yes" xml:space="preserve">
     <value>Yes</value>
   </data>
+  <data name="Not Specific" xml:space="preserve">
+    <value>Not Specific</value>
+  </data>
+  <data name="LocationUrl" xml:space="preserve">
+    <value>Location Url</value>
+  </data>
+  <data name="Address" xml:space="preserve">
+    <value>Address</value>
+  </data>
+  <data name="Fk_HotelType" xml:space="preserve">
+    <value>Hotel Type</value>
+  </data>
+  <data name="Fk_Area" xml:space="preserve">
+    <value>Area</value>
+  </data>
+  <data name="IsActive" xml:space="preserve">
+    <value>Is Active ?</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="IsRecommended" xml:space="preserve">
+    <value>Is Recommended ?</value>
+  </data>
+  <data name="Fk_HotelSelectedFeatures" xml:space="preserve">
+    <value>Hotel Features</value>
+  </data>
+  <data name="Hotels" xml:space="preserve">
+    <value>Hotels</value>
+  </data>
+  <data name="Hotel" xml:space="preserve">
+    <value>Hotel</value>
+  </data>
+  <data name="Rate" xml:space="preserve">
+    <value>Rate</value>
+  </data>
 </root>

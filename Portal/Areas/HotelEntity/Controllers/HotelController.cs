@@ -1,4 +1,5 @@
 ﻿using Entities.CoreServicesModels.HotelModels;
+using Entities.CoreServicesModels.LocationModels;
 using Entities.DBModels.HotelModels;
 using Entities.RequestFeatures;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
@@ -83,8 +84,19 @@ namespace Portal.Areas.HotelEntity.Controllers
                 }
 
                 #endregion
+                
+                LanguageEnum? otherLang = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
+
+                
+                model.Fk_HotelSelectedFeatures = _unitOfWork.Hotel
+                    .GetHotelSelectedFeatures(new HotelSelectedFeaturesParameters
+                    {
+                        Fk_Hotel = id
+                    }, otherLang).Select(a => a.Fk_HotelFeature).ToList();
             }
 
+            SetViewData();
+                
             return View(model);
         }
 
@@ -124,6 +136,10 @@ namespace Portal.Areas.HotelEntity.Controllers
 
                 await _unitOfWork.Save();
 
+                _unitOfWork.Hotel.UpdateHotelFeatures(dataDB.Id, model.Fk_HotelSelectedFeatures);
+                
+                await _unitOfWork.Save();
+
                 return RedirectToAction(nameof(Index));
             }
             catch (Exception ex)
@@ -153,6 +169,15 @@ namespace Portal.Areas.HotelEntity.Controllers
             }
 
             return BadRequest(errors);
+        }
+
+        private void SetViewData()
+        {
+            LanguageEnum? language = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
+            
+            ViewData["Area"] = _unitOfWork.Location.GetAreasLookUp(new AreaParameters(), language);
+            ViewData["HotelType"] = _unitOfWork.Hotel.GetHotelTypesLookUp(new HotelTypeParameters(), language);
+            ViewData["HotelFeatures"] = _unitOfWork.Hotel.GetHotelFeaturesLookUp(new HotelFeatureParameters(), language);
         }
     }
 }

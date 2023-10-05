@@ -16,7 +16,7 @@ namespace Portal.Areas.HotelEntity.Models
     public class HotelCreateOrEditModel
     {
         [Required(ErrorMessage = PropertyAttributeConstants.RequiredMsg)]
-            [DisplayName($"{nameof(Name)}{PropertyAttributeConstants.EnLang}")]
+            [DisplayName($"{nameof(Name)}{PropertyAttributeConstants.ArLang}")]
             public string Name { get; set; }
         
             [DisplayName(nameof(LocationUrl))]
@@ -50,8 +50,8 @@ namespace Portal.Areas.HotelEntity.Models
             [DisplayName(nameof(Longitude))]
             public double Longitude { get; set; }
         
-            [DisplayName(nameof(HotelSelectedFeatures))]
-            public List<int> HotelSelectedFeatures { get; set; }
+            [DisplayName(nameof(Fk_HotelSelectedFeatures))]
+            public List<int> Fk_HotelSelectedFeatures { get; set; }
         
             [DisplayName(nameof(HotelLangs))]
             public List<HotelLangModel> HotelLangs { get; set; }

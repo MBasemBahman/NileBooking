@@ -20,7 +20,9 @@ $(document).ready(function ()
                 { data: "hotelType.name" },
                 { data: "area.name" },
                 { data: "price" },
-                { data: "rate" },
+                { data: "rate", render: function (data) {
+                    return `${data} <i class="fa-solid fa-star"></i>`;        
+                } },
                 { data: "isRecommended" },
                 { data: "isActive" },
                 { data: "createdAt" },

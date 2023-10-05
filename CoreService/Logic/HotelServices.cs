@@ -331,7 +331,7 @@ namespace CoreService.Logic
 
         public void UpdateHotelFeatures(int fk_Hotel, List<int> hotelFeatures)
         {
-            if (!hotelFeatures.Any())
+            if (hotelFeatures == null || !hotelFeatures.Any())
             {
                 return;
             }

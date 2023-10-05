@@ -387,4 +387,40 @@
   <data name="Yes" xml:space="preserve">
     <value>نعم</value>
   </data>
+  <data name="Not Specific" xml:space="preserve">
+    <value>غير محدد</value>
+  </data>
+  <data name="LocationUrl" xml:space="preserve">
+    <value>رابط اللوكيشن</value>
+  </data>
+  <data name="Address" xml:space="preserve">
+    <value>العنوان</value>
+  </data>
+  <data name="Fk_HotelType" xml:space="preserve">
+    <value>نوع الفندق</value>
+  </data>
+  <data name="Fk_Area" xml:space="preserve">
+    <value>المنطقة</value>
+  </data>
+  <data name="IsActive" xml:space="preserve">
+    <value>مفعل ؟</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>الوصف</value>
+  </data>
+  <data name="IsRecommended" xml:space="preserve">
+    <value>الفندق مرشح ؟</value>
+  </data>
+  <data name="Fk_HotelSelectedFeatures" xml:space="preserve">
+    <value>المميزات الخاصة بالفندق</value>
+  </data>
+  <data name="Hotels" xml:space="preserve">
+    <value>الفنادق</value>
+  </data>
+  <data name="Hotel" xml:space="preserve">
+    <value>فندق</value>
+  </data>
+  <data name="Rate" xml:space="preserve">
+    <value>التقييم</value>
+  </data>
 </root>
