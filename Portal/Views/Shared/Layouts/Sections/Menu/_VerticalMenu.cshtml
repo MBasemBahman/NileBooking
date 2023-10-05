@@ -40,11 +40,21 @@
                 <div data-i18n="@Localizer.Get("Home")">@Localizer.Get("Home")</div>
             </a>
         </li>
+        
         @if (viewList.Contains((int)DashboardViewEnum.Account)){
             <li class='menu-item@(currentPage ==DashboardViewEnum.Account.ToString() ? " active open" : "")'>
                 <a asp-action="Index" asp-controller="Account" asp-area="AccountEntity" class="menu-link">
                     <i class="menu-icon tf-icons ti ti-users"></i>
                     <div data-i18n="@Localizer.Get("Accounts")">@Localizer.Get("Accounts")</div>
+                </a>
+            </li>
+        }
+
+        @if (viewList.Contains((int)DashboardViewEnum.Hotel)){
+            <li class='menu-item@(currentPage ==DashboardViewEnum.Hotel.ToString() ? " active open" : "")'>
+                <a asp-action="Index" asp-controller="Hotel" asp-area="HotelEntity" class="menu-link">
+                    <i class="menu-icon tf-icons ti ti-building"></i>
+                    <div data-i18n="@Localizer.Get("Hotels")">@Localizer.Get("Hotels")</div>
                 </a>
             </li>
         }

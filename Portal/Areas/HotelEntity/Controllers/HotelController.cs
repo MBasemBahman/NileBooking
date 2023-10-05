@@ -1,6 +1,7 @@
 ﻿using Entities.CoreServicesModels.HotelModels;
 using Entities.CoreServicesModels.LocationModels;
 using Entities.DBModels.HotelModels;
+using Entities.Extensions;
 using Entities.RequestFeatures;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Portal.Areas.HotelEntity.Models;
@@ -11,12 +12,14 @@ namespace Portal.Areas.HotelEntity.Controllers
     [Authorize(DashboardViewEnum.Hotel, DashboardAccessLevelEnum.Viewer)]
     public class HotelController : ExtendControllerBase
     {
+        private readonly LinkGenerator _linkGenerator;
         public HotelController(IMapper mapper,
         AuthenticationManager authManager, UnitOfWork unitOfWork,
         IWebHostEnvironment environment,
-        LocalizationManager localizer) : base(mapper, authManager, unitOfWork, environment, localizer)
+        LocalizationManager localizer,
+        LinkGenerator linkGenerator) : base(mapper, authManager, unitOfWork, environment, localizer)
         {
-
+            _linkGenerator = linkGenerator;
         }
         public IActionResult Index()
         {
@@ -25,28 +28,22 @@ namespace Portal.Areas.HotelEntity.Controllers
             ViewData[ViewDataConstants.AccessLevel] = (DashboardAccessLevelModel)Request.HttpContext.Items[ViewDataConstants.AccessLevel];
             return View(filter);
         }
-
+        
         [HttpPost]
-        public async Task<IActionResult> LoadTable([FromBody] HotelFilter dtParameters)
+        public async Task<ActionResult> LoadHotels(HotelParameters parameters)
         {
             LanguageEnum? otherLang = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
 
-            HotelParameters parameters = new()
-            {
-                SearchColumns = "Id,Name"
-            };
-
-            _ = _mapper.Map(dtParameters, parameters);
+            parameters.SearchTerm = "";
 
             PagedList<HotelModel> data = await _unitOfWork.Hotel.GetHotelsPaged(parameters, otherLang);
 
             List<HotelDto> resultDto = _mapper.Map<List<HotelDto>>(data);
 
-            DataTable<HotelDto> dataTableManager = new();
+            Pagination<HotelDto> result = new(parameters.PageNumber,
+                parameters.PageSize, resultDto, _unitOfWork.Hotel.GetHotelsCount(parameters));
 
-            DataTableResult<HotelDto> dataTableResult = dataTableManager.LoadTable(dtParameters, resultDto, data.MetaData.TotalCount, _unitOfWork.Hotel.GetHotelsCount());
-
-            return Json(dataTableManager.ReturnTable(dataTableResult));
+            return Json(result);
         }
 
         public IActionResult Details(int id)
@@ -67,6 +64,7 @@ namespace Portal.Areas.HotelEntity.Controllers
             {
                 Hotel dataDB = await _unitOfWork.Hotel.FindHotelById(id, trackChanges: false);
                 model = _mapper.Map<HotelCreateOrEditModel>(dataDB);
+                model.ImageUrl = dataDB.StorageUrl + dataDB.ImageUrl;
 
                 #region Check for new Languages
 
@@ -134,6 +132,14 @@ namespace Portal.Areas.HotelEntity.Controllers
                     _ = _mapper.Map(model, dataDB);
                 }
 
+                IFormFile imageFile = HttpContext.Request.Form.Files["ImageFile"];
+
+                if (imageFile != null)
+                {
+                    dataDB.ImageUrl = await _unitOfWork.Account.UploadAccountImage(_environment.WebRootPath, imageFile);
+                    dataDB.StorageUrl = _linkGenerator.GetUriByAction(HttpContext).GetBaseUri(HttpContext.Request.RouteValues["area"].ToString());
+                }
+                
                 await _unitOfWork.Save();
 
                 _unitOfWork.Hotel.UpdateHotelFeatures(dataDB.Id, model.Fk_HotelSelectedFeatures);

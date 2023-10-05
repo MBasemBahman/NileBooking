@@ -24,6 +24,9 @@ namespace Portal.Areas.HotelEntity.Models
         
             [DisplayName(nameof(Address))]
             public string Address { get; set; }
+            
+            [DisplayName(nameof(ImageUrl))]
+            public string ImageUrl { get; set; }
         
             [DisplayName(nameof(Fk_HotelType))]
             public int Fk_HotelType { get; set; }

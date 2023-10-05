@@ -423,4 +423,61 @@
   <data name="Rate" xml:space="preserve">
     <value>Rate</value>
   </data>
+  <data name="All Hotels Description" xml:space="preserve">
+    <value>Hotels registered on the system</value>
+  </data>
+  <data name="Active and Inactive" xml:space="preserve">
+    <value>Active and Inactive</value>
+  </data>
+  <data name="You can use advanced search and sorting to get the best results" xml:space="preserve">
+    <value>You can use advanced search and sorting to get the best results</value>
+  </data>
+  <data name="Search with specific word" xml:space="preserve">
+    <value>Search with specific word</value>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>Total</value>
+  </data>
+  <data name="Hotel Number" xml:space="preserve">
+    <value>Hotels</value>
+  </data>
+  <data name="OrderBy" xml:space="preserve">
+    <value>Order By</value>
+  </data>
+  <data name="Name desc" xml:space="preserve">
+    <value>Name By Desc</value>
+  </data>
+  <data name="Name asc" xml:space="preserve">
+    <value>Name By Asc</value>
+  </data>
+  <data name="Price desc" xml:space="preserve">
+    <value>Price By Description</value>
+  </data>
+  <data name="Rate desc" xml:space="preserve">
+    <value>Rate By Description</value>
+  </data>
+  <data name="Active" xml:space="preserve">
+    <value>Active</value>
+  </data>
+  <data name="Inactive" xml:space="preserve">
+    <value>Inactive</value>
+  </data>
+  <data name="_Details" xml:space="preserve">
+    <value>Details</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="Price" xml:space="preserve">
+    <value>Price</value>
+  </data>
+  <data name="Distance" xml:space="preserve">
+    <value>Distance</value>
+  </data>
+  <data name="AttachmentCount" xml:space="preserve">
+    <value>Attachment Count</value>
+  </data>
+  <data name="OrderById" xml:space="preserve">
+    <value>Default</value>
+  </data>
 </root>

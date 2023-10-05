@@ -423,4 +423,61 @@
   <data name="Rate" xml:space="preserve">
     <value>التقييم</value>
   </data>
+  <data name="All Hotels Description" xml:space="preserve">
+    <value>الفنادق المسجلة على النظام</value>
+  </data>
+  <data name="Active and Inactive" xml:space="preserve">
+    <value>مفعلة وغير مفعلة</value>
+  </data>
+  <data name="You can use advanced search and sorting to get the best results" xml:space="preserve">
+    <value>يمكنك استخدام البحث المتقدم والترتيب للحصول على افضل نتائج</value>
+  </data>
+  <data name="Search with specific word" xml:space="preserve">
+    <value>ابحث بكلمات مخصصة</value>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>اجمالي</value>
+  </data>
+  <data name="Hotel Number" xml:space="preserve">
+    <value>عدد فنادق</value>
+  </data>
+  <data name="OrderBy" xml:space="preserve">
+    <value>ترتيب</value>
+  </data>
+  <data name="Name desc" xml:space="preserve">
+    <value>ترتيب تنازلي بالاسم</value>
+  </data>
+  <data name="Name asc" xml:space="preserve">
+    <value>ترتيب تصاعدي بالاسم</value>
+  </data>
+  <data name="Price desc" xml:space="preserve">
+    <value>ترتيب بالسعر</value>
+  </data>
+  <data name="Rate desc" xml:space="preserve">
+    <value>ترتيب بالتقييم</value>
+  </data>
+  <data name="Active" xml:space="preserve">
+    <value>مفعل</value>
+  </data>
+  <data name="Inactive" xml:space="preserve">
+    <value>غير مفعل</value>
+  </data>
+  <data name="_Details" xml:space="preserve">
+    <value>تفاصيل</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>تعديل</value>
+  </data>
+  <data name="Price" xml:space="preserve">
+    <value>السعر</value>
+  </data>
+  <data name="Distance" xml:space="preserve">
+    <value>المسافة</value>
+  </data>
+  <data name="AttachmentCount" xml:space="preserve">
+    <value>عدد المرفقات</value>
+  </data>
+  <data name="OrderById" xml:space="preserve">
+    <value>افتراضي</value>
+  </data>
 </root>

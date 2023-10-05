@@ -81,6 +81,10 @@ $(document).on('submit', "#general-modal", function (e) {
             if ($('.dataTable').length > 0) {
                 $('.dataTable').DataTable().draw();
             }
+
+            if ($('.gridView').length > 0) {
+                loadRows();
+            }
             $("#general-modal").modal("hide");
             $("#success-modal").modal("show");
         },
@@ -107,6 +111,10 @@ $(document).on('submit', '.form-delete', function (e) {
         success: function (data) {
             if ($('.dataTable').length > 0) {
                 $('.dataTable').DataTable().draw();
+            }
+
+            if ($('.gridView').length > 0) {
+                loadRows();
             }
 
             $("#delete-modal").modal("hide");
@@ -140,6 +148,11 @@ $(document).on('submit', "#offcanvasAddItem", function (e) {
             if ($('.dataTable').length > 0) {
                 $('.dataTable').DataTable().draw();
             }
+
+            if ($('.gridView').length > 0) {
+                loadRows();
+            }
+            
             let openedCanvas = bootstrap.Offcanvas.getInstance($("#offcanvasAddItem"));
             openedCanvas.hide();
             $("#offcanvasAddItem").empty();
