@@ -151,14 +151,41 @@ $(function () {
                     action: function (e, dt, button, config) {
                         if ($("#create").hasClass('open-modal')) {
                             var href = $("#create").attr('href');
-                            $('.general-modal-form-content').load(href);
-                            $("#general-modal").modal("show");
+                            $.ajax({
+                                url: href,
+                                method: 'GET',
+                                beforeSend: function () {
+                                    $('#cover-spin').show();
+                                },
+                                complete: function () {
+                                    $('#cover-spin').hide();
+                                },
+                                success: function (data) {
+                                    $('.general-modal-form-content').html(data);
+                                    $("#general-modal").modal("show");
+                                },
+                            });
+
                         }
                         else if ($("#create").hasClass('open-modal-side')) {
                             var href = $("#create").attr('href');
-                            $('#offcanvasAddItem').load(href);
-                            var bsOffcanvas = new bootstrap.Offcanvas($("#offcanvasAddItem"))
-                               bsOffcanvas.show()
+                            $.ajax({
+                                url: href,
+                                method: 'GET',
+                                beforeSend: function () {
+                                    $('#cover-spin').show();
+                                },
+                                complete: function () {
+                                    $('#cover-spin').hide();
+                                },
+                                success: function (data) {
+                                    $('#offcanvasAddItem').html(data);
+                                    var bsOffcanvas = new bootstrap.Offcanvas($("#offcanvasAddItem"))
+                                    bsOffcanvas.show()
+                                },
+                            });
+
+                          
                         }
                         else {
                             window.location = $('#create').attr('href');

@@ -5,12 +5,22 @@ $('body').on('change', '.filter-input', function () {
     }
 });
 
-$("button[type=reset]").on("click", function () {
+$(".filter-submit-btn").on("click", function () {
+    event.preventDefault();
     $(".dt-date").each(function () {
         $(this).val('');
     });
     $("select.filter-input").each(function () {
-        $(this).val($(this).find("option:not([disabled]):first").val());
+      
+        var exists = $(this).children('option').filter(function () { return $(this).val() == '0'; }).length;
+        if (exists == 1) {
+            $(this).val('0').change();
+        }
+        else {
+            $(this).val('').change();
+
+        }
+    
     });
 
     if ($('.dataTable').length > 0) {
