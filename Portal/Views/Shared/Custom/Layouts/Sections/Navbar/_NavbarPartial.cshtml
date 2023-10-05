@@ -34,6 +34,19 @@
 }
 
 <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
+    <!-- Search -->
+    @if (Convert.ToBoolean(TempData.Peek("menuHorizontal")).ToString() != "True")
+    {
+        <div class="navbar-nav align-items-center">
+            <div class="nav-item navbar-search-wrapper mb-0">
+                <a class="nav-item nav-link search-toggler d-flex align-items-center px-0" href="javascript:void(0);">
+                    <i class="ti ti-search ti-md me-2"></i>
+                    <span class="d-none d-md-inline-block text-muted">@Localizer.Get("Search") (Ctrl+/)</span>
+                </a>
+            </div>
+        </div>
+    }
+    <!-- /Search -->
     <ul class="navbar-nav flex-row align-items-center ms-auto">
         <!-- Language -->
         <li class="nav-item dropdown-language dropdown me-2 me-xl-0">
@@ -42,26 +55,32 @@
             </a>
             <ul class="dropdown-menu dropdown-menu-end">
 
-                <li>
-                    <a class="dropdown-item" asp-action="Culture" asp-area=""
-                       asp-controller="Home" asp-route-culture="ar">
-                        <span class="align-middle">@Localizer.Get("ar")</span>
-                    </a>
-                </li>
                 @foreach (DBModelsEnum.LanguageEnum language in Enum.GetValues(typeof(DBModelsEnum.LanguageEnum)))
                 {
                     <li>
                         <a class="dropdown-item" asp-action="Culture" asp-area=""
-                       asp-controller="Home" asp-route-culture="@language">
+                           asp-controller="Home" asp-route-culture="@language">
                             <span class="align-middle">@Localizer.Get($"{language}")</span>
                         </a>
                     </li>
-             
+
                 }
-               
+
             </ul>
         </li>
         <!--/ Language -->
+        <!-- Search -->
+        @if (Convert.ToBoolean(TempData.Peek("menuHorizontal")).ToString() == "True")
+        {
+            <li class="navbar-nav align-items-center me-2 me-xl-0">
+                <span class="nav-item navbar-search-wrapper mb-0">
+                    <a class="nav-item nav-link search-toggler d-flex align-items-center" href="javascript:void(0);">
+                        <i class="ti ti-search ti-md"></i>
+                    </a>
+                </span>
+            </li>
+        }
+        <!-- /Search -->
         <!-- Style Switcher -->
         <li class="nav-item dropdown-style-switcher dropdown me-2 me-xl-0">
             <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
@@ -90,7 +109,7 @@
         <li class="nav-item navbar-dropdown dropdown-user dropdown">
             <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
                 <div class="avatar avatar-online">
-                    <img src="~/custom/img/admin.png"  class="h-auto rounded-circle">
+                    <img src="~/custom/img/admin.png" class="h-auto rounded-circle">
                 </div>
             </a>
             <ul class="dropdown-menu dropdown-menu-end">
@@ -99,7 +118,7 @@
                         <div class="d-flex">
                             <div class="flex-shrink-0 me-3">
                                 <div class="avatar avatar-online">
-                                    <img src="~/custom/img/admin.png"  class="h-auto rounded-circle">
+                                    <img src="~/custom/img/admin.png" class="h-auto rounded-circle">
                                 </div>
                             </div>
                             <div class="flex-grow-1">
@@ -109,12 +128,12 @@
                         </div>
                     </a>
                 </li>
-     
+
                 <li>
                     <div class="dropdown-divider"></div>
                 </li>
 
-              
+
                 <li>
                     <a class="dropdown-item" asp-action="MyProfile" asp-controller="User" asp-area="UserEntity">
                         <i class="ti ti-user-check me-2 ti-sm"></i>

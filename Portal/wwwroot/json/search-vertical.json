@@ -6,6 +6,11 @@
       "url": "/Dashboards/Analytics"
     },
     {
+      "name": "Test Page",
+      "icon": "ti-smart-home",
+      "url": "Test/TestPage"
+    },
+    {
       "name": "Dashboard CRM",
       "icon": "ti-smart-home",
       "url": "/Dashboards/CRM"

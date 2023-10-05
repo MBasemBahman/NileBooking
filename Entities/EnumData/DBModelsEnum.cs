@@ -30,19 +30,20 @@
             AccountType = 11,
             Country = 12,
             Area = 13,
-			BookingState = 14,
-			HotelType = 15,
-			HotelFeatureCategory = 16,
-			HotelFeature = 17,
-			RoomType = 18,
-			RoomFoodType = 19,
+            BookingState = 14,
+            HotelType = 15,
+            HotelFeatureCategory = 16,
+            HotelFeature = 17,
+            RoomType = 18,
+            RoomFoodType = 19,
             Account = 20
 
-		}
+        }
 
         public enum LanguageEnum
         {
-            en =1,
+            en = 1,
+            ar = 2
         }
 
         public enum AccountStateEnum
