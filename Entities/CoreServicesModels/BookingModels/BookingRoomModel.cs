@@ -43,4 +43,26 @@ namespace Entities.CoreServicesModels.BookingModels
         public List<BookingRoomExtraModel> BookingRoomExtras { get; set; }
 
     }
+
+    public class BookingRoomCreateModel
+    {
+        public int Fk_Booking { get; set; }
+
+        public int Fk_HotelRoom { get; set; }
+
+        [DisplayName(nameof(AdultCount))]
+        public int AdultCount { get; set; }
+
+        [DisplayName(nameof(ChildCount))]
+        public int ChildCount { get; set; }
+
+        [DisplayName(nameof(TotalAdultPrice))]
+        public double TotalAdultPrice { get; set; }
+
+        [DisplayName(nameof(TotalChildPrice))]
+        public double TotalChildPrice { get; set; }
+
+        public List<BookingRoomExtraCreateModel> BookingRoomExtras { get; set; }
+    }
+
 }

@@ -43,7 +43,6 @@
         public enum LanguageEnum
         {
             en = 1,
-            ar = 2
         }
 
         public enum AccountStateEnum

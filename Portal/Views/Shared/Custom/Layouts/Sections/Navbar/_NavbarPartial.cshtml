@@ -55,6 +55,12 @@
             </a>
             <ul class="dropdown-menu dropdown-menu-end">
 
+                <li>
+                    <a class="dropdown-item" asp-action="Culture" asp-area=""
+                       asp-controller="Home" asp-route-culture="ar">
+                        <span class="align-middle">@Localizer.Get($"ar")</span>
+                    </a>
+                </li>
                 @foreach (DBModelsEnum.LanguageEnum language in Enum.GetValues(typeof(DBModelsEnum.LanguageEnum)))
                 {
                     <li>
