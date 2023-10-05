@@ -1,0 +1,55 @@
+﻿@model HotelDto
+
+@{
+    Layout = null;
+}
+<div class="row">
+    <div class="col-xl-7 col-12">
+        <dl class="row mb-0">
+            <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.Name):</dt>
+            <dd class="col-sm-8 mb-1">@Model.Name</dd>
+            
+            <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.Price):</dt>
+            <dd class="col-sm-8 mb-1">@Model.Price</dd>
+            
+            <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.Address):</dt>
+            <dd class="col-sm-8 mb-1">@Model.Address</dd>
+            
+            <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.Description):</dt>
+            <dd class="col-sm-8 mb-1">@Model.Description</dd>
+            
+            <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.AttachmentCount):</dt>
+            <dd class="col-sm-8 mb-1">@Model.AttachmentCount</dd>
+        </dl>
+    </div>
+    <div class="col-xl-5 col-12">
+        <dl class="row mb-0">
+            <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.HotelType):</dt>
+            <dd class="col-sm-8 mb-1">@Model.HotelType.Name</dd>
+            
+            <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.Rate):</dt>
+            <dd class="col-sm-8 mb-1">@Model.Rate</dd>
+            
+            <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.Area):</dt>
+            <dd class="col-sm-8 mb-1">@Model.Area.Name</dd>
+            
+            <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.Distance):</dt>
+            <dd class="col-sm-8 mb-1">@Model.Distance</dd>
+            
+            <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.BookingsCount):</dt>
+            <dd class="col-sm-8 mb-1">@Model.BookingsCount</dd>
+        </dl>
+    </div>
+</div>
+<hr />
+<div class="row">
+    <div class="col-xl-7 col-12">
+        <dl class="row mb-0">
+            <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.CreatedAt):</dt>
+            <dd class="col-sm-8 mb-1">@Model.CreatedAt</dd>
+        </dl>
+    </div>
+</div>
+
+
+
