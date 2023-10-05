@@ -1,6 +1,6 @@
-$(document).on('click', '.modal-btn-edit', function () {
-    event.preventDefault();
-    
+$(document).on('click', '.modal-btn-edit', function (e) {
+    e.preventDefault();
+
     // Make an AJAX request to fetch content from the URL
     $.ajax({
         url: $(this).attr('href'),
@@ -26,9 +26,9 @@ $(document).on('click', '.modal-btn-delete', function (e) {
     $('#delete-modal').modal('show');
 });
 
-$(document).on('click', '.modal-btn-details', function () {
-    event.preventDefault();
-    
+$(document).on('click', '.modal-btn-details', function (e) {
+    e.preventDefault();
+
     $.ajax({
         url: $(this).attr('href'),
         method: 'GET',
@@ -45,8 +45,8 @@ $(document).on('click', '.modal-btn-details', function () {
     });
 });
 
-$(document).on('click', '.modal-btn-edit-side', function () {
-    event.preventDefault();
+$(document).on('click', '.modal-btn-edit-side', function (e) {
+    e.preventDefault();
     // Make an AJAX request to fetch content from the URL
     $.ajax({
         url: $(this).attr('href'),
@@ -65,8 +65,8 @@ $(document).on('click', '.modal-btn-edit-side', function () {
     });
 });
 
-$(document).on('submit', "#general-modal", function () {
-    event.preventDefault();
+$(document).on('submit', "#general-modal", function (e) {
+    e.preventDefault();
     $.ajax({
         type: $('.general-modal-form-content form').attr('method'),
         url: $('.general-modal-form-content form').attr('action'),
@@ -108,7 +108,7 @@ $(document).on('submit', '.form-delete', function (e) {
             if ($('.dataTable').length > 0) {
                 $('.dataTable').DataTable().draw();
             }
-            
+
             $("#delete-modal").modal("hide");
             $("#success-modal").modal("show");
         },
@@ -120,16 +120,16 @@ $(document).on('submit', '.form-delete', function (e) {
     });
 });
 
-$(document).on('submit', "#offcanvasAddItem", function () {
-    event.preventDefault();
+$(document).on('submit', "#offcanvasAddItem", function (e) {
+    e.preventDefault();
     var form = $('#offcanvasAddItem form');
     var formData = new FormData(form[0]);
     $.ajax({
         type: $('#offcanvasAddItem form').attr('method'),
         url: $('#offcanvasAddItem form').attr('action'),
         data: formData,
-        contentType: false, 
-        processData: false, 
+        contentType: false,
+        processData: false,
         beforeSend: function () {
             $('#cover-spin').show();
         },
@@ -164,7 +164,7 @@ function assignUlErrors(errors) {
     });
 
     list += '</ul>';
-    
+
     return list;
 }
 
