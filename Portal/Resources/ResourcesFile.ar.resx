@@ -480,4 +480,7 @@
   <data name="OrderById" xml:space="preserve">
     <value>افتراضي</value>
   </data>
+  <data name="You are not authorized for this page!" xml:space="preserve">
+    <value>أنت غير مصرح لك بهذه الصفحة!</value>
+  </data>
 </root>

@@ -480,4 +480,7 @@
   <data name="OrderById" xml:space="preserve">
     <value>Default</value>
   </data>
+  <data name="You are not authorized for this page!" xml:space="preserve">
+    <value>You are not authorized for this page!</value>
+  </data>
 </root>

@@ -10,8 +10,10 @@
         {
 
         }
-        public IActionResult Index()
+        public IActionResult Index(bool isNotAuth = false)
         {
+            ViewData["isNotAuth"] = isNotAuth;
+
             return View();
         }
 
