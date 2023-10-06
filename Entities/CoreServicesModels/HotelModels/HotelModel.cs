@@ -5,6 +5,8 @@ namespace Entities.CoreServicesModels.HotelModels
 {
     public class HotelParameters : RequestParameters
     {
+        public string TxtSearch { get; set; }
+        
         public int Fk_HotelType { get; set; }
 
         public int Fk_Area { get; set; }

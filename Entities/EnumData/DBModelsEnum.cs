@@ -36,8 +36,11 @@
             HotelFeature = 17,
             RoomType = 18,
             RoomFoodType = 19,
-            Account = 20
-
+            Account = 20,
+            Hotel = 21,
+            HotelAttachment = 22,
+            HotelExtraPrice = 23,
+            HotelRoom = 24,
         }
 
         public enum LanguageEnum

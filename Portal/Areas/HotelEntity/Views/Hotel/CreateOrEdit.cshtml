@@ -1,0 +1,240 @@
+﻿@model HotelCreateOrEditModel
+@{
+	ViewData["Title"] = $"{Localizer.Get("CreateOrEdit")} {Localizer.Get("Hotel")}";
+	Layout = null;
+}
+
+<div class="text-center mb-4">
+	<h3 class="mb-2 modal-title">@Localizer.Get("Hotels")</h3>
+	<p class="text-muted modal-subtitle">@ViewData["Title"]</p>
+</div>
+<div class="row g-3 ">
+	<form asp-action="CreateOrEdit">
+		<div asp-validation-summary="All" class="text-danger">@ViewData["Error"]</div>
+		<div class="row g-3">
+			<div class="col-md-6">
+				<label class="form-label" asp-for="Name"></label>
+				<input asp-for="Name" class="form-control" placeholder="@Localizer.Get("Enter") @(Localizer.Get("Name"))">
+				<span asp-validation-for="Name" class="text-danger"></span>
+			</div>
+
+			@{
+				int i = 0;
+				foreach (DBModelsEnum.LanguageEnum language in Enum.GetValues(typeof(DBModelsEnum.LanguageEnum)))
+				{
+					<div class="col-md-6">
+						<label class="form-label">@Localizer.Get($"Name") @Localizer.Get($"In{language.ToString()}")</label>
+						<input asp-for="HotelLangs[i].Name" class="form-control" placeholder="@Localizer.Get("Enter") @(Localizer.Get("Name"))">
+						<span asp-validation-for="HotelLangs[i].Name" class="text-danger"></span>
+						<input type="hidden" asp-for="HotelLangs[i].Language" value="@language" />
+					</div>
+					i++;
+				}
+			}
+
+			<div class="col-md-12">
+				<label class="form-label" asp-for="LocationUrl"></label>
+				<input asp-for="LocationUrl" class="form-control" placeholder="@Localizer.Get("Enter") @(Localizer.Get("LocationUrl"))">
+				<span asp-validation-for="LocationUrl" class="text-danger"></span>
+			</div>
+			
+			<div class="col-md-12">
+				<label class="form-label" asp-for="Address"></label>
+				<input asp-for="Address" class="form-control" placeholder="@Localizer.Get("Enter") @(Localizer.Get("Address"))">
+				<span asp-validation-for="Address" class="text-danger"></span>
+			</div>
+			
+			<div class="col-md-6">
+				<label class="form-label" asp-for="Fk_HotelType"></label>
+				<select asp-for="Fk_HotelType" class="select2 form-select" asp-items="@(new SelectList(ViewData["HotelType"] as Dictionary<string, string>, "Key", "Value"))">
+				</select>
+				<span asp-validation-for="Fk_HotelType" class="text-danger"></span>
+			</div>
+			
+			<div class="col-md-6">
+				<label class="form-label" asp-for="Fk_Area"></label>
+				<select asp-for="Fk_Area" class="select2 form-select" asp-items="@(new SelectList(ViewData["Area"] as Dictionary<string, string>, "Key", "Value"))">
+					<option value="">@Localizer.Get("Not Specific")</option>
+				</select>
+				<span asp-validation-for="Fk_Area" class="text-danger"></span>
+			</div>
+			
+			<div class="col-md-12">
+				<label class="form-label" asp-for="Description"></label>
+				<textarea asp-for="Description" class="form-control" placeholder="@Localizer.Get("Enter") @(Localizer.Get("Description"))"></textarea>
+				<span asp-validation-for="Description" class="text-danger"></span>
+			</div>
+			
+			<div class="col-md-4">
+				<input hidden asp-for="@Model.Rate" />
+                                                        
+                <label class="form-label">@Localizer.Get("Rate")</label>
+                <ul class="unstyled-list list-inline">
+                    <li class="ratings-list-item">
+                        @for (int j = 0; j < 5; j++)                                        
+                        {
+	                        <i class="rating_star fa-@(j < Model.Rate ? "solid" : "regular") fa-star"></i>
+                        }
+                    </li>
+                </ul>
+			</div>
+			
+			<div class="col-md-4">
+				<label class="form-label" asp-for="IsActive"></label>
+				<select asp-for="IsActive" class="form-control">
+					<option value="true">@Localizer.Get("Yes")</option>
+					<option value="false">@Localizer.Get("No")</option>
+				</select>
+				<span asp-validation-for="IsActive" class="text-danger"></span>
+			</div>
+			
+			<div class="col-md-4">
+				<label class="form-label" asp-for="IsRecommended"></label>
+				<select asp-for="IsRecommended" class="form-control">
+					<option value="true">@Localizer.Get("Yes")</option>
+					<option value="false">@Localizer.Get("No")</option>
+				</select>
+				<span asp-validation-for="IsRecommended" class="text-danger"></span>
+			</div>
+			
+			<div class="col-md-6 col-12">
+                <div class="mb-1">
+                    <input hidden asp-for="Latitude" value="@(Model.Latitude > 0 ? Model.Latitude : 31.189944140292372)" />
+                </div>
+            </div>
+
+            <div class="col-md-6 col-12">
+                <div class="mb-1">
+                    <input hidden asp-for="Longitude" value="@(Model.Longitude > 0 ? Model.Longitude : 31.189944140292372)" />
+                </div>
+            </div>
+
+			<div class="col-md-12 col-12">
+				<label class="form-label" asp-for="Address"></label>
+				<input id="searchmap" class="form-control form-control-md controls mt-1" type="text" placeholder="Search Box"/>
+				<div id="map" style="border-radius: 10px; border: solid grey 1px"></div>
+			</div>
+			
+			<div class="col-md-12">
+				<label class="form-label" asp-for="Fk_HotelSelectedFeatures"></label>
+				<select asp-for="Fk_HotelSelectedFeatures" class="select2 form-select" asp-items="@(new SelectList(ViewData["HotelFeatures"] as Dictionary<string, string>, "Key", "Value"))">
+				</select>
+				<span asp-validation-for="Fk_HotelSelectedFeatures" class="text-danger"></span>
+			</div>
+			
+		</div>
+		<hr class="my-4 mx-n4">
+		<div class="pt-4 text-center">
+			<button type="submit" class="btn btn-primary me-sm-3 me-1 waves-effect waves-light" fdprocessedid="cb7r5">@Localizer.Get("Submit")</button>
+			<button type="reset" class="btn btn-label-secondary waves-effect" fdprocessedid="v445du">@Localizer.Get("Reset")</button>
+		</div>
+	</form>
+
+</div>
+
+<script>
+	$('.select2').select2();
+</script>	
+<script async
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBsslSko4PJRCGEYl_fNYURzb3nMtKUyho&callback=initMap&libraries=places&v=weekly">
+</script>
+
+<script>
+	longitude = @(Model.Longitude > 0 ? Model.Longitude : "31.189944140292372");
+	latitude = @(Model.Latitude > 0 ? Model.Latitude : "31.189944140292372");
+		
+	async function initMap() {
+	
+	  const { Map } = await google.maps.importLibrary("maps");
+	
+	  let map = null;
+	  
+	  map = new Map(document.getElementById("map"), {
+		center: { lat: latitude, lng: longitude },
+		zoom: 14,
+	  });
+	  
+	  let marker = new google.maps.Marker({
+		position: { lat: latitude, lng: longitude },
+		map,
+		draggable: true,
+	  });
+	  
+	  marker.addListener("dragend", e => {
+		 const position = marker.position;
+			 $('input[name=Latitude]').val(position.lat());
+			 $('input[name=Longitude]').val(position.lng());
+	  });
+	  
+	  map.addListener("click", (event) => {
+		  marker.setPosition(event.latLng);
+		  $('input[name=Latitude]').val(event.latLng.lat());
+		  $('input[name=Longitude]').val(event.latLng.lng());
+		});
+	  
+	  // Start::ADD Search Box
+		const input = document.getElementById("searchmap");
+		const searchBox = new google.maps.places.SearchBox(input);
+	  
+		map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+		// Bias the SearchBox results towards current map's viewport.
+		map.addListener("bounds_changed", () => {
+		  searchBox.setBounds(map.getBounds());
+		});
+	  
+		let markers = [];
+	  
+		// Listen for the event fired when the user selects a prediction and retrieve
+		// more details for that place.
+		searchBox.addListener("places_changed", () => {
+		  const places = searchBox.getPlaces();
+	  
+		  if (places.length == 0) {
+			return;
+		  }
+	  
+		  // Clear out the old markers.
+		  markers.forEach((marker) => {
+			marker.setMap(null);
+		  });
+		  markers = [];
+	  
+		  // For each place, get the icon, name and location.
+		  const bounds = new google.maps.LatLngBounds();
+	  
+		  places.forEach((place) => {
+			if (!place.geometry || !place.geometry.location) {
+			  console.log("Returned place contains no geometry");
+			  return;
+			}
+	  
+			const icon = {
+			  url: place.icon,
+			  size: new google.maps.Size(71, 71),
+			  origin: new google.maps.Point(0, 0),
+			  anchor: new google.maps.Point(17, 34),
+			  scaledSize: new google.maps.Size(25, 25),
+			};
+	  
+			// Create a marker for each place.
+			
+			if (place.geometry.viewport) {
+			  // Only geocodes have viewport.
+			  bounds.union(place.geometry.viewport);
+			} else {
+			  bounds.extend(place.geometry.location);
+			}
+		  });
+		  map.fitBounds(bounds);
+		});
+		// End::ADD Search Box
+	}
+	
+	
+	$(document).on('click', '.rating_star', function() {
+		$('.rating_star').removeClass('fa-solid').addClass('fa-regular');
+		$(this).prevAll('.rating_star').addBack().removeClass('fa-regular').addClass('fa-solid');
+		
+		$("input[name=Rate]").val($(this).prevAll('.rating_star').addBack().length);
+	});
+</script>

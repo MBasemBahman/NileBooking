@@ -1786,4 +1786,10 @@
     <Folder Include="wwwroot\Upload\Account\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <AdditionalFiles Include="Areas\HotelEntity\Views\Hotel\CreateOrEdit.cshtml" />
+    <AdditionalFiles Include="Areas\HotelEntity\Views\Hotel\Details.cshtml" />
+    <AdditionalFiles Include="Areas\HotelEntity\Views\Hotel\Index.cshtml" />
+  </ItemGroup>
+
 </Project>

@@ -89,7 +89,7 @@ namespace CoreService.Logic
                                           }).ToList()
                                       }).ToList() : null,
 
-                                  ImageUrl = !string.IsNullOrEmpty(a.ImageUrl) ? a.StorageUrl + a.ImageUrl : "/hotel.png",
+                                  ImageUrl = !string.IsNullOrEmpty(a.ImageUrl) ? a.StorageUrl + a.ImageUrl : "/custom/img/hotel.jpg",
                                   LocationUrl = a.LocationUrl,
                                   CreatedAt = a.CreatedAt,
                                   CreatedBy = a.CreatedBy,
@@ -198,6 +198,11 @@ namespace CoreService.Logic
         public int GetHotelsCount()
         {
             return _repository.Hotel.Count();
+        }
+        
+        public int GetHotelsCount(HotelParameters parameters)
+        {
+            return GetHotels(parameters,  language:  null).Count();
         }
 
         public async Task DeleteHotel(int id)
@@ -331,7 +336,7 @@ namespace CoreService.Logic
 
         public void UpdateHotelFeatures(int fk_Hotel, List<int> hotelFeatures)
         {
-            if (!hotelFeatures.Any())
+            if (hotelFeatures == null || !hotelFeatures.Any())
             {
                 return;
             }

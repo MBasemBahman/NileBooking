@@ -191,6 +191,24 @@ namespace Portal.MappingProfileCls
             #endregion
 
             #region Hotel Models
+            
+            #region Hotel
+            _ = CreateMap<Hotel, HotelCreateOrEditModel>()
+                .ForMember(dest => dest.ImageUrl, opt => opt.Ignore());
+
+            _ = CreateMap<HotelCreateOrEditModel, Hotel>()
+                .ForMember(dest => dest.StorageUrl, opt => opt.Ignore())
+                .ForMember(dest => dest.ImageUrl, opt => opt.Ignore());
+
+            _ = CreateMap<HotelModel, HotelDto>();
+
+            _ = CreateMap<HotelFilter, HotelParameters>();
+
+            _ = CreateMap<HotelLang, HotelLangModel>();
+
+            _ = CreateMap<HotelLangModel, HotelLang>();
+            #endregion
+            
             #region Hotel Type
             _ = CreateMap<HotelType, HotelTypeCreateOrEditModel>();
 

@@ -387,4 +387,97 @@
   <data name="Yes" xml:space="preserve">
     <value>Yes</value>
   </data>
+  <data name="Not Specific" xml:space="preserve">
+    <value>Not Specific</value>
+  </data>
+  <data name="LocationUrl" xml:space="preserve">
+    <value>Location Url</value>
+  </data>
+  <data name="Address" xml:space="preserve">
+    <value>Address</value>
+  </data>
+  <data name="Fk_HotelType" xml:space="preserve">
+    <value>Hotel Type</value>
+  </data>
+  <data name="Fk_Area" xml:space="preserve">
+    <value>Area</value>
+  </data>
+  <data name="IsActive" xml:space="preserve">
+    <value>Is Active ?</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="IsRecommended" xml:space="preserve">
+    <value>Is Recommended ?</value>
+  </data>
+  <data name="Fk_HotelSelectedFeatures" xml:space="preserve">
+    <value>Hotel Features</value>
+  </data>
+  <data name="Hotels" xml:space="preserve">
+    <value>Hotels</value>
+  </data>
+  <data name="Hotel" xml:space="preserve">
+    <value>Hotel</value>
+  </data>
+  <data name="Rate" xml:space="preserve">
+    <value>Rate</value>
+  </data>
+  <data name="All Hotels Description" xml:space="preserve">
+    <value>Hotels registered on the system</value>
+  </data>
+  <data name="Active and Inactive" xml:space="preserve">
+    <value>Active and Inactive</value>
+  </data>
+  <data name="You can use advanced search and sorting to get the best results" xml:space="preserve">
+    <value>You can use advanced search and sorting to get the best results</value>
+  </data>
+  <data name="Search with specific word" xml:space="preserve">
+    <value>Search with specific word</value>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>Total</value>
+  </data>
+  <data name="Hotel Number" xml:space="preserve">
+    <value>Hotels</value>
+  </data>
+  <data name="OrderBy" xml:space="preserve">
+    <value>Order By</value>
+  </data>
+  <data name="Name desc" xml:space="preserve">
+    <value>Name By Desc</value>
+  </data>
+  <data name="Name asc" xml:space="preserve">
+    <value>Name By Asc</value>
+  </data>
+  <data name="Price desc" xml:space="preserve">
+    <value>Price By Description</value>
+  </data>
+  <data name="Rate desc" xml:space="preserve">
+    <value>Rate By Description</value>
+  </data>
+  <data name="Active" xml:space="preserve">
+    <value>Active</value>
+  </data>
+  <data name="Inactive" xml:space="preserve">
+    <value>Inactive</value>
+  </data>
+  <data name="_Details" xml:space="preserve">
+    <value>Details</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="Price" xml:space="preserve">
+    <value>Price</value>
+  </data>
+  <data name="Distance" xml:space="preserve">
+    <value>Distance</value>
+  </data>
+  <data name="AttachmentCount" xml:space="preserve">
+    <value>Attachment Count</value>
+  </data>
+  <data name="OrderById" xml:space="preserve">
+    <value>Default</value>
+  </data>
 </root>

@@ -21,7 +21,8 @@ namespace Repository.DBModels.HotelModels
                        parameters.Fk_RoomTypes,
                        parameters.Fk_RoomFoodTypes,
                        parameters.IsActive,
-                       parameters.IsRecommended);
+                       parameters.IsRecommended,
+                       parameters.TxtSearch);
 
         }
 
@@ -64,9 +65,12 @@ namespace Repository.DBModels.HotelModels
            List<int> fk_RoomTypes,
            List<int> fk_RoomFoodTypes,
             bool? isActive,
-            bool? isRecommended)
+            bool? isRecommended,
+            string txtSearch)
         {
             return data.Where(a => (id == 0 || a.Id == id) &&
+                                       (string.IsNullOrEmpty(txtSearch) || a.Name.Contains(txtSearch) ||
+                                        a.HotelType.Name.Contains(txtSearch)) &&
                                        (fk_HotelType == 0 || a.Fk_HotelType == fk_HotelType) &&
                                        (fk_Country == 0 || a.Area.Fk_Country == fk_Country) &&
                                        (fk_Area == 0 || a.Fk_Area == fk_Area) &&
