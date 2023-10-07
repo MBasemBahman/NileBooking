@@ -1,4 +1,5 @@
-﻿using Entities.EnumData;
+﻿using Entities.DBModels.DashboardAdministrationModels;
+using Entities.EnumData;
 
 namespace Entities.CoreServicesModels.DashboardAdministrationModels
 {
@@ -13,23 +14,10 @@ namespace Entities.CoreServicesModels.DashboardAdministrationModels
 
         [DisplayName(nameof(AdministratorsCount))]
         public int AdministratorsCount { get; set; }
-    }
 
-    public class DashboardAdministrationRoleCreateOrEditViewModel
-    {
-        public DashboardAdministrationRoleCreateOrEditModel Role { get; set; }
+          }
 
-        public List<RolePermissionCreateOrEditViewModel> Permissions { get; set; }
-    }
-
-    public class DashboardAdministrationRoleCreateOrEditModel
-    {
-        [DisplayName(nameof(Name))]
-        [Required(ErrorMessage = PropertyAttributeConstants.RequiredMsg)]
-        public string Name { get; set; }
-
-        public List<DashboardAdministrationRoleLangModel> DashboardAdministrationRoleLangs { get; set; }
-    }
+  
 
     public class DashboardAdministrationRoleLangModel
     {
@@ -41,10 +29,24 @@ namespace Entities.CoreServicesModels.DashboardAdministrationModels
         public DBModelsEnum.LanguageEnum Language { get; set; }
     }
 
-    public class RolePermissionCreateOrEditViewModel
+   public class DashboardAdministrationRoleCreateOrEditModel
     {
-        public int Fk_AccessLevel { get; set; }
-        public string AccessLevelName { get; set; }
-        public List<int> Fk_Views { get; set; }
+        [DisplayName($"{nameof(Name)}{PropertyAttributeConstants.ArLang}")]
+        [Required(ErrorMessage = PropertyAttributeConstants.RequiredMsg)]
+        public  string Name { get; set; }
+
+  
+
+        [DisplayName(nameof(DashboardAdministrationRoleLangs))]
+        public List<DashboardAdministrationRoleLangModel> DashboardAdministrationRoleLangs { get; set; }
+
+        public List<AdministrationRolePremissionCreateOrEditModel> RolePremissions { get; set; }
+    }
+
+    public class AdministrationRolePremissionCreateOrEditModel
+    {
+        public int Fk_DashboardAccessLevel { get; set; }
+        [DisplayName(nameof(DashboardView))]
+        public List<int> Fk_DashboardView { get; set; }
     }
 }

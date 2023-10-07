@@ -14,6 +14,8 @@
 
         [DisplayName(nameof(DashboardAdministrationRoleLangs))]
         public List<DashboardAdministrationRoleLang> DashboardAdministrationRoleLangs { get; set; }
+        
+   
     }
 
     public class DashboardAdministrationRoleLang : LangEntity<DashboardAdministrationRole>

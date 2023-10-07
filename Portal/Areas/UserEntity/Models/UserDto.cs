@@ -9,6 +9,7 @@ namespace Portal.Areas.UserEntity.Models
 
         [DisplayName(nameof(LastModifiedAt))]
         public new string LastModifiedAt { get; set; }
+
     }
 
     public class UserCreateOrEditDto

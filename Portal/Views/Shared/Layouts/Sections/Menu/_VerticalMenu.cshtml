@@ -58,8 +58,18 @@
                 </a>
             </li>
         }
+        @if (viewList.Contains((int)DashboardViewEnum.DashboardAdministrator))
+        {
+            <li class='menu-item@(currentPage ==DashboardViewEnum.DashboardAdministrationRole.ToString() ? " active open" : "")'>
+                <a asp-area="DashboardAdministrationEntity" asp-controller="DashboardAdministrator" asp-action="Index" class="menu-link">
+                    <i class="menu-icon tf-icons ti ti-settings"></i>
+                    <div data-i18n="@Localizer.Get("Administrators")">@Localizer.Get("Administrators")</div>
+                </a>
+            </li>
+        }
 
 
+        
         @if (viewList.Contains((int)DashboardViewEnum.AccountType) ||
         viewList.Contains((int)DashboardViewEnum.AccountState) ||
         viewList.Contains((int)DashboardViewEnum.Area) ||

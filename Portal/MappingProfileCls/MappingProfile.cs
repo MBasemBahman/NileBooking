@@ -5,6 +5,7 @@ using Entities.CoreServicesModels.BookingModels;
 using Entities.CoreServicesModels.HotelRoomModels;
 using Entities.CoreServicesModels.HotelModels;
 using Entities.CoreServicesModels.UserModels;
+using Entities.CoreServicesModels.DashboardAdministrationModels;
 #endregion
 
 #region Dto Models
@@ -14,6 +15,7 @@ using Portal.Areas.BookingEntity.Models;
 using Portal.Areas.HotelRoomEntity.Models;
 using Portal.Areas.HotelEntity.Models;
 using Portal.Areas.UserEntity.Models;
+using Portal.Areas.DashboardAdministrationEntity.Models;
 #endregion
 
 #region DB Models
@@ -22,6 +24,7 @@ using Entities.DBModels.LocationModels;
 using Entities.DBModels.BookingModels;
 using Entities.DBModels.HotelRoomModels;
 using Entities.DBModels.HotelModels;
+using Entities.DBModels.DashboardAdministrationModels;
 #endregion
 using Entities.RequestFeatures;
 
@@ -265,6 +268,25 @@ namespace Portal.MappingProfileCls
 
             _ = CreateMap<User, UserCreateOrEditDto>();
             #endregion
+
+            #endregion
+
+            #region Dashboard Administration Models
+
+            #region Dashboards Administration Role
+            CreateMap<DashboardAdministrationRoleModel, DashboardAdministrationRoleDto>();
+            #endregion
+
+            #region Dashboard Administrator
+            _ = CreateMap<DashboardAdministrator, DashboardAdministratorCreateOrEditDto>();
+
+            _ = CreateMap<DashboardAdministratorCreateOrEditDto, DashboardAdministrator>();
+
+            _ = CreateMap<DashboardAdministratorModel, DashboardAdministratorDto>();
+
+            _ = CreateMap<DashboardAdministratorFilter, DashboardAdministratorParameters>();
+            #endregion
+
 
             #endregion
         }

@@ -24,7 +24,13 @@ namespace Portal.Utility
             {
                 throw new Exception("login failed. Wrong user name or password.");
             }
+            _user.DashboardAdministrator = await _unitOfWork.DashboardAdministration.FindByUserId(_user.Id, trackChanges: false);
 
+            if (!_user.DashboardAdministrator.IsActive)
+            {
+                throw new Exception("user deactivated!");
+
+            }
             TokenResponse jwtToken = _jwtUtils.GenerateJwtToken(_user.Id);
 
             RefreshToken refreshToken = await _unitOfWork.User.FindValidRefreshToken(userForAuth.UserName, GetRefreshTokenTTL());
@@ -35,15 +41,12 @@ namespace Portal.Utility
                 _user.RefreshTokens.Add(refreshToken);
             }
 
-
             // remove old refresh tokens from account
             RemoveOldRefreshTokens(_user);
 
             // save changes to db
             await _unitOfWork.Save();
-
-            _user.DashboardAdministrator = await _unitOfWork.DashboardAdministration.FindByUserId(_user.Id, trackChanges: false);
-
+            
             return GetAuthenticatedUser(_user, jwtToken, new TokenResponse(refreshToken.Token, refreshToken.Expires));
         }
 
@@ -54,6 +57,10 @@ namespace Portal.Utility
             if (_user == null)
             {
                 throw new Exception("Invalid token");
+            }
+            if(!_unitOfWork.DashboardAdministration.FindByUserId(_user.Id, trackChanges: false).Result.IsActive)
+            {
+                throw new Exception("user deactivated!");
             }
 
             RefreshToken refreshToken = _user.RefreshTokens.Single(x => x.Token == token);

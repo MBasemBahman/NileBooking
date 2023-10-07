@@ -1,0 +1,67 @@
+﻿@model DashboardAdministratorCreateOrEditDto
+@{
+    ViewData["Title"] = $"{Localizer.Get("CreateOrEdit")} {Localizer.Get("DashboardAdministrator")}";
+    Layout = null;
+}
+
+<div class="offcanvas-header">
+    <h5 id="offcanvasAddUserLabel" class="offcanvas-title">@ViewData["Title"]</h5>
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close" fdprocessedid="zlju9"></button>
+</div>
+
+<div class="offcanvas-body mx-0 flex-grow-0 pt-0 h-100" data-select2-id="6">
+    <form class="add-new-user pt-0 fv-plugins-bootstrap5 fv-plugins-framework" asp-action="CreateOrEdit" enctype="multipart/form-data">
+        <div asp-validation-summary="All" class="text-danger">@ViewData["Error"]</div>
+
+        
+        <div class="mb-3 fv-plugins-icon-container">
+            <label class="form-label" asp-for="User.FirstName"></label>
+            <input asp-for="User.FirstName" class="form-control" placeholder="@Localizer.Get("Enter") @Localizer.Get("FirstName")">
+            <span asp-validation-for="User.FirstName" class="text-danger"></span>
+        </div>
+        <div class="mb-3 fv-plugins-icon-container">
+            <label class="form-label" asp-for="User.LastName"></label>
+            <input asp-for="User.LastName" class="form-control" placeholder="@Localizer.Get("Enter") @Localizer.Get("LastName")">
+            <span asp-validation-for="User.LastName" class="text-danger"></span>
+        </div>
+        <div class="mb-3 fv-plugins-icon-container">
+            <label class="form-label" asp-for="User.UserName"></label>
+            <input asp-for="User.UserName" class="form-control" placeholder="@Localizer.Get("Enter") @Localizer.Get("UserName")">
+            <span asp-validation-for="User.UserName" class="text-danger"></span>
+        </div>
+        <div class="mb-3 fv-plugins-icon-container">
+            <label class="form-label" asp-for="User.Password"></label>
+            <input asp-for="User.Password" type="password" value="@Model.User.Password" class="form-control">
+            <span asp-validation-for="User.Password" class="text-danger"></span>
+        </div>
+        <div class="mb-3 fv-plugins-icon-container">
+            <label class="form-label" asp-for="User.EmailAddress"></label>
+            <input asp-for="User.EmailAddress" class="form-control" placeholder="@Localizer.Get("Enter") @Localizer.Get("EmailAddress")">
+            <span asp-validation-for="User.EmailAddress" class="text-danger"></span>
+        </div>
+        <div class="mb-3 fv-plugins-icon-container">
+            <label class="form-label" asp-for="User.PhoneNumber"></label>
+            <input asp-for="User.PhoneNumber" class="form-control" placeholder="@Localizer.Get("Enter") @Localizer.Get("PhoneNumber")">
+            <span asp-validation-for="User.PhoneNumber" class="text-danger"></span>
+        </div>
+        <div class="mb-3 fv-plugins-icon-container">
+            <label class="form-label" asp-for="Fk_DashboardAdministrationRole"></label>
+            <select asp-for="Fk_DashboardAdministrationRole" class="select2 form-select" asp-items="@(new SelectList(ViewData["Roles"] as Dictionary<string,string>,"Key","Value"))">
+            </select>
+            <span asp-validation-for="Fk_DashboardAdministrationRole" class="text-danger"></span>
+        </div>
+        <div class="mb-3 fv-plugins-icon-container">
+            <label class="form-label" asp-for="JobTitle"></label>
+            <input asp-for="JobTitle" class="form-control" placeholder="@Localizer.Get("Enter") @Localizer.Get("JobTitle")">
+            <span asp-validation-for="JobTitle" class="text-danger"></span>
+        </div>
+
+        <div class="form-check form-check-primary mb-3 fv-plugins-icon-container">
+            <input class="form-check-input" type="checkbox" asp-for="IsActive">
+            <label class="form-check-label" for="IsActive" asp-for="IsActive"></label>
+        </div>
+        <button type="submit" class="btn btn-primary me-sm-3 me-1 data-submit waves-effect waves-light" fdprocessedid="e1r7d">@Localizer.Get("Submit")</button>
+        <button type="reset" class="btn btn-label-secondary waves-effect" data-bs-dismiss="offcanvas" fdprocessedid="p0fymo">@Localizer.Get("Cancel")</button>
+        <input type="hidden">
+    </form>
+</div>

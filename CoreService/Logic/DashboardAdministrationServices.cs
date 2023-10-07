@@ -154,7 +154,8 @@ namespace CoreService.Logic
                            Id = a.Id,
                            CreatedAt = a.CreatedAt,
                            PremissionsCount = a.Premissions.Count,
-                           AdministratorsCount = a.Administrators.Count
+                           AdministratorsCount = a.Administrators.Count,
+                          
                        })
                        .Search(parameters.SearchColumns, parameters.SearchTerm)
                        .Sort(parameters.OrderBy);
@@ -183,86 +184,7 @@ namespace CoreService.Logic
             _repository.DashboardAdministrationRole.Create(dashboardAdministrationRole);
         }
 
-        public void CreateRole(DashboardAdministrationRole dashboardAdministrationRole,
-            List<RolePermissionCreateOrEditViewModel> permissions)
-        {
-
-            dashboardAdministrationRole = AddRolePermissions(dashboardAdministrationRole, permissions);
-            _repository.DashboardAdministrationRole.Create(dashboardAdministrationRole);
-        }
-
-        public DashboardAdministrationRole AddRolePermissions(DashboardAdministrationRole dashboardAdministrationRole,
-            List<RolePermissionCreateOrEditViewModel> permissions)
-        {
-            if (permissions != null && permissions.Any())
-            {
-                dashboardAdministrationRole.Premissions = new List<AdministrationRolePremission>();
-                foreach (RolePermissionCreateOrEditViewModel permission in permissions.Where(a => a.Fk_Views != null && a.Fk_Views.Any()))
-                {
-                    foreach (int fk_view in permission.Fk_Views.Distinct())
-                    {
-                        dashboardAdministrationRole.Premissions.Add(new AdministrationRolePremission
-                        {
-                            Fk_DashboardAccessLevel = permission.Fk_AccessLevel,
-                            Fk_DashboardView = fk_view
-                        });
-                    }
-                }
-            }
-            return dashboardAdministrationRole;
-        }
-
-        public void UpdateRolePermissions(int fk_role, List<RolePermissionCreateOrEditViewModel> permissions)
-        {
-            foreach (RolePermissionCreateOrEditViewModel permission in permissions)
-            {
-                permission.Fk_Views ??= new List<int>();
-
-                List<int> oldViews = GetPremissions(new AdministrationRolePremissionParameters
-                { Fk_DashboardAccessLevel = permission.Fk_AccessLevel, Fk_DashboardAdministrationRole = fk_role }
-                       , language: null).Select(a => a.Fk_DashboardView).ToList();
-
-                List<int> addedViews = permission.Fk_Views.Except(oldViews).ToList();
-                List<int> removedViews = oldViews.Except(permission.Fk_Views).ToList();
-
-                AddRolePermissions(fk_role, permission.Fk_AccessLevel, addedViews);
-                RemoveRolePermissions(fk_role, permission.Fk_AccessLevel, removedViews);
-
-            }
-        }
-
-        private void AddRolePermissions(int fk_role, int fk_accesslevel, List<int> fk_views)
-        {
-            foreach (int fk_view in fk_views)
-            {
-                AdministrationRolePremission premission = new()
-                {
-                    Fk_DashboardAccessLevel = fk_accesslevel,
-                    Fk_DashboardAdministrationRole = fk_role,
-                    Fk_DashboardView = fk_view
-                };
-
-                _repository.AdministrationRolePremission.Create(premission);
-            }
-        }
-
-        private void RemoveRolePermissions(int fk_role, int fk_accesslevel, List<int> fk_views)
-        {
-            foreach (int fk_view in fk_views)
-            {
-                AdministrationRolePremission premission =
-                    _repository.AdministrationRolePremission.FindAll(new AdministrationRolePremissionParameters
-                    {
-                        Fk_DashboardAccessLevel = fk_accesslevel,
-                        Fk_DashboardAdministrationRole = fk_role,
-                        Fk_DashboardView = fk_view
-                    }, trackChanges: false).SingleOrDefault();
-
-                _repository.AdministrationRolePremission.Delete(premission);
-            }
-        }
-
-
+      
         public async Task DeleteRole(int id)
         {
             DashboardAdministrationRole dashboardAdministrationRole = await FindRoleById(id, trackChanges: false);
@@ -277,45 +199,6 @@ namespace CoreService.Logic
         public int GetRolesCount()
         {
             return _repository.DashboardAdministrationRole.Count();
-        }
-
-        public DashboardAdministrationRoleCreateOrEditViewModel GetRoleCreateOrEditViewModel(
-            DashboardAdministrationRoleCreateOrEditModel role,
-            List<RolePermissionCreateOrEditViewModel> permissions,
-            LanguageEnum? language,
-            int id = 0)
-        {
-            DashboardAdministrationRoleCreateOrEditViewModel model = new()
-            {
-                Role = role,
-                Permissions = new List<RolePermissionCreateOrEditViewModel>()
-            };
-
-            if (permissions == null)
-            {
-                foreach (DashboardAccessLevelModel accesslevel in GetAccessLevels(new DashboardAccessLevelParameters()).ToList())
-                {
-                    model.Permissions.Add(new RolePermissionCreateOrEditViewModel
-                    {
-                        Fk_AccessLevel = accesslevel.Id,
-                        AccessLevelName = accesslevel.Name,
-                        Fk_Views = id > 0 ? GetPremissions(
-                            new AdministrationRolePremissionParameters
-                            {
-                                Fk_DashboardAccessLevel = accesslevel.Id,
-                                Fk_DashboardAdministrationRole = id
-                            }, language: null)
-                        .Select(b => b.Fk_DashboardView).ToList()
-                        : new List<int>()
-                    });
-                }
-            }
-            else
-            {
-                model.Permissions = permissions ?? model.Permissions;
-            }
-
-            return model;
         }
         #endregion
 
@@ -334,10 +217,12 @@ namespace CoreService.Logic
                            CreatedBy = a.CreatedBy,
                            LastModifiedAt = a.LastModifiedAt,
                            LastModifiedBy = a.LastModifiedBy,
+                           IsActive = a.IsActive,
                            User = new UserModel
                            {
                                FirstName = a.User.FirstName,
-                               LastName = a.LastModifiedBy,
+                               LastName = a.User.LastName,
+                               FullName = a.User.FullName,
                                UserName = a.User.UserName,
                                PhoneNumber = a.User.PhoneNumber,
                                EmailAddress = a.User.EmailAddress,
@@ -433,6 +318,165 @@ namespace CoreService.Logic
 
 
         #endregion
+
+        public DashboardAdministrationRoleCreateOrEditModel GetRoleCreateOrEditModel(int fk_Role)
+        {
+            DashboardAdministrationRoleCreateOrEditModel model = new DashboardAdministrationRoleCreateOrEditModel()
+            {
+                RolePremissions = new List<AdministrationRolePremissionCreateOrEditModel>(),
+            };
+            if(fk_Role > 0)
+            {
+                var roleDB = FindRoleById(fk_Role, trackChanges: false).Result;
+
+
+
+                model.Name = roleDB.Name;
+
+                if (roleDB.DashboardAdministrationRoleLangs != null && roleDB.DashboardAdministrationRoleLangs.Any())
+                {
+                    model.DashboardAdministrationRoleLangs = new List<DashboardAdministrationRoleLangModel>();
+
+                    foreach(var lang in roleDB.DashboardAdministrationRoleLangs)
+                    {
+                        model.DashboardAdministrationRoleLangs.Add(new DashboardAdministrationRoleLangModel
+                        {
+                            Name = lang.Name,
+                            Language = lang.Language
+                        });
+                    }
+                }
+
+            }
+            foreach (DashboardAccessLevelEnum value in Enum.GetValues(typeof(DashboardAccessLevelEnum)))
+            {
+                model.RolePremissions.Add(new AdministrationRolePremissionCreateOrEditModel
+                {
+                    Fk_DashboardAccessLevel = (int)value,
+                    Fk_DashboardView = fk_Role > 0
+					? GetPremissions(new AdministrationRolePremissionParameters
+					{
+						Fk_DashboardAdministrationRole = fk_Role,
+						Fk_DashboardAccessLevel = (int)value
+					}, language: null).Select(a => a.Fk_DashboardView).ToList()
+					: new List<int>()
+				});
+            
+            }
+
+            return model;
+        }
+
+        public void CreateDashboardAdministrationRole(DashboardAdministrationRoleCreateOrEditModel model)
+        {
+            DashboardAdministrationRole roleDB = new DashboardAdministrationRole()
+            {
+                Name = model.Name,
+            };
+
+            if(model.DashboardAdministrationRoleLangs!=null&& model.DashboardAdministrationRoleLangs.Any())
+            {
+                roleDB.DashboardAdministrationRoleLangs = new List<DashboardAdministrationRoleLang>();
+
+                foreach(var lang in model.DashboardAdministrationRoleLangs)
+                {
+                    roleDB.DashboardAdministrationRoleLangs.Add(new DashboardAdministrationRoleLang
+                    {
+                        Name = lang.Name,
+                        Language = lang.Language,
+                    });
+                }
+            }
+
+            if(model.RolePremissions != null && model.RolePremissions.Any())
+            {
+                roleDB.Premissions = new List<AdministrationRolePremission>();
+
+                foreach(var permission in model.RolePremissions)
+                {
+                 if(permission.Fk_DashboardView != null && permission.Fk_DashboardView.Any())
+                    {
+						foreach (var view in permission.Fk_DashboardView)
+						{
+							roleDB.Premissions.Add(new AdministrationRolePremission
+							{
+								Fk_DashboardAccessLevel = permission.Fk_DashboardAccessLevel,
+								Fk_DashboardView = view,
+							});
+						}
+					}
+                }
+            }
+
+            CreateRole(roleDB);
+        }
+
+        public async Task UpdateDashboardAdministrationRole(int fk_Role,DashboardAdministrationRoleCreateOrEditModel model)
+        {
+            DashboardAdministrationRole roleDB = await FindRoleById(fk_Role, trackChanges: true);
+
+            var oldPermissions = GetPremissions(new AdministrationRolePremissionParameters
+            {
+                Fk_DashboardAdministrationRole = fk_Role
+            }, language: null);
+
+            roleDB.Name = model.Name;
+
+
+
+            foreach (DashboardAccessLevelEnum value in Enum.GetValues(typeof(DashboardAccessLevelEnum)))
+            {
+                var oldViewsAccess = oldPermissions.Where(a => a.Fk_DashboardAccessLevel == (int)value)
+                                               .Select(a => a.Fk_DashboardView).ToList();
+
+                var newViewsAccess = model.RolePremissions.Where(a => a.Fk_DashboardAccessLevel == (int)value)
+                    .FirstOrDefault().Fk_DashboardView;
+
+                newViewsAccess = newViewsAccess ?? new List<int>();
+
+                List<int> deletedViewsAccess = oldViewsAccess.Except(newViewsAccess).ToList();
+
+                List<int> addedViewsAccess = newViewsAccess.Except(oldViewsAccess).ToList();
+
+                DeleteRolePermissions(fk_Role, (int)value, deletedViewsAccess);
+
+                AddRolePermissions(fk_Role,(int)value, addedViewsAccess);
+            }
+
+        }
+        public void DeleteRolePermissions(int fk_Role,int fk_Access,List<int> fk_Views)
+        {
+            if(fk_Views != null && fk_Views.Any())
+            {
+                foreach (int fk_view in fk_Views)
+                {
+                    AdministrationRolePremission premission =
+                        _repository.AdministrationRolePremission.FindAll(new AdministrationRolePremissionParameters
+                        {
+                            Fk_DashboardAccessLevel = fk_Access,
+                            Fk_DashboardAdministrationRole = fk_Role,
+                            Fk_DashboardView = fk_view
+                        }, trackChanges: false).SingleOrDefault();
+
+                    _repository.AdministrationRolePremission.Delete(premission);
+                }
+            }
+        }
+
+        private void AddRolePermissions(int fk_role, int fk_accesslevel, List<int> fk_views)
+        {
+            foreach (int fk_view in fk_views)
+            {
+                AdministrationRolePremission premission = new()
+                {
+                    Fk_DashboardAccessLevel = fk_accesslevel,
+                    Fk_DashboardAdministrationRole = fk_role,
+                    Fk_DashboardView = fk_view
+                };
+
+                _repository.AdministrationRolePremission.Create(premission);
+            }
+        }
 
     }
 }
