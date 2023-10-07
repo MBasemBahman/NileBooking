@@ -60,7 +60,7 @@
         }
         @if (viewList.Contains((int)DashboardViewEnum.DashboardAdministrator))
         {
-            <li class='menu-item@(currentPage ==DashboardViewEnum.DashboardAdministrationRole.ToString() ? " active open" : "")'>
+            <li class='menu-item@(currentPage ==DashboardViewEnum.DashboardAdministrator.ToString() ? " active open" : "")'>
                 <a asp-area="DashboardAdministrationEntity" asp-controller="DashboardAdministrator" asp-action="Index" class="menu-link">
                     <i class="menu-icon tf-icons ti ti-settings"></i>
                     <div data-i18n="@Localizer.Get("Administrators")">@Localizer.Get("Administrators")</div>
