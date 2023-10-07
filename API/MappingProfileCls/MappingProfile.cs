@@ -67,6 +67,8 @@ namespace API.MappingProfileCls
 
             _ = CreateMap<DeviceCreateModel, Device>();
 
+            _ = CreateMap<UserModel, UserDto>();
+
             _ = CreateMap<User, UserDto>();
 
 
