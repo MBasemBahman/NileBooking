@@ -1,0 +1,24 @@
+﻿@model Int32
+@{
+    Layout = null;
+}
+
+<div class="accordion mt-3 mb-4" id="accordionWithIcon">
+    <div class="card accordion-item active">
+        <h2 class="accordion-header d-flex align-items-center">
+            <button type="button" class="accordion-button" data-bs-toggle="collapse" data-bs-target="#accordionWithIcon-1" aria-expanded="true" fdprocessedid="1dle7e">
+                <i class="ti ti-upload ti-xs me-2"></i>
+                @Localizer.Get("UploadAttachment")
+            </button>
+        </h2>
+        <div id="accordionWithIcon-1" class="accordion-collapse collapse show" style="">
+            <div class="accordion-body">
+                <form asp-action="Upload" asp-controller="HotelAttachment" asp-area="HotelEntity" asp-route-fk_Hotel="@Model" enctype="multipart/form-data" class="dropzone" id="dropzone-multi">
+                    <div class="dz-message">
+                        @Localizer.Get("Drop files here or click to upload.")
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -46,6 +46,15 @@ namespace Portal.Areas.HotelEntity.Controllers
             return Json(result);
         }
 
+        public IActionResult Profile(int id)
+        {
+            LanguageEnum? otherLang = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
+
+            HotelDto data = _mapper.Map<HotelDto>(_unitOfWork.Hotel.GetHotelById(id, otherLang));
+
+            return View(data);
+        }
+        
         public IActionResult Details(int id)
         {
             LanguageEnum? otherLang = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
@@ -84,7 +93,6 @@ namespace Portal.Areas.HotelEntity.Controllers
                 #endregion
                 
                 LanguageEnum? otherLang = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
-
                 
                 model.Fk_HotelSelectedFeatures = _unitOfWork.Hotel
                     .GetHotelSelectedFeatures(new HotelSelectedFeaturesParameters
@@ -123,12 +131,17 @@ namespace Portal.Areas.HotelEntity.Controllers
                 if (id == 0)
                 {
                     dataDB = _mapper.Map<Hotel>(model);
+                    dataDB.CreatedBy = auth.UserName;
+                    dataDB.LastModifiedBy = auth.UserName;
+                    
                     _unitOfWork.Hotel.CreateHotel(dataDB);
                 }
                 else
                 {
                     dataDB = await _unitOfWork.Hotel.FindHotelById(id, trackChanges: true);
 
+                    dataDB.LastModifiedBy = auth.UserName;
+                    
                     _ = _mapper.Map(model, dataDB);
                 }
 
@@ -136,7 +149,7 @@ namespace Portal.Areas.HotelEntity.Controllers
 
                 if (imageFile != null)
                 {
-                    dataDB.ImageUrl = await _unitOfWork.Account.UploadAccountImage(_environment.WebRootPath, imageFile);
+                    dataDB.ImageUrl = await _unitOfWork.Hotel.UploadHotelImage(_environment.WebRootPath, imageFile);
                     dataDB.StorageUrl = _linkGenerator.GetUriByAction(HttpContext).GetBaseUri(HttpContext.Request.RouteValues["area"].ToString());
                 }
                 

@@ -480,4 +480,22 @@
   <data name="OrderById" xml:space="preserve">
     <value>Default</value>
   </data>
+  <data name="NotFound" xml:space="preserve">
+    <value>Not Found</value>
+  </data>
+  <data name="CreatedBy" xml:space="preserve">
+    <value>Created By</value>
+  </data>
+  <data name="LastModifiedBy" xml:space="preserve">
+    <value>Last Modified By</value>
+  </data>
+  <data name="LastModifiedAt" xml:space="preserve">
+    <value>Last Modified At</value>
+  </data>
+  <data name="HotelAttachments" xml:space="preserve">
+    <value>Hotel Attachments</value>
+  </data>
+  <data name="UploadAttachment" xml:space="preserve">
+    <value>Upload Attachment</value>
+  </data>
 </root>

@@ -480,4 +480,22 @@
   <data name="OrderById" xml:space="preserve">
     <value>افتراضي</value>
   </data>
+  <data name="NotFound" xml:space="preserve">
+    <value>لا يوجد</value>
+  </data>
+  <data name="CreatedBy" xml:space="preserve">
+    <value>تمت الاضافة بواسطة</value>
+  </data>
+  <data name="LastModifiedBy" xml:space="preserve">
+    <value>اخر تعديل بواسطة</value>
+  </data>
+  <data name="LastModifiedAt" xml:space="preserve">
+    <value>اخر تعديل في</value>
+  </data>
+  <data name="HotelAttachments" xml:space="preserve">
+    <value>مرفقات الفندق</value>
+  </data>
+  <data name="UploadAttachment" xml:space="preserve">
+    <value>رفع مرفقات</value>
+  </data>
 </root>

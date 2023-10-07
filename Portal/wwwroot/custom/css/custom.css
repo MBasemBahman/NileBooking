@@ -83,3 +83,7 @@
     stroke: #babfc7;
     color: #babfc7;
 }
+
+a.nav-link {
+    cursor: pointer;
+}

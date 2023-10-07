@@ -122,7 +122,7 @@ function setHotelTable(hotels) {
                 <div class="progress-bar w-75" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
               </div>
               <div class="d-flex flex-column flex-md-row gap-3 text-nowrap justify-content-center">
-                <a class="app-academy-md-25 btn btn-label-secondary me-md-2 d-flex align-items-center modal-btn-details" href="/HotelEntity/Hotel/Details/${hotel.id}">
+                <a class="app-academy-md-25 btn btn-label-secondary me-md-2 d-flex align-items-center" href="/HotelEntity/Hotel/Profile/${hotel.id}">
                   <i class="ti ti-rotate-clockwise-2 align-middle scaleX-n1-rtl  me-2 mt-n1 ti-sm"></i><span>${ $("#DetailsLbl").val() }</span>
                 </a>
                 <a class="app-academy-md-25 btn btn-label-primary d-flex align-items-center modal-btn-edit" href="/HotelEntity/Hotel/CreateOrEdit/${hotel.id}">

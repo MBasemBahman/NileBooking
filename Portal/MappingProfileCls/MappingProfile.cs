@@ -209,6 +209,14 @@ namespace Portal.MappingProfileCls
             _ = CreateMap<HotelLangModel, HotelLang>();
             #endregion
             
+            #region HotelAttachment
+            
+            _ = CreateMap<HotelAttachmentModel, HotelAttachmentDto>();
+
+            _ = CreateMap<HotelAttachmentFilter, HotelAttachmentParameters>();
+
+            #endregion
+            
             #region Hotel Type
             _ = CreateMap<HotelType, HotelTypeCreateOrEditModel>();
 

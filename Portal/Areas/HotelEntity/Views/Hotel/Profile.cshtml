@@ -1,0 +1,88 @@
+@model HotelDto
+@{
+    ViewData["Title"] = Localizer.Get("Hotels");
+    Layout = "Layouts/_ContentNavbarLayout";
+    var accessLevel = (DashboardAccessLevelModel)ViewData[ViewDataConstants.AccessLevel];
+}
+
+@section VendorStyles{
+  <link rel="stylesheet" href="~/vendor/libs/select2/select2.dist.css" />
+}
+
+@section VendorScripts {
+  <script src="~/vendor/libs/select2/select2.dist.js"></script>
+}
+
+@section PageStyles{
+  <link rel="stylesheet" href="~/vendor/css/pages/page-profile.dist.css" />
+}
+
+@section PageScripts {
+  <script src="~/custom/js/data-table/table-datatables.min.js"></script>
+  <script src="~/custom/js/general/profile-page.js"></script>
+}
+
+@* ************** Content ************** *@
+
+<!-- Header -->
+<div class="row">
+  <div class="col-12">
+    <div class="card mb-4">
+      <div class="user-profile-header-banner">
+        <img src="~/img/pages/profile-banner.png" alt="Banner image" class="rounded-top">
+      </div>
+      <div class="user-profile-header d-flex flex-column flex-sm-row text-sm-start text-center mb-4">
+        <div class="flex-shrink-0 mt-n2 mx-sm-0 mx-auto">
+          <img src="@Model.ImageUrl" alt="user image" class="d-block h-auto ms-0 ms-sm-4 rounded user-profile-img">
+        </div>
+        <div class="flex-grow-1 mt-3 mt-sm-5">
+          <div class="d-flex align-items-md-end align-items-sm-start align-items-center justify-content-md-between justify-content-start mx-4 flex-md-row flex-column gap-4">
+            <div class="user-profile-info">
+              <h4>@Model.Name</h4>
+              <ul class="list-inline mb-0 d-flex align-items-center flex-wrap justify-content-sm-start justify-content-center gap-2">
+                <li class="list-inline-item d-flex gap-1">
+                  <span class="badge bg-@(Model.IsActive ? "success" : "danger")">@Localizer.Get((Model.IsActive ? "Active" : "Inactive"))</span>
+                </li>
+                <li class="list-inline-item d-flex gap-1">
+                  <span class="badge bg-warning"><i class="fa fa-star"></i> @Model.Rate</span>
+                </li>
+                <li class="list-inline-item d-flex gap-1">
+                  <span class="badge bg-facebook">@Model.CreatedAt</span>
+                </li>
+              </ul>
+            </div>
+            <a href="/HotelEntity/Hotel/CreateOrEdit/@Model.Id" class="btn btn-primary modal-btn-edit">
+              <i class='ti ti-edit me-1'></i>@Localizer.Get("Edit")
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--/ Header -->
+
+<!-- Navbar pills -->
+<div class="row">
+  <div class="col-md-12">
+    <ul class="nav nav-pills flex-column flex-sm-row mb-4">
+      <li class="nav-item">
+        <a class="nav-link active" id="/HotelEntity/Hotel/Details/@Model.Id"><i class='ti-xs ti ti-user-check me-1'></i> @Localizer.Get("_Details")</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="/HotelEntity/HotelAttachment/Index?Fk_Hotel=@Model.Id"><i class='ti-xs ti ti-user-check me-1'></i> @Localizer.Get("HotelAttachments")</a>
+      </li>
+    </ul>
+  </div>
+</div>
+<!--/ Navbar pills -->
+
+<!-- User Profile Content -->
+<section id="profile-info">
+  <div class="page_content"></div>
+</section>
+<!--/ User Profile Content -->
+
+<!--Modals -->
+@await Html.PartialAsync("../Shared/Custom/_Partials/_modals")
+<!-- /Modals -->

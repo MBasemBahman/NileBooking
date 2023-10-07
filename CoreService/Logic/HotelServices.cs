@@ -175,6 +175,12 @@ namespace CoreService.Logic
             return await _repository.Hotel.FindById(id, trackChanges);
         }
 
+        public async Task<string> UploadHotelImage(string rootPath, IFormFile file)
+        {
+            FileUploader uploader = new(rootPath);
+            return await uploader.UploadFile(file, "Upload/Hotel");
+        }
+        
         public Dictionary<string, string> GetHotelsLookUp(HotelParameters parameters, LanguageEnum? language)
         {
             return GetHotels(parameters, language).ToDictionary(a => a.Id.ToString(), a => a.Name);

@@ -1784,6 +1784,7 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\Upload\Account\" />
+    <Folder Include="wwwroot\Upload\Hotel\" />
   </ItemGroup>
 
   <ItemGroup>
