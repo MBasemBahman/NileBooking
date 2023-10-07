@@ -1,0 +1,61 @@
+﻿@model DashboardAdministrationRoleCreateOrEditModel
+@{
+    ViewData["Title"] = $"{Localizer.Get("CreateOrEdit")} {Localizer.Get("DashboardAdministrationRole")}";
+    Layout = null;
+
+}
+<div class="text-center mb-4">
+    <h3 class="mb-2 modal-title">@Localizer.Get("DashboardAdministrationRoles")</h3>
+    <p class="text-muted modal-subtitle">@ViewData["Title"]</p>
+</div>
+<div class="row g-3 ">
+    <form asp-action="CreateOrEdit">
+        <div asp-validation-summary="All" class="text-danger">@ViewData["Error"]</div>
+        <div class="row g-3">
+            <div class="col-md-6">
+                <label class="form-label" asp-for="Name"></label>
+                <input asp-for="Name" class="form-control" placeholder="@Localizer.Get("Enter") @(Localizer.Get("Name"))">
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+
+            @{
+                int i = 0;
+                foreach (DBModelsEnum.LanguageEnum language in Enum.GetValues(typeof(DBModelsEnum.LanguageEnum)))
+                {
+                    <div class="col-md-6">
+                        <label class="form-label">@Localizer.Get($"Name") @Localizer.Get($"In{language.ToString()}")</label>
+                        <input asp-for="DashboardAdministrationRoleLangs[i].Name" class="form-control" placeholder="@Localizer.Get("Enter") @(Localizer.Get("Name"))">
+                        <span asp-validation-for="DashboardAdministrationRoleLangs[i].Name" class="text-danger"></span>
+                        <input type="hidden" asp-for="DashboardAdministrationRoleLangs[i].Language" value="@language" />
+                    </div>
+                    i++;
+                }
+            }
+
+            @for (int j = 0; j < Model.RolePremissions.Count; j++)
+            {
+                <input type="hidden" asp-for="RolePremissions[j].Fk_DashboardAccessLevel">
+
+                <div class="col-md-12 col-12">
+                    <label class="form-label">@Localizer.Get(Enum.GetName(typeof(DashboardAccessLevelEnum),Model.RolePremissions[j].Fk_DashboardAccessLevel))</label>
+                    <a style="float:inline-end;font-size:12px" href="#" class="text-danger remove_all">
+                        <span>&nbsp; &nbsp;@Localizer.Get("Remove All")</span>
+                    </a>
+                    <a style="float:inline-end;font-size:12px" href="#" class="text-success choose_all">
+                        <span>&nbsp; &nbsp;@Localizer.Get("Select All")</span>
+                    </a>
+                    <select asp-for="RolePremissions[j].Fk_DashboardView" class="select2 form-select views-select" multiple asp-items="@(new SelectList(ViewData["Views"] as Dictionary<string,string>,"Key","Value"))">
+                    </select>
+                    <span asp-validation-for="RolePremissions[j].Fk_DashboardView" class="text-danger"></span>
+                </div>
+            }
+        </div>
+        <hr class="my-4 mx-n4">
+        <div class="pt-4 text-center">
+            <button type="submit" class="btn btn-primary me-sm-3 me-1 waves-effect waves-light" fdprocessedid="cb7r5">@Localizer.Get("Submit")</button>
+            <button type="reset" class="btn btn-label-secondary waves-effect" fdprocessedid="v445du">@Localizer.Get("Reset")</button>
+        </div>
+    </form>
+</div>
+
+<script src="~/custom/js/pages/roles-create-or-edit.js"></script>

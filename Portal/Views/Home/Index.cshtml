@@ -1,5 +1,19 @@
 ﻿@{
     ViewData["title"] = Localizer.Get("Home");
+    bool isNotAuth = (bool)ViewData["isNotAuth"];
+}
+
+
+@if (isNotAuth)
+{
+    @section PageScripts {
+              <script>
+               $(document).ready(function(){
+                $("#not-auth-modal").modal('show')
+               })
+              </script>
+}
+
 }
 
 @* ************** Content ************** *@
@@ -11,3 +25,7 @@
 
 </div>
 
+@if(isNotAuth){
+    @await Html.PartialAsync("../Shared/Custom/_Partials/_modals")
+
+}

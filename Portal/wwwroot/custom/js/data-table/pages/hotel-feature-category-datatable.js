@@ -17,14 +17,15 @@ $(document).ready(function ()
             columns: [
                 { data: "id" },
                 { data: "name" },
+               
                 {
                     data: "hotelFeaturesCount",
                     render: function (data, type, row) {
-                        return '<div class="d-flex align-items-center my-2">'
-                            + '<span class="badge badge-center rounded-pill bg-label-success w-px-30 h-px-30 me-2">'
-                            + '<i class="ti ti-coffee ti-sm" ></i></span></span>'
-                            + '<h4 class="mb-0 me-2"><a class="text-dark" target="_blank" href="/HotelEntity/HotelFeature/Index?Fk_HotelFeatureCategory=' + row.id + '">' + data + '</a></h4>'
-                            + '<p class="text-success mb-0">(' + row.hotelFeaturesPercent + '%)</p></div>';
+                        return '<div class="d-flex align-items-center">'
+                            + '<p class="mb-0" ><a class="text-primary" target="_blank" href="/HotelEntity/HotelFeature/Index?Fk_HotelFeatureCategory=' + row.id + '">' + data + '</a></p>'
+                            + '<div class="ms-3 badge bg-label-warning">' + row.hotelFeaturesPercent + '%</div>'
+                            + '</div>'
+
                     }
                 },
                 { data: "createdAt" },

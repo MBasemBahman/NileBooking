@@ -1,0 +1,94 @@
+﻿@{
+    ViewData["Title"] = Localizer.Get("Roles");
+    Layout = null;
+}
+
+
+<div class="content-wrapper">
+    <div class="container-xxl flex-grow-1 container-p-y">
+        <div class="row g-4 mb-4 roles-container">
+         
+                <div class="col-xl-4 col-lg-6 col-md-6 add-new-role-container">
+                    <div class="card h-100">
+                        <div class="row h-100">
+                            <div class="col-sm-5">
+                                <div class="d-flex align-items-end h-100 justify-content-center mt-sm-0 mt-3">
+                                    <img src="../../img/illustrations/add-new-roles.png" class="img-fluid mt-sm-4 mt-md-0" alt="add-new-roles" width="83">
+                                </div>
+                            </div>
+                            <div class="col-sm-7">
+                                <div class="card-body text-sm-end text-center ps-sm-0">
+                                    <button class="modal-add-role-btn btn btn-primary mb-2 text-nowrap add-new-role waves-effect waves-light" fdprocessedid="1zj7di">@Localizer.Get("Add New Role")</button>
+                                    <p class="mb-0 mt-1">@Localizer.Get("Add role, if it does not exist")</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+
+        </div>
+    </div>
+</div>
+<div id="role-item-container" class="col-xl-4 col-lg-6 col-md-6" style="display:none">
+    <div class="card">
+        <div class="card-body">
+            <div class="d-flex justify-content-between">
+                <h6 class="fw-normal mb-2">
+                    @Localizer.Get("Total")
+                    <span class="total-users-count text-primary" style="font-size:20px"></span> @Localizer.Get("User")
+                </h6>
+                <ul class="list-unstyled d-flex align-items-center avatar-group mb-0 users-avatars">
+                </ul>
+            </div>
+            <div class="d-flex justify-content-between align-items-end mt-1">
+                <div class="role-heading">
+                    <h4 class="mb-1 role-name"></h4>
+                 
+                        <a class="role-edit-modal edit-role"><span>@Localizer.Get("Edit Role")</span></a>
+                    
+                </div>
+            
+                    <a class="text-danger remove-role"><i class="ti ti-trash ti-md"></i></a>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="data-view-control-modal modal fade" id="role-create-edit-modal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-add-new-role">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="role-modal-form-content">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade text-start modal-delete" id="role-delete-modal" tabindex="-1" aria-labelledby="delete" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="myModalLabel110">@Localizer.Get("Delete Message") </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form class="role-form-delete" method="post">
+                    <div class="text-danger delete-validation-summary-valid"></div>
+                    <div class="row">
+                        <div class="col-12 text-center">
+                            <button type="submit" class="btn btn-danger">@Localizer.Get("Remove")</button>
+                            <button type="button" class="btn btn-dark" data-bs-dismiss="modal">@Localizer.Get("Cancel")</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -497,5 +497,52 @@
   </data>
   <data name="UploadAttachment" xml:space="preserve">
     <value>Upload Attachment</value>
+  <data name="You are not authorized for this page!" xml:space="preserve">
+    <value>You are not authorized for this page!</value>
+  </data>
+  <data name="Add New Role" xml:space="preserve">
+    <value>Add New Role</value>
+  </data>
+  <data name="Add role, if it does not exist" xml:space="preserve">
+    <value>Add role, if it does not exist</value>
+  </data>
+  <data name="Administrators" xml:space="preserve">
+    <value>Administrators</value>
+  </data>
+  <data name="DashboardAdministrationRole" xml:space="preserve">
+    <value>Role</value>
+  </data>
+  <data name="DashboardAdministrationRoles" xml:space="preserve">
+    <value>Roles</value>
+  </data>
+  <data name="DashboardAdministrator" xml:space="preserve">
+    <value>Administrator</value>
+  </data>
+  <data name="DataControl" xml:space="preserve">
+    <value>Data Control</value>
+  </data>
+  <data name="Edit Role" xml:space="preserve">
+    <value>Edit Role</value>
+  </data>
+  <data name="FullAccess" xml:space="preserve">
+    <value>Full Access</value>
+  </data>
+  <data name="JobTitle" xml:space="preserve">
+    <value>Job Title</value>
+  </data>
+  <data name="Remove All" xml:space="preserve">
+    <value>Remove All</value>
+  </data>
+  <data name="Select All" xml:space="preserve">
+    <value>Select All</value>
+  </data>
+  <data name="User" xml:space="preserve">
+    <value>User</value>
+  </data>
+  <data name="Users" xml:space="preserve">
+    <value>Users</value>
+  </data>
+  <data name="Viewer" xml:space="preserve">
+    <value>Viewer</value>
   </data>
 </root>

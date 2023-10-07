@@ -21,5 +21,8 @@ namespace Entities.DBModels.DashboardAdministrationModels
 
         [DisplayName(nameof(DashboardAdministrationRole))]
         public DashboardAdministrationRole DashboardAdministrationRole { get; set; }
+
+        [DisplayName(nameof(IsActive))]
+        public bool IsActive { get; set; }
     }
 }
