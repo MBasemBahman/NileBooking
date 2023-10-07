@@ -2,6 +2,7 @@
 using Entities.CoreServicesModels.HotelRoomModels;
 using Entities.CoreServicesModels.LocationModels;
 using Entities.DBModels.HotelModels;
+using Entities.DBModels.HotelRoomModels;
 using Microsoft.AspNetCore.Http;
 
 namespace CoreService.Logic
@@ -40,9 +41,9 @@ namespace CoreService.Logic
                                   Longitude = a.Longitude,
                                   IsRecommended = a.IsRecommended,
 
-                                  Price = a.HotelRooms.Any()
-                                  ? a.HotelRooms.SelectMany(c => c.HotelRoomPrices).OrderBy(c => c.AdultPrice).FirstOrDefault().AdultPrice
-                                  : 0,
+                                  // Price = a.HotelRooms.Any()
+                                  //     ? a.HotelRooms.SelectMany(c => c.HotelRoomPrices).OrderBy(c => c.AdultPrice).FirstOrDefault().AdultPrice
+                                  //     : 0,
 
                                   Name = language != null ? a.HotelLangs
                                       .Where(b => b.Language == language)
@@ -115,7 +116,7 @@ namespace CoreService.Logic
                                       Name = language != null ? b.HotelExtraPriceLangs
                                                  .Where(c => c.Language == language)
                                                  .Select(c => c.Name).FirstOrDefault() : b.Name,
-
+                                  
                                   }).ToList()
                                   : null,
                                   HotelRooms = parameters.IncludeRooms == true
@@ -140,7 +141,7 @@ namespace CoreService.Logic
                                           Name = language != null ? b.RoomFoodType.RoomFoodTypeLangs
                                                 .Where(c => c.Language == language)
                                                 .Select(c => c.Name).FirstOrDefault() : b.RoomFoodType.Name
-
+                                  
                                       }
                                   }).ToList()
                                   : null,
@@ -155,7 +156,7 @@ namespace CoreService.Logic
                                       CreatedBy = b.CreatedBy,
                                       Fk_Hotel = b.Fk_Hotel,
                                       Id = b.Id
-
+                                  
                                   }).ToList()
                                   : null,
 
@@ -604,6 +605,73 @@ namespace CoreService.Logic
             HotelType entity = await FindHotelTypeById(id, trackChanges: false);
 
             _repository.HotelType.Delete(entity);
+        }
+
+        #endregion
+        
+        #region Hotel Room Services
+        public IQueryable<HotelRoomModel> GetHotelRooms(
+            HotelRoomParameters parameters, LanguageEnum? language)
+        {
+            return _repository.HotelRoom
+                              .FindAll(parameters, trackChanges: false)
+                              .Select(a => new HotelRoomModel
+                              {
+                                  Id = a.Id,
+                                  Fk_RoomFoodType = a.Fk_RoomFoodType,
+                                  RoomFoodType = new RoomFoodTypeModel
+                                  {
+                                      Name = language != null ? a.RoomFoodType.RoomFoodTypeLangs
+                                          .Where(b => b.Language == language)
+                                          .Select(b => b.Name).FirstOrDefault() : a.RoomFoodType.Name,
+                                  },
+                                  Fk_RoomType = a.Fk_RoomType,
+                                  RoomType = new RoomTypeModel
+                                  {
+                                      Name = language != null ? a.RoomType.RoomTypeLangs
+                                          .Where(b => b.Language == language)
+                                          .Select(b => b.Name).FirstOrDefault() : a.RoomType.Name,
+                                  },
+                                  MaxCount = a.MaxCount,
+                                  BookingRoomsCount = a.BookingRooms.Count,
+                                  CreatedAt = a.CreatedAt,
+                              })
+                              .Search(parameters.SearchColumns, parameters.SearchTerm)
+                              .Sort(parameters.OrderBy);
+        }
+
+        public async Task<PagedList<HotelRoomModel>> GetHotelRoomsPaged(
+            HotelRoomParameters parameters, LanguageEnum? language)
+        {
+            return await PagedList<HotelRoomModel>.ToPagedList(GetHotelRooms(parameters, language), parameters.PageNumber, parameters.PageSize);
+        }
+
+        public async Task<HotelRoom> FindHotelRoomById(int id, bool trackChanges)
+        {
+            return await _repository.HotelRoom.FindById(id, trackChanges);
+        }
+
+        public HotelRoomModel GetHotelRoomById(int id, LanguageEnum? language)
+        {
+            return GetHotelRooms(new HotelRoomParameters { Id = id }, language).SingleOrDefault();
+        }
+
+
+        public void CreateHotelRoom(HotelRoom entity)
+        {
+            _repository.HotelRoom.Create(entity);
+        }
+
+        public int GetHotelRoomsCount()
+        {
+            return _repository.HotelRoom.Count();
+        }
+
+        public async Task DeleteHotelRoom(int id)
+        {
+            HotelRoom entity = await FindHotelRoomById(id, trackChanges: false);
+
+            _repository.HotelRoom.Delete(entity);
         }
 
         #endregion

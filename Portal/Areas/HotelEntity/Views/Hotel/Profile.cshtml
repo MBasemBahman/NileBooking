@@ -13,12 +13,12 @@
   <script src="~/vendor/libs/select2/select2.dist.js"></script>
 }
 
-@section PageStyles{
+@section PageStyles {
   <link rel="stylesheet" href="~/vendor/css/pages/page-profile.dist.css" />
 }
 
 @section PageScripts {
-  <script src="~/custom/js/data-table/table-datatables.min.js"></script>
+  @* <script src="~/custom/js/data-table/table-datatables.min.js"></script> *@
   <script src="~/custom/js/general/profile-page.js"></script>
 }
 
@@ -72,6 +72,9 @@
       <li class="nav-item">
         <a class="nav-link" id="/HotelEntity/HotelAttachment/Index?Fk_Hotel=@Model.Id"><i class='ti-xs ti ti-user-check me-1'></i> @Localizer.Get("HotelAttachments")</a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" id="/HotelEntity/HotelRoom/Index?Fk_Hotel=@Model.Id"><i class='ti-xs ti ti-user-check me-1'></i> @Localizer.Get("HotelRooms")</a>
+      </li>
     </ul>
   </div>
 </div>
@@ -84,5 +87,5 @@
 <!--/ User Profile Content -->
 
 <!--Modals -->
-@await Html.PartialAsync("../Shared/Custom/_Partials/_modals")
+@* @await Html.PartialAsync("../Shared/Custom/_Partials/_modals") *@
 <!-- /Modals -->

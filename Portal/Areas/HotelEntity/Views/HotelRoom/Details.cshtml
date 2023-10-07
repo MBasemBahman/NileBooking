@@ -1,0 +1,37 @@
+﻿@model HotelRoomDto
+
+@{
+    Layout = null;
+}
+<div class="row">
+    <div class="col-xl-7 col-12">
+        <dl class="row mb-0">
+            <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.RoomFoodType):</dt>
+            <dd class="col-sm-8 mb-1">@Model.RoomFoodType.Name</dd>
+
+            <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.RoomType):</dt>
+            <dd class="col-sm-8 mb-1">@Model.RoomType.Name</dd>
+        </dl>
+    </div>
+    <div class="col-xl-5 col-12">
+        <dl class="row mb-0">
+            <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.BookingRoomsCount):</dt>
+            <dd class="col-sm-8 mb-1">@Model.BookingRoomsCount</dd>
+            
+            <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.MaxCount):</dt>
+            <dd class="col-sm-8 mb-1">@Model.MaxCount</dd>
+        </dl>
+    </div>
+</div>
+<hr />
+<div class="row">
+    <div class="col-xl-7 col-12">
+        <dl class="row mb-0">
+            <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.CreatedAt):</dt>
+            <dd class="col-sm-8 mb-1">@Model.CreatedAt</dd>
+        </dl>
+    </div>
+</div>
+
+
+
