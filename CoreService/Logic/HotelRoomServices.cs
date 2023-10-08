@@ -199,6 +199,76 @@ namespace CoreService.Logic
             return await _repository.HotelRoom.FindById(id, trackChanges);
         }
 
+        public void AddHotelRoomPrices(int fk_HotelRoom, List<HotelRoomPriceCreateOrEditModel> prices)
+        {
+            if (prices != null && prices.Any())
+            {
+                foreach (HotelRoomPriceCreateOrEditModel price in prices)
+                {
+                    CreateHotelRoomPrice(new HotelRoomPrice
+                    {
+                        Fk_HotelRoom = fk_HotelRoom,
+                        AdultPrice = price.AdultPrice,
+                        ChildPrice = price.ChildPrice,
+                        FromDate = price.FromDate,
+                        ToDate = price.ToDate
+                    });
+                }
+            }
+        }
+
+        public async Task RemoveHotelRoomPrices(List<int> Ids)
+        {
+            if (Ids != null && Ids.Any())
+            {
+                foreach (int id in Ids)
+                {
+                    await DeleteHotelRoomPrice(id);
+                }
+            }
+        }
+        
+        public async Task UpdateHotelRoomPrices(int fk_HotelRoom, List<HotelRoomPriceCreateOrEditModel> hotelRoomPrices)
+        {
+            hotelRoomPrices ??= new List<HotelRoomPriceCreateOrEditModel>();
+
+            List<int> oldData = _repository.HotelRoomPrice.FindAll(new HotelRoomPriceParameters
+                {
+                    Fk_HotelRoom = fk_HotelRoom
+                }, trackChanges: false)
+                .Select(a => a.Id).ToList();
+            
+            // List<int> oldData = GetHotelRoomPrices(new HotelRoomPriceParameters
+            // {
+            //     Fk_HotelRoom = fk_HotelRoom
+            // }, language: null).Select(a => a.Id).ToList();
+
+            List<int> hotelRoomPricesIds = hotelRoomPrices.Select(a => a.Id).ToList();
+
+            List<HotelRoomPriceCreateOrEditModel> dataToCreate = hotelRoomPrices.Where(a => a.Id == 0).ToList();
+
+            List<int> dataToRemove = oldData.Except(hotelRoomPricesIds.Where(a => a > 0)).ToList();
+
+            AddHotelRoomPrices(fk_HotelRoom, dataToCreate);
+
+            await RemoveHotelRoomPrices(dataToRemove);
+
+            List<int> dataToUpdate = oldData.Where(hotelRoomPricesIds.Contains).ToList();
+
+            if (dataToUpdate.Any())
+            {
+                foreach (HotelRoomPriceCreateOrEditModel data in hotelRoomPrices.Where(a => dataToUpdate.Contains(a.Id)))
+                {
+                    HotelRoomPrice price = await FindHotelRoomPriceById(data.Id, trackChanges: true);
+                    price.AdultPrice = data.AdultPrice;
+                    price.ChildPrice = data.ChildPrice;
+                    price.FromDate = data.FromDate;
+                    price.ToDate = data.ToDate;
+                }
+            }
+
+        }
+        
         public HotelRoomModel GetHotelRoomById(int id, LanguageEnum? language)
         {
             return GetHotelRooms(new HotelRoomParameters { Id = id }, language).SingleOrDefault();

@@ -497,6 +497,7 @@
   </data>
   <data name="UploadAttachment" xml:space="preserve">
     <value>رفع مرفقات</value>
+  </data>
   <data name="You are not authorized for this page!" xml:space="preserve">
     <value>أنت غير مصرح لك بهذه الصفحة!</value>
   </data>
@@ -544,5 +545,8 @@
   </data>
   <data name="Viewer" xml:space="preserve">
     <value>مشاهدة فقط</value>
+  </data>
+  <data name="HotelRooms" xml:space="preserve">
+    <value>غرف الفندق</value>
   </data>
 </root>

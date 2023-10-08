@@ -1788,6 +1788,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <AdditionalFiles Include="Areas\HotelEntity\Views\HotelRoom\CreateOrEdit.cshtml" />
+    <AdditionalFiles Include="Areas\HotelEntity\Views\HotelRoom\Details.cshtml" />
+    <AdditionalFiles Include="Areas\HotelEntity\Views\HotelRoom\Index.cshtml" />
     <AdditionalFiles Include="Areas\HotelEntity\Views\Hotel\CreateOrEdit.cshtml" />
     <AdditionalFiles Include="Areas\HotelEntity\Views\Hotel\Details.cshtml" />
     <AdditionalFiles Include="Areas\HotelEntity\Views\Hotel\Index.cshtml" />

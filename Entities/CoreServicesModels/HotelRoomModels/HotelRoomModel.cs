@@ -44,4 +44,22 @@ namespace Entities.CoreServicesModels.HotelRoomModels
         [DisplayName(nameof(HotelRoomPrices))]
         public List<HotelRoomPriceModel> HotelRoomPrices { get; set; }
     }
+    
+    public class HotelRoomPriceCreateOrEditModel
+    {
+        [DisplayName(nameof(Id))]
+        public int Id { get; set; }
+        
+        [DisplayName(nameof(AdultPrice))]
+        public double AdultPrice { get; set; }
+
+        [DisplayName(nameof(ChildPrice))]
+        public double ChildPrice { get; set; }
+
+        [DisplayName(nameof(FromDate))]
+        public DateTime FromDate { get; set; }
+
+        [DisplayName(nameof(ToDate))]
+        public DateTime ToDate { get; set; }
+    }
 }

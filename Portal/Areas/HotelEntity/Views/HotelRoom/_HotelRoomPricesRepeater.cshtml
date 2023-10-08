@@ -1,0 +1,119 @@
+@model HotelRoomCreateOrEditModel
+
+<div class="divider">
+    <div class="divider-text">@Html.DisplayNameFor(model => model.HotelRoomPrices)</div>
+</div>
+
+<div class="repeater">
+    <div data-repeater-list="HotelRoomPrices" class="mb-2">
+        @if (Model.HotelRoomPrices != null && Model.HotelRoomPrices.Any())
+        {
+            for (int i = 0; i < Model.HotelRoomPrices.Count; i++)
+            {
+                <div data-repeater-item class="data-repeater mb-2">
+                    <div class="row d-flex align-items-end">
+
+                        <input type="hidden" asp-for="HotelRoomPrices[i].Id" class="idElem" />
+
+                        <div class="col-md-6 col-12">
+                            <div class="mb-1">
+                                <label class="form-label">@Localizer.Get("AdultPrice")</label>
+                                <input class="form-control adultPriceElem" asp-for="HotelRoomPrices[i].AdultPrice">
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-6 col-12">
+                            <div class="mb-1">
+                                <label class="form-label">@Localizer.Get("ChildPrice")</label>
+                                <input class="form-control childPriceElem" asp-for="HotelRoomPrices[i].ChildPrice">
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-6 col-12">
+                            <div class="mb-1">
+                                <label class="form-label">@Localizer.Get("FromDate")</label>
+                                <input type="date" class="form-control fromDateElem" asp-for="HotelRoomPrices[i].FromDate">
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-6 col-12">
+                            <div class="mb-1">
+                                <label class="form-label">@Localizer.Get("ToDate")</label>
+                                <input type="date" class="form-control toDateElem" asp-for="HotelRoomPrices[i].ToDate">
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-3 col-12 mb-50">
+                            <div class="mb-1">
+                                <button class="remove-btn btn btn-outline-danger text-nowrap px-1" data-repeater-delete
+                                        type="button">
+                                    <i class="fa fa-trash me-25"></i>
+                                    <span> @Localizer.Get("Remove")</span>
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <div data-repeater-item class="data-repeater mb-2">
+                <div class="row d-flex align-items-end">
+
+                    <input type="hidden" name=".Id" class="idElem" value="0" />
+                    
+                    <div class="col-md-6 col-12">
+                        <div class="mb-1">
+                            <label class="form-label">@Localizer.Get("AdultPrice")</label>
+                            <input class="form-control adultPriceElem" name=".AdultPrice" value="">
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6 col-12">
+                        <div class="mb-1">
+                            <label class="form-label">@Localizer.Get("ChildPrice")</label>
+                            <input class="form-control childPriceElem" name=".ChildPrice" value="">
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-5 col-12">
+                        <div class="mb-1">
+                            <label class="form-label">@Localizer.Get("FromDate")</label>
+                            <input type="date" class="form-control fromDateElem" name=".FromDate" value="">
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-5 col-12">
+                        <div class="mb-1">
+                            <label class="form-label">@Localizer.Get("ToDate")</label>
+                            <input type="date" class="form-control toDateElem" name=".ToDate" value="">
+                        </div>
+                    </div>
+
+                    <div class="col-md-2 col-12 mb-50">
+                        <div class="mb-1">
+                            <button class="remove-btn btn btn-outline-danger text-nowrap px-1" data-repeater-delete newRepeater
+                                    type="button">
+                                <i class="fa fa-trash me-25"></i>
+                                <span> @Localizer.Get("Remove")</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        }
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-12">
+            <button id="add-new-btn" class="btn btn-success" type="button" data-repeater-create>
+                <i class="fa fa-plus me-25"></i>
+                <span>@Localizer.Get("Add Badge")</span>
+            </button>
+        </div>
+    </div>
+
+</div>

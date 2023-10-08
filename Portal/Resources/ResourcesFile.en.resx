@@ -497,6 +497,7 @@
   </data>
   <data name="UploadAttachment" xml:space="preserve">
     <value>Upload Attachment</value>
+  </data>
   <data name="You are not authorized for this page!" xml:space="preserve">
     <value>You are not authorized for this page!</value>
   </data>
@@ -544,5 +545,8 @@
   </data>
   <data name="Viewer" xml:space="preserve">
     <value>Viewer</value>
+  </data>
+  <data name="HotelRooms" xml:space="preserve">
+    <value>Hotel Rooms</value>
   </data>
 </root>

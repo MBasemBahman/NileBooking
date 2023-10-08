@@ -220,6 +220,26 @@ namespace Portal.MappingProfileCls
 
             #endregion
             
+            #region Hotel Room
+            
+            _ = CreateMap<HotelRoom, HotelRoomCreateOrEditModel>();
+
+            _ = CreateMap<HotelRoomCreateOrEditModel, HotelRoom>();
+
+            _ = CreateMap<HotelRoomModel, HotelRoomDto>();
+
+            _ = CreateMap<HotelRoomFilter, HotelRoomParameters>();
+
+            #endregion
+            
+            #region Hotel RoomPrice
+            
+            _ = CreateMap<HotelRoomPrice, HotelRoomPriceCreateOrEditModel>();
+
+            _ = CreateMap<HotelRoomPriceCreateOrEditModel, HotelRoomPrice>();
+
+            #endregion
+            
             #region Hotel Type
             _ = CreateMap<HotelType, HotelTypeCreateOrEditModel>();
 
