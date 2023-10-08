@@ -131,7 +131,7 @@
 				<div id="map" style="border-radius: 10px; border: solid grey 1px"></div>
 			</div>
 
-			<div class="col-md-12">
+			<div class="col-md-12 select2-divas">
 				<label class="form-label" asp-for="Fk_HotelSelectedFeatures"></label>
 				<select asp-for="Fk_HotelSelectedFeatures" class="select2 form-select" asp-items="@(new SelectList(ViewData["HotelFeatures"] as Dictionary<string, string>, "Key", "Value"))">
 				</select>
@@ -149,7 +149,9 @@
 </div>
 
 <script>
-	$('.select2').select2();
+	$('.select2').each(function() { 
+        $(this).select2({ dropdownParent: $(this).parent()});
+    })
 </script>	
 <script async
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBsslSko4PJRCGEYl_fNYURzb3nMtKUyho&callback=initMap&libraries=places&v=weekly">
@@ -253,6 +255,7 @@
 		
 		$("input[name=Rate]").val($(this).prevAll('.rating_star').addBack().length);
 	});
+		
 </script>
 
 <environment include="Development">

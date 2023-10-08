@@ -84,7 +84,7 @@ function loadRows() {
                 $("#list-of-hotels").html('');
                 $("#not-found-hotels").html(`<div class="misc-inner p-2 p-sm-3">
                      <div class="w-100 text-center">
-                         <img src="/empty-cart.png" />
+                         <img src="/custom/img/search.png" />
                          <h1 class="mt-2">${$("#NotExistsDataLbl").val()}</h1>
                          <p class="mb-2"></p>
                      </div>

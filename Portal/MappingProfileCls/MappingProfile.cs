@@ -222,9 +222,11 @@ namespace Portal.MappingProfileCls
             
             #region Hotel Room
             
-            _ = CreateMap<HotelRoom, HotelRoomCreateOrEditModel>();
+            _ = CreateMap<HotelRoom, HotelRoomCreateOrEditModel>()
+                .ForMember(dest => dest.HotelRoomPrices, opt => opt.Ignore());
 
-            _ = CreateMap<HotelRoomCreateOrEditModel, HotelRoom>();
+            _ = CreateMap<HotelRoomCreateOrEditModel, HotelRoom>()
+                .ForMember(dest => dest.HotelRoomPrices, opt => opt.Ignore());
 
             _ = CreateMap<HotelRoomModel, HotelRoomDto>();
 
