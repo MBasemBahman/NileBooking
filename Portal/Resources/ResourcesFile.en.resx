@@ -549,4 +549,31 @@
   <data name="HotelRooms" xml:space="preserve">
     <value>Hotel Rooms</value>
   </data>
+  <data name="Fk_RoomType" xml:space="preserve">
+    <value>Room Type</value>
+  </data>
+  <data name="Fk_RoomFoodType" xml:space="preserve">
+    <value>Room Food Type</value>
+  </data>
+  <data name="MaxCount" xml:space="preserve">
+    <value>MaxCount</value>
+  </data>
+  <data name="HotelRoomPrices" xml:space="preserve">
+    <value>Room Prices</value>
+  </data>
+  <data name="AdultPrice" xml:space="preserve">
+    <value>Adult Price</value>
+  </data>
+  <data name="ChildPrice" xml:space="preserve">
+    <value>Child Price</value>
+  </data>
+  <data name="FromDate" xml:space="preserve">
+    <value>From Date</value>
+  </data>
+  <data name="ToDate" xml:space="preserve">
+    <value>To Date</value>
+  </data>
+  <data name="Add Price" xml:space="preserve">
+    <value>Add Price</value>
+  </data>
 </root>

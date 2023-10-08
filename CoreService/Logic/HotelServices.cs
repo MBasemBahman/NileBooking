@@ -41,6 +41,8 @@ namespace CoreService.Logic
                                   Longitude = a.Longitude,
                                   IsRecommended = a.IsRecommended,
 
+                                  ReviewsCount = a.Bookings.Count(b => b.BookingReview != null),
+                                  
                                   // Price = a.HotelRooms.Any()
                                   //     ? a.HotelRooms.SelectMany(c => c.HotelRoomPrices).OrderBy(c => c.AdultPrice).FirstOrDefault().AdultPrice
                                   //     : 0,
@@ -89,7 +91,6 @@ namespace CoreService.Logic
                                                   .Select(d => d.Name).FirstOrDefault() : b.HotelFeature.Name,
                                           }).ToList()
                                       }).ToList() : null,
-
                                   ImageUrl = !string.IsNullOrEmpty(a.ImageUrl) ? a.StorageUrl + a.ImageUrl : "/custom/img/hotel.jpg",
                                   LocationUrl = a.LocationUrl,
                                   CreatedAt = a.CreatedAt,

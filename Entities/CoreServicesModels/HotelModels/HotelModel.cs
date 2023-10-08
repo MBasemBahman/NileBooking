@@ -48,6 +48,9 @@ namespace Entities.CoreServicesModels.HotelModels
         [DisplayName(nameof(Price))]
         public double Price { get; set; }
 
+        [DisplayName(nameof(ReviewsCount))]
+        public int ReviewsCount { get; set; }
+        
         [DisplayName(nameof(LocationUrl))]
         public string LocationUrl { get; set; }
 
