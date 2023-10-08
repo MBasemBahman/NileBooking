@@ -1,17 +1,17 @@
 ﻿@{
-    ViewData["title"] = Localizer.Get("Home");
-    bool isNotAuth = (bool)ViewData["isNotAuth"];
+	ViewData["title"] = Localizer.Get("Home");
+	bool isNotAuth = (bool)ViewData["isNotAuth"];
 }
 
 
 @if (isNotAuth)
 {
-    @section PageScripts {
-              <script>
-               $(document).ready(function(){
-                $("#not-auth-modal").modal('show')
-               })
-              </script>
+	@section PageScripts {
+	<script>
+		$(document).ready(function () {
+			$("#not-auth-modal").modal('show')
+		})
+	</script>
 }
 
 }
@@ -19,13 +19,14 @@
 @* ************** Content ************** *@
 <div class="row">
 
-    <div class="col-12 text-center">
-        <img src="/custom/img/dashboard.png" />
-    </div>
+	<div class="col-12 text-center mt-5">
+		<img src="/custom/img/dashboard.png" />
+	</div>
 
 </div>
 
-@if(isNotAuth){
-    @await Html.PartialAsync("../Shared/Custom/_Partials/_modals")
+@if (isNotAuth)
+{
+	@await Html.PartialAsync("../Shared/Custom/_Partials/_modals")
 
 }
