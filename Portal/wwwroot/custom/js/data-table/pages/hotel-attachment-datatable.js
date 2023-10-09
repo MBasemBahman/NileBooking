@@ -33,30 +33,31 @@ $(document).ready(function ()
                     render: function (data, type, row) {
                         if (row.storageUrl != null) {
                             return '<a href="' + data + '" target="_blank">'
-                                + '@Localizer.Get("Click to View")'
+                                + $('#ClickToViewLbl').val()
                                 +'</a>';
                         } else {
                             return `<a href="${row.fileUrl}" target="_blank">
-                                         @Localizer.Get("Click to View")
+                                         ${$('#ClickToViewLbl').val()}
                                     </a>`
                         }
                     }
                 },
-                { data: "createdAt" },
                 {
                     data: "fileUrl",
                     render: function (data, type, row) {
                         if (row.storageUrl != null) {
                             return '<a href="' + data + '" target="_blank" download="' + row.fileName + '">'
                                 + '@Localizer.Get("Download")'
+                                + $('#DownloadLbl').val()
                                 +'</a>'
                         } else {
                             return `<a href="${row.fileUrl}" target="_blank">
-                                         @Localizer.Get("Visit Link")
+                                         ${$('#VisitLinkLbl').val()}
                                     </a>`
                         }
                     }
                 },
+                { data: "createdAt" },
                 { data: "id" },
             ]
         });

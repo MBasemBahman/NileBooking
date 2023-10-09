@@ -28,7 +28,7 @@
     <link rel="stylesheet" href="~/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.dist.css">
     <link rel="stylesheet" href="~/vendor/libs/datatables-buttons-bs5/buttons.bootstrap5.dist.css">
     <link rel="stylesheet" href="~/vendor/libs/node-waves/node-waves.dist.css">
-    <link rel="stylesheet" href="~/vendor/libs/dropzone/dropzone.dist.css" />
+    <link rel="stylesheet" href="~/vendor/libs/dropzone/dropzone.dist.css">
 }
 
 @section PageStyles {
@@ -55,8 +55,8 @@
         <script src="~/custom/js/data-table/table-datatables.min.js"></script>
     </environment>
     <script src="~/custom/js/general/color.js"></script>
-    <script src="~/custom/js/general/dropzone.js"></script>
     <script src="~/custom/js/data-table/pages/hotel-attachment-datatable.js"></script>
+    <script src="~/custom/js/general/dropzone-custom.js"></script>
 }
 
 @* ************** Content ************** *@
@@ -109,6 +109,3 @@
         </div>
     </div>
 </div>
-<!--Modals -->
-@await Html.PartialAsync("../Shared/Custom/_Partials/_modals")
-<!-- /Modals -->

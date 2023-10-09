@@ -28,11 +28,13 @@
     // --------------------------------------------------------------------
     const dropzoneMulti = document.querySelector('#dropzone-multi');
     if (dropzoneMulti) {
-        ('#dropzone-multi').dropzone({
+        $('#dropzone-multi').dropzone({
             previewTemplate: previewTemplate,
             parallelUploads: 1,
             maxFilesize: 5,
-            addRemoveLinks: true,
+            addRemoveLinks: false,
+            autoProcessQueue: true,
+            url: "/godzilla"
         });
     }
 })();

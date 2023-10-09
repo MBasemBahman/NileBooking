@@ -1,7 +1,7 @@
 @{
   TempData.Keep();
   Layout = "Layouts/_CommonMasterLayout";
-
+  
   TempData["menuHorizontal"] = false;
   ViewData["contentNavbar"] = false;
 
@@ -85,3 +85,7 @@
   <!-- Drag Target Area To SlideIn Menu On Small Screens -->
   <div class="drag-target"></div>
 </div>
+
+<!--Modals -->
+@await Html.PartialAsync("../Shared/Custom/_Partials/_modals")
+<!-- /Modals -->

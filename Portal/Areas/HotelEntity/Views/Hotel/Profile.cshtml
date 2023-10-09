@@ -18,8 +18,8 @@
 }
 
 @section PageScripts {
-  @* <script src="~/custom/js/data-table/table-datatables.min.js"></script> *@
   <script src="~/custom/js/general/profile-page.js"></script>
+  <script src="~/custom/js/data-table/profile-logic.js"></script>
 }
 
 @* ************** Content ************** *@
@@ -39,19 +39,30 @@
           <div class="d-flex align-items-md-end align-items-sm-start align-items-center justify-content-md-between justify-content-start mx-4 flex-md-row flex-column gap-4">
             <div class="user-profile-info">
               <h4>@Model.Name</h4>
-              <ul class="list-inline mb-0 d-flex align-items-center flex-wrap justify-content-sm-start justify-content-center gap-2">
-                <li class="list-inline-item d-flex gap-1">
-                  <span class="badge bg-@(Model.IsActive ? "success" : "danger")">@Localizer.Get((Model.IsActive ? "Active" : "Inactive"))</span>
+              @* <ul class="list-inline mb-0 d-flex align-items-center flex-wrap justify-content-sm-start justify-content-center gap-2"> *@
+              @*   <li class="list-inline-item d-flex gap-1"> *@
+              @*     <span class="badge bg-@(Model.IsActive ? "success" : "danger")">@Localizer.Get((Model.IsActive ? "Active" : "Inactive"))</span> *@
+              @*   </li> *@
+              @*   <li class="list-inline-item d-flex gap-1"> *@
+              @*     <span class="badge bg-warning"><i class="fa fa-star"></i> @Model.Rate</span> *@
+              @*   </li> *@
+              @*   <li class="list-inline-item d-flex gap-1"> *@
+              @*     <span class="badge bg-facebook">@Model.CreatedAt</span> *@
+              @*   </li> *@
+              @* </ul> *@
+              <ul class="nav nav-pills flex-column flex-sm-row">
+                <li class="nav-item">
+                  <a class="nav-link active" id="/HotelEntity/Hotel/Details/@Model.Id"><i class='ti-xs ti ti-user-check me-1'></i> @Localizer.Get("_Details")</a>
                 </li>
-                <li class="list-inline-item d-flex gap-1">
-                  <span class="badge bg-warning"><i class="fa fa-star"></i> @Model.Rate</span>
+                <li class="nav-item">
+                  <a class="nav-link" id="/HotelEntity/HotelAttachment/Index?Fk_Hotel=@Model.Id"><i class='ti-xs ti ti-user-check me-1'></i> @Localizer.Get("HotelAttachments")</a>
                 </li>
-                <li class="list-inline-item d-flex gap-1">
-                  <span class="badge bg-facebook">@Model.CreatedAt</span>
+                <li class="nav-item">
+                  <a class="nav-link" id="/HotelEntity/HotelRoom/Index?Fk_Hotel=@Model.Id"><i class='ti-xs ti ti-user-check me-1'></i> @Localizer.Get("HotelRooms")</a>
                 </li>
               </ul>
             </div>
-            <a href="/HotelEntity/Hotel/CreateOrEdit/@Model.Id" class="btn btn-primary modal-btn-edit">
+            <a href="/HotelEntity/Hotel/CreateOrEdit/@Model.Id" class="btn btn-primary modal-btn-profile-edit">
               <i class='ti ti-edit me-1'></i>@Localizer.Get("Edit")
             </a>
           </div>
@@ -63,21 +74,21 @@
 <!--/ Header -->
 
 <!-- Navbar pills -->
-<div class="row">
-  <div class="col-md-12">
-    <ul class="nav nav-pills flex-column flex-sm-row mb-4">
-      <li class="nav-item">
-        <a class="nav-link active" id="/HotelEntity/Hotel/Details/@Model.Id"><i class='ti-xs ti ti-user-check me-1'></i> @Localizer.Get("_Details")</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" id="/HotelEntity/HotelAttachment/Index?Fk_Hotel=@Model.Id"><i class='ti-xs ti ti-user-check me-1'></i> @Localizer.Get("HotelAttachments")</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" id="/HotelEntity/HotelRoom/Index?Fk_Hotel=@Model.Id"><i class='ti-xs ti ti-user-check me-1'></i> @Localizer.Get("HotelRooms")</a>
-      </li>
-    </ul>
-  </div>
-</div>
+@* <div class="row"> *@
+@*   <div class="col-md-12"> *@
+@*     <ul class="nav nav-pills flex-column flex-sm-row mb-4"> *@
+@*       <li class="nav-item"> *@
+@*         <a class="nav-link active" id="/HotelEntity/Hotel/Details/@Model.Id"><i class='ti-xs ti ti-user-check me-1'></i> @Localizer.Get("_Details")</a> *@
+@*       </li> *@
+@*       <li class="nav-item"> *@
+@*         <a class="nav-link" id="/HotelEntity/HotelAttachment/Index?Fk_Hotel=@Model.Id"><i class='ti-xs ti ti-user-check me-1'></i> @Localizer.Get("HotelAttachments")</a> *@
+@*       </li> *@
+@*       <li class="nav-item"> *@
+@*         <a class="nav-link" id="/HotelEntity/HotelRoom/Index?Fk_Hotel=@Model.Id"><i class='ti-xs ti ti-user-check me-1'></i> @Localizer.Get("HotelRooms")</a> *@
+@*       </li> *@
+@*     </ul> *@
+@*   </div> *@
+@* </div> *@
 <!--/ Navbar pills -->
 
 <!-- User Profile Content -->
@@ -85,7 +96,3 @@
   <div class="page_content"></div>
 </section>
 <!--/ User Profile Content -->
-
-<!--Modals -->
-@* @await Html.PartialAsync("../Shared/Custom/_Partials/_modals") *@
-<!-- /Modals -->
