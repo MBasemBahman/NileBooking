@@ -63,9 +63,15 @@ namespace Entities.CoreServicesModels.BookingModels
         [DisplayName(nameof(FinalPrice))]
         public double FinalPrice => TotalRoomPrice + TotalExtraPrice + Fees - Discount;
 
+        [DisplayName(nameof(TotalBookingRoomsAdultCount))]
+        public int TotalBookingRoomsAdultCount { get; set; }
+        
+        [DisplayName(nameof(TotalBookingRoomsChildCount))]
+        public int TotalBookingRoomsChildCount { get; set; }
+        
         [DisplayName(nameof(BookingReview))]
         public BookingReviewModel BookingReview { get; set; }
-
+        
         [DisplayName(nameof(BookingRooms))]
         public List<BookingRoomModel> BookingRooms { get; set; }
 

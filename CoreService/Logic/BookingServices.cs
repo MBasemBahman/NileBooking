@@ -169,6 +169,8 @@ namespace CoreService.Logic
 
                                   }
                                   : null,
+                                  TotalBookingRoomsAdultCount = a.BookingRooms.Sum(b => b.AdultCount),
+                                  TotalBookingRoomsChildCount = a.BookingRooms.Sum(b => b.ChildCount),
                                   BookingRooms = parameters.IncludeRooms
                                   ? a.BookingRooms.Select(b => new BookingRoomModel
                                   {
