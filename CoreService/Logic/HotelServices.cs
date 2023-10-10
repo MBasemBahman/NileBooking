@@ -71,25 +71,33 @@ namespace CoreService.Logic
                                       }
                                   } : null,
 
-                                  HotelSelectedFeatures = parameters.IncludeSelectedFeature == true ? a.HotelSelectedFeatures
-                                      .GroupBy(b => b.HotelFeature.Fk_HotelFeatureCategory)
-                                      .Select(group => new HotelSelectedFeaturesWithCategoryModel
+                                  // HotelSelectedFeatures = parameters.IncludeSelectedFeature == true ? a.HotelSelectedFeatures
+                                  //     .GroupBy(b => b.HotelFeature.Fk_HotelFeatureCategory)
+                                  //     .Select(group => new HotelSelectedFeaturesWithCategoryModel
+                                  //     {
+                                  //         Fk_HotelFeatureCategory = group.Key,
+                                  //         HotelFeatureCategory = new HotelFeatureCategoryModel
+                                  //         {
+                                  //             Id = group.Key,
+                                  //             Name = language != null ? group.FirstOrDefault().HotelFeature.HotelFeatureCategory.HotelFeatureCategoryLangs
+                                  //                 .Where(c => c.Language == language)
+                                  //                 .Select(d => d.Name).FirstOrDefault() : group.FirstOrDefault().HotelFeature.HotelFeatureCategory.Name,
+                                  //         },
+                                  //         HotelFeatures = group.Select(b => new HotelFeatureModel
+                                  //         {
+                                  //             Id = b.Id,
+                                  //             Name = language != null ? b.HotelFeature.HotelFeatureLangs
+                                  //                 .Where(c => c.Language == language)
+                                  //                 .Select(d => d.Name).FirstOrDefault() : b.HotelFeature.Name,
+                                  //         }).ToList()
+                                  //     }).ToList() : null,
+                                  HotelFeatures = parameters.IncludeSelectedFeature == true ? a.HotelSelectedFeatures
+                                      .Select(b => new HotelFeatureModel
                                       {
-                                          Fk_HotelFeatureCategory = group.Key,
-                                          HotelFeatureCategory = new HotelFeatureCategoryModel
-                                          {
-                                              Id = group.Key,
-                                              Name = language != null ? group.FirstOrDefault().HotelFeature.HotelFeatureCategory.HotelFeatureCategoryLangs
-                                                  .Where(c => c.Language == language)
-                                                  .Select(d => d.Name).FirstOrDefault() : group.FirstOrDefault().HotelFeature.HotelFeatureCategory.Name,
-                                          },
-                                          HotelFeatures = group.Select(b => new HotelFeatureModel
-                                          {
-                                              Id = b.Id,
-                                              Name = language != null ? b.HotelFeature.HotelFeatureLangs
-                                                  .Where(c => c.Language == language)
-                                                  .Select(d => d.Name).FirstOrDefault() : b.HotelFeature.Name,
-                                          }).ToList()
+                                          Id = b.Fk_HotelFeature,
+                                          Name = language != null ? b.HotelFeature.HotelFeatureLangs
+                                          .Where(c => c.Language == language)
+                                          .Select(d => d.Name).FirstOrDefault() : b.HotelFeature.Name,
                                       }).ToList() : null,
                                   ImageUrl = !string.IsNullOrEmpty(a.ImageUrl) ? a.StorageUrl + a.ImageUrl : "/custom/img/hotel.jpg",
                                   LocationUrl = a.LocationUrl,
