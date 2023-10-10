@@ -67,10 +67,14 @@ $(document).on('click', '.modal-btn-edit-side', function (e) {
 
 $(document).on('submit', "#general-modal", function (e) {
     e.preventDefault();
+    let form = $('.general-modal-form-content form');
+    let formData = new FormData(form[0]);
     $.ajax({
-        type: $('.general-modal-form-content form').attr('method'),
-        url: $('.general-modal-form-content form').attr('action'),
-        data: $('.general-modal-form-content form').serialize(),
+        type: form.attr('method'),
+        url: form.attr('action'),
+        data: formData,
+        contentType: false,
+        processData: false,
         beforeSend: function () {
             $('#cover-spin').show();
         },

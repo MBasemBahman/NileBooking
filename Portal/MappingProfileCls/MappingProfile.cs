@@ -196,6 +196,7 @@ namespace Portal.MappingProfileCls
             #region Hotel Models
             
             #region Hotel
+
             _ = CreateMap<Hotel, HotelCreateOrEditModel>()
                 .ForMember(dest => dest.ImageUrl, opt => opt.Ignore());
 
