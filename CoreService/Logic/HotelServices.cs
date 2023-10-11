@@ -98,6 +98,7 @@ namespace CoreService.Logic
                                           Name = language != null ? b.HotelFeature.HotelFeatureLangs
                                           .Where(c => c.Language == language)
                                           .Select(d => d.Name).FirstOrDefault() : b.HotelFeature.Name,
+                                          ImageUrl = b.HotelFeature.StorageUrl + b.HotelFeature.ImageUrl
                                       }).ToList() : null,
                                   ImageUrl = !string.IsNullOrEmpty(a.ImageUrl) ? a.StorageUrl + a.ImageUrl : "/custom/img/hotel.jpg",
                                   CreatedAt = a.CreatedAt,
