@@ -39,7 +39,6 @@ namespace API.Areas.BookingArea.Controllers
         public BookingReviewDto GetBookingReview(
        [FromQuery, BindRequired] int Fk_Booking)
         {
-
             if (Fk_Booking == 0)
             {
                 throw new Exception("Bad Request!");
@@ -58,7 +57,6 @@ namespace API.Areas.BookingArea.Controllers
 
         [HttpPut]
         [Route(nameof(EditBookingReview))]
-
         public async Task<BookingReviewDto> EditBookingReview([FromQuery, BindRequired] int Fk_Booking,
          [FromBody] BookingReviewEditDto model)
         {
@@ -85,6 +83,42 @@ namespace API.Areas.BookingArea.Controllers
 
             return bookingReviewDto;
         }
+        
+        [HttpPost]
+        [Route(nameof(CreateBookingReview))]
+        public async Task<BookingReviewDto> CreateBookingReview([FromQuery, BindRequired] int Fk_Booking,
+         [FromBody] BookingReviewEditDto model)
+        {
+            if (Fk_Booking == 0)
+            {
+                throw new Exception("Bad Request!");
+            }
+            
+            BookingReview dataDb = await _unitOfWork.Booking.FindBookingReviewById(Fk_Booking, trackChanges: false);
 
+            if (dataDb == null)
+            {
+                throw new Exception("Bad Request!");
+            }
+
+            _unitOfWork.Booking.CreateBookingReview(new BookingReview
+            {
+                Fk_Booking = Fk_Booking,
+                Description = model.Description,
+                Rate = model.Rate
+            });
+            
+            await _unitOfWork.Save();
+            
+            BookingReviewModel bookingReview = _unitOfWork.Booking.GetBookingReviews(new BookingReviewParameters
+            {
+                Fk_Booking = Fk_Booking,
+            }).FirstOrDefault();
+
+            BookingReviewDto bookingReviewDto = _mapper.Map<BookingReviewDto>(bookingReview);
+
+            return bookingReviewDto;
+        }
+        
     }
 }
