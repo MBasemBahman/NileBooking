@@ -34,6 +34,9 @@ namespace Entities.CoreServicesModels.BookingModels
 
         [DisplayName(nameof(Hotel))]
         public HotelModel Hotel { get; set; }
+        
+        [DisplayName(nameof(CanCancel))]
+        public bool CanCancel { get; set; }
 
         [DisplayName(nameof(FromDate))]
         public DateTime FromDate { get; set; }

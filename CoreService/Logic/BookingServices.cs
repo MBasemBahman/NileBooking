@@ -205,8 +205,8 @@ namespace CoreService.Logic
                                           CreatedAt = b.HotelRoom.CreatedAt
                                       }
                                   }).ToList()
-                                  : null
-
+                                  : null,
+                                  CanCancel = a.Fk_BookingState != (int)BookingStateEnum.Pending
                               })
                               .Search(parameters.SearchColumns, parameters.SearchTerm)
                               .Sort(parameters.OrderBy);
