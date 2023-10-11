@@ -1,5 +1,6 @@
 ﻿using Entities.CoreServicesModels.HotelModels;
 using Entities.DBModels.HotelModels;
+using Entities.Extensions;
 using Entities.RequestFeatures;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Portal.Areas.HotelEntity.Models;
@@ -10,12 +11,15 @@ namespace Portal.Areas.HotelEntity.Controllers
     [Authorize(DashboardViewEnum.HotelFeature, DashboardAccessLevelEnum.Viewer)]
     public class HotelFeatureController : ExtendControllerBase
     {
+        private readonly LinkGenerator _linkGenerator;
+
         public HotelFeatureController(IMapper mapper,
         AuthenticationManager authManager, UnitOfWork unitOfWork,
         IWebHostEnvironment environment,
-        LocalizationManager localizer) : base(mapper, authManager, unitOfWork, environment, localizer)
+        LocalizationManager localizer,
+        LinkGenerator linkGenerator) : base(mapper, authManager, unitOfWork, environment, localizer)
         {
-
+            _linkGenerator = linkGenerator;
         }
 
         public IActionResult Index(int id, int fk_HotelFeatureCategory)
@@ -86,6 +90,7 @@ namespace Portal.Areas.HotelEntity.Controllers
             {
                 HotelFeature dataDB = await _unitOfWork.Hotel.FindHotelFeatureById(id, trackChanges: false);
                 model = _mapper.Map<HotelFeatureCreateOrEditModel>(dataDB);
+                model.ImageUrl = dataDB.StorageUrl + dataDB.ImageUrl;
 
                 #region Check for new Languages
 
@@ -147,6 +152,14 @@ namespace Portal.Areas.HotelEntity.Controllers
                     dataDB.LastModifiedBy = auth.UserName;
                 }
 
+                IFormFile imageFile = HttpContext.Request.Form.Files["ImageFile"];
+
+                if (imageFile != null)
+                {
+                    dataDB.ImageUrl = await _unitOfWork.Hotel.UploadHotelImage(_environment.WebRootPath, imageFile);
+                    dataDB.StorageUrl = _linkGenerator.GetUriByAction(HttpContext).GetBaseUri(HttpContext.Request.RouteValues["area"].ToString());
+                }
+                
                 await _unitOfWork.Save();
 
                 return RedirectToAction(nameof(Index));

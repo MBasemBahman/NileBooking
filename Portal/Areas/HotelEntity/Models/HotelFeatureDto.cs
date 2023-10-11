@@ -2,6 +2,7 @@
 using Entities.DBModels.HotelModels;
 using Entities.EnumData;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Drawing;
 
 namespace Portal.Areas.HotelEntity.Models
 {
@@ -28,6 +29,9 @@ namespace Portal.Areas.HotelEntity.Models
         [Required(ErrorMessage = PropertyAttributeConstants.RequiredMsg)]
         [DisplayName($"{nameof(Name)}{PropertyAttributeConstants.ArLang}")]
         public string Name { get; set; }
+
+        [DisplayName(nameof(ImageUrl))]
+        public string ImageUrl { get; set; }
 
         [DisplayName(nameof(HotelFeatureCategory))]
         [ForeignKey(nameof(HotelFeatureCategory))]

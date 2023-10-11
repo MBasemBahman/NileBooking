@@ -5,7 +5,7 @@
         public int Fk_HotelFeatureCategory { get; set; }
     }
 
-    public class HotelFeatureModel : AuditLookUpEntity
+    public class HotelFeatureModel : AuditImageEntity
     {
         [Required(ErrorMessage = PropertyAttributeConstants.RequiredMsg)]
         [DisplayName(nameof(Name))]

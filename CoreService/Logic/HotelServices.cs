@@ -328,6 +328,7 @@ namespace CoreService.Logic
                                           .Where(b => b.Language == language)
                                           .Select(b => b.Name).FirstOrDefault() : a.HotelFeatureCategory.Name,
                                   },
+                                  ImageUrl = a.StorageUrl + a.ImageUrl,
                                   CreatedAt = a.CreatedAt,
                                   CreatedBy = a.CreatedBy,
                                   LastModifiedAt = a.LastModifiedAt,

@@ -1,6 +1,6 @@
 namespace Entities.DBModels.HotelModels;
 
-public class HotelFeature : AuditLookUpEntity
+public class HotelFeature : AuditImageEntity
 {
     [DisplayName(nameof(HotelFeatureCategory))]
     [ForeignKey(nameof(HotelFeatureCategory))]
