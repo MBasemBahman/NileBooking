@@ -10,9 +10,6 @@ public class Hotel : AuditImageEntity
     [DisplayName($"{nameof(Name)}{PropertyAttributeConstants.EnLang}")]
     public string Name { get; set; }
 
-    [DisplayName(nameof(LocationUrl))]
-    public string LocationUrl { get; set; }
-
     [DisplayName(nameof(Address))]
     public string Address { get; set; }
 

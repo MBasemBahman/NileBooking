@@ -122,7 +122,6 @@ namespace CoreService.Logic
                                                  .Select(b => b.Name).FirstOrDefault() : a.Hotel.Name,
                                       ImageUrl = a.Hotel.StorageUrl + a.Hotel.ImageUrl,
                                       Address = a.Hotel.Address,
-                                      LocationUrl = a.Hotel.LocationUrl,
                                       Rate = a.Hotel.Rate,
                                       Fk_Area = a.Hotel.Fk_Area,
                                       Area = a.Hotel.Fk_Area != null

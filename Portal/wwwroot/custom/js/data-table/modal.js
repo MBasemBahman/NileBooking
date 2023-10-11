@@ -124,11 +124,14 @@ $(document).on('submit', "#general-xl-modal", function (e) {
     e.preventDefault();
     
     let form = $('.general-xl-modal-form-content form');
+    let formData = new FormData(form[0]);
     
     $.ajax({
         type: form.attr('method'),
         url: form.attr('action'),
-        data: form.serialize(),
+        data: formData,
+        contentType: false,
+        processData: false,
         beforeSend: function () {
             $('#cover-spin').show();
         },

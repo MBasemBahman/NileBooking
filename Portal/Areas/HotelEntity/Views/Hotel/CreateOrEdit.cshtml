@@ -27,6 +27,7 @@
 				<!--/ upload and reset button -->
 			</div>
 			<br />
+			<hr />
 			
 			<div class="col-md-6">
 				<label class="form-label" asp-for="Name"></label>
@@ -47,12 +48,6 @@
 					i++;
 				}
 			}
-
-			<div class="col-md-12">
-				<label class="form-label" asp-for="LocationUrl"></label>
-				<input asp-for="LocationUrl" class="form-control" placeholder="@Localizer.Get("Enter") @(Localizer.Get("LocationUrl"))">
-				<span asp-validation-for="LocationUrl" class="text-danger"></span>
-			</div>
 
 			<div class="col-md-12">
 				<label class="form-label" asp-for="Address"></label>

@@ -100,7 +100,6 @@ namespace CoreService.Logic
                                           .Select(d => d.Name).FirstOrDefault() : b.HotelFeature.Name,
                                       }).ToList() : null,
                                   ImageUrl = !string.IsNullOrEmpty(a.ImageUrl) ? a.StorageUrl + a.ImageUrl : "/custom/img/hotel.jpg",
-                                  LocationUrl = a.LocationUrl,
                                   CreatedAt = a.CreatedAt,
                                   CreatedBy = a.CreatedBy,
                                   LastModifiedAt = a.LastModifiedAt,

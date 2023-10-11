@@ -51,9 +51,6 @@ namespace Entities.CoreServicesModels.HotelModels
         [DisplayName(nameof(ReviewsCount))]
         public int ReviewsCount { get; set; }
         
-        [DisplayName(nameof(LocationUrl))]
-        public string LocationUrl { get; set; }
-
         [DisplayName(nameof(Address))]
         public string Address { get; set; }
 

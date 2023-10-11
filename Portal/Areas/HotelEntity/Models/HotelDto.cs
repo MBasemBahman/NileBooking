@@ -19,9 +19,6 @@ namespace Portal.Areas.HotelEntity.Models
             [DisplayName($"{nameof(Name)}{PropertyAttributeConstants.ArLang}")]
             public string Name { get; set; }
         
-            [DisplayName(nameof(LocationUrl))]
-            public string LocationUrl { get; set; }
-        
             [DisplayName(nameof(Address))]
             public string Address { get; set; }
             

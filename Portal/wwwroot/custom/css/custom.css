@@ -68,17 +68,17 @@
     width: 1.286rem;
 }
 
-.filled-star {
+.rating_star.fa-solid {
     fill: #ff9f43;
     stroke: #ff9f43;
     color: #ff9f43;
 }
 
-.unfilled-star {
-    stroke: #babfc7;
-    color: #babfc7;
+.rating_star.fa-regular {
+    fill: #ff9f43;
+    stroke: #ff9f43;
+    color: #ff9f43;
 }
-
 a.nav-link {
     cursor: pointer;
 }
