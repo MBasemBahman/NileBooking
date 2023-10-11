@@ -99,8 +99,8 @@ namespace Entities.CoreServicesModels.HotelModels
         [DisplayName(nameof(AttachmentCount))]
         public int AttachmentCount { get; set; }
 
-        [DisplayName("HotelFeatures")]
-        public List<HotelSelectedFeaturesWithCategoryModel> HotelSelectedFeatures { get; set; }
+        [DisplayName(nameof(HotelFeatures))]
+        public List<HotelFeatureModel> HotelFeatures { get; set; }
 
 
         [DisplayName(nameof(HotelExtras))]
