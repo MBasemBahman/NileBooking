@@ -18,6 +18,26 @@ $(document).on('click', '.modal-btn-edit', function (e) {
     });
 });
 
+$(document).on('click', '.modal-xl-btn-edit', function (e) {
+    e.preventDefault();
+    
+    // Make an AJAX request to fetch content from the URL
+    $.ajax({
+        url: $(this).attr('href'),
+        method: 'GET',
+        beforeSend: function () {
+            $('#cover-spin').show();
+        },
+        complete: function () {
+            $('#cover-spin').hide();
+        },
+        success: function (data) {
+            $('.general-xl-modal-form-content').html(data);
+            $("#general-xl-modal").modal("show");
+        },
+    });
+});
+
 $(document).on('click', '.modal-btn-delete', function (e) {
     e.preventDefault();
 
@@ -86,6 +106,40 @@ $(document).on('submit', "#general-modal", function (e) {
                 loadRows();
             }
             $("#general-modal").modal("hide");
+            $("#success-modal").modal("show");
+        },
+        error: function (error) {
+            let list = assignUlErrors(error.responseJSON);
+
+            $('.validation-summary-valid').html(list);
+        }
+    });
+});
+
+$(document).on('submit', "#general-xl-modal", function (e) {
+    e.preventDefault();
+    
+    let form = $('.general-xl-modal-form-content form');
+    
+    $.ajax({
+        type: form.attr('method'),
+        url: form.attr('action'),
+        data: form.serialize(),
+        beforeSend: function () {
+            $('#cover-spin').show();
+        },
+        complete: function () {
+            $('#cover-spin').hide();
+        },
+        success: function (response, status, xhr) {
+            if ($('.dataTable').length > 0) {
+                $('.dataTable').DataTable().draw();
+            }
+
+            if ($('.gridView').length > 0) {
+                loadRows();
+            }
+            $("#general-xl-modal").modal("hide");
             $("#success-modal").modal("show");
         },
         error: function (error) {
