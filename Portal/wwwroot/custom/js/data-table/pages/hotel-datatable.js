@@ -50,7 +50,7 @@ $(document).on('click', '.open-create-modal', function () {
             $('#cover-spin').hide();
         },
         success: function (data) {
-            $('.general-modal-form-content').html(data);
+            $('.general-xl-modal-form-content').html(data);
             $("#general-xl-modal").modal("show");
         },
     });
@@ -102,7 +102,7 @@ function setHotelTable(hotels) {
         list += `<div class="col-sm-6 col-lg-4">
           <div class="card p-2 h-100 shadow-none border">
             <div class="rounded-2 text-center mb-3">
-              <a href="#">
+              <a href="/HotelEntity/Hotel/Profile/${hotel.id}">
                 <img class="img-fluid" src="${hotel.imageUrl}" alt="tutor image 1" />
               </a>
             </div>
@@ -116,19 +116,16 @@ function setHotelTable(hotels) {
                   ${hotel.rate} <span class="text-warning"><i class="ti ti-star-filled me-1 mt-n1"></i></span><span class="text-muted"></span>
                 </h6>
               </div>
-              <a href="#" class="h5">${hotel.name}</a>
+              <a href="/HotelEntity/Hotel/Profile/${hotel.id}" class="h5">${hotel.name}</a>
               <p class="mt-2">${hotel.description}</p>
               <div class="progress mb-4" style="height: 8px">
                 <div class="progress-bar w-75" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
               </div>
               <div class="d-flex flex-column flex-md-row gap-3 text-nowrap justify-content-center">
-                <a class="app-academy-md-25 btn btn-label-secondary me-md-2 d-flex align-items-center" href="/HotelEntity/Hotel/Profile/${hotel.id}">
-                  <i class="ti ti-rotate-clockwise-2 align-middle scaleX-n1-rtl  me-2 mt-n1 ti-sm"></i><span>${ $("#DetailsLbl").val() }</span>
-                </a>
-                <a class="app-academy-md-25 btn btn-label-primary d-flex align-items-center modal-xl-btn-edit" href="/HotelEntity/Hotel/CreateOrEdit/${hotel.id}">
+                <a class="app-academy-md-50 btn btn-label-primary d-flex align-items-center modal-xl-btn-edit" href="/HotelEntity/Hotel/CreateOrEdit/${hotel.id}">
                   <span class="me-2">${ $("#EditLbl").val() }</span><i class="ti ti-chevron-right scaleX-n1-rtl ti-sm"></i>
                 </a>
-                <a class="app-academy-md-25 btn btn-label-danger d-flex align-items-center modal-btn-delete" href="/HotelEntity/Hotel/Delete/${hotel.id}">
+                <a class="app-academy-md-50 btn btn-label-danger d-flex align-items-center modal-btn-delete" href="/HotelEntity/Hotel/Delete/${hotel.id}">
                   <span class="me-2">${ $("#RemoveLbl").val() }</span><i class="ti ti-trash scaleX-n1-rtl ti-sm"></i>
                 </a>
               </div>

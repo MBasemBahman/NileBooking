@@ -28,13 +28,68 @@
     // --------------------------------------------------------------------
     const dropzoneMulti = document.querySelector('#dropzone-multi');
     if (dropzoneMulti) {
-        $('#dropzone-multi').dropzone({
+        
+        let myDropzone = new Dropzone("#dropzone-multi", {
             previewTemplate: previewTemplate,
             parallelUploads: 1,
             maxFilesize: 5,
-            addRemoveLinks: false,
+            addRemoveLinks: true,
             autoProcessQueue: true,
-            url: "/godzilla"
+            dictRemoveFileConfirmation:  $("#RemoveMessageLbl").val(),
+            dictRemoveFile: '<i class="fas fa-trash-alt"></i>',
+            removedfile: function (file) {
+                $.ajax({
+                    url: $('#DropzoneLinkToRemove').val(),
+                    method: "post",
+                    data: {id: file.id},
+                    success: function (data) {
+                    }
+                });
+
+                file.previewTemplate.remove();
+            }
         });
+
+
+        $.ajax({
+            url: $('#GetAttachmentLink').val(),
+            method: "get",
+            success: function (data) {
+                //Add existing files into dropzone
+                let filesArr = [];
+
+                data.forEach(existingFile => {
+                    filesArr.push({
+                        id: existingFile.id,
+                        name: existingFile.fileName,
+                        size: existingFile.fileLength,
+                        fullPath: existingFile.fileUrl,
+                        fileType: existingFile.fileType
+                    });
+                });
+
+                filesArr.forEach(existingFile => {
+                    let thumbnail = "";
+
+                    if (existingFile.fileType == "image/jpeg" || existingFile.fileType == "image/png" || existingFile.fileType == "image/jpg") {
+                        thumbnail = existingFile.fullPath;
+                    } else if (existingFile.fileType == "application/pdf") {
+                        thumbnail = "/pdf.png";
+                    } else if (existingFile.fileType == "application/vnd.openxmlformats-officedocument.wordprocessingml.document" || existingFile.fileType == "application/msword") {
+                        thumbnail = "/docx.png";
+                    } else if (existingFile.fileType == "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" || existingFile.fileType == "application/vnd.ms-excel") {
+                        thumbnail = "/sheets.png";
+                    } else {
+                        thumbnail = "/file.png";
+                    }
+
+                    myDropzone.emit("addedfile", existingFile);
+                    myDropzone.emit("thumbnail", existingFile, thumbnail);
+                    myDropzone.emit("complete", existingFile);
+                    myDropzone.files.push(existingFile);
+                });
+            }
+        });
+        
     }
 })();

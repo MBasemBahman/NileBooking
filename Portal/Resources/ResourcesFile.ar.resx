@@ -579,4 +579,7 @@
   <data name="NotExists" xml:space="preserve">
     <value>لا توجد بيانات حتى الان</value>
   </data>
+  <data name="Remove Message" xml:space="preserve">
+    <value>هل انت متأكد ؟</value>
+  </data>
 </root>
