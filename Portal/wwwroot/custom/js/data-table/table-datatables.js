@@ -40,6 +40,9 @@ $(function () {
                             if ($("#edit").hasClass('open-modal')) {
                                 modalClass = 'modal-btn-edit';
                             }
+                            if ($("#edit").hasClass('open-xl-modal')) {
+                                modalClass = 'modal-xl-btn-edit';
+                            }
                             else if ($("#edit").hasClass('open-modal-side')) {
                                 modalClass = 'modal-btn-edit-side';
                             }
@@ -167,6 +170,23 @@ $(function () {
                             });
 
                         }
+                        else if ($("#create").hasClass('open-xl-modal')) { 
+                            let href = $("#create").attr('href');
+                            $.ajax({
+                                url: href,
+                                method: 'GET',
+                                beforeSend: function () {
+                                    $('#cover-spin').show();
+                                },
+                                complete: function () {
+                                    $('#cover-spin').hide();
+                                },
+                                success: function (data) {
+                                    $('.general-xl-modal-form-content').html(data);
+                                    $("#general-xl-modal").modal("show");
+                                },
+                            });
+                        } 
                         else if ($("#create").hasClass('open-modal-side')) {
                             var href = $("#create").attr('href');
                             $.ajax({

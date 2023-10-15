@@ -581,5 +581,13 @@
   </data>
   <data name="BookingRoomsCount" xml:space="preserve">
     <value>عدد الحجوزات</value>
+  <data name="Remove Message" xml:space="preserve">
+    <value>هل انت متأكد ؟</value>
+  </data>
+  <data name="HotelExtras" xml:space="preserve">
+    <value>الاسعار الاضافية للفندق</value>
+  </data>
+  <data name="HotelExtra" xml:space="preserve">
+    <value>سعر اضافي</value>
   </data>
 </root>

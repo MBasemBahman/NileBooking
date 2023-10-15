@@ -1,10 +1,10 @@
-@model HotelRoomFilter
+@model HotelExtraFilter
 @{
-    ViewData["Title"] = Localizer.Get("HotelRooms");
+    ViewData["Title"] = Localizer.Get("HotelExtras");
     Layout = "Layouts/_EmptyLayout";
     var accessLevel = (DashboardAccessLevelModel)ViewData[ViewDataConstants.AccessLevel];
 
-    var row = new HotelRoomDto();
+    var row = new HotelExtraDto();
 }
 
 @section VendorStyles {
@@ -29,7 +29,7 @@
     <environment exclude="Development">
         <script src="~/custom/js/data-table/table-datatables.min.js"></script>
     </environment>
-    <script src="~/custom/js/data-table/pages/hotel-room-datatable.js"></script>
+    <script src="~/custom/js/data-table/pages/hotel-extra-datatable.js"></script>
     @* <link rel="stylesheet" href="~/custom/js/general/repeater.js"> *@
 }
 
@@ -61,13 +61,13 @@
                                 }
                                 @if (accessLevel.CreateAccess)
                                 {
-                                    <a id="create" asp-action="CreateOrEdit" asp-route-fk_Hotel="@Model.Fk_Hotel" class="open-xl-modal">
+                                    <a id="create" asp-action="CreateOrEdit" asp-route-fk_Hotel="@Model.Fk_Hotel" class="open-modal">
                                     </a>
                                 }
 
                                 @if (accessLevel.EditAccess)
                                 {
-                                    <a id="edit" asp-action="CreateOrEdit" class="open-xl-modal">
+                                    <a id="edit" asp-action="CreateOrEdit" class="open-modal">
                                     </a>
                                 }
                                 @if (accessLevel.DeleteAccess)
@@ -76,10 +76,8 @@
                                     </a>
                                 }
                             </th>
-                            <th class="sorting sorting_desc">@Html.DisplayNameFor(model => row.RoomType)</th>
-                            <th class="sorting sorting_desc">@Html.DisplayNameFor(model => row.RoomFoodType)</th>
-                            <th class="sorting sorting_desc">@Html.DisplayNameFor(model => row.MaxCount)</th>
-                            <th class="sorting sorting_desc">@Html.DisplayNameFor(model => row.BookingRoomsCount)</th>
+                            <th class="sorting sorting_desc">@Html.DisplayNameFor(model => row.Name)</th>
+                            <th class="sorting sorting_desc">@Html.DisplayNameFor(model => row.Price)</th>
                             <th class="sorting sorting_desc">@Html.DisplayNameFor(model => row.CreatedAt)</th>
                             <th class="sorting_disabled"></th>
                         </tr>

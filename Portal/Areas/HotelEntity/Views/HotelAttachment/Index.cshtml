@@ -41,7 +41,7 @@
 @section VendorScripts {
     <script src="~/vendor/libs/moment/moment.dist.js"></script>
     <script src="~/vendor/libs/datatables-bs5/datatables-bootstrap5.dist.js"></script>
-    <script src="~/vendor/libs/dropzone/dropzone.dist.js"></script>
+    <script src="~/custom/js/general/dropzone.min.js"></script>
 }
 
 @section PageScripts {
@@ -71,41 +71,5 @@
         @{
             await Html.RenderPartialAsync("../HotelAttachment/Upload", Model.Fk_Hotel, ViewData);
         }
-        <div class="card">
-            <div class="card-header border-bottom">
-                <h5 class="card-title mb-3">@ViewData["Title"]</h5>
-            </div>
-
-            <div class="card-datatable table-responsive">
-                <table class="datatables-users table dataTable no-footer dtr-column">
-                    <thead class="border-top">
-                    <tr>
-                        <th class="sorting sorting_desc ">
-                            @Html.DisplayNameFor(model => row.Id)
-
-                            @if (accessLevel.ViewAccess)
-                            {
-                                <a id="details" asp-action="Details" class="open-modal">
-                                </a>
-                            }
-
-                            @if (accessLevel.DeleteAccess)
-                            {
-                                <a id="delete" asp-action="Delete" class="open-modal">
-                                </a>
-                            }
-                        </th>
-                        <th class="sorting sorting_desc">@Html.DisplayNameFor(model => row.FileName)</th>
-                        <th class="sorting sorting_desc">@Html.DisplayNameFor(model => row.FileUrl)</th>
-                        <th class="sorting sorting_desc">@Localizer.Get("Download")</th>
-                        <th class="sorting sorting_desc">@Html.DisplayNameFor(model => row.CreatedAt)</th>
-                        <th class="sorting_disabled"></th>
-                    </tr>
-                    </thead>
-                </table>
-
-            </div>
-
-        </div>
     </div>
 </div>

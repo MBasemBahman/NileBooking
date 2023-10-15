@@ -58,6 +58,16 @@ namespace Portal.Areas.HotelEntity.Controllers
             return Json(dataTableManager.ReturnTable(dataTableResult));
         }
 
+        public ActionResult<List<HotelModel>> LoadHotelAttachment(int fk_Hotel)
+        {
+            LanguageEnum? language = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
+
+            return Ok(_unitOfWork.Hotel.GetHotelAttachments(new HotelAttachmentParameters
+            {
+                Fk_Hotel = fk_Hotel
+            }, language).ToList());
+        }
+        
         public IActionResult Details(int id)
         {
             LanguageEnum? language = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
@@ -98,7 +108,7 @@ namespace Portal.Areas.HotelEntity.Controllers
 
             try
             {
-                await _unitOfWork.Hotel.DeleteHotel(id);
+                await _unitOfWork.Hotel.DeleteHotelAttachment(id);
                 await _unitOfWork.Save();
 
                 return Ok();
