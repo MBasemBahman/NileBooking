@@ -1,11 +1,12 @@
 ﻿@model HotelRoomCreateOrEditModel
 @{
-	ViewData["Title"] = $"{Localizer.Get("CreateOrEdit")} {Localizer.Get("HotelType")}";
+	ViewData["Title"] = $"{Localizer.Get("CreateOrEdit")} {Localizer.Get("HotelRooms")}";
 	Layout = null;
 }
+<link rel="stylesheet" href="~/vendor/libs/flatpickr/flatpickr.dist.css" />
 
 <div class="text-center mb-4">
-	<h3 class="mb-2 modal-title">@Localizer.Get("HotelTypes")</h3>
+	<h3 class="mb-2 modal-title">@Localizer.Get("HotelRooms")</h3>
 	<p class="text-muted modal-subtitle">@ViewData["Title"]</p>
 </div>
 <div class="row g-3 ">
@@ -28,7 +29,7 @@
 			</div>
 			
 			<div class="col-md-6">
-				<label class="form-label" asp-for="MaxCount"></label>
+				<label class="form-label">@Localizer.Get("MaxCount")  @Localizer.Get("For individuals")</label>
 				<input asp-for="MaxCount" class="form-control" placeholder="@Localizer.Get("Enter") @(Localizer.Get("MaxCount"))">
 				<span asp-validation-for="MaxCount" class="text-danger"></span>
 			</div>
@@ -43,30 +44,5 @@
 		</div>
 	</form>
 </div>
-
-
-<script>
-	$(document).ready(function () {
-
-		$(document).on('click', '#add-new-btn', function () {
-			setTimeout(function () {
-				$(".idElem").last().val('0');
-				$(".adultPriceElem").last().val('');
-				$(".childPriceElem").last().val('');
-				$(".fromDateElem").last().val('');
-				$(".toDateElem").last().val('');
-			}, 500);
-		});
-		
-		$('.repeater').repeater({
-			show: function () {
-				$(this).slideDown();
-			},
-			hide: function (deleteElement) {
-				$(this).slideUp(deleteElement);
-			},
-		});
-
-		$('button[data-repeater-delete][newRepeater]').click();
-	});
-</script>
+<script src="~/vendor/libs/flatpickr/flatpickr.dist.js"></script>
+<script src="~/custom/js/pages/hotel-rooms-create-or-edit.js"></script>

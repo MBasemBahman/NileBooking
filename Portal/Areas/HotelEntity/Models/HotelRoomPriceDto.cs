@@ -6,9 +6,9 @@ namespace Portal.Areas.HotelEntity.Models
     public class HotelRoomPriceDto : HotelRoomPriceModel
     {
         [DisplayName(nameof(FromDate))]
-        public new string FromDate { get; set; }
+        public new string FromDate => base.FromDate.AddHours(2).ToString(ApiConstants.DateStringFormat);
 
         [DisplayName(nameof(ToDate))]
-        public new string ToDate { get; set; }
+        public new string ToDate => base.ToDate.AddHours(2).ToString(ApiConstants.DateStringFormat);
     }
 }

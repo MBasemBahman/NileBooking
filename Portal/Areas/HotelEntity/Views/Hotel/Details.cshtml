@@ -49,7 +49,7 @@
                             <i class="ti ti-star text-heading"></i>
                             <span class="fw-medium mx-2 text-heading">@Html.DisplayNameFor(model => row.Rate) :</span>
                             <ul class="unstyled-list list-inline">
-                                <li class="ratings-list-item">
+                                <li class="">
                                     @for (int j = 0; j < 5; j++)
                                     {
                                         <i class="rating_star fa-@(j < Model.Rate ? "solid" : "regular") fa-star"></i>

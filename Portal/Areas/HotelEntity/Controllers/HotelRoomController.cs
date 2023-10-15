@@ -42,13 +42,13 @@ namespace Portal.Areas.HotelEntity.Controllers
 
             _ = _mapper.Map(dtParameters, parameters);
 
-            PagedList<HotelRoomModel> data = await _unitOfWork.Hotel.GetHotelRoomsPaged(parameters, otherLang);
+            PagedList<HotelRoomModel> data = await _unitOfWork.HotelRoom.GetHotelRoomsPaged(parameters, otherLang);
 
             List<HotelRoomDto> resultDto = _mapper.Map<List<HotelRoomDto>>(data);
 
             DataTable<HotelRoomDto> dataTableManager = new();
 
-            DataTableResult<HotelRoomDto> dataTableResult = dataTableManager.LoadTable(dtParameters, resultDto, data.MetaData.TotalCount, _unitOfWork.Hotel.GetHotelRoomsCount());
+            DataTableResult<HotelRoomDto> dataTableResult = dataTableManager.LoadTable(dtParameters, resultDto, data.MetaData.TotalCount, _unitOfWork.HotelRoom.GetHotelRoomsCount());
 
             return Json(dataTableManager.ReturnTable(dataTableResult));
         }
@@ -57,7 +57,7 @@ namespace Portal.Areas.HotelEntity.Controllers
         {
             LanguageEnum? otherLang = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
 
-            HotelRoomDto data = _mapper.Map<HotelRoomDto>(_unitOfWork.Hotel.GetHotelRoomById(id, otherLang));
+            HotelRoomDto data = _mapper.Map<HotelRoomDto>(_unitOfWork.HotelRoom.GetHotelRoomById(id, otherLang));
 
             return View(data);
         }
@@ -74,7 +74,7 @@ namespace Portal.Areas.HotelEntity.Controllers
 
             if (id > 0)
             {
-                HotelRoom dataDB = await _unitOfWork.Hotel.FindHotelRoomById(id, trackChanges: false);
+                HotelRoom dataDB = await _unitOfWork.HotelRoom.FindHotelRoomById(id, trackChanges: false);
                 model = _mapper.Map<HotelRoomCreateOrEditModel>(dataDB);
 
                 model.HotelRoomPrices = _unitOfWork.HotelRoom.GetHotelRoomPrices(new HotelRoomPriceParameters
@@ -120,11 +120,11 @@ namespace Portal.Areas.HotelEntity.Controllers
                 if (id == 0)
                 {
                     dataDB = _mapper.Map<HotelRoom>(model);
-                    _unitOfWork.Hotel.CreateHotelRoom(dataDB);
+                    _unitOfWork.HotelRoom.CreateHotelRoom(dataDB);
                 }
                 else
                 {
-                    dataDB = await _unitOfWork.Hotel.FindHotelRoomById(id, trackChanges: true);
+                    dataDB = await _unitOfWork.HotelRoom.FindHotelRoomById(id, trackChanges: true);
 
                     _ = _mapper.Map(model, dataDB);
                 }
@@ -153,7 +153,7 @@ namespace Portal.Areas.HotelEntity.Controllers
 
             try
             {
-                await _unitOfWork.Hotel.DeleteHotelRoom(id);
+                await _unitOfWork.HotelRoom.DeleteHotelRoom(id);
                 await _unitOfWork.Save();
 
                 return Ok();

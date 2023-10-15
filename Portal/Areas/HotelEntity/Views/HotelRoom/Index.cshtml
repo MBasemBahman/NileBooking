@@ -29,6 +29,7 @@
     <environment exclude="Development">
         <script src="~/custom/js/data-table/table-datatables.min.js"></script>
     </environment>
+    <script src="~/custom/js/general/color.js"></script>
     <script src="~/custom/js/data-table/pages/hotel-room-datatable.js"></script>
     @* <link rel="stylesheet" href="~/custom/js/general/repeater.js"> *@
 }
@@ -56,7 +57,7 @@
 
                                 @if (accessLevel.ViewAccess)
                                 {
-                                    <a id="details" asp-action="Details" class="open-modal">
+                                    <a id="details" asp-action="Details" class="open-modal-xl">
                                     </a>
                                 }
                                 @if (accessLevel.CreateAccess)
@@ -78,7 +79,7 @@
                             </th>
                             <th class="sorting sorting_desc">@Html.DisplayNameFor(model => row.RoomType)</th>
                             <th class="sorting sorting_desc">@Html.DisplayNameFor(model => row.RoomFoodType)</th>
-                            <th class="sorting sorting_desc">@Html.DisplayNameFor(model => row.MaxCount)</th>
+                            <th class="sorting sorting_desc">@Html.DisplayNameFor(model => row.MaxCount) @Localizer.Get("For individuals")</th>
                             <th class="sorting sorting_desc">@Html.DisplayNameFor(model => row.BookingRoomsCount)</th>
                             <th class="sorting sorting_desc">@Html.DisplayNameFor(model => row.CreatedAt)</th>
                             <th class="sorting_disabled"></th>

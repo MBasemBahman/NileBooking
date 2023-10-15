@@ -62,6 +62,11 @@ $(function () {
                             if ($("#details").hasClass('open-modal')) {
                                 modalClass = 'modal-btn-details';
                             }
+
+                            if ($("#details").hasClass('open-modal-xl')) {
+                                modalClass = 'modal-xl-btn';
+                            }
+
                             action += `<a href="${$('#details').attr('href')}/${full.id}" class="text-body ${modalClass}"><i class="ti ti-eye ti-sm me-2"></i></a>`;
                         }
 

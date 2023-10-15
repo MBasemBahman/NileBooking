@@ -581,6 +581,7 @@
   </data>
   <data name="BookingRoomsCount" xml:space="preserve">
     <value>Bookings Count</value>
+  </data>
   <data name="Remove Message" xml:space="preserve">
     <value>Are You Sure ?</value>
   </data>
@@ -589,5 +590,11 @@
   </data>
   <data name="HotelExtra" xml:space="preserve">
     <value>Hotel Extra</value>
+  </data>
+  <data name="For individuals" xml:space="preserve">
+    <value>For individuals</value>
+  </data>
+  <data name="Not Found" xml:space="preserve">
+    <value>Not Found</value>
   </data>
 </root>

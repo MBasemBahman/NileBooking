@@ -271,7 +271,7 @@ namespace CoreService.Logic
         
         public HotelRoomModel GetHotelRoomById(int id, LanguageEnum? language)
         {
-            return GetHotelRooms(new HotelRoomParameters { Id = id }, language).SingleOrDefault();
+            return GetHotelRooms(new HotelRoomParameters { Id = id,IncludeRoomPrices = true }, language).SingleOrDefault();
         }
 
 
