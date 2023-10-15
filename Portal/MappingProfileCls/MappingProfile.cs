@@ -175,8 +175,7 @@ namespace Portal.MappingProfileCls
 
             _ = CreateMap<RoomTypeLangModel, RoomTypeLang>();
             #endregion
-
-
+            
             #region Room Food Type
             _ = CreateMap<RoomFoodType, RoomFoodTypeCreateOrEditModel>();
 
@@ -233,6 +232,22 @@ namespace Portal.MappingProfileCls
 
             _ = CreateMap<HotelRoomFilter, HotelRoomParameters>();
 
+            #endregion
+            
+            #region Hotel Extra
+
+            _ = CreateMap<HotelExtraPrice, HotelExtraCreateOrEditModel>();
+
+            _ = CreateMap<HotelExtraCreateOrEditModel, HotelExtraPrice>();
+
+            _ = CreateMap<HotelExtraPriceModel, HotelExtraDto>();
+
+            _ = CreateMap<HotelExtraFilter, HotelExtraPriceParameters>();
+
+            _ = CreateMap<HotelExtraPriceLang, HotelExtraLangModel>();
+
+            _ = CreateMap<HotelExtraLangModel, HotelExtraPriceLang>();
+            
             #endregion
             
             #region Hotel RoomPrice
@@ -292,6 +307,7 @@ namespace Portal.MappingProfileCls
             _ = CreateMap<HotelFeatureCategoryLangModel, HotelFeatureCategoryLang>();
 
             #endregion
+            
             #endregion
 
             #region User Models

@@ -41,6 +41,7 @@
             HotelAttachment = 22,
             HotelExtraPrice = 23,
             HotelRoom = 24,
+            HotelExtra = 25
         }
 
         public enum LanguageEnum

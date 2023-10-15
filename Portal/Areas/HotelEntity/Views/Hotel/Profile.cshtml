@@ -60,6 +60,9 @@
                 <li class="nav-item">
                   <a class="nav-link" id="/HotelEntity/HotelRoom/Index?Fk_Hotel=@Model.Id"><i class='ti-xs ti ti-user-check me-1'></i> @Localizer.Get("HotelRooms")</a>
                 </li>
+                <li class="nav-item">
+                  <a class="nav-link" id="/HotelEntity/HotelExtra/Index?Fk_Hotel=@Model.Id"><i class='ti-xs ti ti-address-book me-1'></i> @Localizer.Get("HotelExtras")</a>
+                </li>
               </ul>
             </div>
             <a href="/HotelEntity/Hotel/CreateOrEdit/@Model.Id" class="btn btn-primary modal-btn-profile-edit">

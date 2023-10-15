@@ -582,4 +582,10 @@
   <data name="Remove Message" xml:space="preserve">
     <value>Are You Sure ?</value>
   </data>
+  <data name="HotelExtras" xml:space="preserve">
+    <value>Hotel Extra Prices</value>
+  </data>
+  <data name="HotelExtra" xml:space="preserve">
+    <value>Hotel Extra</value>
+  </data>
 </root>
