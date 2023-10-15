@@ -645,6 +645,16 @@ namespace CoreService.Logic
                                   MaxCount = a.MaxCount,
                                   BookingRoomsCount = a.BookingRooms.Count,
                                   CreatedAt = a.CreatedAt,
+                                  HotelRoomPrices = parameters.IncludeRoomPrices ? 
+                                  a.HotelRoomPrices.Select(b => new HotelRoomPriceModel
+                                  {
+                                      AdultPrice = b.AdultPrice,
+                                      ChildPrice= b.ChildPrice,
+                                      FromDate = b.FromDate,
+                                      ToDate = b.ToDate,
+
+                                  }).ToList()
+                                  : null
                               })
                               .Search(parameters.SearchColumns, parameters.SearchTerm)
                               .Sort(parameters.OrderBy);
@@ -663,7 +673,7 @@ namespace CoreService.Logic
 
         public HotelRoomModel GetHotelRoomById(int id, LanguageEnum? language)
         {
-            return GetHotelRooms(new HotelRoomParameters { Id = id }, language).SingleOrDefault();
+            return GetHotelRooms(new HotelRoomParameters { Id = id ,IncludeRoomPrices = true}, language).SingleOrDefault();
         }
 
 

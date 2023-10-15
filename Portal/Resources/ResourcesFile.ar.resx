@@ -559,7 +559,7 @@
     <value>اقصى عدد</value>
   </data>
   <data name="HotelRoomPrices" xml:space="preserve">
-    <value>اسعار الغرف</value>
+    <value>اسعار الغرفة</value>
   </data>
   <data name="AdultPrice" xml:space="preserve">
     <value>السعر للبالغين</value>
@@ -578,5 +578,8 @@
   </data>
   <data name="NotExists" xml:space="preserve">
     <value>لا توجد بيانات حتى الان</value>
+  </data>
+  <data name="BookingRoomsCount" xml:space="preserve">
+    <value>عدد الحجوزات</value>
   </data>
 </root>

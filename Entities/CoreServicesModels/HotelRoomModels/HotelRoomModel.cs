@@ -37,7 +37,7 @@ namespace Entities.CoreServicesModels.HotelRoomModels
         [DisplayName(nameof(MaxCount))]
         public double MaxCount { get; set; }
 
-        [DisplayName(nameof(MaxCount))]
+        [DisplayName(nameof(BookingRoomsCount))]
         public int BookingRoomsCount { get; set; }
 
       

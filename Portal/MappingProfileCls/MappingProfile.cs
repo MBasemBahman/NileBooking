@@ -292,6 +292,10 @@ namespace Portal.MappingProfileCls
             _ = CreateMap<HotelFeatureCategoryLangModel, HotelFeatureCategoryLang>();
 
             #endregion
+
+            #region Hotel Room
+            CreateMap<HotelRoomPriceModel, HotelRoomPriceDto>();
+            #endregion
             #endregion
 
             #region User Models

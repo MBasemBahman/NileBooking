@@ -579,4 +579,7 @@
   <data name="NotExists" xml:space="preserve">
     <value>Not Data Right now</value>
   </data>
+  <data name="BookingRoomsCount" xml:space="preserve">
+    <value>Bookings Count</value>
+  </data>
 </root>

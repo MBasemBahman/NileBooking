@@ -51,7 +51,7 @@
         }
 
         @if (viewList.Contains((int)DashboardViewEnum.Hotel)){
-            <li class='menu-item@(currentPage ==DashboardViewEnum.Hotel.ToString() ? " active open" : "")'>
+            <li id="HotelList" class='menu-item@(currentPage ==DashboardViewEnum.Hotel.ToString() ? " active open" : "")'>
                 <a asp-action="Index" asp-controller="Hotel" asp-area="HotelEntity" class="menu-link">
                     <i class="menu-icon tf-icons ti ti-building"></i>
                     <div data-i18n="@Localizer.Get("Hotels")">@Localizer.Get("Hotels")</div>

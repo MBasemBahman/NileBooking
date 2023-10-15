@@ -51,7 +51,7 @@ $(document).on('click', '.open-create-modal', function () {
         },
         success: function (data) {
             $('.general-modal-form-content').html(data);
-            $("#general-xl-modal").modal("show");
+            $("#general-modal").modal("show");
         },
     });
 });
@@ -125,7 +125,7 @@ function setHotelTable(hotels) {
                 <a class="app-academy-md-25 btn btn-label-secondary me-md-2 d-flex align-items-center" href="/HotelEntity/Hotel/Profile/${hotel.id}">
                   <i class="ti ti-rotate-clockwise-2 align-middle scaleX-n1-rtl  me-2 mt-n1 ti-sm"></i><span>${ $("#DetailsLbl").val() }</span>
                 </a>
-                <a class="app-academy-md-25 btn btn-label-primary d-flex align-items-center modal-xl-btn-edit" href="/HotelEntity/Hotel/CreateOrEdit/${hotel.id}">
+                <a class="app-academy-md-25 btn btn-label-primary d-flex align-items-center modal-btn-edit" href="/HotelEntity/Hotel/CreateOrEdit/${hotel.id}">
                   <span class="me-2">${ $("#EditLbl").val() }</span><i class="ti ti-chevron-right scaleX-n1-rtl ti-sm"></i>
                 </a>
                 <a class="app-academy-md-25 btn btn-label-danger d-flex align-items-center modal-btn-delete" href="/HotelEntity/Hotel/Delete/${hotel.id}">
