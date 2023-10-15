@@ -8,7 +8,6 @@
 
 <div class="row">
     <div class="col-xl-12 col-lg-12 col-md-12">
-        <!-- About User -->
         <div class="card mb-4">
             <div class="row card-body">
                 <div class="col-xl-6 col-lg-6 col-md-6">
@@ -87,11 +86,59 @@
 
             </div>
 
+
         </div>
-        <!--/ About User -->
     </div>
 </div>
 
+<div class="row">
+    <div class="col-xl-12 col-lg-12 col-md-12">
+        <div class="card mb-4">
+            <div class="row card-body">
+                <h3 class="text-dark">@Html.DisplayNameFor(model => model.HotelFeatures) </h3>
+                <br />
+                @if (Model.HotelSelectedFeatures != null && Model.HotelSelectedFeatures.Any())
+                {
+
+                    <div class="row mt-2">
+                        @foreach (var featureCategory in Model.HotelSelectedFeatures)
+                        {
+
+                            <div class="col-md-6 col-12">
+
+                                <span class="badge bg-success">@featureCategory.HotelFeatureCategory.Name </span>
+                                <br>
+                                <ul style="list-style:none" class="mt-2">
+                                    @foreach (var feature in featureCategory.HotelFeatures)
+                                    {
+
+                                        <li>
+                                            <span>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check font-medium-3 me-50"><polyline points="20 6 9 17 4 12"></polyline></svg> <span class="align-middle">
+                                                    @feature.Name
+                                                </span>
+                                            </span>
+                                        </li>
+                                    }
+                                </ul>
+
+
+
+                            </div>
+                        }
+
+                    </div>
+                }
+                else
+                {
+                    <p>@Localizer.Get("Not Found")</p>
+                }
+
+            </div>
+
+        </div>
+    </div>
+</div>
 <div class="row">
     <div class="col-xl-12 col-lg-12 col-md-12">
         <!-- About User -->

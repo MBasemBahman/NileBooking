@@ -59,7 +59,11 @@ namespace Portal.Areas.HotelEntity.Controllers
         {
             LanguageEnum? otherLang = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
 
-            HotelDto data = _mapper.Map<HotelDto>(_unitOfWork.Hotel.GetHotelById(id, otherLang));
+            HotelDto data = _mapper.Map<HotelDto>(_unitOfWork.Hotel.GetHotels(new HotelParameters
+            {
+                Id =id,
+                IncludeSelectedFeature = true
+            }, otherLang).FirstOrDefault());
 
             return View(data);
         }

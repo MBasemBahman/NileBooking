@@ -71,26 +71,26 @@ namespace CoreService.Logic
                                       }
                                   } : null,
 
-                                  // HotelSelectedFeatures = parameters.IncludeSelectedFeature == true ? a.HotelSelectedFeatures
-                                  //     .GroupBy(b => b.HotelFeature.Fk_HotelFeatureCategory)
-                                  //     .Select(group => new HotelSelectedFeaturesWithCategoryModel
-                                  //     {
-                                  //         Fk_HotelFeatureCategory = group.Key,
-                                  //         HotelFeatureCategory = new HotelFeatureCategoryModel
-                                  //         {
-                                  //             Id = group.Key,
-                                  //             Name = language != null ? group.FirstOrDefault().HotelFeature.HotelFeatureCategory.HotelFeatureCategoryLangs
-                                  //                 .Where(c => c.Language == language)
-                                  //                 .Select(d => d.Name).FirstOrDefault() : group.FirstOrDefault().HotelFeature.HotelFeatureCategory.Name,
-                                  //         },
-                                  //         HotelFeatures = group.Select(b => new HotelFeatureModel
-                                  //         {
-                                  //             Id = b.Id,
-                                  //             Name = language != null ? b.HotelFeature.HotelFeatureLangs
-                                  //                 .Where(c => c.Language == language)
-                                  //                 .Select(d => d.Name).FirstOrDefault() : b.HotelFeature.Name,
-                                  //         }).ToList()
-                                  //     }).ToList() : null,
+                                  HotelSelectedFeatures = parameters.IncludeSelectedFeature == true ? a.HotelSelectedFeatures
+                                       .GroupBy(b => b.HotelFeature.Fk_HotelFeatureCategory)
+                                       .Select(group => new HotelSelectedFeaturesWithCategoryModel
+                                       {
+                                           Fk_HotelFeatureCategory = group.Key,
+                                           HotelFeatureCategory = new HotelFeatureCategoryModel
+                                           {
+                                               Id = group.Key,
+                                               Name = language != null ? group.FirstOrDefault().HotelFeature.HotelFeatureCategory.HotelFeatureCategoryLangs
+                                                   .Where(c => c.Language == language)
+                                                   .Select(d => d.Name).FirstOrDefault() : group.FirstOrDefault().HotelFeature.HotelFeatureCategory.Name,
+                                           },
+                                           HotelFeatures = group.Select(b => new HotelFeatureModel
+                                           {
+                                               Id = b.Id,
+                                               Name = language != null ? b.HotelFeature.HotelFeatureLangs
+                                                   .Where(c => c.Language == language)
+                                                   .Select(d => d.Name).FirstOrDefault() : b.HotelFeature.Name,
+                                           }).ToList()
+                                       }).ToList() : null,
                                   HotelFeatures = parameters.IncludeSelectedFeature == true ? a.HotelSelectedFeatures
                                       .Select(b => new HotelFeatureModel
                                       {

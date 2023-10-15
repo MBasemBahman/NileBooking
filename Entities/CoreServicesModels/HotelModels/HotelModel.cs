@@ -108,5 +108,8 @@ namespace Entities.CoreServicesModels.HotelModels
 
         [DisplayName(nameof(HotelAttachments))]
         public List<HotelAttachmentModel> HotelAttachments { get; set; }
+
+        [DisplayName("HotelFeatures")]
+        public List<HotelSelectedFeaturesWithCategoryModel> HotelSelectedFeatures { get; set; }
     }
 }
