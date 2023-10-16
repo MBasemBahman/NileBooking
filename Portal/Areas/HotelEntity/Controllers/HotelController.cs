@@ -1,4 +1,5 @@
 ﻿using Entities.CoreServicesModels.HotelModels;
+using Entities.CoreServicesModels.HotelRoomModels;
 using Entities.CoreServicesModels.LocationModels;
 using Entities.DBModels.HotelModels;
 using Entities.Extensions;
@@ -26,6 +27,8 @@ namespace Portal.Areas.HotelEntity.Controllers
             HotelFilter filter = new();
 
             ViewData[ViewDataConstants.AccessLevel] = (DashboardAccessLevelModel)Request.HttpContext.Items[ViewDataConstants.AccessLevel];
+          
+            SetViewData();
             return View(filter);
         }
         
@@ -208,6 +211,8 @@ namespace Portal.Areas.HotelEntity.Controllers
             ViewData["Country"] = _unitOfWork.Location.GetCountriesLookUp(new CountryParameters(), language);
             ViewData["Area"] = _unitOfWork.Location.GetAreasLookUp(new AreaParameters() { Fk_Country = fk_Country}, language);
             ViewData["HotelType"] = _unitOfWork.Hotel.GetHotelTypesLookUp(new HotelTypeParameters(), language);
+            ViewData["RoomType"] = _unitOfWork.HotelRoom.GetRoomTypesLookUp(new RoomTypeParameters(), language);
+            ViewData["RoomFoodType"] = _unitOfWork.HotelRoom.GetRoomFoodTypesLookUp(new RoomFoodTypeParameters(), language);
             ViewData["HotelFeatures"] = _unitOfWork.Hotel.GetHotelFeaturesLookUp(new HotelFeatureParameters(), language);
             ViewData["FeatureCategory"] = _unitOfWork.Hotel.GetHotelFeatureCategorysLookUp(new HotelFeatureCategoryParameters (), language);
         }

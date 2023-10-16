@@ -21,9 +21,13 @@
 }
 
 @section PageScripts {
-  @* <script src="~/js/app-academy-course.dist.js"></script> *@
-  <script src="~/custom/js/data-table/modal.js"></script>
+  <script src="~/js/app-academy-course.dist.js"></script>
+    <script src="~/custom/js/data-table/filter.js"></script>
+    <script src="~/custom/js/pages/filter-general.js"></script>
+
+    <script src="~/custom/js/data-table/modal.js"></script>
   <script src="~/custom/js/data-table/pages/hotel-datatable.js"></script>
+
   <script>
       loadRows();
   </script>
@@ -61,6 +65,9 @@
       </div>
     </div>
   </div>
+    @{
+        await Html.RenderPartialAsync("../Hotel/Filter", Model, ViewData);
+    }
 
   <div class="card mb-4">
     <div class="card-header d-flex flex-wrap justify-content-between gap-3">

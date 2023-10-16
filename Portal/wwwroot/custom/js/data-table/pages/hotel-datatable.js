@@ -2,6 +2,20 @@ let currentPage = 1;
 let pageSize = 6;
 let searchTimeoutId;
 
+
+$(document).ready(function () {
+    $('.select2').each(function () {
+        $(this).select2({ dropdownParent: $(this).parent() });
+    });
+
+    $("#Fk_Country_Filter").on('change', function () {
+        getAreas($("#Fk_Area_Filter"), $("#Fk_Country_Filter").val(), false, true);
+    });
+
+    $("#Fk_HotelFeatureCategory_Filter").on('change', function () {
+        getFeatures($("#Fk_HotelFeature_Filter"), $("#Fk_HotelFeatureCategory_Filter").val(), false, false);
+    });
+});
 // Search Filter :: Start
 $(document).on('input', '#search-input', function () {
     clearTimeout(searchTimeoutId);
@@ -83,6 +97,13 @@ function loadRows() {
             IsActive: $(".is_active").is(":checked"),
             IsRecommended: $(".is_recommended").is(":checked"),
             TxtSearch: $('#search-input').val(),
+            Fk_Country: $("#Fk_Country_Filter").length > 0 ? $("#Fk_Country_Filter").val() : 0,
+            Fk_Area: $("#Fk_Area_Filter").length > 0 ? $("#Fk_Area_Filter").val() : 0,
+            Fk_HotelTypes: $("#Fk_HotelType_Filter").length > 0 ? $("#Fk_HotelType_Filter").val() : null,
+            Fk_RoomTypes: $("#Fk_RoomType_Filter").length > 0 ? $("#Fk_RoomType_Filter").val() : null,
+            Fk_RoomFoodTypes: $("#Fk_RoomFoodType_Filter").length > 0 ? $("#Fk_RoomFoodType_Filter").val() : null,
+            Fk_HotelFeatureCategories: $("#Fk_HotelFeatureCategory_Filter").length > 0 ? $("#Fk_HotelFeatureCategory_Filter").val() : null,
+            Fk_HotelFeatures: $("#Fk_HotelFeature_Filter").length > 0 ? $("#Fk_HotelFeature_Filter").val() : null,
         },
         beforeSend: function() {
             $('#cover-spin').show();
