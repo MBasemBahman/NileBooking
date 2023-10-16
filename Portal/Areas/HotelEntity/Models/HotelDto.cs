@@ -5,7 +5,27 @@ namespace Portal.Areas.HotelEntity.Models
 {
     public class HotelFilter : DtParameters
     {
+        [DisplayName("Area")]
+        public int Fk_Area { get; set; }
 
+        [DisplayName("Country")]
+        public int Fk_Country { get; set; }
+
+        [DisplayName("HotelFeatureCategory")]
+        public List<int> Fk_HotelFeatureCategories { get; set; }
+
+        [DisplayName("HotelFeature")]
+        public List<int> Fk_HotelFeatures { get; set; }
+
+        [DisplayName("RoomType")]
+        public List<int> Fk_RoomTypes { get; set; }
+
+        [DisplayName("RoomFoodType")]
+        public List<int> Fk_RoomFoodTypes { get; set; }
+
+        [DisplayName("HotelType")]
+        public List<int> Fk_HotelTypes { get; set; }
+       
     }
     public class HotelDto : HotelModel
     {

@@ -20,7 +20,7 @@ namespace Entities.CoreServicesModels.HotelModels
 
         public List<int> Fk_RoomTypes { get; set; }
         public List<int> Fk_RoomFoodTypes { get; set; }
-
+        public List<int> Fk_HotelTypes { get; set; }
         public bool? IncludeSelectedFeature { get; set; }
 
         public bool? IncludeRooms { get; set; }
