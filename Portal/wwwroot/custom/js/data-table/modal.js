@@ -202,7 +202,6 @@ $(document).on('submit', '.form-delete', function (e) {
         },
         error: function (error) {
             let list = assignUlErrors(error.responseJSON);
-            console.log(list);
             $('.delete-validation-summary-valid').html(list);
         }
     });
