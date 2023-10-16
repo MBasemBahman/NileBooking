@@ -7,9 +7,9 @@ $(document).on('click', '.nav-link', function(e) {
     e.preventDefault();
    
     let link = $(this).attr('id');
-
+    
     $(".page_content").load(link);
-
+    
     $(".active").each(function() {
         $(this).removeClass('active');
     });
@@ -35,16 +35,16 @@ $(document).on('click', '.modal-btn-profile-edit', function (e) {
             $('#cover-spin').hide();
         },
         success: function (data) {
-            $('.general-modal-form-content').html(data);
-            $("#general-modal").modal("show");
+            $('.profile-modal-form-content').html(data);
+            $("#profile-modal").modal("show");
         },
     });
 });
 
 
-$(document).on('submit', "#general-modal", function (e) {
+$(document).on('submit', "#profile-modal", function (e) {
     e.preventDefault();
-    let form = $('.general-modal-form-content form');
+    let form = $('.profile-modal-form-content form');
     let formData = new FormData(form[0]);
     $.ajax({
         type: form.attr('method'),
@@ -61,7 +61,7 @@ $(document).on('submit', "#general-modal", function (e) {
         success: function (response, status, xhr) {
             link = $(".nav-link.active").eq(0).attr("id");
             $(".page_content").load(link);
-            $("#general-modal").modal("hide");
+            $("#profile-modal").modal("hide");
             $("#success-modal").modal("show");
         },
         error: function (error) {

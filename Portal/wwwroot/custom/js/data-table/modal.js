@@ -106,6 +106,7 @@ $(document).on('click', '.modal-btn-edit-side', function (e) {
 
 $(document).on('submit', "#general-modal", function (e) {
     e.preventDefault();
+    console.log('dadsadaasda');
     let form = $('.general-modal-form-content form');
     let formData = new FormData(form[0]);
     $.ajax({
