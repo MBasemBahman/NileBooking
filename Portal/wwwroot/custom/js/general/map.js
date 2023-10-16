@@ -2,8 +2,6 @@ var longitude = $("#Longitude").val() > 0 ? $("#Longitude").val() : "31.18994414
 var latitude = $("#Latitude").val() > 0 ? $("#Latitude").val() : "31.189944140292372";
 
 async function initMap() {
-	
-
 	const { Map } = await google.maps.importLibrary("maps");
 
 	let map = null;

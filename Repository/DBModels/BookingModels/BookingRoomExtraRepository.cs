@@ -15,7 +15,8 @@ namespace Repository.DBModels.BookingModels
                    .Filter(parameters.Id,
                        parameters.Fk_BookingRoom,
                        parameters.Fk_Booking,
-                       parameters.Fk_HotelExtra);
+                       parameters.Fk_HotelExtra,
+                       parameters.Fk_HotelExtras);
 
         }
 
@@ -34,11 +35,13 @@ namespace Repository.DBModels.BookingModels
             int id,
             int fk_BookingRoom,
             int fk_Booking,
-            int fk_HotelExtra)
+            int fk_HotelExtra,
+            List<int> fk_HotelExtras)
         {
             return data.Where(a => (id == 0 || a.Id == id) &&
                                        (fk_BookingRoom == 0 || a.Fk_BookingRoom == fk_BookingRoom) &&
                                        (fk_Booking == 0 || a.BookingRoom.Fk_Booking == fk_Booking) &&
+                                       (fk_HotelExtras == null || !fk_HotelExtras.Any()||fk_HotelExtras.Contains(a.Fk_HotelExtra))&&
                                        (fk_HotelExtra == 0 || a.Fk_HotelExtra == fk_HotelExtra));
         }
     }

@@ -55,13 +55,7 @@ namespace Entities.CoreServicesModels.BookingModels
 
         [DisplayName(nameof(ChildCount))]
         public int ChildCount { get; set; }
-
-        [DisplayName(nameof(TotalAdultPrice))]
-        public double TotalAdultPrice { get; set; }
-
-        [DisplayName(nameof(TotalChildPrice))]
-        public double TotalChildPrice { get; set; }
-
+    
         public List<BookingRoomExtraCreateModel> BookingRoomExtras { get; set; }
     }
 

@@ -249,19 +249,30 @@ namespace CoreService.Logic
         public double CalculateBookingPrice(BookingCreateModel booking)
         {
             double price = 0;
-            if(booking.BookingRooms != null && booking.BookingRooms.Any())
+            if (booking.BookingRooms != null && booking.BookingRooms.Any())
             {
-                price += booking.BookingRooms.Sum(a => a.TotalAdultPrice + a.TotalChildPrice);
-
-                foreach(var room in booking.BookingRooms)
+                foreach (var room in booking.BookingRooms)
                 {
+                    var hotelRoomPrice = _repository.HotelRoomPrice
+                                               .FindByCondition(a => a.Fk_HotelRoom == room.Fk_HotelRoom &&
+                                                               a.FromDate >= booking.FromDate &&
+                                                               a.ToDate <= booking.FromDate,trackChanges:false).FirstOrDefault();
+
+                    if (hotelRoomPrice != null)
+                    {
+                        price += (hotelRoomPrice.AdultPrice * room.AdultCount) + (hotelRoomPrice.ChildPrice * room.ChildCount);
+                    }
+
                     if (room.BookingRoomExtras != null && room.BookingRoomExtras.Any())
                     {
-                        price += room.BookingRoomExtras.Sum(a => a.Price);
+                        price += GetBookingRoomExtras(new BookingRoomExtraParameters
+                        {
+                            Fk_HotelExtras = room.BookingRoomExtras.Select(a=>a.Fk_HotelExtra).ToList()
+                        }, language: null).Sum(a => a.Price);
                     }
                 }
             }
-            if(price > booking.Discount)
+            if (price > booking.Discount)
             {
                 price = price - booking.Discount;
 

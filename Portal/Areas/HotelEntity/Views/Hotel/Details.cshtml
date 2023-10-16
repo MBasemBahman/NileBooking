@@ -17,10 +17,10 @@
                         <li class="d-flex align-items-center mb-3">
                             <i class="ti ti-caret-right text-heading"></i>
                             <span class="fw-medium mx-2 text-heading">@Html.DisplayNameFor(model => row.IsActive) :</span>
-                            <span class="badge bg-@(Model.IsActive ? "success" : "danger")">@Localizer.Get((Model.IsActive ? "Active" : "Inactive"))</span>
+                            <span class="badge @(Model.IsActive ? "bg-label-success" : "secondary")">@Localizer.Get((Model.IsActive ? "Active" : "Inactive"))</span>
                         </li>
                         <li class="d-flex align-items-center mb-3">
-                            <i class="ti ti-car-crash text-heading"></i>
+                            <i class="ti ti-map-pin text-heading"></i>
                             <span class="fw-medium mx-2 text-heading">@Html.DisplayNameFor(model => row.Address) :</span>
                             <span>@Model.Address</span>
                         </li>
@@ -30,10 +30,11 @@
                             <span>@(Model.Area != null ? $"{Model.Area.Country.Name} - {Model.Area.Name}" : Localizer.Get("NotFound"))</span>
                         </li>
                         <li class="d-flex align-items-center mb-3">
-                            <i class="ti ti-photo text-heading"></i>
-                            <span class="fw-medium mx-2 text-heading">@Html.DisplayNameFor(model => row.AttachmentCount) :</span>
-                            <span>@Model.AttachmentCount</span>
+                            <i class="ti ti-car text-heading"></i>
+                            <span class="fw-medium mx-2 text-heading">@Html.DisplayNameFor(model => row.Distance) :</span>
+                            <span>@Model.Distance</span>
                         </li>
+                      
                     </ul>
                 </div>
                 <div class="col-xl-6 col-lg-6 col-md-6">
@@ -56,10 +57,11 @@
                                 </li>
                             </ul>
                         </li>
-                        <li class="d-flex align-items-center mb-3">
-                            <i class="ti ti-car text-heading"></i>
-                            <span class="fw-medium mx-2 text-heading">@Html.DisplayNameFor(model => row.Distance) :</span>
-                            <span>@Model.Distance</span>
+                      
+                          <li class="d-flex align-items-center mb-3">
+                            <i class="ti ti-photo text-heading"></i>
+                            <span class="fw-medium mx-2 text-heading">@Html.DisplayNameFor(model => row.AttachmentCount) :</span>
+                            <span>@Model.AttachmentCount</span>
                         </li>
                         <li class="d-flex align-items-center mb-3">
                             <i class="ti ti-book text-heading"></i>
@@ -72,7 +74,7 @@
 
             <div class="card-body">
                 <div class="d-flex justify-content-between align-items-start">
-                    <span class="badge bg-secondary">@Html.DisplayNameFor(model => model.Description) </span>
+                    <span class="badge bg-label-secondary">@Html.DisplayNameFor(model => model.Description) </span>
                 </div>
                 <br />
                 @if (!string.IsNullOrEmpty(Model.Description))
@@ -105,8 +107,8 @@
                         {
 
                             <div class="col-md-6 col-12">
-
-                                <span class="badge bg-success">@featureCategory.HotelFeatureCategory.Name </span>
+                                <span class="badge bg-label-warning" text-capitalized="">   @featureCategory.HotelFeatureCategory.Name</span>
+                             
                                 <br>
                                 <ul style="list-style:none" class="mt-2">
                                     @foreach (var feature in featureCategory.HotelFeatures)
