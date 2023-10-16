@@ -3,6 +3,9 @@ $('body').on('change', '.filter-input', function (e) {
     if ($('.dataTable').length > 0) {
         $('.dataTable').DataTable().draw();
     }
+    if ($('.gridView').length > 0) {
+        loadRows();
+    }
 });
 
 $(".filter-submit-btn").on("click", function (e) {
