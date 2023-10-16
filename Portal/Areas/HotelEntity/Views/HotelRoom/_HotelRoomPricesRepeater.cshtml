@@ -43,13 +43,13 @@
                                 <input class="form-control childPriceElem" asp-for="HotelRoomPrices[i].ChildPrice">
                             </div>
                         </div>
+                       
                         
                         <div class="col-md-2 col-12 mb-50">
                             <div class="mb-1">
-                                <button class="remove-btn btn btn-outline-danger text-nowrap px-2" data-repeater-delete
+                                <button class="remove-btn btn btn-label-danger mt-4 waves-effect" data-repeater-delete
                                         type="button">
-                                    <i class="fa fa-trash me-25"></i>
-                                    <span>&nbsp;</span>
+                                    <i class="ti ti-x ti-xs me-1"></i>
                                     <span>@Localizer.Get("Remove")</span>
                                 </button>
                             </div>
@@ -93,13 +93,13 @@
                             <input class="form-control childPriceElem" name=".ChildPrice" value="">
                         </div>
                     </div>
+                 
                     
                     <div class="col-md-2 col-12 mb-50">
                         <div class="mb-1">
-                            <button class="remove-btn btn btn-outline-danger text-nowrap px-2" data-repeater-delete newRepeater
+                            <button class="remove-btn btn btn-label-danger mt-4 waves-effect" data-repeater-delete newRepeater
                                     type="button">
-                                <i class="fa fa-trash me-25"></i>
-                                   <span>&nbsp;</span>
+                                <i class="ti ti-x ti-xs me-1"></i>
                                 <span>@Localizer.Get("Remove")</span>
                             </button>
                         </div>
