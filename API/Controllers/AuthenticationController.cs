@@ -1,6 +1,8 @@
 ﻿using Entities.CoreServicesModels.AccountModels;
 using Entities.DBModels.AccountModels;
 using Entities.DBModels.UserModels;
+using Entities.ServicesModels;
+using Services;
 
 namespace API.Controllers
 {
@@ -10,6 +12,7 @@ namespace API.Controllers
     public class AuthenticationController : ExtendControllerBase
     {
         private readonly AuthenticationManager _authManager;
+        private readonly EmailSender _emailSender;
 
         public AuthenticationController(
         IMapper mapper,
@@ -17,9 +20,11 @@ namespace API.Controllers
         LinkGenerator linkGenerator,
         IWebHostEnvironment environment,
         AuthenticationManager authManager,
-        IOptions<AppSettings> appSettings) : base(mapper, unitOfWork, linkGenerator, environment, appSettings)
+        IOptions<AppSettings> appSettings,
+        EmailSender emailSender) : base(mapper, unitOfWork, linkGenerator, environment, appSettings)
         {
             _authManager = authManager;
+            _emailSender = emailSender;
         }
 
         [HttpPost]
@@ -61,15 +66,21 @@ namespace API.Controllers
                 Account = new Account
                 {
 
-                    Fk_AccountState = (int)AccountStateEnum.Active,
+                    Fk_AccountState = (int)AccountStateEnum.Pending,
                     Fk_AccountType = (int)AccountTypeEnum.Client,
+                },
+                Verifications = new List<Verification>
+                {
+                    _unitOfWork.User.GenerateVerification(IpAddress(),_appSettings.VerificationTTL)
                 },
                 Culture = "en"
             };
 
             await _unitOfWork.User.CreateUser(user);
             await _unitOfWork.Save();
-
+            
+            await SendVerification(user.EmailAddress, user.Verifications.Single().Code);
+            
             UserAuthenticatedDto auth = await _authManager.Authenticate(new UserForAuthenticationWithExternalDto
             {
                 UserName = model.UserName,
@@ -82,6 +93,49 @@ namespace API.Controllers
             return auth;
         }
 
+        [HttpPost]
+        [Route(nameof(ResendActivateAccount))]
+        public async Task<bool> ResendActivateAccount()
+        {
+            UserAuthenticatedDto auth = (UserAuthenticatedDto)Request.HttpContext.Items[ApiConstants.User];
+
+            User user = await _unitOfWork.User.FindById(auth.Id, trackChanges: true);
+
+            user.Verifications = new List<Verification>
+            {
+                _unitOfWork.User.GenerateVerification(IpAddress(),_appSettings.VerificationTTL)
+            };
+
+            await SendVerification(user.EmailAddress, user.Verifications.Single().Code);
+
+            await _unitOfWork.Save();
+
+            return true;
+        }
+        
+        [HttpPut]
+        [Route(nameof(ActivateAccount))]
+        public async Task<bool> ActivateAccount(
+            [FromBody] VerificationDto model)
+        {
+            try
+            {
+                User user = await _unitOfWork.User.Verificate(model, _appSettings.VerificationTTL);
+
+                Account account = await _unitOfWork.Account.FindAccountByUserId(user.Id, trackChanges: true);
+
+                account.Fk_AccountState = (int)AccountStateEnum.Active;
+
+                await _unitOfWork.Save();
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+
+            return true;
+        }
+        
         [HttpPut]
         [Route(nameof(ChangePassword))]
         public async Task<bool> ChangePassword(
@@ -139,6 +193,21 @@ namespace API.Controllers
             await _authManager.RevokeToken(model.Token, IpAddress());
 
             return true;
+        }
+        
+        private async Task SendVerification(string emailAddress, string code)
+        {
+            if (!string.IsNullOrWhiteSpace(emailAddress))
+            {
+                LanguageEnum? language = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
+
+                string template = language != null ? "email" : "email-rtl";
+
+                string templatePath = $"/Templates/EmailTemplateV2/Verify/{template}.html";
+
+                EmailMessage message = new(new string[] { emailAddress }, "Verification", code, _environment.WebRootPath, templatePath);
+                await _emailSender.SendHtmlEmail(message);
+            }
         }
     }
 }

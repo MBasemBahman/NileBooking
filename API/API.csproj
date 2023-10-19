@@ -35,4 +35,8 @@
     <ProjectReference Include="..\TenantConfiguration\TenantConfiguration.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\" />
+  </ItemGroup>
+
 </Project>
