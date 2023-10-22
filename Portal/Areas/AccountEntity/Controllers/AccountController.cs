@@ -61,14 +61,14 @@ namespace Portal.Areas.AccountEntity.Controllers
             return Json(dataTableManager.ReturnTable(dataTableResult));
         }
 
-        public IActionResult Details(int id)
-        {
-            LanguageEnum? otherLang = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
-
-            AccountDto data = _mapper.Map<AccountDto>(_unitOfWork.Account.GetAccountById(id, otherLang));
-
-            return View(data);
-        }
+        // public IActionResult Details(int id)
+        // {
+        //     LanguageEnum? otherLang = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
+        //
+        //     AccountDto data = _mapper.Map<AccountDto>(_unitOfWork.Account.GetAccountById(id, otherLang));
+        //
+        //     return View(data);
+        // }
 
         [Authorize(DashboardViewEnum.Account, DashboardAccessLevelEnum.DataControl)]
         public async Task<IActionResult> CreateOrEdit(int id = 0)

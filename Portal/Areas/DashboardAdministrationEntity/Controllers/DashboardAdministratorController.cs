@@ -60,14 +60,14 @@ namespace Portal.Areas.DashboardAdministrationEntity.Controllers
             return Json(dataTableManager.ReturnTable(dataTableResult));
         }
 
-        public IActionResult Details(int id)
-        {
-            LanguageEnum? otherLang = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
-
-            DashboardAdministratorDto data = _mapper.Map<DashboardAdministratorDto>(_unitOfWork.DashboardAdministration.GetAdministratorbyId(id, otherLang));
-
-            return View(data);
-        }
+        // public IActionResult Details(int id)
+        // {
+        //     LanguageEnum? otherLang = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
+        //
+        //     DashboardAdministratorDto data = _mapper.Map<DashboardAdministratorDto>(_unitOfWork.DashboardAdministration.GetAdministratorbyId(id, otherLang));
+        //
+        //     return View(data);
+        // }
 
         [Authorize(DashboardViewEnum.DashboardAdministrator, DashboardAccessLevelEnum.DataControl)]
         public async Task<IActionResult> CreateOrEdit(int id = 0)

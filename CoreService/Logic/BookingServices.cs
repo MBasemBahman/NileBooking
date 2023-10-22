@@ -174,13 +174,11 @@ namespace CoreService.Logic
                                   ? a.BookingRooms.Select(b => new BookingRoomModel
                                   {
                                       AdultCount = b.AdultCount,
-                                      TotalAdultPrice = b.TotalAdultPrice,
                                       ChildCount = b.ChildCount,
                                       Fk_Booking = b.Fk_Booking,
                                       Fk_HotelRoom = b.Fk_HotelRoom,
                                       Id = b.Id,
                                       CreatedAt = b.CreatedAt,
-                                      TotalChildPrice = b.TotalChildPrice,
                                       HotelRoom = new HotelRoomModel
                                       {
                                           Fk_Hotel = b.HotelRoom.Fk_Hotel,
@@ -369,10 +367,8 @@ namespace CoreService.Logic
                                   Fk_Booking = a.Fk_Booking,
                                   CreatedAt = a.CreatedAt,
                                   AdultCount = a.AdultCount,
-                                  TotalAdultPrice = a.TotalAdultPrice,
                                   ChildCount = a.ChildCount,
                                   Fk_HotelRoom = a.Fk_HotelRoom,
-                                  TotalChildPrice = a.TotalChildPrice,
                                   HotelRoom = new HotelRoomModel
                                   {
                                       Fk_Hotel = a.HotelRoom.Fk_Hotel,
