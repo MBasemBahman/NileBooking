@@ -2,30 +2,75 @@
 
 @{
     Layout = null;
+    var row = new HotelRoomPriceDto();
 }
 <div class="row">
-    <div class="col-xl-7 col-12">
+    <div class="col-xl-6 col-12">
         <dl class="row mb-0">
-            <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.RoomFoodType):</dt>
-            <dd class="col-sm-8 mb-1">@Model.RoomFoodType.Name</dd>
 
-            <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.RoomType):</dt>
-            <dd class="col-sm-8 mb-1">@Model.RoomType.Name</dd>
+            <dt class="col-sm-6 fw-bolder mb-1">@Html.DisplayNameFor(model => model.RoomType):</dt>
+            <dd class="col-sm-6 mb-1">@Model.RoomType.Name</dd>
+
+
+            <dt class="col-sm-6 fw-bolder mb-1">@Html.DisplayNameFor(model => model.MaxCount) @Localizer.Get("For individuals"):</dt>
+            <dd class="col-sm-6 mb-1">@Model.MaxCount</dd>
+
+
         </dl>
     </div>
-    <div class="col-xl-5 col-12">
+    <div class="col-xl-6 col-12">
         <dl class="row mb-0">
-            <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.BookingRoomsCount):</dt>
-            <dd class="col-sm-8 mb-1">@Model.BookingRoomsCount</dd>
-            
-            <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.MaxCount):</dt>
-            <dd class="col-sm-8 mb-1">@Model.MaxCount</dd>
+            <dt class="col-sm-6 fw-bolder mb-1">@Html.DisplayNameFor(model => model.RoomFoodType):</dt>
+            <dd class="col-sm-6 mb-1">@Model.RoomFoodType.Name</dd>
+
+            <dt class="col-sm-6 fw-bolder mb-1">@Html.DisplayNameFor(model => model.BookingRoomsCount):</dt>
+            <dd class="col-sm-6 mb-1">@Model.BookingRoomsCount</dd>
         </dl>
     </div>
 </div>
-<hr />
+
+
+<div class="card-body mt-3">
+    <div class="d-flex justify-content-between align-items-start">
+        <span class="badge bg-primary">@Html.DisplayNameFor(model => model.HotelRoomPrices) </span>
+    </div>
+    <br />
+    @if (Model.HotelRoomPrices != null && Model.HotelRoomPrices.Any())
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => row.FromDate)</th>
+                    <th>@Html.DisplayNameFor(model => row.ToDate)</th>
+                    <th>@Html.DisplayNameFor(model => row.AdultPrice)</th>
+                    <th>@Html.DisplayNameFor(model => row.ChildPrice)</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var price in Model.HotelRoomPrices)
+                {
+                    <tr>
+                        <td>@price.FromDate</td>
+                        <td>@price.ToDate</td>
+                        <td>@price.AdultPrice</td>
+                        <td>@price.ChildPrice</td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <br />
+    }
+    else
+    {
+        <p>@Localizer.Get("Not Found")</p>
+        <hr />
+
+    }
+
+</div>
 <div class="row">
-    <div class="col-xl-7 col-12">
+    <div class="col-xl-6 col-12">
         <dl class="row mb-0">
             <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.CreatedAt):</dt>
             <dd class="col-sm-8 mb-1">@Model.CreatedAt</dd>

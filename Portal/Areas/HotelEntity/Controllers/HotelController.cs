@@ -1,4 +1,5 @@
 ﻿using Entities.CoreServicesModels.HotelModels;
+using Entities.CoreServicesModels.HotelRoomModels;
 using Entities.CoreServicesModels.LocationModels;
 using Entities.DBModels.HotelModels;
 using Entities.Extensions;
@@ -26,6 +27,8 @@ namespace Portal.Areas.HotelEntity.Controllers
             HotelFilter filter = new();
 
             ViewData[ViewDataConstants.AccessLevel] = (DashboardAccessLevelModel)Request.HttpContext.Items[ViewDataConstants.AccessLevel];
+          
+            SetViewData();
             return View(filter);
         }
         
@@ -59,7 +62,11 @@ namespace Portal.Areas.HotelEntity.Controllers
         {
             LanguageEnum? otherLang = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
 
-            HotelDto data = _mapper.Map<HotelDto>(_unitOfWork.Hotel.GetHotelById(id, otherLang));
+            HotelDto data = _mapper.Map<HotelDto>(_unitOfWork.Hotel.GetHotels(new HotelParameters
+            {
+                Id =id,
+                IncludeSelectedFeature = true
+            }, otherLang).FirstOrDefault());
 
             return View(data);
         }
@@ -99,6 +106,11 @@ namespace Portal.Areas.HotelEntity.Controllers
                     {
                         Fk_Hotel = id
                     }, otherLang).Select(a => a.Fk_HotelFeature).ToList();
+
+                if(model.Fk_Area != null)
+                {
+                    model.Fk_Country = _unitOfWork.Location.GetAreaById((int)model.Fk_Area, language: null).Fk_Country;
+                }
             }
 
             SetViewData();
@@ -127,6 +139,8 @@ namespace Portal.Areas.HotelEntity.Controllers
 
                 UserAuthenticatedDto auth = (UserAuthenticatedDto)Request.HttpContext.Items[ApiConstants.User];
                 Hotel dataDB = new();
+
+                model.Fk_Area = model.Fk_Area > 0 ? model.Fk_Area : null;
 
                 if (id == 0)
                 {
@@ -190,13 +204,17 @@ namespace Portal.Areas.HotelEntity.Controllers
             return BadRequest(errors);
         }
 
-        private void SetViewData()
+        private void SetViewData(int fk_Country = 0)
         {
             LanguageEnum? language = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
             
-            ViewData["Area"] = _unitOfWork.Location.GetAreasLookUp(new AreaParameters(), language);
+            ViewData["Country"] = _unitOfWork.Location.GetCountriesLookUp(new CountryParameters(), language);
+            ViewData["Area"] = _unitOfWork.Location.GetAreasLookUp(new AreaParameters() { Fk_Country = fk_Country}, language);
             ViewData["HotelType"] = _unitOfWork.Hotel.GetHotelTypesLookUp(new HotelTypeParameters(), language);
+            ViewData["RoomType"] = _unitOfWork.HotelRoom.GetRoomTypesLookUp(new RoomTypeParameters(), language);
+            ViewData["RoomFoodType"] = _unitOfWork.HotelRoom.GetRoomFoodTypesLookUp(new RoomFoodTypeParameters(), language);
             ViewData["HotelFeatures"] = _unitOfWork.Hotel.GetHotelFeaturesLookUp(new HotelFeatureParameters(), language);
+            ViewData["FeatureCategory"] = _unitOfWork.Hotel.GetHotelFeatureCategorysLookUp(new HotelFeatureCategoryParameters (), language);
         }
     }
 }

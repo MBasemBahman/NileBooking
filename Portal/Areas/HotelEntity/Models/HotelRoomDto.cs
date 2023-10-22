@@ -12,6 +12,10 @@ namespace Portal.Areas.HotelEntity.Models
     {
         [DisplayName(nameof(CreatedAt))]
         public new string CreatedAt { get; set; }
+
+
+        [DisplayName(nameof(HotelRoomPrices))]
+        public new List<HotelRoomPriceDto> HotelRoomPrices { get; set; }
     }
 
     public class HotelRoomCreateOrEditModel

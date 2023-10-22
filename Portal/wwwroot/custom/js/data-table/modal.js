@@ -65,6 +65,25 @@ $(document).on('click', '.modal-btn-details', function (e) {
     });
 });
 
+$(document).on('click', '.modal-xl-btn', function (e) {
+    e.preventDefault();
+
+    $.ajax({
+        url: $(this).attr('href'),
+        method: 'GET',
+        beforeSend: function () {
+            $('#cover-spin').show();
+        },
+        complete: function () {
+            $('#cover-spin').hide();
+        },
+        success: function (data) {
+            $('.general-xl-modal-form-content').html(data);
+            $("#general-xl-modal").modal("show");
+        },
+    });
+});
+
 $(document).on('click', '.modal-btn-edit-side', function (e) {
     e.preventDefault();
     // Make an AJAX request to fetch content from the URL
@@ -87,6 +106,7 @@ $(document).on('click', '.modal-btn-edit-side', function (e) {
 
 $(document).on('submit', "#general-modal", function (e) {
     e.preventDefault();
+    console.log('dadsadaasda');
     let form = $('.general-modal-form-content form');
     let formData = new FormData(form[0]);
     $.ajax({
@@ -183,7 +203,6 @@ $(document).on('submit', '.form-delete', function (e) {
         },
         error: function (error) {
             let list = assignUlErrors(error.responseJSON);
-            console.log(list);
             $('.delete-validation-summary-valid').html(list);
         }
     });

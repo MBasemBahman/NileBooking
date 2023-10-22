@@ -3,7 +3,7 @@
  */
 
 'use strict';
-
+    
 (function () {
     // previewTemplate: Updated Dropzone default previewTemplate
     // ! Don't change it unless you really know what you are doing
@@ -27,6 +27,21 @@
     // Multiple Dropzone
     // --------------------------------------------------------------------
     const dropzoneMulti = document.querySelector('#dropzone-multi');
+    
+    Dropzone.confirm = function(question, accepted, rejected) {
+        $("#dropzone-delete-modal").modal("show");
+        
+        $(document).on('submit', '.dropzone-form-delete', function (e) {
+            e.preventDefault();
+
+            accepted();
+            
+            $("#dropzone-delete-modal").modal("hide");
+            $("#success-modal").modal("show");
+        });
+
+    }
+    
     if (dropzoneMulti) {
         
         let myDropzone = new Dropzone("#dropzone-multi", {
@@ -36,7 +51,7 @@
             addRemoveLinks: true,
             autoProcessQueue: true,
             dictRemoveFileConfirmation:  $("#RemoveMessageLbl").val(),
-            dictRemoveFile: '<i class="fas fa-trash-alt"></i>',
+            dictRemoveFile: '<i class="fas fa-trash-alt text-white"></i>',
             removedfile: function (file) {
                 $.ajax({
                     url: $('#DropzoneLinkToRemove').val(),
@@ -49,7 +64,6 @@
                 file.previewTemplate.remove();
             }
         });
-
 
         $.ajax({
             url: $('#GetAttachmentLink').val(),
@@ -90,6 +104,5 @@
                 });
             }
         });
-        
     }
 })();

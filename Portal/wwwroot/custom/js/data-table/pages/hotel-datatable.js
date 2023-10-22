@@ -2,6 +2,20 @@ let currentPage = 1;
 let pageSize = 6;
 let searchTimeoutId;
 
+
+$(document).ready(function () {
+    $('.select2').each(function () {
+        $(this).select2({ dropdownParent: $(this).parent() });
+    });
+
+    $("#Fk_Country_Filter").on('change', function () {
+        getAreas($("#Fk_Area_Filter"), $("#Fk_Country_Filter").val(), false, true);
+    });
+
+    $("#Fk_HotelFeatureCategory_Filter").on('change', function () {
+        getFeatures($("#Fk_HotelFeature_Filter"), $("#Fk_HotelFeatureCategory_Filter").val(), false, false);
+    });
+});
 // Search Filter :: Start
 $(document).on('input', '#search-input', function () {
     clearTimeout(searchTimeoutId);
@@ -56,6 +70,22 @@ $(document).on('click', '.open-create-modal', function () {
     });
 });
 
+// Select2
+let select2 = $('.select2');
+if (select2.length) {
+    select2.each(function () {
+        let $this = $(this);
+        $this.wrap('<div class="position-relative"></div>').select2({
+            dropdownParent: $this.parent(),
+            placeholder: $this.data('placeholder'), // for dynamic placeholder
+            dropdownCss: {
+                minWidth: '150px' // set a minimum width for the dropdown
+            }
+        });
+    });
+    $('.select2-selection__rendered').addClass('w-px-150');
+}
+
 function loadRows() {
     $.ajax({
         url: "/HotelEntity/Hotel/LoadHotels",
@@ -67,6 +97,13 @@ function loadRows() {
             IsActive: $(".is_active").is(":checked"),
             IsRecommended: $(".is_recommended").is(":checked"),
             TxtSearch: $('#search-input').val(),
+            Fk_Country: $("#Fk_Country_Filter").length > 0 ? $("#Fk_Country_Filter").val() : 0,
+            Fk_Area: $("#Fk_Area_Filter").length > 0 ? $("#Fk_Area_Filter").val() : 0,
+            Fk_HotelTypes: $("#Fk_HotelType_Filter").length > 0 ? $("#Fk_HotelType_Filter").val() : null,
+            Fk_RoomTypes: $("#Fk_RoomType_Filter").length > 0 ? $("#Fk_RoomType_Filter").val() : null,
+            Fk_RoomFoodTypes: $("#Fk_RoomFoodType_Filter").length > 0 ? $("#Fk_RoomFoodType_Filter").val() : null,
+            Fk_HotelFeatureCategories: $("#Fk_HotelFeatureCategory_Filter").length > 0 ? $("#Fk_HotelFeatureCategory_Filter").val() : null,
+            Fk_HotelFeatures: $("#Fk_HotelFeature_Filter").length > 0 ? $("#Fk_HotelFeature_Filter").val() : null,
         },
         beforeSend: function() {
             $('#cover-spin').show();
@@ -118,9 +155,7 @@ function setHotelTable(hotels) {
               </div>
               <a href="/HotelEntity/Hotel/Profile/${hotel.id}" class="h5">${hotel.name}</a>
               <p class="mt-2">${hotel.description}</p>
-              <div class="progress mb-4" style="height: 8px">
-                <div class="progress-bar w-75" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
+              <hr/>
               <div class="d-flex flex-column flex-md-row gap-3 text-nowrap justify-content-center">
                 <a class="app-academy-md-50 btn btn-label-primary d-flex align-items-center modal-xl-btn-edit" href="/HotelEntity/Hotel/CreateOrEdit/${hotel.id}">
                   <span class="me-2">${ $("#EditLbl").val() }</span><i class="ti ti-chevron-right scaleX-n1-rtl ti-sm"></i>

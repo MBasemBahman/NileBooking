@@ -20,7 +20,7 @@ namespace Entities.CoreServicesModels.HotelModels
 
         public List<int> Fk_RoomTypes { get; set; }
         public List<int> Fk_RoomFoodTypes { get; set; }
-
+        public List<int> Fk_HotelTypes { get; set; }
         public bool? IncludeSelectedFeature { get; set; }
 
         public bool? IncludeRooms { get; set; }
@@ -108,5 +108,8 @@ namespace Entities.CoreServicesModels.HotelModels
 
         [DisplayName(nameof(HotelAttachments))]
         public List<HotelAttachmentModel> HotelAttachments { get; set; }
+
+        [DisplayName("HotelFeatures")]
+        public List<HotelSelectedFeaturesWithCategoryModel> HotelSelectedFeatures { get; set; }
     }
 }

@@ -2,117 +2,182 @@
 
 @{
     Layout = null;
-  
+
     var row = new HotelDto();
 }
 
 <div class="row">
-  <div class="col-xl-12 col-lg-12 col-md-12">
-    <!-- About User -->
-    <div class="card mb-4">
-      <div class="row card-body">
-        <div class="col-xl-6 col-lg-6 col-md-6">
-          <small class="card-text text-uppercase">@Localizer.Get("_Details")</small>
-          <ul class="list-unstyled mb-4 mt-3">
-            <li class="d-flex align-items-center mb-3">
-              <i class="ti ti-cardboards text-heading"></i>
-              <span class="fw-medium mx-2 text-heading">@Html.DisplayNameFor(model => row.Name) :</span>
-              <span>@Model.Name</span>
-            </li>
-            <li class="d-flex align-items-center mb-3">
-              <i class="ti ti-caret-right text-heading"></i>
-              <span class="fw-medium mx-2 text-heading">@Html.DisplayNameFor(model => row.IsActive) :</span> 
-              <span class="badge bg-@(Model.IsActive ? "success" : "danger")">@Localizer.Get((Model.IsActive ? "Active" : "Inactive"))</span>
-            </li>
-            <li class="d-flex align-items-center mb-3">
-              <i class="ti ti-car-crash text-heading"></i>
-              <span class="fw-medium mx-2 text-heading">@Html.DisplayNameFor(model => row.Address) :</span> 
-              <span>@Model.Address</span>
-            </li>
-            <li class="d-flex align-items-center mb-3">
-              <i class="ti ti-building text-heading"></i>
-              <span class="fw-medium mx-2 text-heading">@Html.DisplayNameFor(model => row.Area) :</span> 
-              <span>@(Model.Area != null ? Model.Area.Name : Localizer.Get("NotFound"))</span>
-            </li>
-            <li class="d-flex align-items-center mb-3">
-              <i class="ti ti-photo text-heading"></i>
-              <span class="fw-medium mx-2 text-heading">@Html.DisplayNameFor(model => row.AttachmentCount) :</span> 
-              <span>@Model.AttachmentCount</span>
-            </li>
-          </ul>
+    <div class="col-xl-12 col-lg-12 col-md-12">
+        <div class="card mb-4">
+            <div class="row card-body">
+                <div class="col-xl-6 col-lg-6 col-md-6">
+
+                    <ul class="list-unstyled mb-4 mt-3">
+
+                        <li class="d-flex align-items-center mb-3">
+                            <i class="ti ti-caret-right text-heading"></i>
+                            <span class="fw-medium mx-2 text-heading">@Html.DisplayNameFor(model => row.IsActive) :</span>
+                            <span class="badge @(Model.IsActive ? "bg-label-success" : "secondary")">@Localizer.Get((Model.IsActive ? "Active" : "Inactive"))</span>
+                        </li>
+                        <li class="d-flex align-items-center mb-3">
+                            <i class="ti ti-map-pin text-heading"></i>
+                            <span class="fw-medium mx-2 text-heading">@Html.DisplayNameFor(model => row.Address) :</span>
+                            <span>@Model.Address</span>
+                        </li>
+                        <li class="d-flex align-items-center mb-3">
+                            <i class="ti ti-building text-heading"></i>
+                            <span class="fw-medium mx-2 text-heading">@Html.DisplayNameFor(model => row.Area) :</span>
+                            <span>@(Model.Area != null ? $"{Model.Area.Country.Name} - {Model.Area.Name}" : Localizer.Get("NotFound"))</span>
+                        </li>
+                        <li class="d-flex align-items-center mb-3">
+                            <i class="ti ti-car text-heading"></i>
+                            <span class="fw-medium mx-2 text-heading">@Html.DisplayNameFor(model => row.Distance) :</span>
+                            <span>@Model.Distance</span>
+                        </li>
+                      
+                    </ul>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6">
+                    <ul class="list-unstyled mb-4 mt-3">
+
+                        <li class="d-flex align-items-center mb-3">
+                            <i class="ti ti-bell-dollar text-heading"></i>
+                            <span class="fw-medium mx-2 text-heading">@Html.DisplayNameFor(model => row.Price) :</span>
+                            <span>@Model.Price</span>
+                        </li>
+                        <li class="d-flex align-items-center mb-3">
+                            <i class="ti ti-star text-heading"></i>
+                            <span class="fw-medium mx-2 text-heading">@Html.DisplayNameFor(model => row.Rate) :</span>
+                            <ul class="unstyled-list list-inline">
+                                <li class="">
+                                    @for (int j = 0; j < 5; j++)
+                                    {
+                                        <i class="rating_star fa-@(j < Model.Rate ? "solid" : "regular") fa-star"></i>
+                                    }
+                                </li>
+                            </ul>
+                        </li>
+                      
+                          <li class="d-flex align-items-center mb-3">
+                            <i class="ti ti-photo text-heading"></i>
+                            <span class="fw-medium mx-2 text-heading">@Html.DisplayNameFor(model => row.AttachmentCount) :</span>
+                            <span>@Model.AttachmentCount</span>
+                        </li>
+                        <li class="d-flex align-items-center mb-3">
+                            <i class="ti ti-book text-heading"></i>
+                            <span class="fw-medium mx-2 text-heading">@Html.DisplayNameFor(model => row.BookingsCount) :</span>
+                            <span>@Model.BookingsCount</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-start">
+                    <span class="badge bg-label-secondary">@Html.DisplayNameFor(model => model.Description) </span>
+                </div>
+                <br />
+                @if (!string.IsNullOrEmpty(Model.Description))
+                {
+                    @Html.Raw(Model.Description)
+                }
+                else
+                {
+                    <p>@Localizer.Get("Not Found")</p>
+                }
+
+            </div>
+
+
         </div>
-        <div class="col-xl-6 col-lg-6 col-md-6">
-          <ul class="list-unstyled mb-4 mt-3">
-            <li class="d-flex align-items-center mb-3">
-              <i class="ti ti-text-caption text-heading"></i>
-              <span class="fw-medium mx-2 text-heading">@Html.DisplayNameFor(model => row.Description) :</span> 
-              <span>@Model.Description</span>
-            </li>
-            <li class="d-flex align-items-center mb-3">
-              <i class="ti ti-bell-dollar text-heading"></i>
-              <span class="fw-medium mx-2 text-heading">@Html.DisplayNameFor(model => row.Price) :</span> 
-              <span>@Model.Price</span>
-            </li>
-            <li class="d-flex align-items-center mb-3">
-              <i class="ti ti-star text-heading"></i>
-              <span class="fw-medium mx-2 text-heading">@Html.DisplayNameFor(model => row.Rate) :</span> 
-              <span>@Model.Rate</span>
-            </li>
-            <li class="d-flex align-items-center mb-3">
-              <i class="ti ti-car text-heading"></i>
-              <span class="fw-medium mx-2 text-heading">@Html.DisplayNameFor(model => row.Distance) :</span> 
-              <span>@Model.Distance</span>
-            </li>
-            <li class="d-flex align-items-center mb-3">
-              <i class="ti ti-book text-heading"></i>
-              <span class="fw-medium mx-2 text-heading">@Html.DisplayNameFor(model => row.BookingsCount) :</span> 
-              <span>@Model.BookingsCount</span>
-            </li>
-          </ul>
-        </div>
-      </div>
     </div>
-    <!--/ About User -->
-  </div>
 </div>
 
 <div class="row">
-  <div class="col-xl-12 col-lg-12 col-md-12">
-    <!-- About User -->
-    <div class="card mb-4">
-      <div class="row card-body">
-        <div class="col-xl-6 col-lg-6 col-md-6">
-          <ul class="list-unstyled mb-4 mt-3">
-            <li class="d-flex align-items-center mb-3">
-              <i class="ti ti-user text-heading"></i>
-              <span class="fw-medium mx-2 text-heading">@Html.DisplayNameFor(model => row.CreatedBy) :</span> 
-              <span>@Model.CreatedBy</span>
-            </li>
-            <li class="d-flex align-items-center mb-3">
-              <i class="ti ti-user text-heading"></i>
-              <span class="fw-medium mx-2 text-heading">@Html.DisplayNameFor(model => row.LastModifiedBy) :</span> 
-              <span>@Model.LastModifiedBy</span>
-            </li>
-          </ul>
+    <div class="col-xl-12 col-lg-12 col-md-12">
+        <div class="card mb-4">
+            <div class="row card-body">
+                <h3 class="text-dark">@Html.DisplayNameFor(model => model.HotelFeatures) </h3>
+                <br />
+                @if (Model.HotelSelectedFeatures != null && Model.HotelSelectedFeatures.Any())
+                {
+
+                    <div class="row mt-2">
+                        @foreach (var featureCategory in Model.HotelSelectedFeatures)
+                        {
+
+                            <div class="col-md-6 col-12">
+                                <span class="badge bg-label-warning" text-capitalized="">   @featureCategory.HotelFeatureCategory.Name</span>
+                             
+                                <br>
+                                <ul style="list-style:none" class="mt-2">
+                                    @foreach (var feature in featureCategory.HotelFeatures)
+                                    {
+
+                                        <li>
+                                            <span>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check font-medium-3 me-50"><polyline points="20 6 9 17 4 12"></polyline></svg> <span class="align-middle">
+                                                    @feature.Name
+                                                </span>
+                                            </span>
+                                        </li>
+                                    }
+                                </ul>
+
+
+
+                            </div>
+                        }
+
+                    </div>
+                }
+                else
+                {
+                    <p>@Localizer.Get("Not Found")</p>
+                }
+
+            </div>
+
         </div>
-        <div class="col-xl-6 col-lg-6 col-md-6">
-          <ul class="list-unstyled mb-4 mt-3">
-            <li class="d-flex align-items-center mb-3">
-              <i class="ti ti-device-watch text-heading"></i>
-              <span class="fw-medium mx-2 text-heading">@Html.DisplayNameFor(model => row.CreatedAt) :</span> 
-              <span>@Model.CreatedAt</span>
-            </li>
-            <li class="d-flex align-items-center mb-3">
-              <i class="ti ti-device-watch text-heading"></i>
-              <span class="fw-medium mx-2 text-heading">@Html.DisplayNameFor(model => row.LastModifiedAt) :</span> 
-              <span>@Model.LastModifiedAt</span>
-            </li>
-          </ul>
-        </div>
-      </div>
     </div>
-    <!--/ About User -->
-  </div>
+</div>
+<div class="row">
+    <div class="col-xl-12 col-lg-12 col-md-12">
+        <!-- About User -->
+        <div class="card mb-4">
+            <div class="row card-body">
+                <div class="col-xl-6 col-lg-6 col-md-6">
+                    <ul class="list-unstyled mb-4 mt-3">
+                        <li class="d-flex align-items-center mb-3">
+                            <i class="ti ti-user text-heading"></i>
+                            <span class="fw-medium mx-2 text-heading">@Html.DisplayNameFor(model => row.CreatedBy) :</span>
+                            <span>@Model.CreatedBy</span>
+                        </li>
+                        <li class="d-flex align-items-center mb-3">
+                            <i class="ti ti-user text-heading"></i>
+                            <span class="fw-medium mx-2 text-heading">@Html.DisplayNameFor(model => row.LastModifiedBy) :</span>
+                            <span>@Model.LastModifiedBy</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6">
+                    <ul class="list-unstyled mb-4 mt-3">
+                        <li class="d-flex align-items-center mb-3">
+                            <i class="ti ti-device-watch text-heading"></i>
+                            <span class="fw-medium mx-2 text-heading">@Html.DisplayNameFor(model => row.CreatedAt) :</span>
+                            <span>@Model.CreatedAt</span>
+                        </li>
+                        <li class="d-flex align-items-center mb-3">
+                            <i class="ti ti-device-watch text-heading"></i>
+                            <span class="fw-medium mx-2 text-heading">@Html.DisplayNameFor(model => row.LastModifiedAt) :</span>
+                            <span>@Model.LastModifiedAt</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!--/ About User -->
+    </div>
 </div>
 
 

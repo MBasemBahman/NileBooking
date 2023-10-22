@@ -1,0 +1,79 @@
+﻿@model HotelFilter
+@{
+    Layout = null;
+}
+<div class="accordion mt-3 mb-4" id="accordionWithIcon">
+    <div class="card accordion-item active">
+        <h2 class="accordion-header d-flex align-items-center">
+            <button type="button" class="accordion-button" data-bs-toggle="collapse" data-bs-target="#accordionWithIcon-1" aria-expanded="true" fdprocessedid="1dle7e">
+                <i class="ti ti-search ti-xs me-2"></i>
+                @Localizer.Get("Advanced Search")
+            </button>
+        </h2>
+        <div id="accordionWithIcon-1" class="accordion-collapse collapse" style="">
+            <div class="accordion-body">
+                <form asp-action="LoadTable" class="filter">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="row g-3">
+                                <div class="col-12 col-sm-6 col-lg-4">
+                                    <label class="form-label" asp-for="Fk_Country"></label>
+
+                                    <select id="Fk_Country_Filter" asp-for="Fk_Country" class="select2 form-select filter-input" asp-items="@(new SelectList(ViewData["Country"] as Dictionary<string,string>,"Key","Value"))">
+                                        <option value="0">@Localizer.Get("All") @Localizer.Get("Countries")</option>
+                                    </select>
+                                </div>
+                                <div class="col-12 col-sm-6 col-lg-4">
+<label class="form-label" asp-for="Fk_Area"></label>
+
+                                    <select id="Fk_Area_Filter" asp-for="Fk_Area"  class="select2 form-select filter-input" asp-items="@(new SelectList(ViewData["Area"] as Dictionary<string,string>,"Key","Value"))">
+                                        <option value="0">@Localizer.Get("All") @Localizer.Get("Areas")</option>
+                                    </select>
+                                </div>
+                                <div class="col-12 col-sm-6 col-lg-4">
+                                    <label class="form-label" asp-for="Fk_HotelTypes"></label>
+                                    <select id="Fk_HotelType_Filter" asp-for="Fk_HotelTypes" multiple class="select2 form-select filter-input" asp-items="@(new SelectList(ViewData["HotelType"] as Dictionary<string, string>, "Key", "Value"))">
+                                    </select>
+                                    <span asp-validation-for="Fk_HotelTypes" class="text-danger"></span>
+                                </div>
+                                <div class="col-md-6 select2-divas">
+                                    <label class="form-label" asp-for="Fk_RoomTypes"></label>
+                                    <select id="Fk_RoomType_Filter" asp-for="Fk_RoomTypes" class="select2 form-select filter-input" asp-items="@(new SelectList(ViewData["RoomType"] as Dictionary<string, string>, "Key", "Value"))">
+                                    </select>
+                                    <span asp-validation-for="Fk_RoomTypes" class="text-danger"></span>
+                                </div>
+
+                                <div class="col-md-6 select2-divas">
+                                    <label class="form-label" asp-for="Fk_RoomFoodTypes"></label>
+                                    <select id="Fk_RoomFoodType_Filter" asp-for="Fk_RoomFoodTypes" class="select2 form-select filter-input" asp-items="@(new SelectList(ViewData["RoomFoodType"] as Dictionary<string, string>, "Key", "Value"))">
+                                    </select>
+                                    <span asp-validation-for="Fk_RoomFoodTypes" class="text-danger"></span>
+                                </div>
+
+                                <div class="col-md-6 select2-divas">
+                                    <label class="form-label" asp-for="Fk_HotelFeatureCategories"></label>
+                                    <select id="Fk_HotelFeatureCategory_Filter" asp-for="Fk_HotelFeatureCategories" class="select2 form-select filter-input" asp-items="@(new SelectList(ViewData["FeatureCategory"] as Dictionary<string, string>, "Key", "Value"))">
+                                    </select>
+                                    <span asp-validation-for="Fk_HotelFeatureCategories" class="text-danger"></span>
+                                </div>
+
+                                <div class="col-md-6 select2-divas">
+                                    <label class="form-label" asp-for="Fk_HotelFeatures"></label>
+                                    <select id="Fk_HotelFeature_Filter" asp-for="Fk_HotelFeatures" class="select2 form-select filter-input" asp-items="@(new SelectList(ViewData["HotelFeatures"] as Dictionary<string, string>, "Key", "Value"))">
+                                    </select>
+                                    <span asp-validation-for="Fk_HotelFeatures" class="text-danger"></span>
+                                </div>
+
+                           
+                                <div class="col-12">
+                                    <a href="" class="filter-submit-btn text-primary" style="text-decoration:underline">@Localizer.Get("Reset")</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>

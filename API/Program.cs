@@ -21,6 +21,7 @@ builder.Services.AddSingleton(provider => new MapperConfiguration(cfg =>
     cfg.AddProfile(new MappingProfile(provider.GetService<IOptions<AppSettings>>()));
 }).CreateMapper());
 builder.Services.ConfigureRepositoryManager();
+builder.Services.ConfigureEmailSender(builder.Configuration);
 builder.Services.ConfigureLocalization();
 builder.Services.ConfigureVersioning();
 builder.Services.ConfigureResponseCaching();

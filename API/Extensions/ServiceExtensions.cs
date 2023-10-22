@@ -11,6 +11,7 @@ using Repository;
 using Services;
 using System.Globalization;
 using System.Reflection;
+using Entities.ServicesModels;
 using TenantConfiguration;
 
 namespace API.Extensions
@@ -42,6 +43,14 @@ namespace API.Extensions
             _ = services.AddSingleton<ResponseManager>();
         }
 
+        public static void ConfigureEmailSender(this IServiceCollection services, IConfiguration configuration)
+        {
+            EmailConfiguration emailConfig = configuration.GetSection("EmailConfiguration")
+                .Get<EmailConfiguration>();
+            _ = services.AddSingleton(emailConfig);
+            _ = services.AddScoped<EmailSender>();
+        }
+        
         public static void ConfigureScopedService(this IServiceCollection services)
         {
             _ = services.AddScoped<JwtUtils>();

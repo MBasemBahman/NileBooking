@@ -18,8 +18,40 @@ $(document).ready(function ()
             // Columns Setups
             columns: [
                 { data: "id" },
-                { data: "roomFoodType.name" },
-                { data: "roomType.name" },
+                {
+                    data: "roomType",
+                    orderable: false,
+                    render: function (data, type, row) {
+                        if (data.colorCode == "#fff"
+                            || data.colorCode == "#ffff"
+                            || data.colorCode == ""
+                            || data.colorCode == null) {
+                            return data.name;
+                        }
+                        else {
+                            var newColor = hexToRgb(data.colorCode);
+                            return '<span class="badge bg-label" style="background-color:rgba(' + newColor.r + ', ' + newColor.g + ', ' + newColor.b + ', .1) " text-capitalized="">'
+                                + '<span style="color:' + data.colorCode + '">' + data.name + '</span</span> ';
+                        }
+                    }
+                },
+                {
+                    data: "roomFoodType",
+                    orderable: false,
+                    render: function (data, type, row) {
+                        if (data.colorCode == "#fff"
+                            || data.colorCode == "#ffff"
+                            || data.colorCode == ""
+                            || data.colorCode == null) {
+                            return data.name;
+                        }
+                        else {
+                            var newColor = hexToRgb(data.colorCode);
+                            return '<span class="badge bg-label" style="background-color:rgba(' + newColor.r + ', ' + newColor.g + ', ' + newColor.b + ', .1) " text-capitalized="">'
+                                + '<span style="color:' + data.colorCode + '">' + data.name + '</span</span> ';
+                        }
+                    }
+                },
                 { data: "maxCount" },
                 { data: "bookingRoomsCount" },
                 { data: "createdAt" },

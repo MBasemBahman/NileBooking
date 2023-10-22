@@ -99,6 +99,13 @@ namespace CoreService.Logic
         {
             return await _repository.Account.FindById(id, trackChanges);
         }
+        
+        public async Task<Account> FindAccountByUserId(int fk_User, bool trackChanges)
+        {
+            return await _repository.Account
+                .FindByCondition(a => a.Fk_User == fk_User, trackChanges)
+                .SingleOrDefaultAsync();
+        }
 
         public async Task<string> UploadAccountImage(string rootPath, IFormFile file)
         {
