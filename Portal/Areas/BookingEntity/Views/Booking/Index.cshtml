@@ -1,0 +1,89 @@
+@{
+    ViewData["Title"] = Localizer.Get("Bookings");
+    Layout = "Layouts/_ContentNavbarLayout";
+    var accessLevel = (DashboardAccessLevelModel)ViewData[ViewDataConstants.AccessLevel];
+
+    var row = new BookingDto();
+}
+
+@section VendorStyles {
+    <link rel="stylesheet" href="~/vendor/libs/datatables-bs5/datatables.bootstrap5.dist.css">
+    <link rel="stylesheet" href="~/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.dist.css">
+    <link rel="stylesheet" href="~/vendor/libs/datatables-buttons-bs5/buttons.bootstrap5.dist.css">
+    <link rel="stylesheet" href="~/vendor/libs/node-waves/node-waves.dist.css">
+}
+
+@section VendorScripts {
+    <script src="~/vendor/libs/datatables-bs5/datatables-bootstrap5.dist.js"></script>
+}
+
+@section PageScripts {
+    <script src="~/js/form-layouts.dist.js"></script>
+    <environment include="Development">
+        <script src="~/custom/js/data-table/table-datatables.js"></script>
+        <script src="~/custom/js/data-table/modal.js"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="~/custom/js/data-table/table-datatables.min.js"></script>
+    </environment>
+        <script src="~/custom/js/general/color.js"></script>
+    <script src="~/custom/js/data-table/pages/booking-datatable.js"></script>
+}
+
+@* ************** Content ************** *@
+
+<div class="content-wrapper">
+    <div class="container-xxl flex-grow-1 container-p-y">
+        <div class="card">
+            <div class="card-header border-bottom">
+                <h5 class="card-title mb-3">@ViewData["Title"]</h5>
+            </div>
+            <div class="card-datatable table-responsive">
+                <table class="datatables-users table dataTable no-footer dtr-column">
+                    <thead class="border-top">
+                        <tr>
+                            <th class="sorting sorting_desc ">
+                                @Html.DisplayNameFor(model => row.Id)
+
+                                @if (accessLevel.ViewAccess)
+                                {
+                                    <a id="details" asp-action="Details" class="open-modal">
+                                    </a>
+                                }
+                                @if (accessLevel.CreateAccess)
+                                {
+                                    <a id="create" asp-action="CreateOrEdit" class="open-modal">
+                                    </a>
+                                }
+
+                                @if (accessLevel.EditAccess)
+                                {
+                                    <a id="edit" asp-action="CreateOrEdit" class="open-modal">
+                                    </a>
+                                }
+                                @if (accessLevel.DeleteAccess)
+                                {
+                                    <a id="delete" asp-action="Delete" class="open-modal">
+                                    </a>
+                                }
+                            </th>
+                            <th class="sorting sorting_desc">@Html.DisplayNameFor(model => row.Hotel)</th>
+                            <th class="sorting sorting_desc">@Html.DisplayNameFor(model => row.FromDate)</th>
+                            <th class="sorting sorting_desc">@Html.DisplayNameFor(model => row.ToDate)</th>
+                            <th class="sorting sorting_desc">@Html.DisplayNameFor(model => row.TotalExtraPrice)</th>
+                            <th class="sorting sorting_desc">@Html.DisplayNameFor(model => row.TotalBookingRoomsAdultCount)</th>
+                            <th class="sorting sorting_desc">@Html.DisplayNameFor(model => row.TotalBookingRoomsChildCount)</th>
+                            <th class="sorting sorting_desc">@Html.DisplayNameFor(model => row.TotalRoomPrice)</th>
+                            <th class="sorting sorting_desc">@Html.DisplayNameFor(model => row.FinalPrice)</th>
+                            <th class="sorting sorting_desc">@Html.DisplayNameFor(model => row.CreatedAt)</th>
+                            <th class="sorting_disabled"></th>
+                        </tr>
+                    </thead>
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>

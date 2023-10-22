@@ -17,18 +17,12 @@ public class BookingRoom : BaseEntity
 
     [DisplayName(nameof(HotelRoom))]
     public HotelRoom HotelRoom { get; set; }
-
+    
     [DisplayName(nameof(AdultCount))]
     public int AdultCount { get; set; }
 
     [DisplayName(nameof(ChildCount))]
     public int ChildCount { get; set; }
-
-    [DisplayName(nameof(TotalAdultPrice))]
-    public double TotalAdultPrice { get; set; }
-
-    [DisplayName(nameof(TotalChildPrice))]
-    public double TotalChildPrice { get; set; }
 
     [DisplayName(nameof(BookingRoomExtras))]
     public List<BookingRoomExtra> BookingRoomExtras { get; set; }

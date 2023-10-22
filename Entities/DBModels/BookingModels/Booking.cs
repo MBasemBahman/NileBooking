@@ -44,6 +44,18 @@ public class Booking : AuditImageEntity
     [DisplayName(nameof(Discount))]
     public double Discount { get; set; }
 
+    [DisplayName(nameof(AdultCount))]
+    public int AdultCount { get; set; }
+
+    [DisplayName(nameof(ChildCount))]
+    public int ChildCount { get; set; }
+
+    [DisplayName(nameof(TotalAdultPrice))]
+    public double TotalAdultPrice { get; set; }
+
+    [DisplayName(nameof(TotalChildPrice))]
+    public double TotalChildPrice { get; set; }
+    
     [DisplayName(nameof(FinalPrice))]
     public double FinalPrice => TotalRoomPrice + TotalExtraPrice + Fees - Discount;
 

@@ -24,4 +24,10 @@
     <ProjectReference Include="..\TenantConfiguration\TenantConfiguration.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <AdditionalFiles Include="Areas\BookingEntity\Views\Booking\CreateOrEdit.cshtml" />
+    <AdditionalFiles Include="Areas\BookingEntity\Views\Booking\Details.cshtml" />
+    <AdditionalFiles Include="Areas\BookingEntity\Views\Booking\Index.cshtml" />
+  </ItemGroup>
+
 </Project>

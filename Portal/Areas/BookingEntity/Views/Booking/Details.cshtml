@@ -1,0 +1,61 @@
+﻿@model BookingDto
+
+@{
+    Layout = null;
+}
+<div class="row">
+    <div class="col-xl-7 col-12">
+        <dl class="row mb-0">
+            <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.Account):</dt>
+            <dd class="col-sm-8 mb-1">@($"{Model.Account.User.FirstName} {Model.Account.User.LastName}")</dd>
+            
+            <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.Hotel):</dt>
+            <dd class="col-sm-8 mb-1">@Model.Hotel.Name</dd>
+            
+            <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.FromDate):</dt>
+            <dd class="col-sm-8 mb-1">@Model.FromDate</dd>
+            
+            <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.CanCancel):</dt>
+            <dd class="col-sm-8 mb-1">@Model.CanCancel == true ? @Localizer.Get("Yes") : @Localizer.Get("No")</dd>
+            
+            <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.FinalPrice):</dt>
+            <dd class="col-sm-8 mb-1">@Model.FinalPrice</dd>
+            
+            <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.TotalBookingRoomsChildCount):</dt>
+            <dd class="col-sm-8 mb-1">@Model.TotalBookingRoomsChildCount</dd>
+        </dl>
+    </div>
+    <div class="col-xl-5 col-12">
+        <dl class="row mb-0">
+            <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.BookingState):</dt>
+            <dd class="col-sm-8 mb-1">@Model.BookingState</dd>
+            
+            <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.Fees):</dt>
+            <dd class="col-sm-8 mb-1">@Model.Fees</dd>
+            
+            <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.ToDate):</dt>
+            <dd class="col-sm-8 mb-1">@Model.ToDate</dd>
+            
+            <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.Discount):</dt>
+            <dd class="col-sm-8 mb-1">@Model.Discount</dd>
+            
+            <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.TotalExtraPrice):</dt>
+            <dd class="col-sm-8 mb-1">@Model.TotalExtraPrice</dd>
+            
+            <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.BookingReview):</dt>
+            <dd class="col-sm-8 mb-1">@Model.BookingReview.Rate</dd>
+        </dl>
+    </div>
+</div>
+<hr />
+<div class="row">
+    <div class="col-xl-7 col-12">
+        <dl class="row mb-0">
+            <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.CreatedAt):</dt>
+            <dd class="col-sm-8 mb-1">@Model.CreatedAt</dd>
+        </dl>
+    </div>
+</div>
+
+
+
