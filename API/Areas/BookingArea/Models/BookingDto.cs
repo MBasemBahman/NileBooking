@@ -2,6 +2,7 @@
 using API.Areas.HotelArea.Models;
 using Entities.CoreServicesModels.BookingModels;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace API.Areas.BookingArea.Models
 {
@@ -32,10 +33,10 @@ namespace API.Areas.BookingArea.Models
         [DisplayName(nameof(BookingRooms))]
         public new List<BookingRoomDto> BookingRooms { get; set; }
     }
-
+    
     public class BookingCreateDto : BookingCreateModel
     {
-        public new List<BookingRoomCreateDto> BookingRooms { get; set; }
+        
     }
 
     public class BookingEditDto

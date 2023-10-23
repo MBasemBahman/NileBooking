@@ -95,7 +95,14 @@ namespace Entities.CoreServicesModels.BookingModels
 
         [DisplayName(nameof(ToDate))]
         public DateTime ToDate { get; set; }
+        
+        [DisplayName(nameof(AdultCount))]
+        public int AdultCount { get; set; }
 
+        [DisplayName(nameof(ChildCount))]
+        public int ChildCount { get; set; }
+        
+        public List<int> Fk_RoomTypes { get; set; }
         public List<BookingRoomCreateModel> BookingRooms { get; set; }
     }
 

@@ -156,7 +156,17 @@ namespace Portal.MappingProfileCls
             _ = CreateMap<BookingStateLangModel, BookingStateLang>();
             #endregion
 
+            #region Booking 
 
+            _ = CreateMap<Booking, BookingCreateOrEditModel>();
+
+            _ = CreateMap<BookingCreateOrEditModel, Booking>();
+
+            _ = CreateMap<BookingModel, BookingDto>();
+
+            _ = CreateMap<BookingFilter, BookingParameters>();
+
+            #endregion
 
             #endregion
 

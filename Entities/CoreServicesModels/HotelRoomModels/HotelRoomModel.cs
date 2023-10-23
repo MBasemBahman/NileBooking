@@ -6,6 +6,7 @@ namespace Entities.CoreServicesModels.HotelRoomModels
     {
         public int Fk_Hotel { get; set; }
         public int Fk_RoomType { get; set; }
+        public List<int> Fk_RoomTypes { get; set; }
         public int Fk_RoomFoodType { get; set; }
 
         public bool IncludeRoomPrices { get; set; } = false;

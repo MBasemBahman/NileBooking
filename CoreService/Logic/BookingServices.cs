@@ -1,4 +1,5 @@
-﻿using Entities.CoreServicesModels.AccountModels;
+﻿using Entities.AuthenticationModels;
+using Entities.CoreServicesModels.AccountModels;
 using Entities.CoreServicesModels.BookingModels;
 using Entities.CoreServicesModels.HotelModels;
 using Entities.CoreServicesModels.HotelRoomModels;
@@ -227,11 +228,70 @@ namespace CoreService.Logic
         }
 
 
-        public void CreateBooking(Booking entity)
+        public Booking CreateBooking(BookingCreateModel model, UserAuthenticatedDto auth)
         {
-            _repository.Booking.Create(entity);
+            Booking dataDb = new Booking
+            {
+                Fk_Account = auth.Fk_Account,
+                Fk_BookingState = (int)BookingStateEnum.Pending,
+                Fk_Hotel = model.Fk_Hotel,
+                Fees = model.Fees,
+                Discount = model.Discount,
+                FromDate = model.FromDate,
+                ToDate = model.ToDate,
+                AdultCount = model.AdultCount,
+                ChildCount = model.ChildCount
+            };
+
+            if (model.Fk_RoomTypes is { Count: > 0 })
+            {
+                List<HotelRoomModel> hotelRooms = _repository.HotelRoom.FindAll(new HotelRoomParameters
+                {
+                    Fk_Hotel = model.Fk_Hotel,
+                    Fk_RoomTypes = model.Fk_RoomTypes
+                }, trackChanges: false).Select(a => new HotelRoomModel
+                {
+                    Id = a.Id,
+                    Fk_RoomType = a.Fk_RoomType
+                }).ToList();
+                
+                dataDb.BookingRooms = new List<BookingRoom>();
+                
+                List<int> fk_BusyHotelRooms = new List<int>();
+                
+                foreach (int fk_RoomType in model.Fk_RoomTypes)
+                {
+                    HotelRoomModel hotelRoom = hotelRooms.FirstOrDefault(a => a.Fk_RoomType == fk_RoomType && !fk_BusyHotelRooms.Contains(a.Id));
+
+                    if (hotelRoom == null)
+                    {
+                        RoomTypeEnum type = (int)RoomTypeEnum.Single == fk_RoomType ? RoomTypeEnum.Single :
+                            (int)RoomTypeEnum.Double == fk_RoomType ? RoomTypeEnum.Double : RoomTypeEnum.Triple;
+                        
+                        throw new Exception($"Unfortunately, there is no {type} room available");
+                    }
+                    
+                    dataDb.BookingRooms.Add(new BookingRoom
+                    {
+                        Fk_HotelRoom = hotelRoom.Id,
+                        AdultCount = 0,
+                        ChildCount = 0,
+                    });
+
+                    fk_BusyHotelRooms.Add(hotelRoom.Id);
+                }
+            }
+            
+            _repository.Booking.Create(dataDb);
+
+            return dataDb;
         }
 
+        public void CreateBooking(Booking dataDb)
+        {
+            _repository.Booking.Create(dataDb);
+        }
+        
         public int GetBookingsCount()
         {
             return _repository.Booking.Count();

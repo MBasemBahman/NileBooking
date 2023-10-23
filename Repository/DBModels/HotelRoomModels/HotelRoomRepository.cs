@@ -15,6 +15,7 @@ namespace Repository.DBModels.HotelRoomModels
                    .Filter(parameters.Id,
                        parameters.Fk_Hotel,
                        parameters.Fk_RoomFoodType,
+                       parameters.Fk_RoomTypes,
                        parameters.Fk_RoomType);
 
         }
@@ -34,11 +35,13 @@ namespace Repository.DBModels.HotelRoomModels
             int id,
             int fk_Hotel,
             int fk_RoomFoodType,
+            List<int> fk_RoomTypes,
             int fk_RoomType)
         {
             return data.Where(a => (id == 0 || a.Id == id) &&
                                        (fk_Hotel == 0 || a.Fk_Hotel == fk_Hotel) &&
                                        (fk_RoomFoodType == 0 || a.Fk_RoomFoodType == fk_RoomFoodType) &&
+                                       (fk_RoomTypes == null || !fk_RoomTypes.Any() || fk_RoomTypes.Contains(a.Fk_RoomType)) &&
                                        (fk_RoomType == 0 || a.Fk_RoomType == fk_RoomType));
         }
     }
