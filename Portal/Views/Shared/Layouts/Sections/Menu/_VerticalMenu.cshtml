@@ -58,6 +58,16 @@
                 </a>
             </li>
         }
+        
+        @if (viewList.Contains((int)DashboardViewEnum.Booking)){
+            <li id="BookingList" class='menu-item@(currentPage ==DashboardViewEnum.Booking.ToString() ? " active open" : "")'>
+                <a asp-action="Index" asp-controller="Booking" asp-area="BookingEntity" class="menu-link">
+                    <i class="menu-icon tf-icons ti ti-notes"></i>
+                    <div data-i18n="@Localizer.Get("Bookings")">@Localizer.Get("Bookings")</div>
+                </a>
+            </li>
+        }
+        
         @if (viewList.Contains((int)DashboardViewEnum.DashboardAdministrator))
         {
             <li class='menu-item@(currentPage ==DashboardViewEnum.DashboardAdministrator.ToString() ? " active open" : "")'>

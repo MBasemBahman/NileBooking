@@ -597,4 +597,22 @@
   <data name="Not Found" xml:space="preserve">
     <value>لا يوجد</value>
   </data>
+  <data name="Bookings" xml:space="preserve">
+    <value>الحجوزات</value>
+  </data>
+  <data name="TotalExtraPrice" xml:space="preserve">
+    <value>اجمالي السعر الاضافي</value>
+  </data>
+  <data name="TotalBookingRoomsAdultCount" xml:space="preserve">
+    <value>اجمالي البالغين في الغرف</value>
+  </data>
+  <data name="TotalBookingRoomsChildCount" xml:space="preserve">
+    <value>اجمالي الاطفال في الغرف</value>
+  </data>
+  <data name="TotalRoomPrice" xml:space="preserve">
+    <value>اجمالي اسعار الغرف</value>
+  </data>
+  <data name="FinalPrice" xml:space="preserve">
+    <value>السعر الكلي</value>
+  </data>
 </root>

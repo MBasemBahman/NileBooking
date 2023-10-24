@@ -11,6 +11,12 @@ public class BookingFilter : DtParameters
 }
 public class BookingDto : BookingModel
 {
+    [DisplayName(nameof(FromDate))]
+    public new string FromDate { get; set; }
+    
+    [DisplayName(nameof(ToDate))]
+    public new string ToDate { get; set; }
+    
     [DisplayName(nameof(CreatedAt))]
     public new string CreatedAt { get; set; }
 }
