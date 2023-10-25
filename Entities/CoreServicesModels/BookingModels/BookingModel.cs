@@ -1,5 +1,8 @@
 ﻿using Entities.CoreServicesModels.AccountModels;
 using Entities.CoreServicesModels.HotelModels;
+using Entities.DBModels.AccountModels;
+using Entities.DBModels.BookingModels;
+using Entities.DBModels.HotelModels;
 
 namespace Entities.CoreServicesModels.BookingModels
 {
@@ -104,6 +107,48 @@ namespace Entities.CoreServicesModels.BookingModels
         
         public List<int> Fk_RoomTypes { get; set; }
         public List<BookingRoomCreateModel> BookingRooms { get; set; }
+    }
+
+    public class BaseBookingCreateOrEditModel
+    {
+        [DisplayName(nameof(Account))]
+        [Required(ErrorMessage = PropertyAttributeConstants.RequiredMsg)]
+        public int Fk_Account { get; set; }
+
+        [DisplayName(nameof(Hotel))]
+        [Required(ErrorMessage = PropertyAttributeConstants.RequiredMsg)]
+        public int Fk_Hotel { get; set; }
+
+        [DisplayName(nameof(Fees))]
+        [Required(ErrorMessage = PropertyAttributeConstants.RequiredMsg)]
+        public double Fees { get; set; }
+
+        [DisplayName(nameof(Discount))]
+        [Required(ErrorMessage = PropertyAttributeConstants.RequiredMsg)]
+        public double Discount { get; set; }
+    
+        [DisplayName(nameof(FromDate))]
+        [Required(ErrorMessage = PropertyAttributeConstants.RequiredMsg)]
+        public DateTime FromDate { get; set; }
+
+        [DisplayName(nameof(ToDate))]
+        [Required(ErrorMessage = PropertyAttributeConstants.RequiredMsg)]
+        public DateTime ToDate { get; set; }
+
+        [DisplayName(nameof(BookingState))]
+        [Required(ErrorMessage = PropertyAttributeConstants.RequiredMsg)]
+        public int Fk_BookingState { get; set; }
+        
+        [DisplayName(nameof(AdultCount))]
+        [Required(ErrorMessage = PropertyAttributeConstants.RequiredMsg)]
+        public int AdultCount { get; set; }
+        
+        [DisplayName(nameof(ChildCount))]
+        [Required(ErrorMessage = PropertyAttributeConstants.RequiredMsg)]
+        public int ChildCount { get; set; }
+        
+        [DisplayName(nameof(BookingRooms))]
+        public List<BookingRoomCreateOrEditModel> BookingRooms { get; set; }
     }
 
 }

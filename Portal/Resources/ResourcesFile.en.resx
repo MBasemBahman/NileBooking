@@ -615,4 +615,31 @@
   <data name="FinalPrice" xml:space="preserve">
     <value>Final Price</value>
   </data>
+  <data name="Fees" xml:space="preserve">
+    <value>Fees</value>
+  </data>
+  <data name="Discount" xml:space="preserve">
+    <value>Discount</value>
+  </data>
+  <data name="Booking" xml:space="preserve">
+    <value>Booking</value>
+  </data>
+  <data name="AdultCount" xml:space="preserve">
+    <value>Adult Count</value>
+  </data>
+  <data name="ChildCount" xml:space="preserve">
+    <value>Child Count</value>
+  </data>
+  <data name="BookingRooms" xml:space="preserve">
+    <value>Booking Rooms</value>
+  </data>
+  <data name="Add Room" xml:space="preserve">
+    <value>Add Room</value>
+  </data>
+  <data name="CanCancel" xml:space="preserve">
+    <value>Can Cancel</value>
+  </data>
+  <data name="BookingReview" xml:space="preserve">
+    <value>Booking Review</value>
+  </data>
 </root>

@@ -7,6 +7,7 @@
 }
 
 @section VendorStyles {
+    <link rel="stylesheet" href="~/vendor/libs/select2/select2.dist.css" />
     <link rel="stylesheet" href="~/vendor/libs/datatables-bs5/datatables.bootstrap5.dist.css">
     <link rel="stylesheet" href="~/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.dist.css">
     <link rel="stylesheet" href="~/vendor/libs/datatables-buttons-bs5/buttons.bootstrap5.dist.css">
@@ -14,10 +15,12 @@
 }
 
 @section VendorScripts {
+    <script src="~/vendor/libs/select2/select2.dist.js"></script>
     <script src="~/vendor/libs/datatables-bs5/datatables-bootstrap5.dist.js"></script>
 }
 
 @section PageScripts {
+    <script src="~/custom/js/general/repeater-lib.js"></script>
     <script src="~/js/form-layouts.dist.js"></script>
     <environment include="Development">
         <script src="~/custom/js/data-table/table-datatables.js"></script>
@@ -47,20 +50,20 @@
 
                                 @if (accessLevel.ViewAccess)
                                 {
-                                    <a id="details" asp-action="Details" class="open-modal">
+                                    <a id="details" asp-action="Details" class="open-modal-xl">
                                     </a>
                                 }
                                 @if (accessLevel.CreateAccess)
                                 {
-                                    <a id="create" asp-action="CreateOrEdit" class="open-modal">
+                                    <a id="create" asp-action="CreateOrEdit" class="open-xl-modal">
                                     </a>
                                 }
 
-                                @if (accessLevel.EditAccess)
-                                {
-                                    <a id="edit" asp-action="CreateOrEdit" class="open-modal">
-                                    </a>
-                                }
+                                @* @if (accessLevel.EditAccess) *@
+                                @* { *@
+                                @*     <a id="edit" asp-action="CreateOrEdit" class="open-xl-modal"> *@
+                                @*     </a> *@
+                                @* } *@
                                 @if (accessLevel.DeleteAccess)
                                 {
                                     <a id="delete" asp-action="Delete" class="open-modal">

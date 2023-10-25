@@ -615,4 +615,31 @@
   <data name="FinalPrice" xml:space="preserve">
     <value>السعر الكلي</value>
   </data>
+  <data name="Fees" xml:space="preserve">
+    <value>الفوائد / الضريبة</value>
+  </data>
+  <data name="Discount" xml:space="preserve">
+    <value>الخصم</value>
+  </data>
+  <data name="Booking" xml:space="preserve">
+    <value>حجز</value>
+  </data>
+  <data name="AdultCount" xml:space="preserve">
+    <value>عدد البالغين</value>
+  </data>
+  <data name="ChildCount" xml:space="preserve">
+    <value>عدد الاطفال</value>
+  </data>
+  <data name="BookingRooms" xml:space="preserve">
+    <value>الغرف الخاصة بالحجز</value>
+  </data>
+  <data name="Add Room" xml:space="preserve">
+    <value>اضف غرفة</value>
+  </data>
+  <data name="CanCancel" xml:space="preserve">
+    <value>امكانية الحذف</value>
+  </data>
+  <data name="BookingReview" xml:space="preserve">
+    <value>تقييم الحجز</value>
+  </data>
 </root>

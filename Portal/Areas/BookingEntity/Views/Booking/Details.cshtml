@@ -1,7 +1,9 @@
-﻿@model BookingDto
+﻿@using Entities.CoreServicesModels.BookingModels
+@model BookingDto
 
 @{
     Layout = null;
+    var row = new BookingRoomModel();
 }
 <div class="row">
     <div class="col-xl-7 col-12">
@@ -16,7 +18,7 @@
             <dd class="col-sm-8 mb-1">@Model.FromDate</dd>
             
             <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.CanCancel):</dt>
-            <dd class="col-sm-8 mb-1">@Model.CanCancel == true ? @Localizer.Get("Yes") : @Localizer.Get("No")</dd>
+            <dd class="col-sm-8 mb-1">@(Model.CanCancel == true ? @Localizer.Get("Yes") : @Localizer.Get("No"))</dd>
             
             <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.FinalPrice):</dt>
             <dd class="col-sm-8 mb-1">@Model.FinalPrice</dd>
@@ -28,7 +30,7 @@
     <div class="col-xl-5 col-12">
         <dl class="row mb-0">
             <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.BookingState):</dt>
-            <dd class="col-sm-8 mb-1">@Model.BookingState</dd>
+            <dd class="col-sm-8 mb-1">@Model.BookingState.Name</dd>
             
             <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.Fees):</dt>
             <dd class="col-sm-8 mb-1">@Model.Fees</dd>
@@ -43,11 +45,48 @@
             <dd class="col-sm-8 mb-1">@Model.TotalExtraPrice</dd>
             
             <dt class="col-sm-4 fw-bolder mb-1">@Html.DisplayNameFor(model => model.BookingReview):</dt>
-            <dd class="col-sm-8 mb-1">@Model.BookingReview.Rate</dd>
+            <dd class="col-sm-8 mb-1">@Model.BookingReview?.Rate</dd>
         </dl>
     </div>
 </div>
-<hr />
+
+<div class="card-body mt-3">
+    <div class="d-flex justify-content-between align-items-start">
+        <span class="badge bg-primary">@Html.DisplayNameFor(model => model.BookingRooms) </span>
+    </div>
+    <br />
+    @if (Model.BookingRooms != null && Model.BookingRooms.Any())
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => row.HotelRoom.RoomType)</th>
+                    <th>@Html.DisplayNameFor(model => row.AdultCount)</th>
+                    <th>@Html.DisplayNameFor(model => row.ChildCount)</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var price in Model.BookingRooms)
+                {
+                    <tr>
+                        <td>@price.HotelRoom.RoomType.Name</td>
+                        <td>@price.AdultCount</td>
+                        <td>@price.ChildCount</td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <br />
+    }
+    else
+    {
+        <p>@Localizer.Get("Not Found")</p>
+        <hr />
+    }
+
+</div>
+
 <div class="row">
     <div class="col-xl-7 col-12">
         <dl class="row mb-0">

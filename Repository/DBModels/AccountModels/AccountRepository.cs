@@ -19,7 +19,8 @@ namespace Repository.DBModels.AccountModels
                        parameters.UserName,
                        parameters.HaveBookings,
                        parameters.CreatedAtFrom,
-                       parameters.CreatedAtTo);
+                       parameters.CreatedAtTo,
+                       parameters.CustomSearch);
 
         }
 
@@ -48,9 +49,16 @@ namespace Repository.DBModels.AccountModels
             string userName,
             bool? haveBookings,
             DateTime? createdAtFrom,
-            DateTime? createdAtTo)
+            DateTime? createdAtTo,
+            string customSearch)
         {
             return data.Where(a => (id == 0 || a.Id == id) &&
+                                   
+                                       (string.IsNullOrEmpty(customSearch) || a.User.FirstName.Contains(customSearch)
+                                                                           || a.User.LastName.Contains(customSearch)
+                                                                           || a.User.UserName.Contains(customSearch)
+                                                                           || a.User.PhoneNumber.Contains(customSearch)) &&
+                                       
                                        (fk_AccountState == 0 || a.Fk_AccountState == fk_AccountState) &&
                                        (fk_AccountType == 0 || a.Fk_AccountType == fk_AccountType) &&
                                        (createdAtFrom == null || a.CreatedAt >= createdAtFrom) &&

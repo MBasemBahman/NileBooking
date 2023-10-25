@@ -1,0 +1,108 @@
+@model BookingCreateOrEditModel
+@{
+    DateTime Now = DateTime.UtcNow;
+}
+<div class="divider">
+    <div class="divider-text">@Html.DisplayNameFor(model => model.BookingRooms)</div>
+</div>
+
+<div class="repeater">
+    <div data-repeater-list="BookingRooms" class="mb-2">
+        @if (Model.BookingRooms != null && Model.BookingRooms.Any())
+        {
+            for (int i = 0; i < Model.BookingRooms.Count; i++)
+            {
+                <div data-repeater-item class="data-repeater mb-2">
+                    <div class="row d-flex align-items-end">
+
+                        <input type="hidden" asp-for="BookingRooms[i].Id" class="idElem" />
+                        
+                        <div class="col-md-4">
+                            <label class="form-label">@Localizer.Get("RoomType")</label>
+                            <select asp-for="BookingRooms[i].Fk_RoomType" class="select2 form-select roomTypeElem" asp-items="@(new SelectList(ViewData["RoomType"] as Dictionary<string, string>, "Key", "Value"))">
+                            </select>
+                            <span asp-validation-for="BookingRooms[i].Fk_RoomType" class="text-danger"></span>
+                        </div>
+                        
+                        <div class="col-md-3 col-12">
+                            <div class="mb-1">
+                                <label class="form-label">@Localizer.Get("AdultCount")</label>
+                                <input class="form-control adultCountElem" asp-for="BookingRooms[i].AdultCount">
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-3 col-12">
+                            <div class="mb-1">
+                                <label class="form-label">@Localizer.Get("ChildCount")</label>
+                                <input class="form-control childCountElem" asp-for="BookingRooms[i].ChildCount">
+                            </div>
+                        </div>
+                       
+                        
+                        <div class="col-md-2 col-12 mb-50">
+                            <div class="mb-1">
+                                <button class="remove-btn btn btn-label-danger mt-4 waves-effect" data-repeater-delete
+                                        type="button">
+                                    <i class="ti ti-x ti-xs me-1"></i>
+                                    <span>@Localizer.Get("Remove")</span>
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <div data-repeater-item class="data-repeater mb-2">
+                <div class="row d-flex align-items-end">
+
+                    <input type="hidden" name=".Id" class="idElem" value="0" />
+                                            
+                    <div class="col-md-4">
+                        <label class="form-label">@Localizer.Get("RoomType")</label>
+                        <select name=".Fk_RoomType" class="select2 form-select roomTypeElem" asp-items="@(new SelectList(ViewData["RoomType"] as Dictionary<string, string>, "Key", "Value"))">
+                        </select>
+                    </div>
+                    
+                    <div class="col-md-3 col-12">
+                        <div class="mb-1">
+                            <label class="form-label">@Localizer.Get("AdultCount")</label>
+                            <input class="form-control adultCountElem" name=".AdultCount" value="">
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-3 col-12">
+                        <div class="mb-1">
+                            <label class="form-label">@Localizer.Get("ChildCount")</label>
+                            <input class="form-control childCountElem" name=".ChildCount" value="">
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-2 col-12 mb-50">
+                        <div class="mb-1">
+                            <button class="remove-btn btn btn-label-danger mt-4 waves-effect" data-repeater-delete newRepeater
+                                    type="button">
+                                <i class="ti ti-x ti-xs me-1"></i>
+                                <span>@Localizer.Get("Remove")</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        }
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-12">
+            <button id="add-new-btn" class="btn btn-success" type="button" data-repeater-create>
+                <i class="fa fa-plus me-25"></i>
+                <span>&nbsp;</span>
+                <span>@Localizer.Get("Add Room")</span>
+            </button>
+        </div>
+    </div>
+
+</div>

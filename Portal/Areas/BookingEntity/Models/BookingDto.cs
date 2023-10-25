@@ -21,21 +21,7 @@ public class BookingDto : BookingModel
     public new string CreatedAt { get; set; }
 }
 
-public class BookingCreateOrEditModel
+public class BookingCreateOrEditModel : BaseBookingCreateOrEditModel
 {
-    [DisplayName(nameof(Account))]
-    public int Fk_Account { get; set; }
-
-    [DisplayName(nameof(Hotel))]
-    public int Fk_Hotel { get; set; }
-
-    [DisplayName(nameof(FromDate))]
-    public DateTime FromDate { get; set; }
-
-    [DisplayName(nameof(ToDate))]
-    public DateTime ToDate { get; set; }
-
-    [DisplayName(nameof(BookingState))]
-    public int Fk_BookingState { get; set; }
+    //
 }
-

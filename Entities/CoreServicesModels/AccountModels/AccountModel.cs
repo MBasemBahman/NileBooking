@@ -12,6 +12,7 @@ namespace Entities.CoreServicesModels.AccountModels
         public bool? HaveBookings { get; set; }
         public DateTime? CreatedAtFrom { get; set; }
         public DateTime? CreatedAtTo { get; set; }
+        public string CustomSearch { get; set; }
     }
 
     public class AccountModel : AuditImageEntity

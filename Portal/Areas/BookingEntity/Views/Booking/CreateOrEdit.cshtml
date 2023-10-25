@@ -11,19 +11,66 @@
 	<form asp-action="CreateOrEdit">
 		<div asp-validation-summary="All" class="text-danger">@ViewData["Error"]</div>
 		<div class="row g-3">
-			@* <div class="col-md-6"> *@
-			@* 	<label class="form-label" asp-for="Name"></label> *@
-			@* 	<input asp-for="Name" class="form-control" placeholder="@Localizer.Get("Enter") @(Localizer.Get("Name"))"> *@
-			@* 	<span asp-validation-for="Name" class="text-danger"></span> *@
-			@* *@
-			@* </div> *@
-			@* *@
-			@* <div class="col-md-6"> *@
-			@* 	<label class="form-label" asp-for="ColorCode"></label> *@
-			@* 	<input type="color" asp-for="ColorCode" class="form-control"> *@
-			@* 	<span asp-validation-for="ColorCode" class="text-danger"></span> *@
-			@* </div> *@
+			
+			<div class="col-md-12">
+				<label class="form-label" asp-for="Fk_Account"></label>
+				<select asp-for="Fk_Account" class="select2 form-select">
+				</select>
+				<span asp-validation-for="Fk_Account" class="text-danger"></span>
+			</div>
+			
+			<div class="col-md-12">
+				<label class="form-label" asp-for="Fk_Hotel"></label>
+				<select asp-for="Fk_Hotel" class="select2 form-select">
+				</select>
+				<span asp-validation-for="Fk_Hotel" class="text-danger"></span>
+			</div>
+			
+			<div class="col-md-4">
+				<label class="form-label" asp-for="Fk_BookingState"></label>
+				<select asp-for="Fk_BookingState" class="select2 form-select" asp-items="@(new SelectList(ViewData["BookingState"] as Dictionary<string, string>, "Key", "Value"))">
+				</select>
+				<span asp-validation-for="Fk_BookingState" class="text-danger"></span>
+			</div>
+			
+			<div class="col-md-4">
+				<label class="form-label" asp-for="Fees"></label>
+				<input asp-for="Fees" class="form-control" placeholder="@Localizer.Get("Enter") @(Localizer.Get("Fees"))">
+				<span asp-validation-for="Fees" class="text-danger"></span>
+			</div>
+			
+			<div class="col-md-4">
+				<label class="form-label" asp-for="Discount"></label>
+				<input asp-for="Discount" class="form-control" placeholder="@Localizer.Get("Enter") @(Localizer.Get("Discount"))">
+				<span asp-validation-for="Discount" class="text-danger"></span>
+			</div>
+			
+			<div class="col-md-6">
+				<label class="form-label" asp-for="FromDate"></label>
+				<input asp-for="FromDate" type="date" class="form-control" placeholder="@Localizer.Get("Enter") @(Localizer.Get("FromDate"))">
+				<span asp-validation-for="FromDate" class="text-danger"></span>
+			</div>
+			
+			<div class="col-md-6">
+				<label class="form-label" asp-for="ToDate"></label>
+				<input asp-for="ToDate" type="date" class="form-control" placeholder="@Localizer.Get("Enter") @(Localizer.Get("ToDate"))">
+				<span asp-validation-for="ToDate" class="text-danger"></span>
+			</div>
+			
+			<div class="col-md-6">
+				<label class="form-label" asp-for="AdultCount"></label>
+				<input asp-for="AdultCount" class="form-control" placeholder="@Localizer.Get("Enter") @(Localizer.Get("AdultCount"))">
+				<span asp-validation-for="AdultCount" class="text-danger"></span>
+			</div>
+			
+			<div class="col-md-6">
+				<label class="form-label" asp-for="ChildCount"></label>
+				<input asp-for="ChildCount" class="form-control" placeholder="@Localizer.Get("Enter") @(Localizer.Get("ChildCount"))">
+				<span asp-validation-for="ChildCount" class="text-danger"></span>
+			</div>
 
+			@await Html.PartialAsync("_BookingRoomsRepeater", Model)
+			
 		</div>
 		<hr class="my-4 mx-n4">
 		<div class="pt-4 text-center">
@@ -34,3 +81,6 @@
 
 </div>
 
+<script src="~/custom/js/pages/filter-general.js"></script>
+<script src="~/vendor/libs/flatpickr/flatpickr.dist.js"></script>
+<script src="~/custom/js/pages/booking-create-or-edit.js"></script>

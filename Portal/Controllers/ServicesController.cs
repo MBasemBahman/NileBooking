@@ -1,4 +1,5 @@
-﻿using Entities.CoreServicesModels.HotelModels;
+﻿using Entities.CoreServicesModels.AccountModels;
+using Entities.CoreServicesModels.HotelModels;
 using Entities.CoreServicesModels.LocationModels;
 
 namespace Portal.Controllers
@@ -46,6 +47,36 @@ namespace Portal.Controllers
 					a.Id,
 					a.Name
 				}).ToList();
+
+			return Json(result);
+		}
+		
+		[HttpGet]
+		public JsonResult getAccountBySearch([FromQuery]string searchTerm)
+		{
+			LanguageEnum? language = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
+
+			var result = _unitOfWork.Account.GetAccounts(new AccountParameters
+			{
+				CustomSearch = searchTerm
+			}, language)
+				.Take(10)
+				.ToDictionary(a => a.Id, a => $"{a.User.FullName} | {a.User.PhoneNumber}");
+
+			return Json(result);
+		}
+		
+		[HttpGet]
+		public JsonResult getHotelBySearch([FromQuery]string searchTerm)
+		{
+			LanguageEnum? language = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
+
+			var result = _unitOfWork.Hotel.GetHotels(new HotelParameters
+			{
+				TxtSearch = searchTerm
+			}, language)
+				.Take(10)
+				.ToDictionary(a => a.Id, a => a.Name);
 
 			return Json(result);
 		}

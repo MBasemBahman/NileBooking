@@ -224,7 +224,7 @@ namespace CoreService.Logic
 
         public BookingModel GetBookingById(int id, LanguageEnum? language)
         {
-            return GetBookings(new BookingParameters { Id = id }, language).SingleOrDefault();
+            return GetBookings(new BookingParameters { Id = id, IncludeRooms = true }, language).SingleOrDefault();
         }
 
 
@@ -278,6 +278,65 @@ namespace CoreService.Logic
                         ChildCount = 0,
                     });
 
+                    fk_BusyHotelRooms.Add(hotelRoom.Id);
+                }
+            }
+            
+            _repository.Booking.Create(dataDb);
+
+            return dataDb;
+        }
+        
+        public Booking CreateBooking(BaseBookingCreateOrEditModel model)
+        {
+            Booking dataDb = new Booking
+            {
+                Fk_Account = model.Fk_Account,
+                Fk_Hotel = model.Fk_Hotel,
+                Fk_BookingState = (int)BookingStateEnum.Pending,
+                Fees = model.Fees,
+                Discount = model.Discount,
+                FromDate = model.FromDate,
+                ToDate = model.ToDate,
+                AdultCount = model.AdultCount,
+                ChildCount = model.ChildCount,
+            };
+
+            if (model.BookingRooms is { Count: > 0 })
+            {
+                List<HotelRoomModel> hotelRooms = _repository.HotelRoom.FindAll(new HotelRoomParameters
+                {
+                    Fk_Hotel = model.Fk_Hotel,
+                    Fk_RoomTypes = model.BookingRooms.Select(a => a.Fk_RoomType).ToList()
+                }, trackChanges: false).Select(a => new HotelRoomModel
+                {
+                    Id = a.Id,
+                    Fk_RoomType = a.Fk_RoomType
+                }).ToList();
+                
+                dataDb.BookingRooms = new List<BookingRoom>();
+                
+                List<int> fk_BusyHotelRooms = new List<int>();
+                
+                foreach (BookingRoomCreateOrEditModel bookingRoom in model.BookingRooms)
+                {
+                    HotelRoomModel hotelRoom = hotelRooms.FirstOrDefault(a => a.Fk_RoomType == bookingRoom.Fk_RoomType && !fk_BusyHotelRooms.Contains(a.Id));
+            
+                    if (hotelRoom == null)
+                    {
+                        RoomTypeEnum type = (int)RoomTypeEnum.Single == bookingRoom.Fk_RoomType ? RoomTypeEnum.Single :
+                            (int)RoomTypeEnum.Double == bookingRoom.Fk_RoomType ? RoomTypeEnum.Double : RoomTypeEnum.Triple;
+                        
+                        throw new Exception($"Unfortunately, there is no {type} room available");
+                    }
+                    
+                    dataDb.BookingRooms.Add(new BookingRoom
+                    {
+                        Fk_HotelRoom = hotelRoom.Id,
+                        AdultCount = bookingRoom.AdultCount,
+                        ChildCount = bookingRoom.ChildCount,
+                    });
+            
                     fk_BusyHotelRooms.Add(hotelRoom.Id);
                 }
             }

@@ -1,4 +1,5 @@
 ﻿using Entities.CoreServicesModels.HotelRoomModels;
+using Entities.DBModels.HotelRoomModels;
 
 namespace Entities.CoreServicesModels.BookingModels
 {
@@ -51,6 +52,21 @@ namespace Entities.CoreServicesModels.BookingModels
         public int ChildCount { get; set; }
     
         public List<BookingRoomExtraCreateModel> BookingRoomExtras { get; set; }
+    }
+    
+    public class BookingRoomCreateOrEditModel
+    {
+        [DisplayName(nameof(Id))]
+        public int Id { get; set; }
+
+        [DisplayName(nameof(RoomType))]
+        public int Fk_RoomType { get; set; }
+
+        [DisplayName(nameof(AdultCount))]
+        public int AdultCount { get; set; }
+
+        [DisplayName(nameof(ChildCount))]
+        public int ChildCount { get; set; }
     }
 
 }

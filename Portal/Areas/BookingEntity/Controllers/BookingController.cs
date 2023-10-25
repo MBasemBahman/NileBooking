@@ -1,4 +1,5 @@
 ﻿using Entities.CoreServicesModels.BookingModels;
+using Entities.CoreServicesModels.HotelRoomModels;
 using Entities.DBModels.BookingModels;
 using Entities.RequestFeatures;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
@@ -60,7 +61,11 @@ namespace Portal.Areas.BookingEntity.Controllers
         [Authorize(DashboardViewEnum.Booking, DashboardAccessLevelEnum.DataControl)]
         public async Task<IActionResult> CreateOrEdit(int id = 0)
         {
-            BookingCreateOrEditModel model = new();
+            BookingCreateOrEditModel model = new()
+            {
+                FromDate = DateTime.Today,
+                ToDate = DateTime.Today,
+            };
 
             if (id > 0)
             {
@@ -68,6 +73,8 @@ namespace Portal.Areas.BookingEntity.Controllers
                 model = _mapper.Map<BookingCreateOrEditModel>(dataDB);
             }
 
+            setViewData();
+            
             return View(model);
         }
 
@@ -89,14 +96,12 @@ namespace Portal.Areas.BookingEntity.Controllers
 
                     throw new Exception("");
                 }
-
-                UserAuthenticatedDto auth = (UserAuthenticatedDto)Request.HttpContext.Items[ApiConstants.User];
+                
                 Booking dataDB = new();
 
                 if (id == 0)
                 {
-                    dataDB = _mapper.Map<Booking>(model);
-                    _unitOfWork.Booking.CreateBooking(dataDB);
+                    dataDB = _unitOfWork.Booking.CreateBooking(model);
                 }
                 else
                 {
@@ -136,6 +141,14 @@ namespace Portal.Areas.BookingEntity.Controllers
             }
 
             return BadRequest(errors);
+        }
+
+        private void setViewData()
+        {
+            LanguageEnum? language = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
+
+            ViewData["BookingState"] = _unitOfWork.Booking.GetBookingStatesLookUp(new BookingStateParameters(), language);
+            ViewData["RoomType"] = _unitOfWork.HotelRoom.GetRoomTypesLookUp(new RoomTypeParameters(), language);
         }
     }
 }
