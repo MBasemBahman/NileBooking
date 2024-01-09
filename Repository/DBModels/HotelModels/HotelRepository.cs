@@ -26,7 +26,8 @@ namespace Repository.DBModels.HotelModels
                        parameters.Fk_HotelTypes,
                        parameters.PriceMin,
                        parameters.PriceMax,
-                       parameters.MembersCount);
+                       parameters.MembersCount,
+                       parameters.Rates);
 
         }
 
@@ -74,7 +75,8 @@ namespace Repository.DBModels.HotelModels
             List<int> fk_HotelTypes,
             double priceMin,
             double priceMax,
-            int membersCount)
+            int membersCount,
+            List<double> rates)
         {
             return data.Where(a => (id == 0 || a.Id == id) &&
                    (string.IsNullOrEmpty(txtSearch) || a.Name.Contains(txtSearch) ||
@@ -96,7 +98,8 @@ namespace Repository.DBModels.HotelModels
                    (priceMax == 0 || a.HotelRooms.Any(b => 
                        b.HotelRoomPrices.Any(c => c.ChildPrice <= priceMax || c.AdultPrice <= priceMax) )) &&
                    
-                   (a.HotelRooms.Any(b => b.MaxCount >= membersCount)));
+                   a.HotelRooms.Any(b => b.MaxCount >= membersCount) &&
+                   (rates == null || !rates.Any() || rates.Contains(a.Rate)));
         }
     }
 }

@@ -41,6 +41,7 @@ namespace Entities.CoreServicesModels.HotelModels
         public double PriceMin { get; set; }
         public double PriceMax { get; set; }
         public int MembersCount { get; set; }
+        public List<double> Rates { get; set; }
 
     }
     public class HotelModel : AuditImageEntity
