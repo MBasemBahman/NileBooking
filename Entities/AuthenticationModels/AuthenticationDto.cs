@@ -50,6 +50,23 @@ namespace Entities.AuthenticationModels
         [Phone]
         public string PhoneNumber { get; set; }
     }
+    
+    public class AuthForEditDto
+    {
+        [Required(ErrorMessage = PropertyAttributeConstants.RequiredMsg)]
+        public string FirstName { get; set; }
+        
+        [Required(ErrorMessage = PropertyAttributeConstants.RequiredMsg)]
+        public string LastName { get; set; }
+        
+        [DataType(DataType.EmailAddress)]
+        [EmailAddress]
+        public string EmailAddress { get; set; }
+
+        [DataType(DataType.PhoneNumber)]
+        [Phone]
+        public string PhoneNumber { get; set; }
+    }
 
     public class ChangePasswordDto
     {

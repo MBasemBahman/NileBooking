@@ -13,6 +13,7 @@ namespace Repository.DBModels.AccountModels
         {
             return FindByCondition(a => true, trackChanges)
                    .Filter(parameters.Id,
+                       parameters.ExceptId,
                        parameters.Fk_AccountState,
                        parameters.Fk_AccountType,
                        parameters.Fk_User,
@@ -43,6 +44,7 @@ namespace Repository.DBModels.AccountModels
         public static IQueryable<Account> Filter(
             this IQueryable<Account> data,
             int id,
+            int exceptId,
             int fk_AccountState,
             int fk_AccountType,
             int fk_User,
@@ -53,6 +55,8 @@ namespace Repository.DBModels.AccountModels
             string customSearch)
         {
             return data.Where(a => (id == 0 || a.Id == id) &&
+                                   
+                                       (exceptId == 0 || a.Id != exceptId) && 
                                    
                                        (string.IsNullOrEmpty(customSearch) || a.User.FirstName.Contains(customSearch)
                                                                            || a.User.LastName.Contains(customSearch)

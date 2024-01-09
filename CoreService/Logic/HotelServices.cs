@@ -18,8 +18,7 @@ namespace CoreService.Logic
 
         #region Hotel Services
 
-        public IQueryable<HotelModel> GetHotels(
-            HotelParameters parameters, LanguageEnum? language)
+        public IQueryable<HotelModel> GetHotels(HotelParameters parameters, LanguageEnum? language)
         {
             List<HotelFeatureCategoryModel> categories = new();
             if (parameters.IncludeSelectedFeature == true)
