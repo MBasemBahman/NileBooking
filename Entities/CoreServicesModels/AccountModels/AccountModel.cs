@@ -8,6 +8,7 @@ namespace Entities.CoreServicesModels.AccountModels
         public int Fk_AccountType { get; set; }
         public int Fk_AccountState { get; set; }
         public int Fk_User { get; set; }
+        public int ExceptId { get; set; }
         public string UserName { get; set; }
         public bool? HaveBookings { get; set; }
         public DateTime? CreatedAtFrom { get; set; }

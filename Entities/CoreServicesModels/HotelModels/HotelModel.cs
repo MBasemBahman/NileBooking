@@ -38,6 +38,11 @@ namespace Entities.CoreServicesModels.HotelModels
         [DisplayName(nameof(Longitude))]
         public double Longitude { get; set; }
 
+        public double PriceMin { get; set; }
+        public double PriceMax { get; set; }
+        public int MembersCount { get; set; }
+        public List<double> Rates { get; set; }
+
     }
     public class HotelModel : AuditImageEntity
     {

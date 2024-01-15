@@ -1,7 +1,10 @@
-﻿using Entities.CoreServicesModels.AccountModels;
+﻿using System.Linq.Dynamic.Core;
+using API.Areas.AccountArea.Models;
+using Entities.CoreServicesModels.AccountModels;
 using Entities.DBModels.AccountModels;
 using Entities.DBModels.UserModels;
 using Entities.ServicesModels;
+using Org.BouncyCastle.Asn1.Esf;
 using Services;
 
 namespace API.Controllers
@@ -137,9 +140,35 @@ namespace API.Controllers
         }
         
         [HttpPut]
+        [Route(nameof(UpdateProfile))]
+        public async Task<AccountDto> UpdateProfile([FromBody] AuthForEditDto model)
+        {
+            UserAuthenticatedDto auth = (UserAuthenticatedDto)Request.HttpContext.Items[ApiConstants.User];
+
+            LanguageEnum? language = (LanguageEnum?)Request.HttpContext.Items[ApiConstants.Language];
+            
+            Account account = await _unitOfWork.Account.FindAccountById(auth.Fk_Account, trackChanges: true);
+            
+            if (IsEmailAlreadyExists(model.EmailAddress, account.Id))
+            {
+                throw new Exception("This Email already exists");
+            }
+            
+            account.User.FirstName = model.FirstName;
+            account.User.LastName = model.LastName;
+            
+            account.User.UserName = model.EmailAddress;
+            account.User.EmailAddress = model.EmailAddress;
+            account.User.PhoneNumber = model.PhoneNumber;
+            
+            await _unitOfWork.Save();
+
+            return _mapper.Map<AccountDto>(_unitOfWork.Account.GetAccountById(auth.Fk_Account, language));
+        }
+        
+        [HttpPut]
         [Route(nameof(ChangePassword))]
-        public async Task<bool> ChangePassword(
-           [FromBody] ChangePasswordDto model)
+        public async Task<bool> ChangePassword([FromBody] ChangePasswordDto model)
         {
             UserAuthenticatedDto auth = (UserAuthenticatedDto)Request.HttpContext.Items[ApiConstants.User];
 
@@ -208,6 +237,15 @@ namespace API.Controllers
                 EmailMessage message = new(new string[] { emailAddress }, "Verification", code, _environment.WebRootPath, templatePath);
                 await _emailSender.SendHtmlEmail(message);
             }
+        }
+
+        private bool IsEmailAlreadyExists(string emailAddress, int fk_Account)
+        {
+            return _unitOfWork.Account.GetAccounts(new AccountParameters
+            {
+                UserName = emailAddress,
+                ExceptId = fk_Account
+            }, language: null).Any();
         }
     }
 }

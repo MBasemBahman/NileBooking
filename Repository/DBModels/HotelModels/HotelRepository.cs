@@ -23,7 +23,11 @@ namespace Repository.DBModels.HotelModels
                        parameters.IsActive,
                        parameters.IsRecommended,
                        parameters.TxtSearch,
-                       parameters.Fk_HotelTypes);
+                       parameters.Fk_HotelTypes,
+                       parameters.PriceMin,
+                       parameters.PriceMax,
+                       parameters.MembersCount,
+                       parameters.Rates);
 
         }
 
@@ -68,21 +72,34 @@ namespace Repository.DBModels.HotelModels
             bool? isActive,
             bool? isRecommended,
             string txtSearch,
-            List<int> fk_HotelTypes)
+            List<int> fk_HotelTypes,
+            double priceMin,
+            double priceMax,
+            int membersCount,
+            List<double> rates)
         {
             return data.Where(a => (id == 0 || a.Id == id) &&
-                                       (string.IsNullOrEmpty(txtSearch) || a.Name.Contains(txtSearch) ||
-                                        a.HotelType.Name.Contains(txtSearch)) &&
-                                       (fk_HotelType == 0 || a.Fk_HotelType == fk_HotelType) &&
-                                       (fk_Country == 0 || a.Area.Fk_Country == fk_Country) &&
-                                       (fk_Area == 0 || a.Fk_Area == fk_Area) &&
-                                       (fk_HotelFeatureCategories == null || !fk_HotelFeatureCategories.Any() || a.HotelSelectedFeatures.Any(b => fk_HotelFeatureCategories.Contains(b.HotelFeature.Fk_HotelFeatureCategory))) &&
-                                       (fk_HotelFeatures == null || !fk_HotelFeatures.Any() || a.HotelSelectedFeatures.Any(b => fk_HotelFeatures.Contains(b.Fk_HotelFeature))) &&
-                                       (fk_RoomTypes == null || !fk_RoomTypes.Any() || a.HotelRooms.Any(b => fk_RoomTypes.Contains(b.Fk_RoomType))) &&
-                                       (fk_HotelTypes == null  || !fk_HotelTypes.Any()||fk_HotelTypes.Contains(a.Fk_HotelType)) &&
-                                       (fk_RoomFoodTypes == null || !fk_RoomFoodTypes.Any() || a.HotelRooms.Any(b => fk_RoomFoodTypes.Contains(b.Fk_RoomFoodType))) &&
-                                       (isActive == null || a.IsActive == isActive) &&
-                                       (isRecommended == null || a.IsRecommended == isRecommended));
+                   (string.IsNullOrEmpty(txtSearch) || a.Name.Contains(txtSearch) ||
+                    a.HotelType.Name.Contains(txtSearch)) &&
+                   (fk_HotelType == 0 || a.Fk_HotelType == fk_HotelType) &&
+                   (fk_Country == 0 || a.Area.Fk_Country == fk_Country) &&
+                   (fk_Area == 0 || a.Fk_Area == fk_Area) &&
+                   (fk_HotelFeatureCategories == null || !fk_HotelFeatureCategories.Any() || a.HotelSelectedFeatures.Any(b => fk_HotelFeatureCategories.Contains(b.HotelFeature.Fk_HotelFeatureCategory))) &&
+                   (fk_HotelFeatures == null || !fk_HotelFeatures.Any() || a.HotelSelectedFeatures.Any(b => fk_HotelFeatures.Contains(b.Fk_HotelFeature))) &&
+                   (fk_RoomTypes == null || !fk_RoomTypes.Any() || a.HotelRooms.Any(b => fk_RoomTypes.Contains(b.Fk_RoomType))) &&
+                   (fk_HotelTypes == null  || !fk_HotelTypes.Any()||fk_HotelTypes.Contains(a.Fk_HotelType)) &&
+                   (fk_RoomFoodTypes == null || !fk_RoomFoodTypes.Any() || a.HotelRooms.Any(b => fk_RoomFoodTypes.Contains(b.Fk_RoomFoodType))) &&
+                   (isActive == null || a.IsActive == isActive) &&
+                   (isRecommended == null || a.IsRecommended == isRecommended) &&
+                   
+                   (priceMin == 0 || a.HotelRooms.Any(b => 
+                       b.HotelRoomPrices.Any(c => c.ChildPrice >= priceMin || c.AdultPrice >= priceMin) )) &&
+                   
+                   (priceMax == 0 || a.HotelRooms.Any(b => 
+                       b.HotelRoomPrices.Any(c => c.ChildPrice <= priceMax || c.AdultPrice <= priceMax) )) &&
+                   
+                   a.HotelRooms.Any(b => b.MaxCount >= membersCount) &&
+                   (rates == null || !rates.Any() || rates.Contains(a.Rate)));
         }
     }
 }
