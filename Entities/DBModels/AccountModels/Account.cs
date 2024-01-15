@@ -1,4 +1,5 @@
 ﻿using Entities.DBModels.BookingModels;
+using Entities.DBModels.FavouriteModels;
 using Entities.DBModels.UserModels;
 
 namespace Entities.DBModels.AccountModels;
@@ -26,6 +27,9 @@ public class Account : AuditImageEntity
     [DisplayName(nameof(AccountState))]
     public AccountState AccountState { get; set; }
 
+    [DisplayName(nameof(FavouriteAccountHotels))]
+    public List<FavouriteAccountHotel> FavouriteAccountHotels { get; set; }
+    
     [DisplayName(nameof(Bookings))]
     public List<Booking> Bookings { get; set; }
 }

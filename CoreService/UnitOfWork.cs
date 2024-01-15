@@ -12,6 +12,7 @@ namespace CoreService
         private LocationServices _locationServices;
         private BookingServices _bookingServices;
         private HotelRoomServices _hotelRoomServices;
+        private FavouriteServices _favouriteServices;
 
         public UnitOfWork(RepositoryManager repository)
         {
@@ -84,6 +85,15 @@ namespace CoreService
             {
                 _bookingServices ??= new BookingServices(_repository);
                 return _bookingServices;
+            }
+        }
+        
+        public FavouriteServices Favourite
+        {
+            get
+            {
+                _favouriteServices ??= new FavouriteServices(_repository);
+                return _favouriteServices;
             }
         }
 

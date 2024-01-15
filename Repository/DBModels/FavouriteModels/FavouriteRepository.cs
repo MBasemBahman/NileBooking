@@ -17,6 +17,11 @@ namespace Repository.DBModels.FavouriteModels
                            parameters.Fk_Hotel);
         }
 
+        public async Task<FavouriteAccountHotel> FindById(int id, bool trackChanges)
+        {
+            return await FindByCondition(a => a.Id == id, trackChanges)
+                .SingleOrDefaultAsync();
+        }
     }
 
     public static class FavouriteAccountHotelRepositoryExtension

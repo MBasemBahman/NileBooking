@@ -1,4 +1,6 @@
-﻿using Entities.DBModels.AccountModels;
+﻿using Entities.CoreServicesModels.AccountModels;
+using Entities.CoreServicesModels.HotelModels;
+using Entities.DBModels.AccountModels;
 using Entities.DBModels.HotelModels;
 
 namespace Entities.CoreServicesModels.FavouriteModels;
@@ -16,12 +18,12 @@ public class FavouriteAccountHotelModel : BaseEntity
     public int Fk_Account { get; set; }
     
     [DisplayName(nameof(Account))]
-    public Account Account { get; set; }
+    public AccountModel Account { get; set; }
     
     [ForeignKey(nameof(Hotel))]
     [DisplayName(nameof(Hotel))]
     public int Fk_Hotel { get; set; }
     
     [DisplayName(nameof(Hotel))]
-    public Hotel Hotel { get; set; }
+    public HotelModel Hotel { get; set; }
 }

@@ -7,6 +7,7 @@ namespace Entities.CoreServicesModels.HotelModels
     {
         public string TxtSearch { get; set; }
         
+        public int Fk_FavouriteAccount { get; set; }
         public int Fk_HotelType { get; set; }
 
         public int Fk_Area { get; set; }
@@ -72,7 +73,10 @@ namespace Entities.CoreServicesModels.HotelModels
 
         [DisplayName(nameof(Area))]
         public AreaModel Area { get; set; }
-
+        
+        [DisplayName(nameof(InFavourite))] 
+        public bool InFavourite { get; set; }
+        
         [DisplayName(nameof(Description))]
         [DataType(DataType.MultilineText)]
         public string Description { get; set; }

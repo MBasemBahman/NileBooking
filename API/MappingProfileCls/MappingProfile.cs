@@ -26,6 +26,8 @@ using Entities.DBModels.BookingModels;
 
 
 using System.Globalization;
+using API.Areas.FavouriteArea.Models;
+using Entities.CoreServicesModels.FavouriteModels;
 
 namespace API.MappingProfileCls
 {
@@ -119,6 +121,12 @@ namespace API.MappingProfileCls
             _ = CreateMap<RoomTypeModel, RoomTypeDto>();
             #endregion
 
+            #region Favourite Models
+
+            _ = CreateMap<FavouriteAccountHotelModel, FavouriteAccountHotelDto>();
+
+            #endregion
+            
             #region Booking Models
             _ = CreateMap<BookingModel, BookingDto>();
 

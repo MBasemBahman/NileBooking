@@ -14,7 +14,8 @@
             Location,
             Hotel,
             HotelRoom,
-            Booking
+            Booking,
+            Favourite
         }
 
         public enum TenantViews

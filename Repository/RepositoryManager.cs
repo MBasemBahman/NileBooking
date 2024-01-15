@@ -1,6 +1,7 @@
 ﻿using Repository.DBModels.AccountModels;
 using Repository.DBModels.BookingModels;
 using Repository.DBModels.DashboardAdministrationModels;
+using Repository.DBModels.FavouriteModels;
 using Repository.DBModels.HotelModels;
 using Repository.DBModels.HotelRoomModels;
 using Repository.DBModels.LocationModels;
@@ -73,6 +74,12 @@ namespace Repository
 
         private AreaRepository _areaRepository;
         private CountryRepository _countryRepository;
+
+        #endregion
+
+        #region Favourite
+
+        private FavouriteAccountHotelRepository _favouriteAccountHotelRepository;
 
         #endregion
 
@@ -386,6 +393,19 @@ namespace Repository
 
         #endregion
 
+        #region Favourite
+
+        public FavouriteAccountHotelRepository FavouriteAccountHotel
+        {
+            get
+            {
+                _favouriteAccountHotelRepository ??= new FavouriteAccountHotelRepository(_dBContext);
+                return _favouriteAccountHotelRepository;
+            }
+        }
+
+        #endregion
+        
         #endregion
     }
 }

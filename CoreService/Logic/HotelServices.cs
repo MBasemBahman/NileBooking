@@ -57,6 +57,10 @@ namespace CoreService.Logic
                                   Fk_HotelType = a.Fk_HotelType,
                                   IsActive = a.IsActive,
                                   Fk_Area = a.Fk_Area,
+                                  
+                                  InFavourite = a.FavouriteAccountHotels.Any(b => 
+                                      b.Fk_Account == parameters.Fk_FavouriteAccount),
+                                  
                                   Area = a.Fk_Area != null ? new AreaModel
                                   {
                                       Name = language != null ? a.Area.AreaLangs

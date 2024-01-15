@@ -10,7 +10,6 @@ namespace API.Areas.HotelArea.Controllers
     [Area("Hotel")]
     [ApiExplorerSettings(GroupName = "Hotel")]
     [Route("[area]/v{version:apiVersion}/[controller]")]
-    [AllowAnonymous]
     public class HotelController : ExtendControllerBase
     {
         public HotelController(
@@ -31,6 +30,8 @@ namespace API.Areas.HotelArea.Controllers
 
             UserAuthenticatedDto auth = (UserAuthenticatedDto)Request.HttpContext.Items[ApiConstants.User];
 
+            parameters.Fk_FavouriteAccount = auth.Fk_Account;
+            
             parameters.IsActive = true;
             List<HotelDto> dataDto = new();
 

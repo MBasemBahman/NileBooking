@@ -1,4 +1,5 @@
 using Entities.DBModels.BookingModels;
+using Entities.DBModels.FavouriteModels;
 using Entities.DBModels.HotelRoomModels;
 using Entities.DBModels.LocationModels;
 
@@ -60,6 +61,9 @@ public class Hotel : AuditImageEntity
 
     [DisplayName(nameof(Bookings))]
     public List<Booking> Bookings { get; set; }
+    
+    [DisplayName(nameof(FavouriteAccountHotels))]
+    public List<FavouriteAccountHotel> FavouriteAccountHotels { get; set; }
 
     [DisplayName(nameof(HotelLangs))]
     public List<HotelLang> HotelLangs { get; set; }
