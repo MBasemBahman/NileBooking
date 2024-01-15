@@ -3,6 +3,7 @@ using Entities.CoreServicesModels.BookingModels;
 using Entities.CoreServicesModels.HotelRoomModels;
 using Entities.DBModels.BookingModels;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Services;
 
 namespace API.Areas.BookingArea.Controllers
 {
@@ -12,14 +13,17 @@ namespace API.Areas.BookingArea.Controllers
     [Route("[area]/v{version:apiVersion}/[controller]")]
     public class BookingController : ExtendControllerBase
     {
+        private readonly CyberSourcePaymentService _paymentService;
+
         public BookingController(
         IMapper mapper,
         UnitOfWork unitOfWork,
         LinkGenerator linkGenerator,
         IWebHostEnvironment environment,
-        IOptions<AppSettings> appSettings) : base(mapper, unitOfWork, linkGenerator, environment, appSettings)
+        IOptions<AppSettings> appSettings,
+        CyberSourcePaymentService paymentService) : base(mapper, unitOfWork, linkGenerator, environment, appSettings)
         {
-
+            _paymentService = paymentService;
         }
 
         [HttpGet]
@@ -132,6 +136,14 @@ namespace API.Areas.BookingArea.Controllers
             BookingCreateModel booking = _mapper.Map<BookingCreateModel>(model);
 
             return _unitOfWork.Booking.CalculateBookingPrice(booking);
+        }
+
+        [HttpGet]
+        [Route(nameof(RequestForPayment))]
+        public ActionResult<string> RequestForPayment()
+        {
+            return _paymentService
+                .GenerateCyberSourceForm("100.00", "USD", "", "", "", "", "", "");
         }
     }
 }

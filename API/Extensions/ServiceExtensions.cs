@@ -55,6 +55,7 @@ namespace API.Extensions
         {
             _ = services.AddScoped<JwtUtils>();
             _ = services.AddScoped<AuthenticationManager>();
+            _ = services.AddScoped<CyberSourcePaymentService>();
         }
 
         public static void ConfigureSqlContext(this IServiceCollection services,
